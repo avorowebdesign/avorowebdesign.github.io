@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://avorowebdesign.github.io/sitemap.xml
