@@ -5,781 +5,545 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AVORO — Websites die presteren</title>
 <meta name="description" content="AVORO bouwt websites en webshops die presteren. Shopify, Magento, WordPress. Strategie, design en techniek in één aanpak.">
-<meta name="og:title" content="AVORO — Websites die presteren">
-<meta name="og:description" content="AVORO bouwt websites en webshops die presteren. Shopify, Magento, WordPress. Geen loze beloftes, gewoon resultaat.">
-<meta name="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="AVORO — Websites die presteren">
+<meta property="og:description" content="Websites en webshops die niet alleen mooi zijn, maar ook klanten opleveren.">
+<meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>A</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-:root {
-  --charcoal: #292929;
-  --offwhite: #FAF8F5;
-  --taupe: #C5B9A5;
-  --light-taupe: #E5DED3;
-  --mid: #8A8070;
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'Inter', -apple-system, sans-serif;
-  --radius: 6px;
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--c:#292929;--bg:#FAF8F5;--t:#C5B9A5;--lt:#E5DED3;--mid:#8A8070;--df:'Cormorant Garamond',Georgia,serif;--db:'Inter',-apple-system,sans-serif;--r:6px}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--c);font-family:var(--db);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}.container{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,60px)}
+section{padding:clamp(70px,10vw,130px) 0}
+.eyebrow{font-size:.7rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--t);margin-bottom:1rem}
+.sh{font-family:var(--df);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;margin-bottom:1rem}
+.ss{font-size:.95rem;color:var(--mid);max-width:540px;margin-bottom:3rem;font-weight:300;line-height:1.8}
+.dark{background:var(--c);color:var(--bg)}.dark .eyebrow{color:var(--t)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 0;transition:background .4s,backdrop-filter .4s}
+nav.scrolled{background:rgba(250,248,245,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--lt)}
+nav.dn{background:0 0}nav.dn.scrolled{background:rgba(41,41,41,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(197,185,165,.15)}
+nav.dn .nl a,nav.dn .logo-text{color:var(--bg)}nav.dn .nc{border-color:var(--bg);color:var(--bg)!important}
+nav.dn .nc:hover{background:var(--bg);color:var(--c)!important}nav.dn .hb span{background:var(--bg)}
+nav .container{display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:.5rem;text-decoration:none;cursor:pointer}
+.logo img{height:30px;width:auto}
+.logo-text{font-family:var(--df);font-size:1.3rem;letter-spacing:.25em;color:var(--c)}
+.nl{display:flex;align-items:center;gap:2.2rem;list-style:none}
+.nl a{font-size:.8rem;font-weight:400;letter-spacing:.06em;text-decoration:none;opacity:.55;transition:opacity .3s;cursor:pointer}
+.nl a:hover{opacity:1}
+.nc{font-size:.72rem!important;font-weight:500!important;letter-spacing:.12em!important;text-transform:uppercase;padding:.6rem 1.4rem;border:1px solid var(--c);border-radius:var(--r);opacity:1!important;transition:background .3s,color .3s!important}
+.nc:hover{background:var(--c);color:var(--bg)!important}
+.hb{display:none;background:0 0;border:0;cursor:pointer;z-index:201;width:26px;height:18px;position:relative}
+.hb span{display:block;width:100%;height:1.5px;background:var(--c);position:absolute;left:0;transition:.3s}
+.hb span:nth-child(1){top:0}.hb span:nth-child(2){top:50%;transform:translateY(-50%)}.hb span:nth-child(3){bottom:0}
+.hb.open span:nth-child(1){top:50%;transform:translateY(-50%) rotate(45deg)}.hb.open span:nth-child(2){opacity:0}
+.hb.open span:nth-child(3){bottom:50%;transform:translateY(50%) rotate(-45deg)}
+.mm{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:199;flex-direction:column;align-items:center;justify-content:center;gap:1.8rem}
+.mm.open{display:flex}.mm a{font-family:var(--df);font-size:2rem;font-weight:300;text-decoration:none;cursor:pointer;color:var(--c)}
+.mm .mc{font-family:var(--db);font-size:.78rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:.8rem 2rem;border:1px solid var(--c);border-radius:var(--r);margin-top:.5rem}
+
+/* BUTTONS */
+.bp{display:inline-flex;align-items:center;gap:.7rem;font-family:var(--db);font-size:.75rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--bg);background:var(--c);padding:.9rem 2rem;text-decoration:none;transition:all .35s;cursor:pointer;border:0;border-radius:var(--r)}
+.bp:hover{background:var(--t)}.bp svg{width:13px;transition:transform .3s}.bp:hover svg{transform:translateX(4px)}
+.bo{display:inline-flex;align-items:center;gap:.7rem;font-family:var(--db);font-size:.75rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--c);background:0 0;padding:.9rem 2rem;text-decoration:none;transition:all .35s;cursor:pointer;border:1px solid var(--c);border-radius:var(--r)}
+.bo:hover{background:var(--c);color:var(--bg)}
+.bw{display:inline-flex;align-items:center;gap:.7rem;font-family:var(--db);font-size:.75rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--c);background:var(--bg);padding:.9rem 2rem;text-decoration:none;transition:all .35s;cursor:pointer;border:0;border-radius:var(--r)}
+.bw:hover{background:var(--t);color:var(--bg)}
+
+/* PAGE */
+.page{display:none}.page.active{display:block}
+
+/* HERO */
+.hero{min-height:92vh;display:flex;align-items:center;padding-top:70px;position:relative}
+.hero-c{max-width:780px}
+.hero h1{font-family:var(--df);font-size:clamp(2.8rem,7vw,5.2rem);font-weight:300;line-height:1.08;letter-spacing:-.02em;margin-bottom:1.5rem}
+.hero h1 em{font-style:italic;color:var(--t)}
+.hero-s{font-size:clamp(.92rem,1.2vw,1.05rem);line-height:1.8;color:var(--mid);max-width:500px;margin-bottom:2rem;font-weight:300}
+.hero-btns{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1.8rem}
+.tb{display:flex;gap:.7rem;flex-wrap:wrap}
+.tb span{display:flex;align-items:center;gap:.35rem;font-size:.7rem;font-weight:500;letter-spacing:.05em;color:var(--mid);background:rgba(229,222,211,.4);padding:.35rem .8rem;border-radius:20px;white-space:nowrap}
+.tb svg{width:12px;height:12px;color:var(--t)}
+.hero-deco{position:absolute;right:clamp(20px,8vw,120px);top:50%;transform:translateY(-50%);width:clamp(180px,22vw,340px);height:clamp(180px,22vw,340px);border:1px solid var(--lt);border-radius:50%;opacity:.3}
+.hero-deco::after{content:'';position:absolute;top:15%;left:15%;width:70%;height:70%;border:1px solid var(--t);border-radius:50%;opacity:.4}
+
+/* MARQUEE */
+.mw{border-top:1px solid var(--lt);border-bottom:1px solid var(--lt);padding:1rem 0;overflow:hidden}
+.mq{display:flex;gap:2.5rem;animation:sc 22s linear infinite;white-space:nowrap}
+.mq:hover{animation-play-state:paused}
+.mq span{font-size:.78rem;letter-spacing:.14em;color:var(--t);text-transform:uppercase;font-weight:500}
+.mq span::after{content:'·';margin-left:2.5rem;color:var(--lt)}
+@keyframes sc{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* DIENSTEN GRID */
+.dg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:2.5rem;background:var(--lt)}
+.dc{background:var(--bg);padding:clamp(1.8rem,3.5vw,2.8rem);transition:background .3s}.dc:hover{background:#F5F2ED}
+.di{width:34px;height:34px;border:1px solid var(--t);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:1.3rem;color:var(--t)}
+.dc h3{font-family:var(--df);font-size:1.5rem;font-weight:400;margin-bottom:.8rem}
+.dc p{font-size:.85rem;color:var(--mid);line-height:1.7;font-weight:300}
+
+/* WERKWIJZE */
+.ws{display:grid;grid-template-columns:repeat(3,1fr);margin-top:3rem}
+.st{padding:clamp(1.8rem,3vw,2.8rem);border-left:1px solid rgba(197,185,165,.2)}
+.st:first-child{border-left:0}
+.sn{font-family:var(--df);font-size:2.8rem;font-weight:300;color:var(--t);opacity:.4;line-height:1;margin-bottom:1.2rem}
+.st h3{font-family:var(--df);font-size:1.35rem;font-weight:400;margin-bottom:.8rem}
+.st p{font-size:.84rem;color:rgba(250,248,245,.5);line-height:1.8;font-weight:300}
+
+/* RESULTS */
+.rc{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.rcard{border:1px solid var(--lt);padding:clamp(1.8rem,3vw,2.4rem);transition:border-color .3s;border-radius:var(--r)}.rcard:hover{border-color:var(--t)}
+.rl{font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--t);margin-bottom:1.2rem}
+.rcard h3{font-family:var(--df);font-size:1.25rem;font-weight:400;margin-bottom:.7rem}
+.rcard>p{font-size:.84rem;color:var(--mid);line-height:1.7;font-weight:300;margin-bottom:1.3rem}
+.rs{display:flex;gap:2rem;padding-top:1.3rem;border-top:1px solid var(--lt)}
+.sv{font-family:var(--df);font-size:1.9rem;font-weight:300}.sl{font-size:.68rem;color:var(--mid);margin-top:.15rem}
+
+/* VERSCHIL */
+.vg{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem}
+.vc{padding:clamp(1.8rem,3vw,2.8rem);border-radius:var(--r)}
+.co{background:rgba(250,248,245,.04);border:1px solid rgba(197,185,165,.12)}
+.ca{background:rgba(197,185,165,.08);border:1px solid rgba(197,185,165,.2)}
+.vc h3{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--t);margin-bottom:1.5rem}
+.vc ul{list-style:none}.vc li{font-size:.88rem;padding:.6rem 0;border-bottom:1px solid rgba(197,185,165,.08);display:flex;align-items:center;gap:.7rem;font-weight:300}
+.co li{color:rgba(250,248,245,.4)}.co .ic{color:#c0392b;opacity:.6}
+.ca li{color:rgba(250,248,245,.85)}.ca .ic{color:var(--t)}
+.ic{font-size:.9rem;flex-shrink:0}
+
+/* FAQ */
+.fl{margin-top:2.5rem}
+.fi{border-bottom:1px solid var(--lt)}
+.fq{width:100%;background:0 0;border:0;font-family:var(--db);font-size:.93rem;font-weight:400;color:var(--c);padding:1.3rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;text-align:left;gap:1rem}
+.fic{font-family:var(--df);font-size:1.4rem;font-weight:300;color:var(--t);transition:transform .3s;flex-shrink:0}
+.fi.open .fic{transform:rotate(45deg)}
+.fa{max-height:0;overflow:hidden;transition:max-height .4s,padding .4s}
+.fi.open .fa{max-height:200px;padding-bottom:1.3rem}
+.fa p{font-size:.86rem;color:var(--mid);line-height:1.8;font-weight:300;max-width:580px}
+
+/* CTA */
+.cta{background:var(--c);color:var(--bg);text-align:center;padding:clamp(70px,11vw,140px) 0}
+.cta .eyebrow{color:var(--t)}.cta h2{font-family:var(--df);font-size:clamp(2.2rem,5vw,3.8rem);font-weight:300;margin-bottom:1.2rem}
+.cta p{font-size:.93rem;color:rgba(250,248,245,.5);max-width:420px;margin:0 auto 2rem;font-weight:300;line-height:1.7}
+
+/* FOOTER */
+footer{border-top:1px solid var(--lt);padding:3.5rem 0 1.5rem}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
+.fb{cursor:pointer;margin-bottom:.5rem}.fb img{height:28px}
+.ft{font-size:.82rem;color:var(--mid);font-weight:300;line-height:1.7;max-width:260px;margin-bottom:1rem}
+.sb{display:flex;gap:.5rem}
+.sba{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid var(--lt);border-radius:50%;color:var(--mid);text-decoration:none;transition:all .3s}
+.sba:hover{border-color:var(--t);color:var(--c)}.sba svg{width:14px;height:14px}
+footer h4{font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--t);margin-bottom:1rem}
+footer ul{list-style:none}footer li{margin-bottom:.5rem}
+footer ul a{font-size:.82rem;color:var(--mid);text-decoration:none;font-weight:300;cursor:pointer;transition:color .3s}
+footer ul a:hover{color:var(--c)}
+.fbot{border-top:1px solid var(--lt);padding-top:1.2rem;font-size:.72rem;color:var(--mid);font-weight:300;display:flex;justify-content:space-between}
+
+/* PAGE HERO */
+.ph{min-height:45vh;display:flex;align-items:center;padding-top:70px}
+.ph h1{font-family:var(--df);font-size:clamp(2.4rem,5.5vw,4.2rem);font-weight:300;line-height:1.1;margin-bottom:1.2rem}
+.ph h1 em{font-style:italic;color:var(--t)}
+.ph p{font-size:.95rem;color:rgba(250,248,245,.5);max-width:500px;font-weight:300;line-height:1.8}
+
+/* DIENST DETAIL */
+.dd{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center}
+.dd.rev{direction:rtl}.dd.rev>*{direction:ltr}
+.dd h2{font-family:var(--df);font-size:clamp(1.7rem,3vw,2.4rem);font-weight:300;margin-bottom:.8rem}
+.dd p{font-size:.88rem;color:var(--mid);line-height:1.8;font-weight:300;margin-bottom:.8rem}
+.dd ul{list-style:none;margin-top:1.2rem}
+.dd li{font-size:.84rem;padding:.45rem 0;border-bottom:1px solid var(--lt);display:flex;align-items:center;gap:.5rem;font-weight:400}
+.dd li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--t);flex-shrink:0}
+.dv{aspect-ratio:4/3;background:linear-gradient(135deg,var(--lt),#D4CBC0);border-radius:var(--r);display:flex;align-items:center;justify-content:center}
+.dv span{font-family:var(--df);font-size:2.5rem;opacity:.15}
+
+/* PRICING */
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(197,185,165,.15);margin-top:2.5rem}
+.pc{background:var(--c);padding:clamp(1.8rem,3vw,2.8rem);display:flex;flex-direction:column}
+.pc.feat{background:#333}
+.pl{font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--t);margin-bottom:.8rem}
+.pc h3{font-family:var(--df);font-size:1.45rem;font-weight:300;margin-bottom:.4rem}
+.pp{font-family:var(--df);font-size:2.3rem;font-weight:300;margin-bottom:1.3rem}
+.pp small{font-size:.85rem;color:var(--t)}
+.pc ul{list-style:none;flex:1;margin-bottom:1.5rem}
+.pc li{font-size:.8rem;color:rgba(250,248,245,.5);padding:.45rem 0;border-bottom:1px solid rgba(197,185,165,.08);font-weight:300}
+.pcta{display:block;text-align:center;font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:.85rem;border:1px solid var(--t);border-radius:var(--r);color:var(--bg);text-decoration:none;transition:all .3s;cursor:pointer;background:0 0;width:100%}
+.pcta:hover{background:var(--t)}
+
+/* OVER */
+.os{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,5vw,6rem);align-items:center}
+.os h2{font-family:var(--df);font-size:clamp(1.7rem,3vw,2.6rem);font-weight:300;margin-bottom:1.2rem}
+.os p{font-size:.88rem;color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:.8rem}
+.op{aspect-ratio:3/4;background:linear-gradient(135deg,var(--lt),#CEC4B5);border-radius:var(--r);display:flex;align-items:center;justify-content:center}
+.op span{font-family:var(--df);font-size:4rem;opacity:.12}
+.vgr{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(197,185,165,.15);margin-top:2.5rem}
+.vcd{background:var(--c);padding:clamp(1.8rem,3vw,2.8rem)}
+.vcd h3{font-family:var(--df);font-size:1.35rem;font-weight:400;margin-bottom:.8rem;color:var(--bg)}
+.vcd p{font-size:.84rem;color:rgba(250,248,245,.5);line-height:1.8;font-weight:300}
+.sgr{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.8rem;margin-top:2.5rem}
+.si{border:1px solid var(--lt);padding:1.2rem;text-align:center;border-radius:var(--r);transition:border-color .3s}
+.si:hover{border-color:var(--t)}.si span{font-size:.83rem;font-weight:400}
+
+/* CONTACT */
+.cc{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(3rem,6vw,7rem)}
+.cf h2,.ci h2{font-family:var(--df);font-size:1.7rem;font-weight:300;margin-bottom:1.8rem}
+.fg2{margin-bottom:1.3rem}
+.fg2 label{display:block;font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--t);margin-bottom:.4rem}
+.fg2 input,.fg2 textarea,.fg2 select{width:100%;font-family:var(--db);font-size:.88rem;padding:.8rem 0;background:0 0;border:0;border-bottom:1px solid var(--lt);color:var(--c);outline:0;transition:border-color .3s;font-weight:300;border-radius:0}
+.fg2 input:focus,.fg2 textarea:focus,.fg2 select:focus{border-color:var(--t)}
+.fg2 textarea{resize:vertical;min-height:80px}.fg2 select{cursor:pointer;-webkit-appearance:none}
+.cii{margin-bottom:1.8rem}
+.cii h4{font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--t);margin-bottom:.35rem}
+.cii p,.cii a{font-size:.9rem;font-weight:300;color:var(--c);text-decoration:none;line-height:1.7}
+.cii a:hover{color:var(--t)}
+.fsuc{display:none;text-align:center;padding:3rem 1rem}
+.fsuc h3{font-family:var(--df);font-size:1.8rem;font-weight:300;margin-bottom:.6rem}
+.fsuc p{color:var(--mid);font-size:.9rem;font-weight:300}
+
+/* BLOG */
+.bg{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.3rem}
+.bc{border:1px solid var(--lt);border-radius:var(--r);transition:border-color .3s;overflow:hidden;cursor:pointer}.bc:hover{border-color:var(--t)}
+.bt{aspect-ratio:16/9;background:linear-gradient(135deg,var(--lt),#D4CBC0)}
+.bcb{padding:1.3rem}
+.bd{font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--t);margin-bottom:.6rem}
+.bc h3{font-family:var(--df);font-size:1.2rem;font-weight:400;margin-bottom:.5rem}
+.bc p{font-size:.83rem;color:var(--mid);line-height:1.7;font-weight:300}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+.nl{display:none}.hb{display:block}
+.hero{min-height:82vh;padding-top:65px}.hero h1{font-size:2.6rem}
+.hero-deco{display:none}
+.hero-btns{flex-direction:column}.hero-btns .bp,.hero-btns .bo{width:100%;justify-content:center}
+.tb span{font-size:.63rem;padding:.3rem .6rem}
+section{padding:55px 0}
+.dg,.ws,.pg,.vgr{grid-template-columns:1fr}
+.st{border-left:0;border-bottom:1px solid rgba(197,185,165,.15);padding:1.5rem 0}.st:last-child{border-bottom:0}
+.rc,.vg{grid-template-columns:1fr}
+.fq{font-size:.88rem;min-height:48px}
+.bw{width:100%;justify-content:center}
+.fg{grid-template-columns:1fr;gap:1.5rem}
+.fbot{flex-direction:column;gap:.4rem}
+.dd,.dd.rev{grid-template-columns:1fr;direction:ltr}.dv{aspect-ratio:16/9}
+.os{grid-template-columns:1fr}.op{aspect-ratio:1/1;max-height:300px}
+.cc{grid-template-columns:1fr}
+.ph{min-height:35vh}
 }
-html { scroll-behavior: smooth; font-size: 16px; }
-body { background: var(--offwhite); color: var(--charcoal); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 60px); }
-.eyebrow { font-family: var(--font-body); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--taupe); margin-bottom: 1rem; }
-section { padding: clamp(70px, 10vw, 130px) 0; }
-a { color: inherit; }
-
-/* ── NAV ── */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1rem 0; transition: background 0.4s, backdrop-filter 0.4s; }
-nav.scrolled { background: rgba(250,248,245,0.88); backdrop-filter: blur(20px); border-bottom: 1px solid var(--light-taupe); }
-nav.dark-nav { background: transparent; }
-nav.dark-nav.scrolled { background: rgba(41,41,41,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(197,185,165,0.15); }
-nav.dark-nav .nav-logo-text { color: var(--offwhite); }
-nav.dark-nav .nav-links a { color: var(--offwhite); }
-nav.dark-nav .nav-cta { border-color: var(--offwhite); color: var(--offwhite) !important; }
-nav.dark-nav .nav-cta:hover { background: var(--offwhite); color: var(--charcoal) !important; }
-nav.dark-nav .hamburger span { background: var(--offwhite); }
-nav .container { display: flex; align-items: center; justify-content: space-between; }
-.nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; cursor: pointer; }
-.nav-logo-img { height: 28px; width: auto; }
-.nav-logo-text { font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; letter-spacing: 0.25em; color: var(--charcoal); }
-.nav-links { display: flex; align-items: center; gap: 2.2rem; list-style: none; }
-.nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.06em; color: var(--charcoal); text-decoration: none; opacity: 0.55; transition: opacity 0.3s; cursor: pointer; }
-.nav-links a:hover, .nav-links a.active { opacity: 1; }
-.nav-cta { font-size: 0.72rem !important; font-weight: 500 !important; letter-spacing: 0.12em !important; text-transform: uppercase; padding: 0.6rem 1.4rem; border: 1px solid var(--charcoal); border-radius: var(--radius); opacity: 1 !important; transition: background 0.3s, color 0.3s !important; }
-.nav-cta:hover { background: var(--charcoal); color: var(--offwhite) !important; }
-
-/* ── HAMBURGER ── */
-.hamburger { display: none; background: none; border: none; cursor: pointer; z-index: 201; width: 28px; height: 20px; position: relative; }
-.hamburger span { display: block; width: 100%; height: 1.5px; background: var(--charcoal); position: absolute; left: 0; transition: 0.3s ease; }
-.hamburger span:nth-child(1) { top: 0; }
-.hamburger span:nth-child(2) { top: 50%; transform: translateY(-50%); }
-.hamburger span:nth-child(3) { bottom: 0; }
-.hamburger.open span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
-
-/* ── MOBILE MENU ── */
-.mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--offwhite); z-index: 199; flex-direction: column; align-items: center; justify-content: center; gap: 1.8rem; }
-.mobile-menu.open { display: flex; }
-.mobile-menu a { font-family: var(--font-display); font-size: 2rem; font-weight: 300; color: var(--charcoal); text-decoration: none; cursor: pointer; }
-.mobile-menu .mob-cta { font-family: var(--font-body); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.8rem 2rem; border: 1px solid var(--charcoal); border-radius: var(--radius); margin-top: 0.5rem; }
-
-/* ── PAGE SYSTEM ── */
-.page { display: none; }
-.page.active { display: block; }
-
-/* ── BUTTONS ── */
-.btn-primary { display: inline-flex; align-items: center; gap: 0.7rem; font-family: var(--font-body); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--offwhite); background: var(--charcoal); padding: 0.9rem 2rem; text-decoration: none; transition: all 0.35s; cursor: pointer; border: none; border-radius: var(--radius); }
-.btn-primary:hover { background: var(--taupe); }
-.btn-primary svg { width: 13px; transition: transform 0.3s; }
-.btn-primary:hover svg { transform: translateX(4px); }
-.btn-outline { display: inline-flex; align-items: center; gap: 0.7rem; font-family: var(--font-body); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--charcoal); background: transparent; padding: 0.9rem 2rem; text-decoration: none; transition: all 0.35s; cursor: pointer; border: 1px solid var(--charcoal); border-radius: var(--radius); }
-.btn-outline:hover { background: var(--charcoal); color: var(--offwhite); }
-.btn-white { display: inline-flex; align-items: center; gap: 0.7rem; font-family: var(--font-body); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--charcoal); background: var(--offwhite); padding: 0.9rem 2rem; text-decoration: none; transition: all 0.35s; cursor: pointer; border: none; border-radius: var(--radius); }
-.btn-white:hover { background: var(--taupe); color: var(--offwhite); }
-.section-heading { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; margin-bottom: 1rem; }
-.section-sub { font-size: 0.95rem; color: var(--mid); max-width: 540px; margin-bottom: 3rem; font-weight: 300; line-height: 1.8; }
-
-/* ── HERO ── */
-.hero { min-height: 92vh; display: flex; align-items: center; padding-top: 70px; position: relative; }
-.hero-content { max-width: 780px; }
-.hero h1 { font-family: var(--font-display); font-size: clamp(2.8rem, 7vw, 5.2rem); font-weight: 300; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
-.hero h1 em { font-style: italic; color: var(--taupe); }
-.hero-sub { font-size: clamp(0.92rem, 1.2vw, 1.05rem); line-height: 1.8; color: var(--mid); max-width: 500px; margin-bottom: 2rem; font-weight: 300; }
-.hero-buttons { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 2rem; }
-.trust-badges { display: flex; gap: 0.8rem; flex-wrap: wrap; }
-.trust-badge { display: flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.06em; color: var(--mid); background: rgba(229,222,211,0.4); padding: 0.4rem 0.9rem; border-radius: 20px; white-space: nowrap; }
-.trust-badge svg { width: 12px; height: 12px; color: var(--taupe); }
-.hero-decoration { position: absolute; right: clamp(20px, 8vw, 120px); top: 50%; transform: translateY(-50%); width: clamp(180px, 22vw, 340px); height: clamp(180px, 22vw, 340px); border: 1px solid var(--light-taupe); border-radius: 50%; opacity: 0.35; }
-.hero-decoration::after { content: ''; position: absolute; top: 15%; left: 15%; width: 70%; height: 70%; border: 1px solid var(--taupe); border-radius: 50%; opacity: 0.4; }
-
-/* ── MARQUEE ── */
-.marquee-wrap { border-top: 1px solid var(--light-taupe); border-bottom: 1px solid var(--light-taupe); padding: 1rem 0; overflow: hidden; }
-.marquee { display: flex; gap: 2.5rem; animation: scroll 22s linear infinite; white-space: nowrap; }
-.marquee:hover { animation-play-state: paused; }
-.marquee span { font-family: var(--font-body); font-size: 0.78rem; letter-spacing: 0.14em; color: var(--taupe); text-transform: uppercase; font-weight: 500; }
-.marquee span::after { content: '·'; margin-left: 2.5rem; color: var(--light-taupe); }
-@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-/* ── DARK SECTION ── */
-.dark-section { background: var(--charcoal); color: var(--offwhite); }
-.dark-section .eyebrow { color: var(--taupe); }
-.dark-section .section-heading { color: var(--offwhite); }
-
-/* ── DIENSTEN GRID ── */
-.diensten-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 2.5rem; background: var(--light-taupe); }
-.dienst-card { background: var(--offwhite); padding: clamp(1.8rem, 3.5vw, 2.8rem); transition: background 0.3s; }
-.dienst-card:hover { background: #F5F2ED; }
-.dienst-icon { width: 34px; height: 34px; border: 1px solid var(--taupe); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.3rem; color: var(--taupe); }
-.dienst-card h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; margin-bottom: 0.8rem; }
-.dienst-card p { font-size: 0.85rem; color: var(--mid); line-height: 1.7; font-weight: 300; }
-
-/* ── WERKWIJZE ── */
-.werkwijze-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 3rem; }
-.step { padding: clamp(1.8rem, 3vw, 2.8rem); border-left: 1px solid rgba(197,185,165,0.2); }
-.step:first-child { border-left: none; }
-.step-num { font-family: var(--font-display); font-size: 2.8rem; font-weight: 300; color: var(--taupe); opacity: 0.4; line-height: 1; margin-bottom: 1.2rem; }
-.step h3 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 400; margin-bottom: 0.8rem; }
-.step p { font-size: 0.84rem; color: rgba(250,248,245,0.5); line-height: 1.8; font-weight: 300; }
-
-/* ── RESULTATEN ── */
-.result-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-.result-card { border: 1px solid var(--light-taupe); padding: clamp(1.8rem, 3vw, 2.4rem); transition: border-color 0.3s; border-radius: var(--radius); }
-.result-card:hover { border-color: var(--taupe); }
-.result-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--taupe); margin-bottom: 1.2rem; }
-.result-card h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 400; margin-bottom: 0.7rem; }
-.result-card > p { font-size: 0.84rem; color: var(--mid); line-height: 1.7; font-weight: 300; margin-bottom: 1.3rem; }
-.result-stats { display: flex; gap: 2rem; padding-top: 1.3rem; border-top: 1px solid var(--light-taupe); }
-.stat-value { font-family: var(--font-display); font-size: 1.9rem; font-weight: 300; }
-.stat-label { font-size: 0.68rem; color: var(--mid); letter-spacing: 0.04em; margin-top: 0.15rem; }
-
-/* ── VERSCHIL ── */
-.verschil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
-.verschil-col { padding: clamp(1.8rem, 3vw, 2.8rem); border-radius: var(--radius); }
-.col-other { background: rgba(250,248,245,0.04); border: 1px solid rgba(197,185,165,0.12); }
-.col-avoro { background: rgba(197,185,165,0.08); border: 1px solid rgba(197,185,165,0.2); }
-.verschil-col h3 { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--taupe); margin-bottom: 1.5rem; }
-.verschil-col ul { list-style: none; }
-.verschil-col ul li { font-size: 0.88rem; padding: 0.65rem 0; border-bottom: 1px solid rgba(197,185,165,0.08); display: flex; align-items: center; gap: 0.7rem; font-weight: 300; }
-.col-other ul li { color: rgba(250,248,245,0.4); }
-.col-other ul li .icon { color: #c0392b; font-size: 0.9rem; flex-shrink: 0; opacity: 0.6; }
-.col-avoro ul li { color: rgba(250,248,245,0.85); }
-.col-avoro ul li .icon { color: var(--taupe); font-size: 0.9rem; flex-shrink: 0; }
-
-/* ── FAQ ── */
-.faq-list { margin-top: 2.5rem; }
-.faq-item { border-bottom: 1px solid var(--light-taupe); }
-.faq-q { width: 100%; background: none; border: none; font-family: var(--font-body); font-size: 0.93rem; font-weight: 400; color: var(--charcoal); padding: 1.3rem 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; text-align: left; gap: 1rem; }
-.faq-icon { font-family: var(--font-display); font-size: 1.4rem; font-weight: 300; color: var(--taupe); transition: transform 0.3s; flex-shrink: 0; width: 24px; text-align: center; }
-.faq-item.open .faq-icon { transform: rotate(45deg); }
-.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; }
-.faq-item.open .faq-a { max-height: 200px; padding-bottom: 1.3rem; }
-.faq-a p { font-size: 0.86rem; color: var(--mid); line-height: 1.8; font-weight: 300; max-width: 580px; }
-
-/* ── CTA SECTION ── */
-.cta-section { background: var(--charcoal); color: var(--offwhite); text-align: center; padding: clamp(70px, 11vw, 140px) 0; }
-.cta-section .eyebrow { color: var(--taupe); }
-.cta-section h2 { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 300; margin-bottom: 1.2rem; }
-.cta-section p { font-size: 0.93rem; color: rgba(250,248,245,0.5); max-width: 420px; margin: 0 auto 2rem; font-weight: 300; line-height: 1.7; }
-
-/* ── FOOTER ── */
-footer { background: var(--offwhite); border-top: 1px solid var(--light-taupe); padding: 3.5rem 0 1.5rem; }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 2.5rem; }
-.footer-logo { height: 22px; margin-bottom: 0.8rem; cursor: pointer; }
-.footer-brand-text { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.25em; margin-bottom: 0.8rem; cursor: pointer; }
-.footer-tagline { font-size: 0.82rem; color: var(--mid); font-weight: 300; line-height: 1.7; max-width: 260px; margin-bottom: 1.2rem; }
-.social-badges { display: flex; gap: 0.6rem; }
-.social-badge { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid var(--light-taupe); border-radius: 50%; color: var(--mid); text-decoration: none; transition: all 0.3s; }
-.social-badge:hover { border-color: var(--taupe); color: var(--charcoal); }
-.social-badge svg { width: 15px; height: 15px; }
-footer h4 { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--taupe); margin-bottom: 1rem; }
-footer ul { list-style: none; }
-footer ul li { margin-bottom: 0.5rem; }
-footer ul a { font-size: 0.82rem; color: var(--mid); text-decoration: none; font-weight: 300; transition: color 0.3s; cursor: pointer; }
-footer ul a:hover { color: var(--charcoal); }
-.footer-bottom { border-top: 1px solid var(--light-taupe); padding-top: 1.2rem; font-size: 0.72rem; color: var(--mid); font-weight: 300; display: flex; justify-content: space-between; }
-
-/* ══ DIENSTEN PAGE ══ */
-.page-hero { min-height: 45vh; display: flex; align-items: center; padding-top: 70px; }
-.page-hero h1 { font-family: var(--font-display); font-size: clamp(2.4rem, 5.5vw, 4.2rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.2rem; }
-.page-hero h1 em { font-style: italic; color: var(--taupe); }
-.page-hero p { font-size: 0.95rem; color: rgba(250,248,245,0.5); max-width: 500px; font-weight: 300; line-height: 1.8; }
-.dienst-detail { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; }
-.dienst-detail.reverse { direction: rtl; }
-.dienst-detail.reverse > * { direction: ltr; }
-.dienst-detail h2 { font-family: var(--font-display); font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 300; margin-bottom: 0.8rem; }
-.dienst-detail p { font-size: 0.88rem; color: var(--mid); line-height: 1.8; font-weight: 300; margin-bottom: 0.8rem; }
-.dienst-detail ul { list-style: none; margin-top: 1.2rem; }
-.dienst-detail ul li { font-size: 0.84rem; color: var(--charcoal); padding: 0.45rem 0; border-bottom: 1px solid var(--light-taupe); display: flex; align-items: center; gap: 0.5rem; font-weight: 400; }
-.dienst-detail ul li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--taupe); flex-shrink: 0; }
-.dienst-visual { aspect-ratio: 4/3; background: linear-gradient(135deg, var(--light-taupe) 0%, #D4CBC0 100%); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; }
-.dienst-visual span { font-family: var(--font-display); font-size: 2.5rem; opacity: 0.15; }
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(197,185,165,0.15); margin-top: 2.5rem; }
-.pricing-card { background: var(--charcoal); padding: clamp(1.8rem, 3vw, 2.8rem); display: flex; flex-direction: column; }
-.pricing-card.featured { background: #333; }
-.pricing-label { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--taupe); margin-bottom: 0.8rem; }
-.pricing-card h3 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 300; margin-bottom: 0.4rem; }
-.pricing-price { font-family: var(--font-display); font-size: 2.3rem; font-weight: 300; margin-bottom: 1.3rem; }
-.pricing-price small { font-size: 0.85rem; color: var(--taupe); }
-.pricing-card ul { list-style: none; flex: 1; margin-bottom: 1.5rem; }
-.pricing-card ul li { font-size: 0.8rem; color: rgba(250,248,245,0.5); padding: 0.45rem 0; border-bottom: 1px solid rgba(197,185,165,0.08); font-weight: 300; }
-.pricing-cta { display: block; text-align: center; font-family: var(--font-body); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.85rem; border: 1px solid var(--taupe); border-radius: var(--radius); color: var(--offwhite); text-decoration: none; transition: all 0.3s; cursor: pointer; background: none; width: 100%; }
-.pricing-cta:hover { background: var(--taupe); }
-
-/* ══ OVER PAGE ══ */
-.over-story { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 5vw, 6rem); align-items: center; }
-.over-story h2 { font-family: var(--font-display); font-size: clamp(1.7rem, 3vw, 2.6rem); font-weight: 300; margin-bottom: 1.2rem; }
-.over-story p { font-size: 0.88rem; color: var(--mid); line-height: 1.9; font-weight: 300; margin-bottom: 0.8rem; }
-.over-photo { aspect-ratio: 3/4; background: linear-gradient(135deg, var(--light-taupe) 0%, #CEC4B5 100%); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; }
-.over-photo span { font-family: var(--font-display); font-size: 4rem; opacity: 0.12; }
-.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(197,185,165,0.15); margin-top: 2.5rem; }
-.value-card { background: var(--charcoal); padding: clamp(1.8rem, 3vw, 2.8rem); }
-.value-card h3 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 400; margin-bottom: 0.8rem; color: var(--offwhite); }
-.value-card p { font-size: 0.84rem; color: rgba(250,248,245,0.5); line-height: 1.8; font-weight: 300; }
-.stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.8rem; margin-top: 2.5rem; }
-.stack-item { border: 1px solid var(--light-taupe); padding: 1.2rem; text-align: center; border-radius: var(--radius); transition: border-color 0.3s; }
-.stack-item:hover { border-color: var(--taupe); }
-.stack-item span { font-size: 0.83rem; font-weight: 400; }
-
-/* ══ CONTACT PAGE ══ */
-.contact-content { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: clamp(3rem, 6vw, 7rem); }
-.contact-form h2 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 300; margin-bottom: 1.8rem; }
-.form-group { margin-bottom: 1.3rem; }
-.form-group label { display: block; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--taupe); margin-bottom: 0.4rem; }
-.form-group input, .form-group textarea, .form-group select { width: 100%; font-family: var(--font-body); font-size: 0.88rem; padding: 0.8rem 0; background: transparent; border: none; border-bottom: 1px solid var(--light-taupe); color: var(--charcoal); outline: none; transition: border-color 0.3s; font-weight: 300; border-radius: 0; }
-.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--taupe); }
-.form-group textarea { resize: vertical; min-height: 80px; }
-.form-group select { cursor: pointer; -webkit-appearance: none; }
-.contact-info h2 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 300; margin-bottom: 1.8rem; }
-.contact-info-item { margin-bottom: 1.8rem; }
-.contact-info-item h4 { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--taupe); margin-bottom: 0.35rem; }
-.contact-info-item p { font-size: 0.9rem; font-weight: 300; color: var(--charcoal); line-height: 1.7; }
-.contact-info-item a { font-size: 0.9rem; font-weight: 300; color: var(--charcoal); text-decoration: none; }
-.contact-info-item a:hover { color: var(--taupe); }
-.form-success { display: none; text-align: center; padding: 3rem 1rem; }
-.form-success h3 { font-family: var(--font-display); font-size: 1.8rem; font-weight: 300; margin-bottom: 0.6rem; }
-.form-success p { color: var(--mid); font-size: 0.9rem; font-weight: 300; }
-
-/* ══ BLOG PAGE ══ */
-.blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.3rem; }
-.blog-card { border: 1px solid var(--light-taupe); border-radius: var(--radius); transition: border-color 0.3s; overflow: hidden; cursor: pointer; }
-.blog-card:hover { border-color: var(--taupe); }
-.blog-thumb { aspect-ratio: 16/9; background: linear-gradient(135deg, var(--light-taupe), #D4CBC0); }
-.blog-card-body { padding: 1.3rem; }
-.blog-date { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--taupe); margin-bottom: 0.6rem; }
-.blog-card h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; margin-bottom: 0.5rem; }
-.blog-card p { font-size: 0.83rem; color: var(--mid); line-height: 1.7; font-weight: 300; }
-
-/* ══ 404 PAGE ══ */
-.page-404 { min-height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: 80px; }
-.page-404 h1 { font-family: var(--font-display); font-size: 6rem; font-weight: 300; color: var(--light-taupe); margin-bottom: 0.5rem; }
-.page-404 p { font-size: 1rem; color: var(--mid); margin-bottom: 2rem; font-weight: 300; }
-
-/* ══ RESPONSIVE ══ */
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  .hamburger { display: block; }
-  .hero { min-height: 82vh; padding-top: 65px; }
-  .hero h1 { font-size: 2.6rem; }
-  .hero-decoration { display: none; }
-  .hero-buttons { flex-direction: column; }
-  .hero-buttons .btn-primary, .hero-buttons .btn-outline { width: 100%; justify-content: center; }
-  .trust-badges { gap: 0.5rem; }
-  .trust-badge { font-size: 0.65rem; padding: 0.35rem 0.7rem; }
-  section { padding: 55px 0; }
-  .diensten-grid { grid-template-columns: 1fr; }
-  .werkwijze-steps { grid-template-columns: 1fr; }
-  .step { border-left: none; border-bottom: 1px solid rgba(197,185,165,0.15); padding: 1.5rem 0; }
-  .step:last-child { border-bottom: none; }
-  .result-cards { grid-template-columns: 1fr; }
-  .verschil-grid { grid-template-columns: 1fr; gap: 1rem; }
-  .faq-q { font-size: 0.88rem; padding: 1.1rem 0; min-height: 48px; }
-  .btn-white { width: 100%; justify-content: center; }
-  .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-  .footer-bottom { flex-direction: column; gap: 0.4rem; }
-  .dienst-detail, .dienst-detail.reverse { grid-template-columns: 1fr; direction: ltr; }
-  .dienst-visual { aspect-ratio: 16/9; }
-  .pricing-grid { grid-template-columns: 1fr; }
-  .over-story { grid-template-columns: 1fr; }
-  .over-photo { aspect-ratio: 1/1; max-height: 300px; }
-  .values-grid { grid-template-columns: 1fr; }
-  .contact-content { grid-template-columns: 1fr; }
-  .page-hero { min-height: 35vh; }
-}
-
-/* ── ANIMATIONS ── */
-@media (prefers-reduced-motion: no-preference) {
-  .fade-up { opacity: 0; transform: translateY(25px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .fade-up.visible { opacity: 1; transform: translateY(0); }
+@media(prefers-reduced-motion:no-preference){
+.fu{opacity:0;transform:translateY(25px);transition:opacity .7s,transform .7s}.fu.v{opacity:1;transform:translateY(0)}
 }
 </style>
 </head>
 <body>
 
-<!-- ═══ NAV ═══ -->
 <nav id="nav">
-  <div class="container">
-    <a class="nav-logo" onclick="goTo('home')">
-      <span class="nav-logo-text">AVORO</span>
-    </a>
-    <ul class="nav-links">
-      <li><a onclick="goTo('diensten')">Diensten</a></li>
-      <li><a onclick="goTo('over')">Over ons</a></li>
-      <li><a onclick="goTo('blog')">Blog</a></li>
-      <li><a onclick="goTo('contact')" class="nav-cta">Contact</a></li>
-    </ul>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
+<div class="container">
+<a class="logo" onclick="go('home')"><img src="logo.png" alt="AVORO"></a>
+<ul class="nl">
+<li><a onclick="go('diensten')">Diensten</a></li>
+<li><a onclick="go('over')">Over ons</a></li>
+<li><a onclick="go('blog')">Blog</a></li>
+<li><a onclick="go('contact')" class="nc">Contact</a></li>
+</ul>
+<button class="hb" id="hb" aria-label="Menu"><span></span><span></span><span></span></button>
+</div>
 </nav>
 
-<div class="mobile-menu" id="mobileMenu">
-  <a onclick="goTo('home');closeMobile()">Home</a>
-  <a onclick="goTo('diensten');closeMobile()">Diensten</a>
-  <a onclick="goTo('over');closeMobile()">Over ons</a>
-  <a onclick="goTo('blog');closeMobile()">Blog</a>
-  <a class="mob-cta" onclick="goTo('contact');closeMobile()">Contact</a>
+<div class="mm" id="mm">
+<a onclick="go('home');cm()">Home</a>
+<a onclick="go('diensten');cm()">Diensten</a>
+<a onclick="go('over');cm()">Over ons</a>
+<a onclick="go('blog');cm()">Blog</a>
+<a class="mc" onclick="go('contact');cm()">Contact</a>
 </div>
 
-<!-- ╔═══════════════════════╗
-     ║    PAGE: HOME         ║
-     ╚═══════════════════════╝ -->
-<div class="page active" id="page-home">
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content fade-up">
-        <p class="eyebrow">Webdesign & Development</p>
-        <h1>Websites die <em>presteren</em></h1>
-        <p class="hero-sub">Wij bouwen websites en webshops die niet alleen mooi zijn, maar ook klanten opleveren. Strategie, design en techniek, samengebracht in een aanpak die werkt.</p>
-        <div class="hero-buttons">
-          <a onclick="goTo('contact')" class="btn-primary">Plan een gesprek <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
-          <a onclick="goTo('diensten')" class="btn-outline">Bekijk diensten</a>
-        </div>
-        <div class="trust-badges">
-          <span class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Shopify specialist</span>
-          <span class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Oplevering in dagen</span>
-          <span class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Persoonlijk contact</span>
-        </div>
-      </div>
-    </div>
-    <div class="hero-decoration"></div>
-  </section>
+<!-- HOME -->
+<div class="page active" id="p-home">
+<section class="hero">
+<div class="container"><div class="hero-c fu">
+<p class="eyebrow">Webdesign & Development</p>
+<h1>Websites die <em>presteren</em></h1>
+<p class="hero-s">Wij bouwen websites en webshops die niet alleen mooi zijn, maar ook klanten opleveren. Strategie, design en techniek, samengebracht in een aanpak die werkt.</p>
+<div class="hero-btns">
+<a onclick="go('contact')" class="bp">Plan een gesprek <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
+<a onclick="go('diensten')" class="bo">Bekijk diensten</a>
+</div>
+<div class="tb">
+<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Shopify specialist</span>
+<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Oplevering in dagen</span>
+<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Persoonlijk contact</span>
+</div>
+</div></div>
+<div class="hero-deco"></div>
+</section>
 
-  <div class="marquee-wrap">
-    <div class="marquee">
-      <span>Shopify</span><span>Magento</span><span>WordPress</span><span>Webshops</span><span>SEO</span><span>Conversie</span><span>Branding</span><span>Performance</span>
-      <span>Shopify</span><span>Magento</span><span>WordPress</span><span>Webshops</span><span>SEO</span><span>Conversie</span><span>Branding</span><span>Performance</span>
-    </div>
-  </div>
+<div class="mw"><div class="mq">
+<span>Shopify</span><span>Magento</span><span>WordPress</span><span>Webshops</span><span>SEO</span><span>Conversie</span><span>Branding</span><span>Performance</span>
+<span>Shopify</span><span>Magento</span><span>WordPress</span><span>Webshops</span><span>SEO</span><span>Conversie</span><span>Branding</span><span>Performance</span>
+</div></div>
 
-  <section>
-    <div class="container">
-      <p class="eyebrow fade-up">Wat we doen</p>
-      <h2 class="section-heading fade-up">Alles voor een sterke online aanwezigheid</h2>
-      <div class="diensten-grid fade-up">
-        <div class="dienst-card">
-          <div class="dienst-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></div>
-          <h3>Webdesign</h3>
-          <p>Custom designs die jouw merk onderscheiden. Geen templates, maar een unieke uitstraling die past bij wie je bent.</p>
-        </div>
-        <div class="dienst-card">
-          <div class="dienst-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 01-8 0"/></svg></div>
-          <h3>Webshops</h3>
-          <p>Shopify, WordPress en Magento webshops die verkopen. Van productpagina's tot checkout, geoptimaliseerd voor conversie.</p>
-        </div>
-        <div class="dienst-card">
-          <div class="dienst-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-          <h3>SEO & Performance</h3>
-          <p>Gevonden worden in Google en snel laden op elk apparaat. Technische optimalisatie die bezoekers trekt.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<section><div class="container">
+<p class="eyebrow fu">Wat we doen</p>
+<h2 class="sh fu">Alles voor een sterke online aanwezigheid</h2>
+<div class="dg fu">
+<div class="dc"><div class="di"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></div><h3>Webdesign</h3><p>Custom designs die jouw merk onderscheiden. Geen templates, maar een unieke uitstraling die past bij wie je bent.</p></div>
+<div class="dc"><div class="di"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 01-8 0"/></svg></div><h3>Webshops</h3><p>Shopify, WordPress en Magento webshops die verkopen. Geoptimaliseerd voor conversie en groei.</p></div>
+<div class="dc"><div class="di"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><h3>SEO & Performance</h3><p>Gevonden worden in Google en snel laden op elk apparaat. Technische optimalisatie die bezoekers trekt.</p></div>
+</div>
+</div></section>
 
-  <section class="dark-section">
-    <div class="container">
-      <p class="eyebrow fade-up">Werkwijze</p>
-      <h2 class="section-heading fade-up">Helder en doelgericht</h2>
-      <div class="werkwijze-steps fade-up">
-        <div class="step"><div class="step-num">01</div><h3>Strategie</h3><p>We beginnen met jouw doelen. Wie is je klant, wat moet de site bereiken, en hoe meten we succes?</p></div>
-        <div class="step"><div class="step-num">02</div><h3>Design & Bouw</h3><p>Van ontwerp tot werkende site. Je ziet het resultaat groeien en geeft feedback voordat er iets live gaat.</p></div>
-        <div class="step"><div class="step-num">03</div><h3>Lancering & Groei</h3><p>Na de lancering monitoren we prestaties, optimaliseren waar nodig en zorgen dat je site blijft groeien.</p></div>
-      </div>
-    </div>
-  </section>
+<section class="dark"><div class="container">
+<p class="eyebrow fu">Werkwijze</p>
+<h2 class="sh fu">Helder en doelgericht</h2>
+<div class="ws fu">
+<div class="st"><div class="sn">01</div><h3>Strategie</h3><p>We beginnen met jouw doelen. Wie is je klant, wat moet de site bereiken, en hoe meten we succes?</p></div>
+<div class="st"><div class="sn">02</div><h3>Design & Bouw</h3><p>Van ontwerp tot werkende site. Je ziet het resultaat groeien en geeft feedback voordat er iets live gaat.</p></div>
+<div class="st"><div class="sn">03</div><h3>Lancering & Groei</h3><p>Na de lancering monitoren we prestaties, optimaliseren waar nodig en zorgen dat je site blijft groeien.</p></div>
+</div>
+</div></section>
 
-  <section>
-    <div class="container">
-      <p class="eyebrow fade-up">Klantresultaten</p>
-      <h2 class="section-heading fade-up">Het verschil zit in de cijfers</h2>
-      <p class="section-sub fade-up">Geen loze beloftes. Dit is wat onze klanten daadwerkelijk hebben bereikt.</p>
-      <div class="result-cards fade-up">
-        <div class="result-card">
-          <div class="result-label">E-commerce</div>
-          <h3>Complete Shopify webshop voor lokale producent</h3>
-          <p>Van nul naar een volwaardige webshop met productpagina's, iDEAL-betaling en verzendopties. Binnen twee weken live.</p>
-          <div class="result-stats"><div><div class="stat-value">2 weken</div><div class="stat-label">Van idee naar live</div></div><div><div class="stat-value">+340%</div><div class="stat-label">Online bereik</div></div></div>
-        </div>
-        <div class="result-card">
-          <div class="result-label">B2B Platform</div>
-          <h3>Magento redesign voor internationale retailer</h3>
-          <p>Volledig redesign van een B2B bestelplatform. Snellere laadtijden en een checkout die converteert.</p>
-          <div class="result-stats"><div><div class="stat-value">+45%</div><div class="stat-label">Conversie</div></div><div><div class="stat-value">-60%</div><div class="stat-label">Laadtijd</div></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
+<section><div class="container">
+<p class="eyebrow fu">Klantresultaten</p>
+<h2 class="sh fu">Het verschil zit in de cijfers</h2>
+<p class="ss fu">Geen loze beloftes. Dit is wat onze klanten daadwerkelijk hebben bereikt.</p>
+<div class="rc fu">
+<div class="rcard"><div class="rl">E-commerce</div><h3>Complete Shopify webshop voor lokale producent</h3><p>Van nul naar een volwaardige webshop met productpagina's, iDEAL-betaling en verzendopties. Binnen twee weken live.</p><div class="rs"><div><div class="sv">2 weken</div><div class="sl">Van idee naar live</div></div><div><div class="sv">+340%</div><div class="sl">Online bereik</div></div></div></div>
+<div class="rcard"><div class="rl">B2B Platform</div><h3>Magento redesign voor internationale retailer</h3><p>Volledig redesign van een B2B bestelplatform. Snellere laadtijden en een checkout die converteert.</p><div class="rs"><div><div class="sv">+45%</div><div class="sl">Conversie</div></div><div><div class="sv">-60%</div><div class="sl">Laadtijd</div></div></div></div>
+</div>
+</div></section>
 
-  <section class="dark-section">
-    <div class="container">
-      <p class="eyebrow fade-up">Het verschil</p>
-      <h2 class="section-heading fade-up">Waarom AVORO?</h2>
-      <div class="verschil-grid fade-up">
-        <div class="verschil-col col-other">
-          <h3>Andere bureaus</h3>
-          <ul>
-            <li><span class="icon">✗</span> Standaard templates voor iedereen</li>
-            <li><span class="icon">✗</span> Lange wachttijd op een eerste ontwerp</li>
-            <li><span class="icon">✗</span> Verplichte langdurige contracten</li>
-            <li><span class="icon">✗</span> Onzichtbare meerkosten achteraf</li>
-            <li><span class="icon">✗</span> Eenmaal opgeleverd, nooit meer gehoord</li>
-          </ul>
-        </div>
-        <div class="verschil-col col-avoro">
-          <h3>AVORO</h3>
-          <ul>
-            <li><span class="icon">✓</span> Custom design afgestemd op jouw merk</li>
-            <li><span class="icon">✓</span> Eerste ontwerp binnen enkele dagen</li>
-            <li><span class="icon">✓</span> Flexibel, zonder verplichtingen</li>
-            <li><span class="icon">✓</span> Vaste prijs, alles inbegrepen</li>
-            <li><span class="icon">✓</span> Blijvende ondersteuning na oplevering</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="dark"><div class="container">
+<p class="eyebrow fu">Het verschil</p>
+<h2 class="sh fu">Waarom AVORO?</h2>
+<div class="vg fu">
+<div class="vc co"><h3>Andere bureaus</h3><ul>
+<li><span class="ic">✗</span> Standaard templates voor iedereen</li>
+<li><span class="ic">✗</span> Lange wachttijd op een eerste ontwerp</li>
+<li><span class="ic">✗</span> Verplichte langdurige contracten</li>
+<li><span class="ic">✗</span> Onzichtbare meerkosten achteraf</li>
+<li><span class="ic">✗</span> Eenmaal opgeleverd, nooit meer gehoord</li>
+</ul></div>
+<div class="vc ca"><h3>AVORO</h3><ul>
+<li><span class="ic">✓</span> Custom design afgestemd op jouw merk</li>
+<li><span class="ic">✓</span> Eerste ontwerp binnen enkele dagen</li>
+<li><span class="ic">✓</span> Flexibel, zonder verplichtingen</li>
+<li><span class="ic">✓</span> Vaste prijs, alles inbegrepen</li>
+<li><span class="ic">✓</span> Blijvende ondersteuning na oplevering</li>
+</ul></div>
+</div>
+</div></section>
 
-  <section id="faq-section">
-    <div class="container">
-      <p class="eyebrow fade-up">FAQ</p>
-      <h2 class="section-heading fade-up">Veelgestelde vragen</h2>
-      <div class="faq-list fade-up">
-        <div class="faq-item"><button class="faq-q">Hoe snel is mijn website klaar?<span class="faq-icon">+</span></button><div class="faq-a"><p>De meeste websites en webshops leveren we binnen enkele dagen tot vier weken op, afhankelijk van de scope en functionaliteiten. Je weet vooraf precies waar je aan toe bent.</p></div></div>
-        <div class="faq-item"><button class="faq-q">Welke platformen gebruiken jullie?<span class="faq-icon">+</span></button><div class="faq-a"><p>We werken met Shopify, Magento en WordPress. We adviseren het platform dat het beste past bij jouw situatie en doelen.</p></div></div>
-        <div class="faq-item"><button class="faq-q">Wat kost een website?<span class="faq-icon">+</span></button><div class="faq-a"><p>Een basis webshop begint vanaf €750, een uitgebreid project kan richting €3.000 gaan. Altijd een vaste prijs vooraf, geen verrassingen.</p></div></div>
-        <div class="faq-item"><button class="faq-q">Kan ik mijn site zelf beheren?<span class="faq-icon">+</span></button><div class="faq-a"><p>Absoluut. We bouwen alles zo dat je zelf producten, teksten en afbeeldingen kunt aanpassen. En als je vastloopt, staan we klaar.</p></div></div>
-        <div class="faq-item"><button class="faq-q">Wat als ik al een website heb?<span class="faq-icon">+</span></button><div class="faq-a"><p>We kunnen je bestaande site verbeteren, restylen of compleet opnieuw opbouwen. We kijken samen wat het slimste is.</p></div></div>
-      </div>
-    </div>
-  </section>
+<section id="faq"><div class="container">
+<p class="eyebrow fu">FAQ</p>
+<h2 class="sh fu">Veelgestelde vragen</h2>
+<div class="fl fu">
+<div class="fi"><button class="fq">Hoe snel is mijn website klaar?<span class="fic">+</span></button><div class="fa"><p>De meeste websites en webshops leveren we binnen enkele dagen tot vier weken op, afhankelijk van de scope. Je weet vooraf precies waar je aan toe bent.</p></div></div>
+<div class="fi"><button class="fq">Welke platformen gebruiken jullie?<span class="fic">+</span></button><div class="fa"><p>We werken met Shopify, Magento en WordPress. We adviseren het platform dat het beste past bij jouw situatie en doelen.</p></div></div>
+<div class="fi"><button class="fq">Wat kost een website?<span class="fic">+</span></button><div class="fa"><p>Dat hangt af van wat je nodig hebt. We werken met vaste prijzen en geven altijd vooraf een helder overzicht, geen verrassingen achteraf.</p></div></div>
+<div class="fi"><button class="fq">Kan ik mijn site zelf beheren?<span class="fic">+</span></button><div class="fa"><p>Absoluut. We bouwen alles zo dat je zelf producten, teksten en afbeeldingen kunt aanpassen. En als je vastloopt, staan we klaar.</p></div></div>
+<div class="fi"><button class="fq">Wat als ik al een website heb?<span class="fic">+</span></button><div class="fa"><p>We kunnen je bestaande site verbeteren, restylen of compleet opnieuw opbouwen. We kijken samen wat het slimste is.</p></div></div>
+</div>
+</div></section>
 
-  <section class="cta-section">
-    <div class="container">
-      <p class="eyebrow fade-up">Vandaag beginnen</p>
-      <h2 class="fade-up">Klaar om te groeien?</h2>
-      <p class="fade-up">Plan een vrijblijvend gesprek en ontdek wat Avoro voor jouw bedrijf kan betekenen.</p>
-      <a onclick="goTo('contact')" class="btn-white fade-up">Neem contact op <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
-    </div>
-  </section>
+<section class="cta"><div class="container">
+<p class="eyebrow fu">Vandaag beginnen</p>
+<h2 class="fu">Klaar om te groeien?</h2>
+<p class="fu">Plan een vrijblijvend gesprek en ontdek wat Avoro voor jouw bedrijf kan betekenen.</p>
+<a onclick="go('contact')" class="bw fu">Neem contact op <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
+</div></section>
 </div>
 
-<!-- ╔═══════════════════════╗
-     ║   PAGE: DIENSTEN      ║
-     ╚═══════════════════════╝ -->
-<div class="page" id="page-diensten">
-  <section class="page-hero dark-section">
-    <div class="container">
-      <p class="eyebrow fade-up">Onze diensten</p>
-      <h1 class="fade-up">Wat we voor je <em>bouwen</em></h1>
-      <p class="fade-up">Van strategie tot oplevering. Alles wat je nodig hebt voor een website die werkt, verkoopt en groeit.</p>
-    </div>
-  </section>
+<!-- DIENSTEN -->
+<div class="page" id="p-diensten">
+<section class="ph dark"><div class="container">
+<p class="eyebrow fu">Onze diensten</p>
+<h1 class="fu">Wat we voor je <em>bouwen</em></h1>
+<p class="fu">Van strategie tot oplevering. Alles wat je nodig hebt voor een website die werkt, verkoopt en groeit.</p>
+</div></section>
 
-  <section><div class="container"><div class="dienst-detail fade-up">
-    <div>
-      <p class="eyebrow">Webdesign</p>
-      <h2>Design dat onderscheidt</h2>
-      <p>Geen standaard templates. We ontwerpen elke site op maat, passend bij jouw merk, doelgroep en doelen.</p>
-      <ul><li>Custom webdesign op maat</li><li>Responsive voor elk apparaat</li><li>Huisstijl-integratie</li><li>UX-optimalisatie</li></ul>
-    </div>
-    <div class="dienst-visual"><span>Design</span></div>
-  </div></div></section>
+<section><div class="container"><div class="dd fu"><div>
+<p class="eyebrow">Webdesign</p><h2>Design dat onderscheidt</h2>
+<p>Geen standaard templates. We ontwerpen elke site op maat, passend bij jouw merk, doelgroep en doelen.</p>
+<ul><li>Custom webdesign op maat</li><li>Responsive voor elk apparaat</li><li>Huisstijl-integratie</li><li>UX-optimalisatie</li></ul>
+</div><div class="dv"><span>Design</span></div></div></div></section>
 
-  <section style="background:#F5F2ED"><div class="container"><div class="dienst-detail reverse fade-up">
-    <div>
-      <p class="eyebrow">Webshops</p>
-      <h2>Webshops die verkopen</h2>
-      <p>Shopify voor snelle launches, Magento voor complexe B2B-platformen. We bouwen webshops die converteren.</p>
-      <ul><li>Shopify & Magento</li><li>iDEAL, Klarna, creditcard</li><li>Productfotografie-advies</li><li>Conversie-optimalisatie</li><li>Voorraadbeheer & verzending</li></ul>
-    </div>
-    <div class="dienst-visual"><span>Shop</span></div>
-  </div></div></section>
+<section style="background:#F5F2ED"><div class="container"><div class="dd rev fu"><div>
+<p class="eyebrow">Webshops</p><h2>Webshops die verkopen</h2>
+<p>Shopify voor snelle launches, Magento voor complexe B2B-platformen. We bouwen webshops die converteren.</p>
+<ul><li>Shopify & Magento</li><li>iDEAL, Klarna, creditcard</li><li>Productfotografie-advies</li><li>Conversie-optimalisatie</li><li>Voorraadbeheer & verzending</li></ul>
+</div><div class="dv"><span>Shop</span></div></div></div></section>
 
-  <section><div class="container"><div class="dienst-detail fade-up">
-    <div>
-      <p class="eyebrow">SEO & Performance</p>
-      <h2>Gevonden worden en snel laden</h2>
-      <p>Een mooie site is waardeloos als niemand hem vindt. We optimaliseren voor Google en zorgen voor snelle laadtijden.</p>
-      <ul><li>Technische SEO-audit</li><li>Google-optimalisatie</li><li>Performance & snelheid</li><li>Analytics & rapportage</li></ul>
-    </div>
-    <div class="dienst-visual"><span>SEO</span></div>
-  </div></div></section>
+<section><div class="container"><div class="dd fu"><div>
+<p class="eyebrow">SEO & Performance</p><h2>Gevonden worden en snel laden</h2>
+<p>Een mooie site is waardeloos als niemand hem vindt. We optimaliseren voor Google en zorgen voor snelle laadtijden.</p>
+<ul><li>Technische SEO-audit</li><li>Google-optimalisatie</li><li>Performance & snelheid</li><li>Analytics & rapportage</li></ul>
+</div><div class="dv"><span>SEO</span></div></div></div></section>
 
-  <section class="dark-section">
-    <div class="container">
-      <p class="eyebrow fade-up">Prijzen</p>
-      <h2 class="section-heading fade-up">Vaste prijzen, geen verrassingen</h2>
-      <div class="pricing-grid fade-up">
-        <div class="pricing-card">
-          <div class="pricing-label">Basis</div><h3>Starter</h3>
-          <div class="pricing-price">€750 <small>eenmalig</small></div>
-          <ul><li>One-page website of basis webshop</li><li>Responsive design</li><li>Tot 10 producten</li><li>Contactformulier</li><li>Oplevering binnen enkele dagen</li></ul>
-          <a class="pricing-cta" onclick="goTo('contact')">Aan de slag</a>
-        </div>
-        <div class="pricing-card featured">
-          <div class="pricing-label">Populair</div><h3>Professional</h3>
-          <div class="pricing-price">€1.500 <small>eenmalig</small></div>
-          <ul><li>Complete webshop</li><li>Custom design in huisstijl</li><li>Onbeperkt producten</li><li>iDEAL & betaalmethodes</li><li>SEO-basis inbegrepen</li><li>Oplevering binnen 2-3 weken</li></ul>
-          <a class="pricing-cta" onclick="goTo('contact')">Aan de slag</a>
-        </div>
-        <div class="pricing-card">
-          <div class="pricing-label">Premium</div><h3>Enterprise</h3>
-          <div class="pricing-price">Op maat</div>
-          <ul><li>Magento of complex Shopify</li><li>B2B-functionaliteit</li><li>Koppelingen & integraties</li><li>Volledig maatwerk</li><li>Doorlopende ondersteuning</li></ul>
-          <a class="pricing-cta" onclick="goTo('contact')">Neem contact op</a>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="dark"><div class="container">
+<p class="eyebrow fu">Prijzen</p>
+<h2 class="sh fu">Vaste prijzen, geen verrassingen</h2>
+<div class="pg fu">
+<div class="pc"><div class="pl">Basis</div><h3>Starter</h3><div class="pp">Vanaf €495 <small>eenmalig</small></div>
+<ul><li>One-page website of basis webshop</li><li>Responsive design</li><li>Tot 10 producten</li><li>Contactformulier</li><li>Oplevering binnen enkele dagen</li></ul>
+<a class="pcta" onclick="go('contact')">Aan de slag</a></div>
+<div class="pc feat"><div class="pl">Populair</div><h3>Professional</h3><div class="pp">Vanaf €1.250 <small>eenmalig</small></div>
+<ul><li>Complete webshop</li><li>Custom design in huisstijl</li><li>Onbeperkt producten</li><li>iDEAL & betaalmethodes</li><li>SEO-basis inbegrepen</li><li>Oplevering binnen 2-3 weken</li></ul>
+<a class="pcta" onclick="go('contact')">Aan de slag</a></div>
+<div class="pc"><div class="pl">Premium</div><h3>Enterprise</h3><div class="pp">Op maat</div>
+<ul><li>Magento of complex Shopify</li><li>B2B-functionaliteit</li><li>Koppelingen & integraties</li><li>Volledig maatwerk</li><li>Doorlopende ondersteuning</li></ul>
+<a class="pcta" onclick="go('contact')">Neem contact op</a></div>
+</div>
+</div></section>
 
-  <section class="cta-section">
-    <div class="container">
-      <p class="eyebrow fade-up">Volgende stap</p>
-      <h2 class="fade-up">Weten wat jij nodig hebt?</h2>
-      <p class="fade-up">We bespreken je situatie en adviseren vrijblijvend welk pakket het beste past.</p>
-      <a onclick="goTo('contact')" class="btn-white fade-up">Plan een gesprek</a>
-    </div>
-  </section>
+<section class="cta"><div class="container">
+<p class="eyebrow fu">Volgende stap</p>
+<h2 class="fu">Weten wat jij nodig hebt?</h2>
+<p class="fu">We bespreken je situatie en adviseren vrijblijvend welk pakket het beste past.</p>
+<a onclick="go('contact')" class="bw fu">Plan een gesprek</a>
+</div></section>
 </div>
 
-<!-- ╔═══════════════════════╗
-     ║   PAGE: OVER ONS      ║
-     ╚═══════════════════════╝ -->
-<div class="page" id="page-over">
-  <section class="page-hero dark-section">
-    <div class="container">
-      <p class="eyebrow fade-up">Over Avoro</p>
-      <h1 class="fade-up">Wij geloven in <em>resultaat</em></h1>
-      <p class="fade-up">Avoro is opgericht vanuit een simpel idee: elke ondernemer verdient een website die echt werkt. Niet alleen mooi, maar ook winstgevend.</p>
-    </div>
-  </section>
+<!-- OVER ONS -->
+<div class="page" id="p-over">
+<section class="ph dark"><div class="container">
+<p class="eyebrow fu">Over Avoro</p>
+<h1 class="fu">Wij geloven in <em>resultaat</em></h1>
+<p class="fu">Elke ondernemer verdient een website die echt werkt. Niet alleen mooi, maar ook winstgevend.</p>
+</div></section>
 
-  <section><div class="container"><div class="over-story fade-up">
-    <div>
-      <h2>Van ondernemer voor ondernemers</h2>
-      <p>Avoro is geboren uit de praktijk. We weten hoe het is om een bedrijf te runnen, klanten te zoeken en online zichtbaar te worden. Daarom bouwen we websites die bijdragen aan jouw groei.</p>
-      <p>We werken met Shopify, Magento en WordPress, afhankelijk van wat jouw situatie vraagt. Geen onnodige complexiteit, geen verplichte contracten, gewoon eerlijk werk.</p>
-      <p>Elke klant krijgt persoonlijke aandacht. We zijn geen grote fabriek, maar een partner die meedenkt en bereikbaar is wanneer het nodig is.</p>
-    </div>
-    <div class="over-photo"><span>M</span></div>
-  </div></div></section>
+<section><div class="container"><div class="os fu"><div>
+<h2>Van ondernemer voor ondernemers</h2>
+<p>Avoro is geboren uit de praktijk. We weten hoe het is om een bedrijf te runnen, klanten te zoeken en online zichtbaar te worden. Daarom bouwen we websites die bijdragen aan jouw groei.</p>
+<p>We werken met Shopify, Magento en WordPress, afhankelijk van wat jouw situatie vraagt. Geen onnodige complexiteit, geen verplichte contracten, gewoon eerlijk werk.</p>
+<p>Elke klant krijgt persoonlijke aandacht. We zijn geen grote fabriek, maar een partner die meedenkt en bereikbaar is wanneer het nodig is.</p>
+</div><div class="op"><span>M</span></div></div></div></section>
 
-  <section class="dark-section">
-    <div class="container">
-      <p class="eyebrow fade-up">Onze waarden</p>
-      <h2 class="section-heading fade-up">Waar we voor staan</h2>
-      <div class="values-grid fade-up">
-        <div class="value-card"><h3>Eerlijkheid</h3><p>Vaste prijzen, geen verborgen kosten, en eerlijk advies. Als iets niet nodig is, zeggen we dat.</p></div>
-        <div class="value-card"><h3>Snelheid</h3><p>De meeste projecten leveren we binnen enkele dagen tot weken op. Geen eindeloos gepraat, gewoon bouwen.</p></div>
-        <div class="value-card"><h3>Resultaat</h3><p>Een website is pas goed als hij klanten oplevert. Alles wat we doen is gericht op groei en conversie.</p></div>
-      </div>
-    </div>
-  </section>
+<section class="dark"><div class="container">
+<p class="eyebrow fu">Onze waarden</p>
+<h2 class="sh fu">Waar we voor staan</h2>
+<div class="vgr fu">
+<div class="vcd"><h3>Eerlijkheid</h3><p>Vaste prijzen, geen verborgen kosten, en eerlijk advies. Als iets niet nodig is, zeggen we dat.</p></div>
+<div class="vcd"><h3>Snelheid</h3><p>De meeste projecten leveren we binnen enkele dagen tot weken op. Geen eindeloos gepraat, gewoon bouwen.</p></div>
+<div class="vcd"><h3>Resultaat</h3><p>Een website is pas goed als hij klanten oplevert. Alles wat we doen is gericht op groei en conversie.</p></div>
+</div>
+</div></section>
 
-  <section><div class="container">
-    <p class="eyebrow fade-up">Tech stack</p>
-    <h2 class="section-heading fade-up">Waar we mee werken</h2>
-    <div class="stack-grid fade-up">
-      <div class="stack-item"><span>Shopify</span></div>
-      <div class="stack-item"><span>Magento</span></div>
-      <div class="stack-item"><span>WordPress</span></div>
-      <div class="stack-item"><span>HTML / CSS</span></div>
-      <div class="stack-item"><span>JavaScript</span></div>
-      <div class="stack-item"><span>Liquid</span></div>
-      <div class="stack-item"><span>PHP</span></div>
-      <div class="stack-item"><span>Figma</span></div>
-    </div>
-  </div></section>
+<section><div class="container">
+<p class="eyebrow fu">Tech stack</p>
+<h2 class="sh fu">Waar we mee werken</h2>
+<div class="sgr fu">
+<div class="si"><span>Shopify</span></div><div class="si"><span>Magento</span></div><div class="si"><span>WordPress</span></div><div class="si"><span>HTML / CSS</span></div>
+<div class="si"><span>JavaScript</span></div><div class="si"><span>Liquid</span></div><div class="si"><span>PHP</span></div><div class="si"><span>Figma</span></div>
+</div>
+</div></section>
 
-  <section class="cta-section">
-    <div class="container">
-      <p class="eyebrow fade-up">Samenwerken?</p>
-      <h2 class="fade-up">Laten we kennismaken</h2>
-      <p class="fade-up">Vertel ons over je plannen. We denken graag mee, vrijblijvend.</p>
-      <a onclick="goTo('contact')" class="btn-white fade-up">Neem contact op</a>
-    </div>
-  </section>
+<section class="cta"><div class="container">
+<p class="eyebrow fu">Samenwerken?</p>
+<h2 class="fu">Laten we kennismaken</h2>
+<p class="fu">Vertel ons over je plannen. We denken graag mee, vrijblijvend.</p>
+<a onclick="go('contact')" class="bw fu">Neem contact op</a>
+</div></section>
 </div>
 
-<!-- ╔═══════════════════════╗
-     ║   PAGE: BLOG          ║
-     ╚═══════════════════════╝ -->
-<div class="page" id="page-blog">
-  <section class="page-hero dark-section">
-    <div class="container">
-      <p class="eyebrow fade-up">Blog</p>
-      <h1 class="fade-up">Inzichten & tips</h1>
-      <p class="fade-up">Praktische kennis over webdesign, e-commerce en online groei.</p>
-    </div>
-  </section>
+<!-- BLOG -->
+<div class="page" id="p-blog">
+<section class="ph dark"><div class="container">
+<p class="eyebrow fu">Blog</p>
+<h1 class="fu">Inzichten & tips</h1>
+<p class="fu">Praktische kennis over webdesign, e-commerce en online groei.</p>
+</div></section>
 
-  <section><div class="container">
-    <div class="blog-grid fade-up">
-      <div class="blog-card"><div class="blog-thumb"></div><div class="blog-card-body"><div class="blog-date">Augustus 2026</div><h3>Shopify vs WooCommerce: wat past bij jou?</h3><p>De voor- en nadelen van beide platformen en hoe je de juiste keuze maakt.</p></div></div>
-      <div class="blog-card"><div class="blog-thumb"></div><div class="blog-card-body"><div class="blog-date">Augustus 2026</div><h3>5 fouten die je webshop conversie kosten</h3><p>De meest voorkomende fouten bij kleine webshops en hoe je ze oplost.</p></div></div>
-      <div class="blog-card"><div class="blog-thumb"></div><div class="blog-card-body"><div class="blog-date">Juli 2026</div><h3>Waarom elke ondernemer een website nodig heeft</h3><p>Nog steeds alleen actief op Instagram? Waarom een eigen website de slimste investering is.</p></div></div>
-    </div>
-  </div></section>
+<section><div class="container"><div class="bg fu">
+<div class="bc"><div class="bt"></div><div class="bcb"><div class="bd">Augustus 2026</div><h3>Shopify vs WooCommerce: wat past bij jou?</h3><p>De voor- en nadelen van beide platformen en hoe je de juiste keuze maakt.</p></div></div>
+<div class="bc"><div class="bt"></div><div class="bcb"><div class="bd">Augustus 2026</div><h3>5 fouten die je webshop conversie kosten</h3><p>De meest voorkomende fouten bij kleine webshops en hoe je ze oplost.</p></div></div>
+<div class="bc"><div class="bt"></div><div class="bcb"><div class="bd">Juli 2026</div><h3>Waarom elke ondernemer een website nodig heeft</h3><p>Nog steeds alleen op Instagram? Waarom een eigen website de slimste investering is.</p></div></div>
+</div></div></section>
 </div>
 
-<!-- ╔═══════════════════════╗
-     ║   PAGE: CONTACT       ║
-     ╚═══════════════════════╝ -->
-<div class="page" id="page-contact">
-  <section class="page-hero dark-section">
-    <div class="container">
-      <p class="eyebrow fade-up">Contact</p>
-      <h1 class="fade-up">Laten we <em>praten</em></h1>
-      <p class="fade-up">Vertel ons wat je nodig hebt. We reageren binnen 24 uur.</p>
-    </div>
-  </section>
+<!-- CONTACT -->
+<div class="page" id="p-contact">
+<section class="ph dark"><div class="container">
+<p class="eyebrow fu">Contact</p>
+<h1 class="fu">Laten we <em>praten</em></h1>
+<p class="fu">Vertel ons wat je nodig hebt. We reageren binnen 24 uur.</p>
+</div></section>
 
-  <section><div class="container">
-    <div class="contact-content fade-up">
-      <div class="contact-form">
-        <h2>Stuur een bericht</h2>
-        <form id="contactForm" action="https://formspree.io/f/xpwdkjvl" method="POST">
-          <div class="form-group"><label>Naam *</label><input type="text" name="name" placeholder="Je volledige naam" required></div>
-          <div class="form-group"><label>Email *</label><input type="email" name="email" placeholder="je@email.nl" required></div>
-          <div class="form-group"><label>Telefoon</label><input type="tel" name="phone" placeholder="06 - 12345678"></div>
-          <div class="form-group"><label>Waar ben je naar op zoek?</label>
-            <select name="service"><option value="" disabled selected>Kies een optie</option><option>Nieuwe website</option><option>Webshop (Shopify)</option><option>Webshop (Magento)</option><option>Website redesign</option><option>SEO & Performance</option><option>Anders</option></select>
-          </div>
-          <div class="form-group"><label>Bericht *</label><textarea name="message" placeholder="Vertel kort over je project, doelen of vragen..." required></textarea></div>
-          <input type="hidden" name="_subject" value="Nieuw contactformulier via avoro.nl">
-          <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">Verstuur bericht <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M8 2l5 5-5 5"/></svg></button>
-        </form>
-        <div class="form-success" id="formSuccess">
-          <h3>Bedankt voor je bericht!</h3>
-          <p>We nemen zo snel mogelijk contact met je op, meestal binnen 24 uur.</p>
-        </div>
-      </div>
-      <div class="contact-info">
-        <h2>Direct contact</h2>
-        <div class="contact-info-item"><h4>Reactietijd</h4><p>We reageren binnen 24 uur op werkdagen. Vaak sneller.</p></div>
-        <div class="contact-info-item"><h4>Socials</h4><p><a href="https://www.instagram.com/avoro.nl" target="_blank">Instagram</a></p><p><a href="https://www.linkedin.com/company/avarodesign" target="_blank">LinkedIn</a></p></div>
-        <div class="contact-info-item"><h4>Locatie</h4><p>Nederland</p></div>
-      </div>
-    </div>
-  </div></section>
+<section><div class="container"><div class="cc fu">
+<div class="cf"><h2>Stuur een bericht</h2>
+<form id="cf" action="https://formspree.io/f/xpwdkjvl" method="POST">
+<div class="fg2"><label>Naam *</label><input type="text" name="name" placeholder="Je volledige naam" required></div>
+<div class="fg2"><label>Email *</label><input type="email" name="email" placeholder="je@email.nl" required></div>
+<div class="fg2"><label>Telefoon</label><input type="tel" name="phone" placeholder="06 - 12345678"></div>
+<div class="fg2"><label>Waar ben je naar op zoek?</label>
+<select name="service"><option value="" disabled selected>Kies een optie</option><option>Nieuwe website</option><option>Webshop (Shopify)</option><option>Webshop (Magento)</option><option>Website redesign</option><option>SEO & Performance</option><option>Anders</option></select></div>
+<div class="fg2"><label>Bericht *</label><textarea name="message" placeholder="Vertel kort over je project..." required></textarea></div>
+<input type="hidden" name="_subject" value="Nieuw bericht via avoro.nl">
+<button type="submit" class="bp" style="width:100%;justify-content:center">Verstuur bericht <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M8 2l5 5-5 5"/></svg></button>
+</form>
+<div class="fsuc" id="fsuc"><h3>Bedankt voor je bericht!</h3><p>We nemen zo snel mogelijk contact op, meestal binnen 24 uur.</p></div>
+</div>
+<div class="ci"><h2>Direct contact</h2>
+<div class="cii"><h4>Reactietijd</h4><p>We reageren binnen 24 uur op werkdagen. Vaak sneller.</p></div>
+<div class="cii"><h4>Socials</h4><p><a href="https://www.instagram.com/avoro.nl" target="_blank">Instagram</a></p><p><a href="https://www.linkedin.com/company/avarodesign" target="_blank">LinkedIn</a></p></div>
+<div class="cii"><h4>Locatie</h4><p>Nederland</p></div>
+</div>
+</div></div></section>
 </div>
 
-<!-- ╔═══════════════════════╗
-     ║   PAGE: 404           ║
-     ╚═══════════════════════╝ -->
-<div class="page" id="page-404">
-  <div class="page-404">
-    <div>
-      <h1>404</h1>
-      <p>Deze pagina bestaat niet of is verplaatst.</p>
-      <a onclick="goTo('home')" class="btn-primary">Terug naar home</a>
-    </div>
-  </div>
+<!-- FOOTER -->
+<footer><div class="container">
+<div class="fg">
+<div>
+<div class="fb" onclick="go('home')"><img src="logo.png" alt="AVORO" style="height:28px"></div>
+<p class="ft">Websites die presteren. Resultaten die tellen. Gebouwd voor ondernemers die het verschil willen maken.</p>
+<div class="sb">
+<a href="https://www.instagram.com/avoro.nl" target="_blank" class="sba" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+<a href="https://www.linkedin.com/company/avarodesign" target="_blank" class="sba" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
 </div>
-
-<!-- ═══ FOOTER ═══ -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand-text" onclick="goTo('home')">AVORO</div>
-        <p class="footer-tagline">Websites die presteren. Resultaten die tellen. Gebouwd voor ondernemers die het verschil willen maken.</p>
-        <div class="social-badges">
-          <a href="https://www.instagram.com/avoro.nl" target="_blank" class="social-badge" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
-          <a href="https://www.linkedin.com/company/avarodesign" target="_blank" class="social-badge" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-        </div>
-      </div>
-      <div>
-        <h4>Navigatie</h4>
-        <ul>
-          <li><a onclick="goTo('home')">Home</a></li>
-          <li><a onclick="goTo('diensten')">Diensten</a></li>
-          <li><a onclick="goTo('over')">Over ons</a></li>
-          <li><a onclick="goTo('blog')">Blog</a></li>
-          <li><a onclick="goTo('contact')">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li><a onclick="goTo('contact')">Plan een gesprek &rsaquo;</a></li>
-          <li><a href="https://www.instagram.com/avoro.nl" target="_blank">Instagram</a></li>
-          <li><a href="https://www.linkedin.com/company/avarodesign" target="_blank">LinkedIn</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>&copy; 2026 Avoro</span>
-      <span>Alle rechten voorbehouden</span>
-    </div>
-  </div>
-</footer>
+</div>
+<div><h4>Navigatie</h4><ul>
+<li><a onclick="go('home')">Home</a></li>
+<li><a onclick="go('diensten')">Diensten</a></li>
+<li><a onclick="go('over')">Over ons</a></li>
+<li><a onclick="go('blog')">Blog</a></li>
+<li><a onclick="go('contact')">Contact</a></li>
+</ul></div>
+<div><h4>Contact</h4><ul>
+<li><a onclick="go('contact')">Plan een gesprek ›</a></li>
+<li><a href="https://www.instagram.com/avoro.nl" target="_blank">Instagram</a></li>
+<li><a href="https://www.linkedin.com/company/avarodesign" target="_blank">LinkedIn</a></li>
+</ul></div>
+</div>
+<div class="fbot"><span>© 2026 Avoro</span><span>Alle rechten voorbehouden</span></div>
+</div></footer>
 
 <script>
-// ═══ SPA ROUTING ═══
-const darkPages = ['diensten','over','contact','blog','404'];
-function goTo(page) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  const t = document.getElementById('page-' + page);
-  if (t) t.classList.add('active'); else { document.getElementById('page-404').classList.add('active'); page = '404'; }
-  window.scrollTo({ top: 0, behavior: 'instant' });
-  const nav = document.getElementById('nav');
-  darkPages.includes(page) ? nav.classList.add('dark-nav') : nav.classList.remove('dark-nav');
-  document.querySelectorAll('.fade-up:not(.visible)').forEach(el => observer.observe(el));
-  window.location.hash = page === 'home' ? '' : page;
-  // Update title
-  const titles = { home:'AVORO — Websites die presteren', diensten:'AVORO — Diensten', over:'AVORO — Over ons', blog:'AVORO — Blog', contact:'AVORO — Contact', '404':'AVORO — Pagina niet gevonden' };
-  document.title = titles[page] || titles.home;
-}
-window.addEventListener('hashchange', () => { goTo(window.location.hash.replace('#','') || 'home'); });
-window.addEventListener('DOMContentLoaded', () => { const h = window.location.hash.replace('#','') || 'home'; if (h !== 'home') goTo(h); });
-
-// ═══ MOBILE MENU ═══
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-function closeMobile() { mobileMenu.classList.remove('open'); hamburger.classList.remove('open'); }
-hamburger.addEventListener('click', () => { mobileMenu.classList.toggle('open'); hamburger.classList.toggle('open'); });
-
-// ═══ NAV SCROLL ═══
-window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40); });
-
-// ═══ FAQ ═══
-document.querySelectorAll('.faq-q').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const item = btn.parentElement;
-    document.querySelectorAll('.faq-item').forEach(i => { if (i !== item) i.classList.remove('open'); });
-    item.classList.toggle('open');
-  });
-});
-
-// ═══ CONTACT FORM ═══
-const form = document.getElementById('contactForm');
-if (form) {
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const btn = form.querySelector('button[type="submit"]');
-    btn.textContent = 'Versturen...';
-    try {
-      await fetch(form.action, { method:'POST', body: new FormData(form), headers: { 'Accept':'application/json' }});
-      form.style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
-    } catch(err) {
-      btn.innerHTML = 'Verstuur bericht <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M8 2l5 5-5 5"/></svg>';
-      alert('Er ging iets mis. Probeer het opnieuw.');
-    }
-  });
-}
-
-// ═══ INTERSECTION OBSERVER ═══
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
-}, { threshold: 0.08 });
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+const dp=['diensten','over','contact','blog'];
+function go(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+const t=document.getElementById('p-'+p);if(t)t.classList.add('active');
+window.scrollTo({top:0,behavior:'instant'});
+const n=document.getElementById('nav');dp.includes(p)?n.classList.add('dn'):n.classList.remove('dn');
+document.querySelectorAll('.fu:not(.v)').forEach(e=>ob.observe(e));
+location.hash=p==='home'?'':p;
+const ti={home:'AVORO — Websites die presteren',diensten:'AVORO — Diensten',over:'AVORO — Over ons',blog:'AVORO — Blog',contact:'AVORO — Contact'};
+document.title=ti[p]||ti.home}
+addEventListener('hashchange',()=>go(location.hash.replace('#','')||'home'));
+addEventListener('DOMContentLoaded',()=>{const h=location.hash.replace('#','');if(h)go(h)});
+const hb=document.getElementById('hb'),mm=document.getElementById('mm');
+function cm(){mm.classList.remove('open');hb.classList.remove('open')}
+hb.onclick=()=>{mm.classList.toggle('open');hb.classList.toggle('open')};
+addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>40));
+document.querySelectorAll('.fq').forEach(b=>{b.onclick=()=>{const i=b.parentElement;document.querySelectorAll('.fi').forEach(x=>{if(x!==i)x.classList.remove('open')});i.classList.toggle('open')}});
+const f=document.getElementById('cf');
+if(f)f.onsubmit=async e=>{e.preventDefault();const b=f.querySelector('button[type="submit"]');b.textContent='Versturen...';
+try{await fetch(f.action,{method:'POST',body:new FormData(f),headers:{Accept:'application/json'}});f.style.display='none';document.getElementById('fsuc').style.display='block'}
+catch(err){b.innerHTML='Verstuur bericht';alert('Er ging iets mis. Probeer het opnieuw.')}};
+const ob=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');ob.unobserve(e.target)}})},{threshold:.08});
+document.querySelectorAll('.fu').forEach(e=>ob.observe(e));
 </script>
 </body>
 </html>
