@@ -32,7 +32,7 @@ nav.dn .nl a,nav.dn .logo-text{color:var(--bg)}nav.dn .nc{border-color:var(--bg)
 nav.dn .nc:hover{background:var(--bg);color:var(--c)!important}nav.dn .hb span{background:var(--bg)}
 nav .container{display:flex;align-items:center;justify-content:space-between}
 .logo{display:flex;align-items:center;text-decoration:none;cursor:pointer}
-.logo img{height:38px;width:auto;display:block}
+.logo img{height:30px;width:auto;display:block}
 .nl{display:flex;align-items:center;gap:2.2rem;list-style:none}
 .nl a{font-size:.8rem;font-weight:400;letter-spacing:.06em;text-decoration:none;opacity:.55;transition:opacity .3s;cursor:pointer}
 .nl a:hover{opacity:1}
@@ -73,10 +73,10 @@ nav .container{display:flex;align-items:center;justify-content:space-between}
 
 /* MARQUEE */
 .mw{border-top:1px solid var(--lt);border-bottom:1px solid var(--lt);padding:1rem 0;overflow:hidden}
-.mq{display:flex;gap:2.5rem;animation:sc 22s linear infinite;white-space:nowrap}
+.mq{display:flex;gap:2.5rem;animation:sc 12s linear infinite;white-space:nowrap}
 .mq:hover{animation-play-state:paused}
 .mq span{font-size:.78rem;letter-spacing:.14em;color:var(--t);text-transform:uppercase;font-weight:500}
-.mq span::after{content:'·';margin-left:2.5rem;color:var(--lt)}
+.mq span::after{content:'·';margin-left:2.5rem;color:var(--t);font-weight:700}
 @keyframes sc{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* DIENSTEN GRID */
@@ -497,7 +497,7 @@ section{padding:55px 0}
 <footer><div class="container">
 <div class="fg">
 <div>
-<div class="fb" onclick="go('home')"><img src="https://raw.githubusercontent.com/avorowebdesign/avorowebdesign.github.io/main/logo.png" alt="AVORO" style="height:32px;display:block"></div>
+<div class="fb" onclick="go('home')"><img src="https://raw.githubusercontent.com/avorowebdesign/avorowebdesign.github.io/main/logo.png" alt="AVORO" style="height:24px;display:block"></div>
 <p class="ft">Websites die presteren. Resultaten die tellen. Gebouwd voor ondernemers die het verschil willen maken.</p>
 <div class="sb">
 <a href="https://www.instagram.com/avoro.nl" target="_blank" class="sba" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
