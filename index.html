@@ -241,11 +241,25 @@ section{padding:55px 0}
 .ph{min-height:35vh}
 .fb img{height:22px!important}
 }
+.blog-article{max-width:700px;margin:0 auto}
+.blog-article h2{font-family:var(--df);font-size:clamp(1.5rem,2.5vw,2rem);font-weight:300;margin:2rem 0 1rem}
+.blog-article p{font-size:.9rem;color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1rem}
+.blog-article ul{list-style:none;margin:1rem 0 1.5rem}
+.blog-article li{font-size:.88rem;color:var(--mid);padding:.4rem 0;font-weight:300;display:flex;align-items:flex-start;gap:.5rem}
+.blog-article li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--t);flex-shrink:0;margin-top:.5rem}
+.blog-article .blog-back{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--t);cursor:pointer;margin-bottom:2rem}
 .cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--c);color:var(--bg);padding:1rem 2rem;z-index:999;display:flex;align-items:center;justify-content:space-between;gap:1rem;font-size:.82rem;font-weight:300}
 .cookie-banner.hidden{display:none}
 .cookie-banner a{color:var(--t);text-decoration:underline}
 .cookie-btn{background:var(--t);color:var(--c);border:0;padding:.5rem 1.2rem;border-radius:var(--r);font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
-@media(max-width:768px){.cookie-banner{flex-direction:column;text-align:center;gap:.8rem}}
+@media(max-width:768px){.blog-article{max-width:700px;margin:0 auto}
+.blog-article h2{font-family:var(--df);font-size:clamp(1.5rem,2.5vw,2rem);font-weight:300;margin:2rem 0 1rem}
+.blog-article p{font-size:.9rem;color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1rem}
+.blog-article ul{list-style:none;margin:1rem 0 1.5rem}
+.blog-article li{font-size:.88rem;color:var(--mid);padding:.4rem 0;font-weight:300;display:flex;align-items:flex-start;gap:.5rem}
+.blog-article li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--t);flex-shrink:0;margin-top:.5rem}
+.blog-article .blog-back{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--t);cursor:pointer;margin-bottom:2rem}
+.cookie-banner{flex-direction:column;text-align:center;gap:.8rem}}
 @media(prefers-reduced-motion:no-preference){
 .fu{opacity:0;transform:translateY(25px);transition:opacity .7s,transform .7s}.fu.v{opacity:1;transform:translateY(0)}
 }
@@ -471,12 +485,76 @@ section{padding:55px 0}
 </div></section>
 
 <section><div class="container"><div class="bg fu">
-<div class="bc"><div class="bt"></div><div class="bcb"><div class="bd">Augustus 2026</div><h3>Shopify vs WooCommerce: wat past bij jou?</h3><p>De voor- en nadelen van beide platformen en hoe je de juiste keuze maakt.</p></div></div>
-<div class="bc"><div class="bt"></div><div class="bcb"><div class="bd">Augustus 2026</div><h3>5 fouten die je webshop conversie kosten</h3><p>De meest voorkomende fouten bij kleine webshops en hoe je ze oplost.</p></div></div>
-<div class="bc"><div class="bt"></div><div class="bcb"><div class="bd">Juli 2026</div><h3>Waarom elke ondernemer een website nodig heeft</h3><p>Nog steeds alleen op Instagram? Waarom een eigen website de slimste investering is.</p></div></div>
+<div class="bc" onclick="go('blog1')"><div class="bt"></div><div class="bcb"><div class="bd">Augustus 2026</div><h3>Shopify vs WooCommerce: wat past bij jou?</h3><p>De voor- en nadelen van beide platformen en hoe je de juiste keuze maakt.</p></div></div>
+<div class="bc" onclick="go('blog2')"><div class="bt"></div><div class="bcb"><div class="bd">Augustus 2026</div><h3>5 fouten die je webshop conversie kosten</h3><p>De meest voorkomende fouten bij kleine webshops en hoe je ze oplost.</p></div></div>
+<div class="bc" onclick="go('blog3')"><div class="bt"></div><div class="bcb"><div class="bd">Juli 2026</div><h3>Waarom elke ondernemer een website nodig heeft</h3><p>Nog steeds alleen op Instagram? Waarom een eigen website de slimste investering is.</p></div></div>
 </div></div></section>
 </div>
 
+<!-- BLOG ARTICLES -->
+<div class="page" id="p-blog1">
+<section class="ph dark"><div class="container">
+<p class="eyebrow fu">Blog</p>
+<h1 class="fu">Shopify vs WooCommerce</h1>
+<p class="fu">Welk platform past het beste bij jouw situatie?</p>
+</div></section>
+<section><div class="container"><div class="blog-article fu">
+<span class="blog-back" onclick="go('blog')">← Terug naar blog</span>
+<p>Je wilt een webshop starten, maar welk platform kies je? Shopify en WooCommerce zijn de twee populairste opties, maar ze zijn fundamenteel verschillend. In dit artikel zetten we de belangrijkste verschillen op een rij zodat je een weloverwogen keuze kunt maken.</p>
+<h2>Shopify: alles in een</h2>
+<p>Shopify is een volledig gehost platform. Je betaalt een maandelijks bedrag en krijgt daar alles voor terug: hosting, beveiliging, updates en technisch onderhoud. Je hoeft je nergens zorgen over te maken behalve je producten en je klanten.</p>
+<p>Het grote voordeel: je kunt binnen een paar dagen live gaan. De keerzijde is dat je maandelijks betaalt en minder controle hebt over de technische kant.</p>
+<h2>WooCommerce: volledige controle</h2>
+<p>WooCommerce is een gratis plugin voor WordPress. Je hebt volledige controle over je shop, maar je bent ook zelf verantwoordelijk voor hosting, beveiliging en updates. Dit vraagt meer technische kennis of een partij die dit voor je beheert.</p>
+<h2>Onze aanbeveling</h2>
+<p>Voor de meeste ondernemers die snel willen starten en zich willen focussen op hun producten, is Shopify de beste keuze. Heb je al een WordPress-site en wil je daar een shop aan toevoegen? Dan kan WooCommerce een goede optie zijn.</p>
+<p>Twijfel je nog? Neem gerust <span style="color:var(--t);cursor:pointer" onclick="go('contact')">contact</span> met ons op. We adviseren je graag, vrijblijvend.</p>
+</div></div></section>
+</div>
+
+<div class="page" id="p-blog2">
+<section class="ph dark"><div class="container">
+<p class="eyebrow fu">Blog</p>
+<h1 class="fu">5 fouten die je webshop conversie kosten</h1>
+<p class="fu">Kleine aanpassingen met groot effect.</p>
+</div></section>
+<section><div class="container"><div class="blog-article fu">
+<span class="blog-back" onclick="go('blog')">← Terug naar blog</span>
+<p>Je hebt een mooie webshop, bezoekers komen binnen, maar ze kopen niet. Herkenbaar? Grote kans dat een van deze vijf veelgemaakte fouten de oorzaak is.</p>
+<h2>1. Geen vertrouwen opbouwen</h2>
+<p>Bezoekers kopen niet als ze je niet vertrouwen. Reviews, keurmerken, een duidelijk retourbeleid en een professioneel design maken het verschil. Zonder deze elementen haakt de bezoeker af.</p>
+<h2>2. Te langzame laadtijd</h2>
+<p>Elke seconde extra laadtijd kost je klanten. Comprimeer je afbeeldingen, gebruik een snel thema en kies betrouwbare hosting. Een site die langer dan drie seconden laadt, verliest de helft van zijn bezoekers.</p>
+<h2>3. Onduidelijke checkout</h2>
+<p>Een ingewikkeld afrekenproces is een conversiekiller. Bied iDEAL aan, vraag alleen de noodzakelijke gegevens en laat de klant als gast afrekenen. Hoe minder stappen, hoe meer verkopen.</p>
+<h2>4. Slechte productfoto's</h2>
+<p>Online kunnen klanten je product niet vasthouden. Goede foto's zijn je belangrijkste verkooptool. Investeer in professionele productfotografie of leer de basis van goede productfoto's.</p>
+<h2>5. Geen mobiele optimalisatie</h2>
+<p>Meer dan de helft van alle webshopbezoekers komt via een telefoon. Als je shop niet perfect werkt op mobiel, loop je de helft van je omzet mis.</p>
+<p>Herken je een van deze fouten in je eigen webshop? <span style="color:var(--t);cursor:pointer" onclick="go('contact')">Neem contact op</span> en we kijken samen naar verbeterpunten.</p>
+</div></div></section>
+</div>
+
+<div class="page" id="p-blog3">
+<section class="ph dark"><div class="container">
+<p class="eyebrow fu">Blog</p>
+<h1 class="fu">Waarom elke ondernemer een website nodig heeft</h1>
+<p class="fu">Social media is niet genoeg.</p>
+</div></section>
+<section><div class="container"><div class="blog-article fu">
+<span class="blog-back" onclick="go('blog')">← Terug naar blog</span>
+<p>Veel ondernemers denken dat een Instagram- of Facebook-pagina voldoende is. En ja, social media is belangrijk. Maar het is geen vervanging voor een eigen website. Dit is waarom.</p>
+<h2>Je bent afhankelijk van een ander platform</h2>
+<p>Social media platforms veranderen continu hun algoritmes. Vandaag bereik je al je volgers, morgen nog maar tien procent. Met een eigen website heb je volledige controle over je online aanwezigheid.</p>
+<h2>Professionaliteit en vertrouwen</h2>
+<p>Een eigen website geeft je bedrijf geloofwaardigheid. Klanten zoeken je op via Google, niet via Instagram. Als ze dan geen website vinden, gaan ze naar je concurrent die dat wel heeft.</p>
+<h2>24/7 open</h2>
+<p>Je website werkt altijd, ook als jij slaapt. Met een webshop kunnen klanten op elk moment bestellen. Met een contactformulier kunnen ze altijd een aanvraag doen. Dat is omzet die je anders mist.</p>
+<h2>Vindbaar in Google</h2>
+<p>Met een goed geoptimaliseerde website word je gevonden door mensen die actief zoeken naar jouw product of dienst. Dat zijn de meest waardevolle bezoekers, want ze hebben al koopintentie.</p>
+<p>Klaar om je eigen website te laten bouwen? <span style="color:var(--t);cursor:pointer" onclick="go('contact')">Plan een vrijblijvend gesprek</span> en we bespreken de mogelijkheden.</p>
+</div></div></section>
+</div>
 <!-- CONTACT -->
 <div class="page" id="p-contact">
 <section class="ph dark"><div class="container">
@@ -561,14 +639,14 @@ section{padding:55px 0}
 </div></footer>
 
 <script>
-const dp=['diensten','over','contact','blog','privacy'];
+const dp=['diensten','over','contact','blog','blog1','blog2','blog3','privacy'];
 function go(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
 const t=document.getElementById('p-'+p);if(t)t.classList.add('active');
 window.scrollTo({top:0,behavior:'instant'});
 const n=document.getElementById('nav');dp.includes(p)?n.classList.add('dn'):n.classList.remove('dn');
 document.querySelectorAll('.fu:not(.v)').forEach(e=>ob.observe(e));
 location.hash=p==='home'?'':p;
-const ti={home:'AVORO — Websites die presteren',diensten:'AVORO — Diensten',over:'AVORO — Over ons',blog:'AVORO — Blog',contact:'AVORO — Contact',privacy:'AVORO — Privacy Policy'};
+const ti={home:'AVORO — Websites die presteren',diensten:'AVORO — Diensten',over:'AVORO — Over ons',blog:'AVORO — Blog',contact:'AVORO — Contact',privacy:'AVORO — Privacy Policy',blog1:'AVORO — Shopify vs WooCommerce',blog2:'AVORO — 5 fouten die conversie kosten',blog3:'AVORO — Waarom een website nodig'};
 document.title=ti[p]||ti.home}
 addEventListener('hashchange',()=>go(location.hash.replace('#','')||'home'));
 addEventListener('DOMContentLoaded',()=>{const h=location.hash.replace('#','');if(h)go(h)});
