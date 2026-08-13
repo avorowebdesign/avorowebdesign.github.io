@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AVORO — Websites die presteren</title>
+<meta name="description" content="AVORO bouwt websites en webshops die presteren. Shopify, Magento, WordPress. Geen loze beloftes, gewoon resultaat.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --charcoal: #292929;
+  --offwhite: #FAF8F5;
+  --taupe: #C5B9A5;
+  --light-taupe: #E5DED3;
+  --mid: #8A8070;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+body { background: var(--offwhite); color: var(--charcoal); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+/* ── UTILITY ── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 60px); }
+.eyebrow { font-family: var(--font-body); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--taupe); margin-bottom: 1rem; }
+section { padding: clamp(80px, 10vw, 140px) 0; }
+a { color: inherit; }
+
+/* ── NAV ── */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.2rem 0; transition: background 0.4s, backdrop-filter 0.4s; }
+nav.scrolled { background: rgba(250,248,245,0.88); backdrop-filter: blur(20px); border-bottom: 1px solid var(--light-taupe); }
+nav.dark-nav { background: transparent; }
+nav.dark-nav.scrolled { background: rgba(41,41,41,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(197,185,165,0.15); }
+nav.dark-nav .nav-logo, nav.dark-nav .nav-links a { color: var(--offwhite); }
+nav.dark-nav .nav-cta { border-color: var(--offwhite); }
+nav.dark-nav .nav-cta:hover { background: var(--offwhite); color: var(--charcoal) !important; }
+nav.dark-nav .mobile-toggle span { background: var(--offwhite); }
+nav .container { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: var(--font-display); font-size: 1.4rem; font-weight: 400; letter-spacing: 0.25em; color: var(--charcoal); text-decoration: none; cursor: pointer; }
+.nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+.nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.08em; color: var(--charcoal); text-decoration: none; opacity: 0.6; transition: opacity 0.3s; cursor: pointer; }
+.nav-links a:hover, .nav-links a.active { opacity: 1; }
+.nav-cta { font-size: 0.75rem !important; font-weight: 500 !important; letter-spacing: 0.12em !important; text-transform: uppercase; padding: 0.65rem 1.5rem; border: 1px solid var(--charcoal); opacity: 1 !important; transition: background 0.3s, color 0.3s !important; }
+.nav-cta:hover { background: var(--charcoal); color: var(--offwhite) !important; }
+.mobile-toggle { display: none; background: none; border: none; cursor: pointer; z-index: 201; }
+.mobile-toggle span { display: block; width: 22px; height: 1.5px; background: var(--charcoal); margin: 5px 0; transition: 0.3s; }
+
+/* ── MOBILE MENU ── */
+.mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--offwhite); z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-family: var(--font-display); font-size: 2rem; font-weight: 300; color: var(--charcoal); text-decoration: none; cursor: pointer; }
+.mobile-menu .mobile-cta { font-family: var(--font-body); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.8rem 2rem; border: 1px solid var(--charcoal); margin-top: 1rem; }
+
+/* ── PAGE SYSTEM ── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── HERO ── */
+.hero { min-height: 100vh; display: flex; align-items: center; padding-top: 100px; position: relative; }
+.hero-content { max-width: 800px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 300; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 2rem; color: var(--charcoal); }
+.hero h1 em { font-style: italic; color: var(--taupe); }
+.hero-sub { font-size: clamp(0.95rem, 1.2vw, 1.1rem); line-height: 1.8; color: var(--mid); max-width: 520px; margin-bottom: 2.5rem; font-weight: 300; }
+.btn-primary { display: inline-flex; align-items: center; gap: 0.8rem; font-family: var(--font-body); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--offwhite); background: var(--charcoal); padding: 1rem 2.2rem; text-decoration: none; transition: all 0.4s; cursor: pointer; border: none; }
+.btn-primary:hover { background: var(--taupe); }
+.btn-primary svg { width: 14px; transition: transform 0.3s; }
+.btn-primary:hover svg { transform: translateX(4px); }
+.btn-outline { display: inline-flex; align-items: center; gap: 0.8rem; font-family: var(--font-body); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--charcoal); background: transparent; padding: 1rem 2.2rem; text-decoration: none; transition: all 0.4s; cursor: pointer; border: 1px solid var(--charcoal); }
+.btn-outline:hover { background: var(--charcoal); color: var(--offwhite); }
+.hero-decoration { position: absolute; right: clamp(20px, 8vw, 120px); top: 50%; transform: translateY(-50%); width: clamp(200px, 25vw, 380px); height: clamp(200px, 25vw, 380px); border: 1px solid var(--light-taupe); border-radius: 50%; opacity: 0.4; }
+.hero-decoration::after { content: ''; position: absolute; top: 15%; left: 15%; width: 70%; height: 70%; border: 1px solid var(--taupe); border-radius: 50%; opacity: 0.5; }
+.hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* ── MARQUEE ── */
+.marquee-wrap { border-top: 1px solid var(--light-taupe); border-bottom: 1px solid var(--light-taupe); padding: 1.2rem 0; overflow: hidden; }
+.marquee { display: flex; gap: 3rem; animation: scroll 20s linear infinite; white-space: nowrap; }
+.marquee span { font-family: var(--font-display); font-size: 1rem; letter-spacing: 0.15em; color: var(--taupe); text-transform: uppercase; }
+.marquee span::after { content: '·'; margin-left: 3rem; }
+@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* ── DIENSTEN GRID ── */
+.diensten-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; margin-top: 3rem; background: var(--light-taupe); }
+.dienst-card { background: var(--offwhite); padding: clamp(2rem, 4vw, 3rem); transition: background 0.3s; }
+.dienst-card:hover { background: #F5F2ED; }
+.dienst-card h3 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 400; margin-bottom: 1rem; }
+.dienst-card p { font-size: 0.88rem; color: var(--mid); line-height: 1.7; font-weight: 300; }
+.dienst-icon { width: 36px; height: 36px; border: 1px solid var(--taupe); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: var(--taupe); }
+.section-heading { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; margin-bottom: 1rem; }
+.section-sub { font-size: 0.95rem; color: var(--mid); max-width: 560px; margin-bottom: 3.5rem; font-weight: 300; line-height: 1.8; }
+
+/* ── DARK SECTION ── */
+.dark-section { background: var(--charcoal); color: var(--offwhite); }
+.dark-section .eyebrow { color: var(--taupe); }
+.dark-section .section-heading { color: var(--offwhite); }
+
+/* ── WERKWIJZE ── */
+.werkwijze-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+.step { padding: clamp(2rem, 3vw, 3rem); border-left: 1px solid rgba(197,185,165,0.2); }
+.step:first-child { border-left: none; }
+.step-num { font-family: var(--font-display); font-size: 3rem; font-weight: 300; color: var(--taupe); opacity: 0.5; line-height: 1; margin-bottom: 1.5rem; }
+.step h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 400; margin-bottom: 1rem; }
+.step p { font-size: 0.85rem; color: rgba(250,248,245,0.5); line-height: 1.8; font-weight: 300; }
+
+/* ── RESULTATEN ── */
+.result-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+.result-card { border: 1px solid var(--light-taupe); padding: clamp(2rem, 3vw, 2.5rem); transition: border-color 0.3s; }
+.result-card:hover { border-color: var(--taupe); }
+.result-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--taupe); margin-bottom: 1.5rem; }
+.result-card h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; margin-bottom: 0.8rem; }
+.result-card p { font-size: 0.85rem; color: var(--mid); line-height: 1.7; font-weight: 300; margin-bottom: 1.5rem; }
+.result-stats { display: flex; gap: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--light-taupe); }
+.stat-value { font-family: var(--font-display); font-size: 2rem; font-weight: 300; color: var(--charcoal); }
+.stat-label { font-size: 0.7rem; color: var(--mid); letter-spacing: 0.05em; margin-top: 0.2rem; }
+
+/* ── VERSCHIL ── */
+.verschil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.verschil-col { padding: clamp(2rem, 3vw, 3rem); }
+.verschil-col:first-child { border-right: 1px solid rgba(197,185,165,0.15); }
+.verschil-col h3 { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--taupe); margin-bottom: 2rem; }
+.verschil-col ul { list-style: none; }
+.verschil-col ul li { font-size: 0.9rem; padding: 0.8rem 0; border-bottom: 1px solid rgba(197,185,165,0.1); display: flex; align-items: center; gap: 0.8rem; font-weight: 300; }
+.verschil-col ul li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.col-other ul li { color: rgba(250,248,245,0.4); }
+.col-other ul li::before { background: rgba(250,248,245,0.15); }
+.col-avoro ul li { color: rgba(250,248,245,0.85); }
+.col-avoro ul li::before { background: var(--taupe); }
+
+/* ── FAQ ── */
+.faq-item { border-bottom: 1px solid var(--light-taupe); }
+.faq-q { width: 100%; background: none; border: none; font-family: var(--font-body); font-size: 0.95rem; font-weight: 400; color: var(--charcoal); padding: 1.5rem 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; text-align: left; }
+.faq-q::after { content: '+'; font-family: var(--font-display); font-size: 1.5rem; font-weight: 300; color: var(--taupe); transition: transform 0.3s; }
+.faq-item.open .faq-q::after { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; }
+.faq-item.open .faq-a { max-height: 200px; padding-bottom: 1.5rem; }
+.faq-a p { font-size: 0.88rem; color: var(--mid); line-height: 1.8; font-weight: 300; max-width: 600px; }
+
+/* ── CTA SECTION ── */
+.cta-section { background: var(--charcoal); color: var(--offwhite); text-align: center; padding: clamp(80px, 12vw, 160px) 0; }
+.cta-section .eyebrow { color: var(--taupe); }
+.cta-section h2 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; margin-bottom: 1.5rem; }
+.cta-section p { font-size: 0.95rem; color: rgba(250,248,245,0.5); max-width: 440px; margin: 0 auto 2.5rem; font-weight: 300; line-height: 1.7; }
+.btn-white { display: inline-flex; align-items: center; gap: 0.8rem; font-family: var(--font-body); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--charcoal); background: var(--offwhite); padding: 1rem 2.5rem; text-decoration: none; transition: all 0.4s; cursor: pointer; border: none; }
+.btn-white:hover { background: var(--taupe); color: var(--offwhite); }
+
+/* ── FOOTER ── */
+footer { background: var(--offwhite); border-top: 1px solid var(--light-taupe); padding: 4rem 0 2rem; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.footer-brand { font-family: var(--font-display); font-size: 1.2rem; letter-spacing: 0.25em; margin-bottom: 1rem; }
+.footer-tagline { font-size: 0.85rem; color: var(--mid); font-weight: 300; line-height: 1.7; max-width: 280px; }
+footer h4 { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--taupe); margin-bottom: 1.2rem; }
+footer ul { list-style: none; }
+footer ul li { margin-bottom: 0.6rem; }
+footer ul a { font-size: 0.85rem; color: var(--mid); text-decoration: none; font-weight: 300; transition: color 0.3s; cursor: pointer; }
+footer ul a:hover { color: var(--charcoal); }
+.footer-bottom { border-top: 1px solid var(--light-taupe); padding-top: 1.5rem; font-size: 0.75rem; color: var(--mid); font-weight: 300; display: flex; justify-content: space-between; }
+
+/* ══════════════════════════════════
+   DIENSTEN PAGE
+   ══════════════════════════════════ */
+.diensten-hero { background: var(--charcoal); color: var(--offwhite); min-height: 50vh; display: flex; align-items: center; padding-top: 100px; }
+.diensten-hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.5rem; }
+.diensten-hero p { font-size: 1rem; color: rgba(250,248,245,0.55); max-width: 520px; font-weight: 300; line-height: 1.8; }
+.dienst-detail { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+.dienst-detail.reverse { direction: rtl; }
+.dienst-detail.reverse > * { direction: ltr; }
+.dienst-detail h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 300; margin-bottom: 1rem; }
+.dienst-detail p { font-size: 0.9rem; color: var(--mid); line-height: 1.8; font-weight: 300; margin-bottom: 1rem; }
+.dienst-detail ul { list-style: none; margin-top: 1.5rem; }
+.dienst-detail ul li { font-size: 0.85rem; color: var(--charcoal); padding: 0.5rem 0; border-bottom: 1px solid var(--light-taupe); display: flex; align-items: center; gap: 0.6rem; font-weight: 400; }
+.dienst-detail ul li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--taupe); flex-shrink: 0; }
+.dienst-visual { aspect-ratio: 4/3; background: linear-gradient(135deg, var(--light-taupe) 0%, #D8CFC3 100%); display: flex; align-items: center; justify-content: center; }
+.dienst-visual span { font-family: var(--font-display); font-size: 3rem; opacity: 0.2; }
+.diensten-pricing { background: var(--charcoal); color: var(--offwhite); }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(197,185,165,0.15); margin-top: 3rem; }
+.pricing-card { background: var(--charcoal); padding: clamp(2rem, 3vw, 3rem); display: flex; flex-direction: column; }
+.pricing-card.featured { background: #333; }
+.pricing-label { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--taupe); margin-bottom: 1rem; }
+.pricing-card h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 300; margin-bottom: 0.5rem; }
+.pricing-price { font-family: var(--font-display); font-size: 2.5rem; font-weight: 300; margin-bottom: 1.5rem; }
+.pricing-price small { font-size: 0.9rem; color: var(--taupe); }
+.pricing-card ul { list-style: none; flex: 1; margin-bottom: 2rem; }
+.pricing-card ul li { font-size: 0.82rem; color: rgba(250,248,245,0.55); padding: 0.5rem 0; border-bottom: 1px solid rgba(197,185,165,0.1); font-weight: 300; }
+.pricing-cta { display: block; text-align: center; font-family: var(--font-body); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.9rem; border: 1px solid var(--taupe); color: var(--offwhite); text-decoration: none; transition: all 0.3s; cursor: pointer; background: none; width: 100%; }
+.pricing-cta:hover { background: var(--taupe); }
+
+/* ══════════════════════════════════
+   OVER ONS PAGE
+   ══════════════════════════════════ */
+.over-hero { background: var(--charcoal); color: var(--offwhite); min-height: 50vh; display: flex; align-items: center; padding-top: 100px; }
+.over-hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.5rem; }
+.over-hero p { font-size: 1rem; color: rgba(250,248,245,0.55); max-width: 550px; font-weight: 300; line-height: 1.8; }
+.over-story { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 5vw, 6rem); align-items: center; }
+.over-story h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 300; margin-bottom: 1.5rem; }
+.over-story p { font-size: 0.9rem; color: var(--mid); line-height: 1.9; font-weight: 300; margin-bottom: 1rem; }
+.over-photo { aspect-ratio: 3/4; background: linear-gradient(135deg, var(--light-taupe) 0%, #CEC4B5 100%); display: flex; align-items: center; justify-content: center; }
+.over-photo span { font-family: var(--font-display); font-size: 5rem; opacity: 0.15; }
+.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(197,185,165,0.15); margin-top: 3rem; }
+.value-card { background: var(--charcoal); padding: clamp(2rem, 3vw, 3rem); }
+.value-card h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 400; margin-bottom: 1rem; color: var(--offwhite); }
+.value-card p { font-size: 0.85rem; color: rgba(250,248,245,0.5); line-height: 1.8; font-weight: 300; }
+.stack-section h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 300; margin-bottom: 3rem; }
+.stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+.stack-item { border: 1px solid var(--light-taupe); padding: 1.5rem; text-align: center; transition: border-color 0.3s; }
+.stack-item:hover { border-color: var(--taupe); }
+.stack-item span { font-size: 0.85rem; font-weight: 400; letter-spacing: 0.05em; }
+
+/* ══════════════════════════════════
+   CONTACT PAGE
+   ══════════════════════════════════ */
+.contact-hero { background: var(--charcoal); color: var(--offwhite); min-height: 50vh; display: flex; align-items: center; padding-top: 100px; }
+.contact-hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.5rem; }
+.contact-hero p { font-size: 1rem; color: rgba(250,248,245,0.55); max-width: 500px; font-weight: 300; line-height: 1.8; }
+.contact-content { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 6vw, 8rem); }
+.contact-form h2 { font-family: var(--font-display); font-size: 1.8rem; font-weight: 300; margin-bottom: 2rem; }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--taupe); margin-bottom: 0.5rem; }
+.form-group input, .form-group textarea, .form-group select { width: 100%; font-family: var(--font-body); font-size: 0.9rem; padding: 0.9rem 0; background: transparent; border: none; border-bottom: 1px solid var(--light-taupe); color: var(--charcoal); outline: none; transition: border-color 0.3s; font-weight: 300; }
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--taupe); }
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-group select { cursor: pointer; -webkit-appearance: none; appearance: none; }
+.contact-info h2 { font-family: var(--font-display); font-size: 1.8rem; font-weight: 300; margin-bottom: 2rem; }
+.contact-info-item { margin-bottom: 2rem; }
+.contact-info-item h4 { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--taupe); margin-bottom: 0.5rem; }
+.contact-info-item p, .contact-info-item a { font-size: 0.95rem; font-weight: 300; color: var(--charcoal); text-decoration: none; line-height: 1.7; }
+.contact-info-item a:hover { color: var(--taupe); }
+
+/* ══════════════════════════════════
+   BLOG PAGE
+   ══════════════════════════════════ */
+.blog-hero { background: var(--charcoal); color: var(--offwhite); min-height: 40vh; display: flex; align-items: center; padding-top: 100px; }
+.blog-hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 300; margin-bottom: 1rem; }
+.blog-hero p { font-size: 1rem; color: rgba(250,248,245,0.55); max-width: 450px; font-weight: 300; line-height: 1.8; }
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+.blog-card { border: 1px solid var(--light-taupe); transition: border-color 0.3s; cursor: pointer; }
+.blog-card:hover { border-color: var(--taupe); }
+.blog-thumb { aspect-ratio: 16/9; background: linear-gradient(135deg, var(--light-taupe) 0%, #D8CFC3 100%); }
+.blog-card-body { padding: 1.5rem; }
+.blog-date { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--taupe); margin-bottom: 0.8rem; }
+.blog-card h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; margin-bottom: 0.6rem; }
+.blog-card p { font-size: 0.85rem; color: var(--mid); line-height: 1.7; font-weight: 300; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .mobile-toggle { display: block; }
+  .hero { min-height: 85vh; padding-top: 80px; }
+  .hero-decoration { display: none; }
+  .hero h1 { font-size: 2.8rem; }
+  .hero-buttons { flex-direction: column; }
+  .hero-buttons .btn-primary, .hero-buttons .btn-outline { width: 100%; justify-content: center; }
+  section { padding: 60px 0; }
+  .diensten-grid { grid-template-columns: 1fr; }
+  .werkwijze-steps { grid-template-columns: 1fr; }
+  .step { border-left: none; border-bottom: 1px solid rgba(197,185,165,0.15); }
+  .step:last-child { border-bottom: none; }
+  .result-cards { grid-template-columns: 1fr; }
+  .verschil-grid { grid-template-columns: 1fr; }
+  .verschil-col:first-child { border-right: none; border-bottom: 1px solid rgba(197,185,165,0.15); }
+  .faq-q { font-size: 0.9rem; padding: 1.2rem 0; min-height: 48px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; gap: 0.5rem; }
+  .dienst-detail, .dienst-detail.reverse { grid-template-columns: 1fr; direction: ltr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .over-story { grid-template-columns: 1fr; }
+  .values-grid { grid-template-columns: 1fr; }
+  .contact-content { grid-template-columns: 1fr; }
+  .btn-white { width: 100%; justify-content: center; }
+}
+
+/* ── ANIMATIONS ── */
+@media (prefers-reduced-motion: no-preference) {
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav id="nav">
+  <div class="container">
+    <a class="nav-logo" onclick="goTo('home')">AVORO</a>
+    <ul class="nav-links">
+      <li><a onclick="goTo('diensten')">Diensten</a></li>
+      <li><a onclick="goTo('over')">Over ons</a></li>
+      <li><a onclick="goTo('blog')">Blog</a></li>
+      <li><a onclick="goTo('contact')" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="mobile-toggle" id="menuBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════ MOBILE MENU ═══════════ -->
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="goTo('home');closeMobile()">Home</a>
+  <a onclick="goTo('diensten');closeMobile()">Diensten</a>
+  <a onclick="goTo('over');closeMobile()">Over ons</a>
+  <a onclick="goTo('blog');closeMobile()">Blog</a>
+  <a class="mobile-cta" onclick="goTo('contact');closeMobile()">Contact</a>
+</div>
+
+
+<!-- ╔══════════════════════════════════╗
+     ║         PAGE: HOME              ║
+     ╚══════════════════════════════════╝ -->
+<div class="page active" id="page-home">
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content fade-up">
+        <p class="eyebrow">Webdesign & Development</p>
+        <h1>Websites die <em>presteren</em></h1>
+        <p class="hero-sub">Wij bouwen websites en webshops die niet alleen mooi zijn, maar ook klanten opleveren. Strategie, design en techniek, samengebracht in een aanpak die werkt.</p>
+        <div class="hero-buttons">
+          <a onclick="goTo('contact')" class="btn-primary">
+            Plan een gesprek
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+          </a>
+          <a onclick="goTo('diensten')" class="btn-outline">Bekijk diensten</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-decoration"></div>
+  </section>
+
+  <div class="marquee-wrap">
+    <div class="marquee">
+      <span>Shopify</span><span>Magento</span><span>WordPress</span><span>Webshops</span><span>SEO</span><span>Conversie</span><span>Branding</span><span>Performance</span>
+      <span>Shopify</span><span>Magento</span><span>WordPress</span><span>Webshops</span><span>SEO</span><span>Conversie</span><span>Branding</span><span>Performance</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <p class="eyebrow fade-up">Wat we doen</p>
+      <h2 class="section-heading fade-up">Alles voor een sterke online aanwezigheid</h2>
+      <div class="diensten-grid fade-up">
+        <div class="dienst-card">
+          <div class="dienst-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></div>
+          <h3>Webdesign</h3>
+          <p>Custom designs die jouw merk onderscheiden. Geen templates, maar een unieke uitstraling die past bij wie je bent.</p>
+        </div>
+        <div class="dienst-card">
+          <div class="dienst-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 01-8 0"/></svg></div>
+          <h3>Webshops</h3>
+          <p>Shopify en Magento webshops die verkopen. Van productpagina's tot checkout, alles geoptimaliseerd voor conversie.</p>
+        </div>
+        <div class="dienst-card">
+          <div class="dienst-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+          <h3>SEO & Performance</h3>
+          <p>Gevonden worden in Google en snel laden op elk apparaat. Technische optimalisatie die bezoekers trekt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark-section">
+    <div class="container">
+      <p class="eyebrow fade-up">Werkwijze</p>
+      <h2 class="section-heading fade-up">Helder en doelgericht</h2>
+      <div class="werkwijze-steps fade-up">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>Strategie</h3>
+          <p>We beginnen met jouw doelen. Wie is je klant, wat moet de site bereiken, en hoe meten we succes?</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>Design & Bouw</h3>
+          <p>Van ontwerp tot werkende site. Je ziet het resultaat groeien en geeft feedback voordat er iets live gaat.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>Lancering & Groei</h3>
+          <p>Na de lancering monitoren we prestaties, optimaliseren waar nodig en zorgen dat je site blijft groeien.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <p class="eyebrow fade-up">Klantresultaten</p>
+      <h2 class="section-heading fade-up">Het verschil zit in de cijfers</h2>
+      <p class="section-sub fade-up">Geen loze beloftes. Dit is wat onze klanten daadwerkelijk hebben bereikt.</p>
+      <div class="result-cards fade-up">
+        <div class="result-card">
+          <div class="result-label">E-commerce</div>
+          <h3>Complete Shopify webshop voor lokale producent</h3>
+          <p>Van nul naar een volwaardige webshop met productpagina's, iDEAL-betaling en verzendopties. Binnen twee weken live.</p>
+          <div class="result-stats">
+            <div><div class="stat-value">2 weken</div><div class="stat-label">Van idee naar live</div></div>
+            <div><div class="stat-value">+340%</div><div class="stat-label">Online bereik</div></div>
+          </div>
+        </div>
+        <div class="result-card">
+          <div class="result-label">B2B Platform</div>
+          <h3>Magento redesign voor internationale retailer</h3>
+          <p>Volledig redesign van een B2B bestelplatform. Snellere laadtijden en een checkout die converteert.</p>
+          <div class="result-stats">
+            <div><div class="stat-value">+45%</div><div class="stat-label">Conversie</div></div>
+            <div><div class="stat-value">-60%</div><div class="stat-label">Laadtijd</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark-section">
+    <div class="container">
+      <p class="eyebrow fade-up">Het verschil</p>
+      <h2 class="section-heading fade-up">Waarom Avoro?</h2>
+      <div class="verschil-grid fade-up">
+        <div class="verschil-col col-other">
+          <h3>Andere bureaus</h3>
+          <ul>
+            <li>Standaard templates voor iedereen</li>
+            <li>Weken wachten op een eerste ontwerp</li>
+            <li>Verplichte jaarlange contracten</li>
+            <li>Onzichtbare meerkosten achteraf</li>
+            <li>Eenmaal opgeleverd, nooit meer gehoord</li>
+          </ul>
+        </div>
+        <div class="verschil-col col-avoro">
+          <h3>AVORO</h3>
+          <ul>
+            <li>Custom design afgestemd op jouw merk</li>
+            <li>Eerste ontwerp binnen een week</li>
+            <li>Flexibel, zonder verplichtingen</li>
+            <li>Vaste prijs, alles inbegrepen</li>
+            <li>Blijvende ondersteuning na oplevering</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <p class="eyebrow fade-up">FAQ</p>
+      <h2 class="section-heading fade-up">Veelgestelde vragen</h2>
+      <div class="fade-up">
+        <div class="faq-item"><button class="faq-q">Hoe snel is mijn website klaar?</button><div class="faq-a"><p>De meeste websites en webshops leveren we binnen twee tot vier weken op. Je weet vooraf precies waar je aan toe bent.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Welke platformen gebruiken jullie?</button><div class="faq-a"><p>We werken met Shopify, Magento en WordPress. We adviseren het platform dat het beste past bij jouw situatie en doelen.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Wat kost een website?</button><div class="faq-a"><p>Een basis webshop begint vanaf €750, een uitgebreid project kan richting €3.000 gaan. Altijd een vaste prijs vooraf.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Kan ik mijn site zelf beheren?</button><div class="faq-a"><p>Absoluut. We bouwen alles zo dat je zelf producten, teksten en afbeeldingen kunt aanpassen.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Wat als ik al een website heb?</button><div class="faq-a"><p>We kunnen je bestaande site verbeteren, restylen of compleet opnieuw opbouwen. We kijken samen wat het slimste is.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <p class="eyebrow fade-up">Vandaag beginnen</p>
+      <h2 class="fade-up">Klaar om te groeien?</h2>
+      <p class="fade-up">Plan een vrijblijvend gesprek en ontdek wat Avoro voor jouw bedrijf kan betekenen.</p>
+      <a onclick="goTo('contact')" class="btn-white fade-up">
+        Neem contact op
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+      </a>
+    </div>
+  </section>
+</div>
+
+
+<!-- ╔══════════════════════════════════╗
+     ║       PAGE: DIENSTEN            ║
+     ╚══════════════════════════════════╝ -->
+<div class="page" id="page-diensten">
+
+  <section class="diensten-hero">
+    <div class="container">
+      <p class="eyebrow fade-up">Onze diensten</p>
+      <h1 class="fade-up">Wat we voor je <em style="font-style:italic;color:var(--taupe)">bouwen</em></h1>
+      <p class="fade-up">Van strategie tot oplevering. Alles wat je nodig hebt voor een website die werkt, verkoopt en groeit.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="dienst-detail fade-up">
+        <div>
+          <p class="eyebrow">Webdesign</p>
+          <h2>Design dat onderscheidt</h2>
+          <p>Geen standaard templates. We ontwerpen elke site op maat, passend bij jouw merk, doelgroep en doelen. Modern, snel en gebouwd om indruk te maken.</p>
+          <ul>
+            <li>Custom webdesign op maat</li>
+            <li>Responsive voor elk apparaat</li>
+            <li>Huisstijl-integratie</li>
+            <li>UX-optimalisatie</li>
+          </ul>
+        </div>
+        <div class="dienst-visual"><span>Design</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#F5F2ED">
+    <div class="container">
+      <div class="dienst-detail reverse fade-up">
+        <div>
+          <p class="eyebrow">Webshops</p>
+          <h2>Webshops die verkopen</h2>
+          <p>Shopify voor snelle launches, Magento voor complexe B2B-platformen. We bouwen webshops die converteren, van productpagina tot checkout.</p>
+          <ul>
+            <li>Shopify & Magento</li>
+            <li>iDEAL, Klarna, creditcard</li>
+            <li>Productfotografie-advies</li>
+            <li>Conversie-optimalisatie</li>
+            <li>Voorraadbeheer & verzending</li>
+          </ul>
+        </div>
+        <div class="dienst-visual"><span>Shop</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="dienst-detail fade-up">
+        <div>
+          <p class="eyebrow">SEO & Performance</p>
+          <h2>Gevonden worden en snel laden</h2>
+          <p>Een mooie site is waardeloos als niemand hem vindt. We optimaliseren voor Google en zorgen voor snelle laadtijden op elk apparaat.</p>
+          <ul>
+            <li>Technische SEO-audit</li>
+            <li>Google-optimalisatie</li>
+            <li>Performance & snelheid</li>
+            <li>Analytics & rapportage</li>
+          </ul>
+        </div>
+        <div class="dienst-visual"><span>SEO</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="diensten-pricing dark-section">
+    <div class="container">
+      <p class="eyebrow fade-up">Prijzen</p>
+      <h2 class="section-heading fade-up">Vaste prijzen, geen verrassingen</h2>
+      <div class="pricing-grid fade-up">
+        <div class="pricing-card">
+          <div class="pricing-label">Basis</div>
+          <h3>Starter</h3>
+          <div class="pricing-price">€750 <small>eenmalig</small></div>
+          <ul>
+            <li>One-page website of basis webshop</li>
+            <li>Responsive design</li>
+            <li>Tot 10 producten</li>
+            <li>Contactformulier</li>
+            <li>Oplevering binnen 2 weken</li>
+          </ul>
+          <a class="pricing-cta" onclick="goTo('contact')">Aan de slag</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-label">Populair</div>
+          <h3>Professional</h3>
+          <div class="pricing-price">€1.500 <small>eenmalig</small></div>
+          <ul>
+            <li>Complete webshop</li>
+            <li>Custom design in huisstijl</li>
+            <li>Onbeperkt producten</li>
+            <li>iDEAL & betaalmethodes</li>
+            <li>SEO-basis inbegrepen</li>
+            <li>Oplevering binnen 3 weken</li>
+          </ul>
+          <a class="pricing-cta" onclick="goTo('contact')">Aan de slag</a>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-label">Premium</div>
+          <h3>Enterprise</h3>
+          <div class="pricing-price">Op maat</div>
+          <ul>
+            <li>Magento of complex Shopify</li>
+            <li>B2B-functionaliteit</li>
+            <li>Koppelingen & integraties</li>
+            <li>Volledig maatwerk</li>
+            <li>Doorlopende ondersteuning</li>
+          </ul>
+          <a class="pricing-cta" onclick="goTo('contact')">Neem contact op</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <p class="eyebrow fade-up">Volgende stap</p>
+      <h2 class="fade-up">Weten wat jij nodig hebt?</h2>
+      <p class="fade-up">We bespreken je situatie en adviseren vrijblijvend welk pakket het beste past.</p>
+      <a onclick="goTo('contact')" class="btn-white fade-up">Plan een gesprek</a>
+    </div>
+  </section>
+</div>
+
+
+<!-- ╔══════════════════════════════════╗
+     ║       PAGE: OVER ONS           ║
+     ╚══════════════════════════════════╝ -->
+<div class="page" id="page-over">
+
+  <section class="over-hero">
+    <div class="container">
+      <p class="eyebrow fade-up">Over Avoro</p>
+      <h1 class="fade-up">Wij geloven in <em style="font-style:italic;color:var(--taupe)">resultaat</em></h1>
+      <p class="fade-up">Avoro is opgericht vanuit een simpel idee: elke ondernemer verdient een website die echt werkt. Niet alleen mooi, maar ook winstgevend.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="over-story fade-up">
+        <div>
+          <h2>Van ondernemer voor ondernemers</h2>
+          <p>Avoro is geboren uit de praktijk. We weten hoe het is om een bedrijf te runnen, klanten te zoeken en online zichtbaar te worden. Daarom bouwen we geen websites om het bouwen, maar websites die bijdragen aan jouw groei.</p>
+          <p>We werken met Shopify, Magento en WordPress, afhankelijk van wat jouw situatie vraagt. Geen onnodige complexiteit, geen verplichte contracten, gewoon eerlijk werk.</p>
+          <p>Elke klant krijgt persoonlijke aandacht. We zijn geen grote fabriek die sites uitspuugt, maar een partner die meedenkt, meewerkt en bereikbaar is als het nodig is.</p>
+        </div>
+        <div class="over-photo"><span>M</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark-section">
+    <div class="container">
+      <p class="eyebrow fade-up">Onze waarden</p>
+      <h2 class="section-heading fade-up">Waar we voor staan</h2>
+      <div class="values-grid fade-up">
+        <div class="value-card">
+          <h3>Eerlijkheid</h3>
+          <p>Vaste prijzen, geen verborgen kosten, en eerlijk advies. Als iets niet nodig is, zeggen we dat.</p>
+        </div>
+        <div class="value-card">
+          <h3>Snelheid</h3>
+          <p>De meeste projecten leveren we binnen twee tot vier weken op. Geen eindeloos gepraat, gewoon bouwen.</p>
+        </div>
+        <div class="value-card">
+          <h3>Resultaat</h3>
+          <p>Een website is pas goed als hij klanten oplevert. Alles wat we doen is gericht op groei en conversie.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <p class="eyebrow fade-up">Tech stack</p>
+      <h2 class="section-heading fade-up" style="margin-bottom:3rem">Waar we mee werken</h2>
+      <div class="stack-grid fade-up">
+        <div class="stack-item"><span>Shopify</span></div>
+        <div class="stack-item"><span>Magento</span></div>
+        <div class="stack-item"><span>WordPress</span></div>
+        <div class="stack-item"><span>HTML/CSS</span></div>
+        <div class="stack-item"><span>JavaScript</span></div>
+        <div class="stack-item"><span>Liquid</span></div>
+        <div class="stack-item"><span>PHP</span></div>
+        <div class="stack-item"><span>Figma</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <p class="eyebrow fade-up">Samenwerken?</p>
+      <h2 class="fade-up">Laten we kennismaken</h2>
+      <p class="fade-up">Vertel ons over je plannen. We denken graag mee, vrijblijvend.</p>
+      <a onclick="goTo('contact')" class="btn-white fade-up">Neem contact op</a>
+    </div>
+  </section>
+</div>
+
+
+<!-- ╔══════════════════════════════════╗
+     ║       PAGE: BLOG               ║
+     ╚══════════════════════════════════╝ -->
+<div class="page" id="page-blog">
+
+  <section class="blog-hero">
+    <div class="container">
+      <p class="eyebrow fade-up">Blog</p>
+      <h1 class="fade-up">Inzichten & tips</h1>
+      <p class="fade-up">Praktische kennis over webdesign, e-commerce en online groei.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="blog-grid fade-up">
+        <div class="blog-card">
+          <div class="blog-thumb"></div>
+          <div class="blog-card-body">
+            <div class="blog-date">Augustus 2026</div>
+            <h3>Shopify vs WooCommerce: wat past bij jou?</h3>
+            <p>De voor- en nadelen van beide platformen, en hoe je de juiste keuze maakt voor jouw situatie.</p>
+          </div>
+        </div>
+        <div class="blog-card">
+          <div class="blog-thumb"></div>
+          <div class="blog-card-body">
+            <div class="blog-date">Augustus 2026</div>
+            <h3>5 fouten die je webshop conversie kosten</h3>
+            <p>De meest voorkomende fouten die we tegenkomen bij kleine webshops, en hoe je ze eenvoudig oplost.</p>
+          </div>
+        </div>
+        <div class="blog-card">
+          <div class="blog-thumb"></div>
+          <div class="blog-card-body">
+            <div class="blog-date">Juli 2026</div>
+            <h3>Waarom elke ondernemer een website nodig heeft</h3>
+            <p>Nog steeds alleen actief op Instagram? Waarom een eigen website de slimste investering is die je kunt doen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ╔══════════════════════════════════╗
+     ║       PAGE: CONTACT            ║
+     ╚══════════════════════════════════╝ -->
+<div class="page" id="page-contact">
+
+  <section class="contact-hero">
+    <div class="container">
+      <p class="eyebrow fade-up">Contact</p>
+      <h1 class="fade-up">Laten we <em style="font-style:italic;color:var(--taupe)">praten</em></h1>
+      <p class="fade-up">Vertel ons wat je nodig hebt. We reageren binnen 24 uur.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="contact-content fade-up">
+        <div class="contact-form">
+          <h2>Stuur een bericht</h2>
+          <div class="form-group">
+            <label>Naam</label>
+            <input type="text" placeholder="Je volledige naam">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="je@email.nl">
+          </div>
+          <div class="form-group">
+            <label>Telefoon</label>
+            <input type="tel" placeholder="06 - 12345678">
+          </div>
+          <div class="form-group">
+            <label>Waar ben je naar op zoek?</label>
+            <select>
+              <option value="" disabled selected>Kies een optie</option>
+              <option>Nieuwe website</option>
+              <option>Webshop (Shopify)</option>
+              <option>Webshop (Magento)</option>
+              <option>Website redesign</option>
+              <option>SEO & Performance</option>
+              <option>Anders</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Bericht</label>
+            <textarea placeholder="Vertel kort over je project, doelen of vragen..."></textarea>
+          </div>
+          <button class="btn-primary" style="width:100%;justify-content:center;margin-top:0.5rem;" onclick="alert('Bedankt voor je bericht! We nemen zo snel mogelijk contact op.')">
+            Verstuur bericht
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+          </button>
+        </div>
+        <div class="contact-info">
+          <h2>Direct contact</h2>
+          <div class="contact-info-item">
+            <h4>Email</h4>
+            <a href="mailto:info@avoro.nl">info@avoro.nl</a>
+          </div>
+          <div class="contact-info-item">
+            <h4>Telefoon</h4>
+            <a href="tel:+31612345678">06 - 12 34 56 78</a>
+          </div>
+          <div class="contact-info-item">
+            <h4>Socials</h4>
+            <p><a href="#">Instagram</a></p>
+            <p><a href="#">LinkedIn</a></p>
+          </div>
+          <div class="contact-info-item">
+            <h4>Reactietijd</h4>
+            <p>We reageren binnen 24 uur op werkdagen. Vaak sneller.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ═══════════ FOOTER (all pages) ═══════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">AVORO</div>
+        <p class="footer-tagline">Websites die presteren. Resultaten die tellen. Gebouwd voor ondernemers die het verschil willen maken.</p>
+      </div>
+      <div>
+        <h4>Navigatie</h4>
+        <ul>
+          <li><a onclick="goTo('home')">Home</a></li>
+          <li><a onclick="goTo('diensten')">Diensten</a></li>
+          <li><a onclick="goTo('over')">Over ons</a></li>
+          <li><a onclick="goTo('blog')">Blog</a></li>
+          <li><a onclick="goTo('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:info@avoro.nl">info@avoro.nl</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Avoro</span>
+      <span>KvK 00000000</span>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+// ═══ SPA ROUTING ═══
+function goTo(page) {
+  // Hide all pages
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  // Show target
+  const target = document.getElementById('page-' + page);
+  if (target) target.classList.add('active');
+  // Scroll top
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  // Update nav active state
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  // Dark nav for pages with dark hero
+  const darkPages = ['diensten', 'over', 'contact', 'blog'];
+  const nav = document.getElementById('nav');
+  if (darkPages.includes(page)) {
+    nav.classList.add('dark-nav');
+  } else {
+    nav.classList.remove('dark-nav');
+  }
+  // Re-observe fade-ups
+  document.querySelectorAll('.fade-up:not(.visible)').forEach(el => observer.observe(el));
+  // Update hash
+  window.location.hash = page === 'home' ? '' : page;
+}
+
+// Handle browser back/forward
+window.addEventListener('hashchange', () => {
+  const hash = window.location.hash.replace('#', '') || 'home';
+  goTo(hash);
+});
+
+// Load from hash on page load
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash.replace('#', '') || 'home';
+  if (hash !== 'home') goTo(hash);
+});
+
+// Mobile menu
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+function closeMobile() { mobileMenu.classList.remove('open'); }
+menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
+
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// FAQ toggle
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    document.querySelectorAll('.faq-item').forEach(i => { if (i !== item) i.classList.remove('open'); });
+    item.classList.toggle('open');
+  });
+});
+
+// Intersection observer for fade-up
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
