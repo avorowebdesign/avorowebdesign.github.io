@@ -56,8 +56,8 @@ nav .container{display:flex;align-items:center;justify-content:space-between}
 .hero-deco::after{content:'';position:absolute;top:15%;left:15%;width:70%;height:70%;border:1px solid var(--t);border-radius:50%;opacity:.4}
 
 /* MARQUEE */
-.mw{border-top:1px solid var(--lt);border-bottom:1px solid var(--lt);padding:1rem 0;overflow:hidden}
-.mq{display:flex;gap:2.5rem;animation:sc 12s linear infinite;white-space:nowrap}
+.mw{border-top:1px solid var(--lt);border-bottom:1px solid var(--lt);padding:1rem 0;overflow:hidden;position:relative}
+.mq{display:flex;gap:2.5rem;animation:sc 20s linear infinite;white-space:nowrap;width:max-content}
 .mq:hover{animation-play-state:paused}
 .mq span{font-size:.78rem;letter-spacing:.14em;color:var(--t);text-transform:uppercase;font-weight:500}
 .mq span::after{content:'·';margin-left:2.5rem;color:var(--t);font-weight:700}
@@ -128,7 +128,7 @@ footer ul a:hover{color:var(--c)}
 .fbot{border-top:1px solid var(--lt);padding-top:1.2rem;font-size:.72rem;color:var(--mid);font-weight:300;display:flex;justify-content:space-between}
 
 /* PAGE HERO */
-.ph{min-height:45vh;display:flex;align-items:center;padding-top:70px}
+.ph{min-height:45vh;display:flex;align-items:center;padding-top:120px;padding-bottom:60px}
 .ph h1{font-family:var(--df);font-size:clamp(2.4rem,5.5vw,4.2rem);font-weight:300;line-height:1.1;margin-bottom:1.2rem}
 .ph h1 em{font-style:italic;color:var(--t)}
 .ph p{font-size:.95rem;color:rgba(250,248,245,.5);max-width:500px;font-weight:300;line-height:1.8}
@@ -204,7 +204,7 @@ footer ul a:hover{color:var(--c)}
 .hero-deco{display:none}
 .hero-btns{flex-direction:column}.hero-btns .bp,.hero-btns .bo{width:100%;justify-content:center}
 .tb span{font-size:.63rem;padding:.3rem .6rem}
-.mq{animation-duration:8s}
+.mq{animation-duration:14s}
 .mq span{font-size:.7rem;letter-spacing:.1em}
 .mq span::after{margin-left:1.5rem}
 .mw{padding:.8rem 0}
@@ -219,7 +219,7 @@ section{padding:55px 0}
 .dd,.dd.rev{grid-template-columns:1fr;direction:ltr}.dv{aspect-ratio:16/9}
 .os{grid-template-columns:1fr}.op{aspect-ratio:1/1;max-height:300px}
 .cc{grid-template-columns:1fr}
-.ph{min-height:35vh}
+.ph{min-height:35vh;padding-top:100px;padding-bottom:40px}
 .fb img{height:22px!important}
 }
 .blog-article{max-width:700px;margin:0 auto}
