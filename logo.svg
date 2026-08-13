@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 60" fill="none">
+  <!-- A monogram -->
+  <path d="M28 52L48 8L68 52" stroke="#C5B9A5" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M33 42L48 14L53 24" stroke="#C5B9A5" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Divider -->
+  <line x1="90" y1="12" x2="90" y2="48" stroke="#D5CEC3" stroke-width="1"/>
+  <!-- AVORO text -->
+  <text x="110" y="42" font-family="'Cormorant Garamond',Georgia,serif" font-size="32" font-weight="300" letter-spacing="8" fill="#292929">AVORO</text>
+</svg>
