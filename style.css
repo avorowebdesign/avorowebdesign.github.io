@@ -214,7 +214,7 @@ section{padding:55px 0}
 .rc,.vg{grid-template-columns:1fr}
 .fq{font-size:.88rem;min-height:48px}
 .bw{width:100%;justify-content:center}
-.fg{grid-template-columns:1fr;gap:1.5rem}
+.fg{grid-template-columns:1fr 1fr;gap:1rem}.fg>div:first-child{grid-column:1/-1}.fb img{height:20px!important}.ft{font-size:.78rem;margin-bottom:.8rem}.sb{margin-bottom:0}footer{padding:2rem 0 1rem}footer h4{margin-bottom:.6rem}footer li{margin-bottom:.3rem}
 .fbot{flex-direction:column;gap:.4rem}
 .dd,.dd.rev{grid-template-columns:1fr;direction:ltr}.dv{aspect-ratio:16/9}
 .os{grid-template-columns:1fr}.op{aspect-ratio:1/1;max-height:300px}
