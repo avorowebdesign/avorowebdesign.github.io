@@ -277,3 +277,6 @@ section{padding:55px 0}
 .pf-item,.pf-item.reverse{grid-template-columns:1fr;gap:2rem;padding:2.5rem 5%;direction:ltr}
 .pf-scroll{height:300px}
 }
+.pf-scroll{position:relative}
+.pf-scroll::after{content:'↓ Scroll om te bekijken';position:absolute;bottom:0;left:0;right:0;padding:1.2rem;text-align:center;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.6));pointer-events:none;opacity:1;transition:opacity .4s}
+.pf-scroll.scrolled::after{opacity:0}
