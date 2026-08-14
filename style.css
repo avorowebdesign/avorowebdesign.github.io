@@ -275,8 +275,12 @@ section{padding:55px 0}
 .pf-scroll::-webkit-scrollbar-thumb{background:var(--t);border-radius:4px}
 .pf-scroll img{width:100%;display:block}
 @media(max-width:768px){
-.pf-row,.pf-row.reverse{grid-template-columns:1fr;gap:1.5rem;direction:ltr}
-.pf-scroll{height:300px}
+.pf-section .container{padding-bottom:0}
+.pf-row,.pf-row.reverse{grid-template-columns:1fr;gap:1.2rem;direction:ltr;padding:1rem 0}
+.pf-item{padding:0}
+.pf-text{padding:0 1.5rem}
+.pf-scroll{height:280px}
+.pf-scroll-wrap{margin:0 1rem;border-radius:8px}
 }
 .pf-scroll{position:relative}
 .pf-scroll::after{content:'↓  Scroll om te bekijken  ↓';position:absolute;bottom:0;left:0;right:0;padding:1.5rem;text-align:center;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;color:#fff;background:linear-gradient(transparent 0%,rgba(0,0,0,.7) 60%);pointer-events:none;opacity:1;transition:opacity .4s;animation:hintPulse 2s ease-in-out infinite}
