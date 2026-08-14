@@ -49,7 +49,7 @@ nav .container{display:flex;align-items:center;justify-content:space-between}
 .hero h1 em{font-style:italic;color:var(--t)}
 .hero-s{font-size:clamp(.92rem,1.2vw,1.05rem);line-height:1.8;color:var(--mid);max-width:500px;margin-bottom:2rem;font-weight:300}
 .hero-btns{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1.8rem}
-.tb{display:flex;gap:.7rem;flex-wrap:wrap}
+.tb{display:flex;gap:.7rem;flex-wrap:nowrap}
 .tb span{display:flex;align-items:center;gap:.35rem;font-size:.7rem;font-weight:500;letter-spacing:.05em;color:var(--mid);background:rgba(229,222,211,.4);padding:.35rem .8rem;border-radius:20px;white-space:nowrap}
 .tb svg{width:12px;height:12px;color:var(--t)}
 .hero-deco{position:absolute;right:clamp(20px,8vw,120px);top:50%;transform:translateY(-50%);width:clamp(180px,22vw,340px);height:clamp(180px,22vw,340px);border:1px solid var(--lt);border-radius:50%;opacity:.3}
