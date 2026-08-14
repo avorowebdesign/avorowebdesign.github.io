@@ -278,5 +278,6 @@ section{padding:55px 0}
 .pf-scroll{height:300px}
 }
 .pf-scroll{position:relative}
-.pf-scroll::after{content:'↓ Scroll om te bekijken';position:absolute;bottom:0;left:0;right:0;padding:1.2rem;text-align:center;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.6));pointer-events:none;opacity:1;transition:opacity .4s}
-.pf-scroll.scrolled::after{opacity:0}
+.pf-scroll::after{content:'↓  Scroll om te bekijken  ↓';position:absolute;bottom:0;left:0;right:0;padding:1.5rem;text-align:center;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;color:#fff;background:linear-gradient(transparent 0%,rgba(0,0,0,.7) 60%);pointer-events:none;opacity:1;transition:opacity .4s;animation:hintPulse 2s ease-in-out infinite}
+.pf-scroll.scrolled::after{opacity:0;animation:none}
+@keyframes hintPulse{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
