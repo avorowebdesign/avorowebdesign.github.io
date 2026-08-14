@@ -43,7 +43,7 @@ nav .container{display:flex;align-items:center;justify-content:space-between}
 /* PAGE */
 
 /* HERO */
-.hero{min-height:92vh;display:flex;align-items:center;padding-top:70px;position:relative}
+.hero{min-height:92vh;display:flex;align-items:center;padding-top:120px;position:relative}
 .hero-c{max-width:780px}
 .hero h1{font-family:var(--df);font-size:clamp(2.8rem,7vw,5.2rem);font-weight:300;line-height:1.08;letter-spacing:-.02em;margin-bottom:1.5rem}
 .hero h1 em{font-style:italic;color:var(--t)}
@@ -200,7 +200,7 @@ footer ul a:hover{color:var(--c)}
 @media(max-width:768px){
 .nl{display:none}.hb{display:block}
 .logo img{height:36px}
-.hero{min-height:82vh;padding-top:65px}.hero h1{font-size:2.6rem}
+.hero{min-height:82vh;padding-top:110px}.hero h1{font-size:2.6rem}
 .hero-deco{display:none}
 .hero-btns{flex-direction:column}.hero-btns .bp,.hero-btns .bo{width:100%;justify-content:center}
 .tb span{font-size:.63rem;padding:.3rem .6rem}
