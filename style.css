@@ -254,7 +254,7 @@ section{padding:55px 0}
 .hero-btns{justify-content:center}
 .tb{justify-content:center}
 }
-.pf-section{padding:0 0 1rem}
+.pf-section{padding:0}
 .pf-row{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;padding:2.5rem 0}
 .pf-row.reverse{direction:rtl}.pf-row.reverse>*{direction:ltr}
 .pf-item{padding:1rem 0}
