@@ -13,7 +13,7 @@ section{padding:clamp(70px,10vw,130px) 0}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 0;transition:background .4s,backdrop-filter .4s}
 nav.scrolled{background:rgba(250,248,245,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--lt)}
 nav.dn{background:0 0}nav.dn.scrolled{background:rgba(41,41,41,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(197,185,165,.15)}
-nav.dn .nl a,nav.dn .logo-text{color:var(--bg)}nav.dn .nc{border-color:var(--bg);color:var(--bg)!important}
+nav.dn .nl a,nav.dn .logo-text{color:var(--bg)}nav.dn .logo img{filter:brightness(2)}nav.dn .nc{border-color:var(--bg);color:var(--bg)!important}
 nav.dn .nc:hover{background:var(--bg);color:var(--c)!important}nav.dn .hb span{background:var(--bg)}
 nav .container{display:flex;align-items:center;justify-content:space-between}
 .logo{display:flex;align-items:center;text-decoration:none;cursor:pointer}
