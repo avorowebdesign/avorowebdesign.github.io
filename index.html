@@ -209,6 +209,8 @@ if(localStorage.getItem('avoro-cookies'))document.getElementById('cookieBanner')
 const ob=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');ob.unobserve(e.target)}})},{threshold:.08});
 document.querySelectorAll('.fu').forEach(e=>ob.observe(e));
 
+
+document.querySelectorAll('.pf-scroll').forEach(s=>{s.addEventListener('scroll',()=>{if(s.scrollTop>20)s.classList.add('scrolled')},{once:true})});
 </script>
 </body>
 </html>
