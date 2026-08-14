@@ -167,7 +167,7 @@ footer ul a:hover{color:var(--c)}
 .vcd{background:var(--c);padding:clamp(1.8rem,3vw,2.8rem)}
 .vcd h3{font-family:var(--df);font-size:1.35rem;font-weight:400;margin-bottom:.8rem;color:var(--bg)}
 .vcd p{font-size:.84rem;color:rgba(250,248,245,.5);line-height:1.8;font-weight:300}
-.sgr{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.8rem;margin-top:2.5rem}
+.sgr{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-top:2.5rem}
 .si{border:1px solid var(--lt);padding:1.2rem;text-align:center;border-radius:var(--r);transition:border-color .3s;display:flex;flex-direction:column;align-items:center;gap:.5rem}
 .si:hover{border-color:var(--t)}.si span{font-size:.83rem;font-weight:400}
 
