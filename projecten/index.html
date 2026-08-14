@@ -44,9 +44,8 @@
 <p class="fu">B2B webshops en platforms gebouwd in Magento en Shopify voor gevestigde merken.</p>
 </div></section>
 
-<section class="pf-showcase fu">
-
-<div class="pf-item">
+<section class="pf-section">
+<div class="pf-item fu"><div class="container pf-row">
 <div class="pf-text">
 <div class="rl">Consument Webshop</div>
 <h3>Brodit — Officieel dealer Benelux</h3>
@@ -54,62 +53,49 @@
 <div class="pf-tags"><span>Magento</span><span>E-commerce</span><span>Productzoeker</span></div>
 </div>
 <div class="pf-scroll-wrap">
-<div class="pf-browser">
-<div class="pf-dots"><span></span><span></span><span></span></div>
-<div class="pf-url">Brodit · Built by AVORO</div>
+<div class="pf-browser"><div class="pf-dots"><span></span><span></span><span></span></div><div class="pf-url">Brodit · Built by AVORO</div></div>
+<div class="pf-scroll"><img src="/pf-brodit.jpg" alt="Brodit webshop" loading="lazy"></div>
 </div>
-<div class="pf-scroll"><img src="/pf-brodit.jpg" alt="Brodit consument webshop" loading="lazy"></div>
-</div>
-</div>
+</div></div>
 
-<div class="pf-item reverse">
+<div class="pf-item fu"><div class="container pf-row reverse">
 <div class="pf-text">
 <div class="rl">B2B Platform</div>
 <h3>Brodit B2B — Zakelijk platform</h3>
-<p>Professioneel B2B bestelplatform voor dealers en installateurs. Maatwerk oplossingen, device-specifieke montagesystemen en pijp- en klemoplossingen.</p>
+<p>Professioneel B2B bestelplatform voor dealers en installateurs. Maatwerk oplossingen, device-specifieke montagesystemen.</p>
 <div class="pf-tags"><span>Magento</span><span>B2B</span><span>Maatwerk</span></div>
 </div>
 <div class="pf-scroll-wrap">
-<div class="pf-browser">
-<div class="pf-dots"><span></span><span></span><span></span></div>
-<div class="pf-url">Brodit B2B · Built by AVORO</div>
+<div class="pf-browser"><div class="pf-dots"><span></span><span></span><span></span></div><div class="pf-url">Brodit B2B · Built by AVORO</div></div>
+<div class="pf-scroll"><img src="/pf-brodit-b2b.jpg" alt="Brodit B2B" loading="lazy"></div>
 </div>
-<div class="pf-scroll"><img src="/pf-brodit-b2b.jpg" alt="Brodit B2B platform" loading="lazy"></div>
-</div>
-</div>
+</div></div>
 
-<div class="pf-item">
+<div class="pf-item fu"><div class="container pf-row">
 <div class="pf-text">
 <div class="rl">B2B E-commerce</div>
 <h3>PDAPlus — Autohouders & accessoires</h3>
-<p>Volledig B2B platform met dark-mode design. Autohouders, device cradles, laders en cases. Gebouwd voor onderweg met geavanceerde productfilters.</p>
+<p>Volledig B2B platform met dark-mode design. Autohouders, device cradles, laders en cases.</p>
 <div class="pf-tags"><span>Magento</span><span>Dark mode</span><span>B2B</span></div>
 </div>
 <div class="pf-scroll-wrap">
-<div class="pf-browser">
-<div class="pf-dots"><span></span><span></span><span></span></div>
-<div class="pf-url">PDAPlus · Built by AVORO</div>
+<div class="pf-browser"><div class="pf-dots"><span></span><span></span><span></span></div><div class="pf-url">PDAPlus · Built by AVORO</div></div>
+<div class="pf-scroll"><img src="/pf-pdaplus.jpg" alt="PDAPlus" loading="lazy"></div>
 </div>
-<div class="pf-scroll"><img src="/pf-pdaplus.jpg" alt="PDAPlus webshop" loading="lazy"></div>
-</div>
-</div>
+</div></div>
 
-<div class="pf-item reverse">
+<div class="pf-item fu"><div class="container pf-row reverse">
 <div class="pf-text">
 <div class="rl">B2B Platform</div>
 <h3>GCC Global — Device mounting solutions</h3>
-<p>Magento platform voor device cradles, voertuigmounts en werkplekoplossingen. Zoeksysteem op automerk en toestel voor zakelijke klanten.</p>
+<p>Magento platform voor device cradles, voertuigmounts en werkplekoplossingen. Zoeksysteem op automerk en toestel.</p>
 <div class="pf-tags"><span>Magento</span><span>B2B</span><span>Device mounts</span></div>
 </div>
 <div class="pf-scroll-wrap">
-<div class="pf-browser">
-<div class="pf-dots"><span></span><span></span><span></span></div>
-<div class="pf-url">GCC Global · Built by AVORO</div>
+<div class="pf-browser"><div class="pf-dots"><span></span><span></span><span></span></div><div class="pf-url">GCC Global · Built by AVORO</div></div>
+<div class="pf-scroll"><img src="/pf-gcc.jpg" alt="GCC Global" loading="lazy"></div>
 </div>
-<div class="pf-scroll"><img src="/pf-gcc.jpg" alt="GCC Global webshop" loading="lazy"></div>
-</div>
-</div>
-
+</div></div>
 </section>
 
 <section class="cta"><div class="container">
@@ -150,9 +136,7 @@ function acceptCookies(){document.getElementById('cookieBanner').classList.add('
 if(localStorage.getItem('avoro-cookies'))document.getElementById('cookieBanner').classList.add('hidden');
 const ob=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');ob.unobserve(e.target)}})},{threshold:.08});
 document.querySelectorAll('.fu').forEach(e=>ob.observe(e));
-
 document.querySelectorAll('.pf-scroll').forEach(s=>{s.addEventListener('scroll',()=>{if(s.scrollTop>20)s.classList.add('scrolled')},{once:true})});
-
 </script>
 </body>
 </html>
