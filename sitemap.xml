@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://avoroweb.nl/</loc><priority>1.0</priority></url>
-  <url><loc>https://avoroweb.nl/diensten/</loc><priority>0.9</priority></url>
-  <url><loc>https://avoroweb.nl/over-ons/</loc><priority>0.7</priority></url>
-  <url><loc>https://avoroweb.nl/blog/</loc><priority>0.8</priority></url>
-  <url><loc>https://avoroweb.nl/blog/shopify-vs-woocommerce/</loc><priority>0.6</priority></url>
-  <url><loc>https://avoroweb.nl/blog/5-fouten-webshop-conversie/</loc><priority>0.6</priority></url>
-  <url><loc>https://avoroweb.nl/blog/waarom-website-nodig/</loc><priority>0.6</priority></url>
-  <url><loc>https://avoroweb.nl/contact/</loc><priority>0.9</priority></url>
-  <url><loc>https://avoroweb.nl/privacy/</loc><priority>0.3</priority></url>
+  <url><loc>https://avoroweb.nl/</loc><lastmod>2026-08-14</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://avoroweb.nl/diensten/</loc><lastmod>2026-08-14</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://avoroweb.nl/projecten/</loc><lastmod>2026-08-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://avoroweb.nl/over-ons/</loc><lastmod>2026-08-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://avoroweb.nl/blog/</loc><lastmod>2026-08-14</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://avoroweb.nl/blog/shopify-vs-woocommerce/</loc><lastmod>2026-08-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://avoroweb.nl/blog/5-fouten-webshop-conversie/</loc><lastmod>2026-08-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://avoroweb.nl/blog/waarom-website-nodig/</loc><lastmod>2026-08-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://avoroweb.nl/contact/</loc><lastmod>2026-08-14</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://avoroweb.nl/privacy/</loc><lastmod>2026-08-14</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
