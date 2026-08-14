@@ -246,11 +246,11 @@ section{padding:55px 0}
 }
 .hero .container{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3rem}
 .hero-img{border-radius:12px;overflow:hidden}
-.hero-img img{width:100%;height:auto;display:block;border-radius:12px;max-height:520px;object-fit:cover}
+.hero-img img{width:100%;height:520px;display:block;border-radius:12px;object-fit:cover;object-position:center 70%}
 @media(max-width:768px){
 .hero .container{grid-template-columns:1fr;text-align:center}
 .hero-img{max-width:400px;margin:0 auto}
-.hero-img img{max-height:400px}
+.hero-img img{height:400px;object-position:center 70%}
 .hero-btns{justify-content:center}
 .tb{justify-content:center}
 }
