@@ -308,3 +308,10 @@ section{padding:55px 0}
 .pf-tags span{font-size:.6rem;padding:.2rem .6rem}
 .pf-static img{height:260px}
 }
+
+/* Footer trust badge */
+.ftrust{display:flex;align-items:center;gap:.8rem;padding:1.5rem 0;border-top:1px solid var(--lt);margin-top:2rem}
+.ftrust span{font-size:.78rem;color:var(--mid);font-weight:300}
+@media(max-width:768px){
+.ftrust{justify-content:center}
+}
