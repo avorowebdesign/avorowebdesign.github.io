@@ -308,3 +308,6 @@ section{padding:55px 0}
 .pf-tags span{font-size:.6rem;padding:.2rem .6rem}
 .pf-static img{height:260px}
 }
+
+.hero-trust{justify-content:flex-end}
+@media(max-width:768px){.hero-trust{justify-content:center}}
