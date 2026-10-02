@@ -25,7 +25,7 @@
 <body>
 <nav id="nav" class="dn">
 <div class="container">
-<a class="logo" href="/"><img src="https://raw.githubusercontent.com/avorowebdesign/avorowebdesign.github.io/main/logo.png?v=4" alt="AVORO"></a>
+<a class="logo" href="/"><img src="/logo.png" alt="AVORO"></a>
 <ul class="nl">
 <li><a href="/diensten/">Diensten</a></li>
 <li><a href="/over-ons/">Over ons</a></li>
@@ -58,7 +58,7 @@
 <div class="fg2"><label>Waar ben je naar op zoek?</label>
 <select name="service"><option value="" disabled selected>Kies een optie</option><option>Nieuwe website</option><option>Webshop (Shopify)</option><option>Webshop (Magento)</option><option>Website redesign</option><option>SEO & Performance</option><option>Anders</option></select></div>
 <div class="fg2"><label>Bericht *</label><textarea name="message" placeholder="Vertel kort over je project..." required></textarea></div>
-<input type="hidden" name="_subject" value="Nieuw bericht via avoro.nl">
+<input type="hidden" name="_subject" value="Nieuw bericht via avoroweb.nl">
 <button type="submit" class="bp" style="width:100%;justify-content:center">Verstuur bericht <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M8 2l5 5-5 5"/></svg></button>
 </form>
 <div class="fsuc" id="fsuc"><h3>Bedankt voor je bericht!</h3><p>We nemen zo snel mogelijk contact op, meestal binnen 24 uur.</p></div>
@@ -75,7 +75,7 @@
 <footer><div class="container">
 <div class="fg">
 <div>
-<div class="fb"><a href="/"><img src="https://raw.githubusercontent.com/avorowebdesign/avorowebdesign.github.io/main/logo.png?v=4" alt="AVORO" style="height:30px;display:block"></a></div>
+<div class="fb"><a href="/"><img src="/logo.png" alt="AVORO" style="height:30px;display:block"></a></div>
 <p class="ft">Websites die presteren. Resultaten die tellen. Gebouwd voor ondernemers die het verschil willen maken.</p>
 <div class="sb">
 <a href="https://www.instagram.com/avoroweb.nl" target="_blank" class="sba" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
@@ -106,8 +106,10 @@ const ob=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.tar
 document.querySelectorAll('.fu').forEach(e=>ob.observe(e));
 const f=document.getElementById('cf');
 if(f)f.onsubmit=async e=>{e.preventDefault();const b=f.querySelector('button[type="submit"]');b.textContent='Versturen...';
-try{await fetch(f.action,{method:'POST',body:new FormData(f),headers:{Accept:'application/json'}});f.style.display='none';document.getElementById('fsuc').style.display='block'}
-catch(err){b.innerHTML='Verstuur bericht';alert('Er ging iets mis. Probeer het opnieuw.')}};
+let ok=false;try{const r=await fetch(f.action,{method:'POST',body:new FormData(f),headers:{Accept:'application/json'}});ok=r.ok}catch(err){}
+if(ok){f.style.display='none';document.getElementById('fsuc').style.display='block'}
+else{b.innerHTML='Verstuur bericht';let m=document.getElementById('ferr');if(!m){m=document.createElement('p');m.id='ferr';m.setAttribute('role','alert');m.style.cssText='margin-top:1rem;color:#b42318;font-size:.9rem';f.appendChild(m)}
+m.innerHTML='Je bericht is niet verstuurd. Probeer het opnieuw of mail direct naar <a href="mailto:info@avoroweb.nl" style="color:inherit;text-decoration:underline">info@avoroweb.nl</a>.'}};
 </script>
 </body>
 </html>
