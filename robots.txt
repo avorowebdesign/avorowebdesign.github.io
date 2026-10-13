@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /offerte/
+
 Sitemap: https://avoroweb.nl/sitemap.xml
