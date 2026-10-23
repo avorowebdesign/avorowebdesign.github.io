@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Pontime Watchmakers · Horlogereparatie Naarden/Bussum</title>
+<meta name="description" content="Horlogemakers in Naarden/Bussum. Full service, reparatie, polijsten, lapideren en laserlassen. Specialist in Rolex, modern en vintage.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23000'/%3E%3Ccircle cx='32' cy='32' r='19' fill='none' stroke='%23d6bd8f' stroke-width='3'/%3E%3Cpath d='M32 32V19M32 32l9 6' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Pontime Watchmakers","description":"Horlogereparatie, full service, polijsten en laserlassen. Specialist in Rolex.","telephone":"+31616551611","email":"info@pontime.nl","address":{"@type":"PostalAddress","addressLocality":"Naarden/Bussum","addressCountry":"NL"},"sameAs":["https://www.instagram.com/pontime.nl"]}</script>
+<style>
+:root{--bg:#000;--ink:#f5f5f7;--mute:#86868b;--line:#1d1d1f;--panel:#0d0d0f;--gold:#d6bd8f;--gold2:#a8895a;--lume:#d8f5e2;
+ --sans:'Inter Tight',-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;--serif:'Instrument Serif',Georgia,serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#000}
+body{background:#000;color:var(--ink);font:400 17px/1.5 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;letter-spacing:-.01em}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1180px,100% - 64px);margin-inline:auto}
+@media(max-width:700px){.wrap{width:calc(100% - 40px)}}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+
+/* NAV (Apple-achtig: dun, glas) */
+.nav{position:fixed;inset:0 0 auto;z-index:60;height:52px;background:rgba(0,0,0,.6);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-between}
+.brand{font:italic 400 24px/1 var(--serif);letter-spacing:0}
+.nav ul{display:flex;gap:30px;list-style:none;font-size:13px;color:#d2d2d7}
+.nav ul a:hover{color:#fff}
+.pill{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#000;font-weight:600;font-size:14px;padding:8px 16px;border-radius:999px;transition:transform .2s,background .2s}
+.pill:hover{background:#fff}.pill:active{transform:scale(.97)}
+.pill.gold{background:var(--gold);color:#120e08}
+.pill.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px #424245}
+.pill.big{font-size:17px;padding:13px 24px}
+@media(max-width:820px){.nav ul{display:none}}
+
+/* 3D FILM */
+#gl{position:fixed;inset:0;width:100vw;height:100vh;display:block;z-index:1;pointer-events:none;transition:opacity .6s}
+#gl.off{opacity:0}
+.film{position:relative;height:1000vh;z-index:2}
+.film .stage{position:sticky;top:0;height:100vh;overflow:hidden;pointer-events:none;isolation:isolate}
+.cap{position:absolute;opacity:0;will-change:opacity,transform;pointer-events:none}
+.cap.on{pointer-events:auto}
+.cap.c-hero{left:0;right:0;top:calc(52px + 7vh);text-align:center}
+.cap.left{left:max(32px,calc((100vw - 1180px)/2));top:50%;transform:translateY(-50%);width:min(440px,36vw)}
+.cap.left.hero{width:min(600px,46vw)}
+.cap.left.hero .sub{margin-inline:0}
+.eyebrow{color:var(--gold);font-size:15px;font-weight:600;letter-spacing:0;margin-bottom:12px}
+.hx{font:700 clamp(48px,6.6vw,96px)/1.02 var(--sans);letter-spacing:-.035em}
+.hx .s{font:italic 400 1.08em/1 var(--serif);letter-spacing:-.01em;color:var(--gold)}
+.h2{font:700 clamp(40px,4.4vw,64px)/1.05 var(--sans);letter-spacing:-.03em}
+.h2 .s{font:italic 400 1.1em/1 var(--serif);letter-spacing:-.01em;color:var(--gold)}
+.sub{color:var(--mute);font-size:clamp(17px,1.4vw,21px);line-height:1.45;margin-top:16px;font-weight:500}
+.sub b{color:var(--ink);font-weight:600}
+.c-hero .sub{max-width:36ch;margin-inline:auto}
+.meta{display:flex;gap:34px;margin-top:26px}
+.meta b{display:block;font:600 34px/1 var(--sans);letter-spacing:-.03em}
+.meta span{font-size:13px;color:var(--mute)}
+.cue{position:absolute;left:50%;bottom:4vh;transform:translateX(-50%);color:var(--mute);font-size:12px;display:flex;flex-direction:column;align-items:center;gap:8px;transition:opacity .4s}
+.cue i{width:22px;height:34px;border-radius:12px;box-shadow:inset 0 0 0 1.5px #6e6e73;position:relative}
+.cue i::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:#d2d2d7;animation:wheel 1.6s ease-in-out infinite}
+@keyframes wheel{50%{transform:translateY(8px);opacity:.3}}
+.chap{position:absolute;right:max(24px,calc((100vw - 1180px)/2));top:50%;transform:translateY(-50%);display:grid;gap:12px;pointer-events:auto}
+.chap button{width:8px;height:8px;border-radius:50%;background:#3a3a3c;transition:background .3s,transform .3s}
+.chap button.on{background:var(--gold);transform:scale(1.4)}
+#labels{position:absolute;inset:0}
+.lbl{position:absolute;left:0;top:0;opacity:0;will-change:transform,opacity}
+.lbl i{position:absolute;left:-4px;top:-4px;width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.15)}
+.lbl span{position:absolute;left:12px;top:-30px;white-space:nowrap;font-size:13px;font-weight:600;padding:5px 11px;border-radius:999px;background:rgba(29,29,31,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+@media(max-width:820px){
+ .cap.left{left:20px;right:20px;width:auto;top:auto;bottom:6vh;transform:none}
+ .cap.c-hero{top:calc(52px + 4vh)}
+ .chap{display:none}.meta{gap:22px}.meta b{font-size:26px}
+ .cap.left.hero{width:auto}.cue{display:none}
+ .film .stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:56%;background:linear-gradient(0deg,#000 38%,rgba(0,0,0,.75) 70%,transparent);z-index:-1}
+ .hx{font-size:clamp(40px,11vw,56px)}
+ .lbl span{font-size:11px;padding:3px 8px;top:-24px}
+}
+
+/* SECTIES */
+section.s{position:relative;z-index:3;background:#000;padding:140px 0}
+.center{text-align:center}
+.center .sub{margin-inline:auto;max-width:44ch}
+/* specs */
+.specs{margin-top:70px;border-top:1px solid #333336}
+.sp{display:grid;grid-template-columns:1.1fr 1.6fr .7fr;gap:30px;padding:30px 0;border-bottom:1px solid #333336;align-items:baseline}
+.sp h3{font:600 26px/1.15 var(--sans);letter-spacing:-.02em}
+.sp p{color:var(--mute);font-size:17px}
+.sp em{font-style:normal;color:var(--gold);font-weight:600;text-align:right}
+.sp .new{font-size:12px;color:#120e08;background:var(--gold);padding:3px 9px;border-radius:999px;margin-left:10px;vertical-align:4px;font-weight:600}
+@media(max-width:820px){.sp{grid-template-columns:1fr;gap:6px}.sp em{text-align:left}}
+/* tegels */
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:64px}
+@media(max-width:980px){.tiles{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.tiles{grid-template-columns:1fr}}
+.tile{background:var(--panel);border-radius:28px;padding:32px 28px 34px;min-height:300px;display:flex;flex-direction:column;opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.tile.in{opacity:1;transform:none}
+.tile .n{font:700 64px/1 var(--sans);letter-spacing:-.04em;background:linear-gradient(180deg,#f5f5f7,#5a5a5f);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tile h3{font:600 22px/1.2 var(--sans);margin-top:auto;letter-spacing:-.02em}
+.tile p{color:var(--mute);margin-top:8px;font-size:16px}
+/* split-flap */
+.board{margin:56px auto 0;width:max-content;max-width:100%;background:#050505;border-radius:22px;padding:26px;box-shadow:inset 0 0 0 1px #1d1d1f;overflow-x:auto}
+.bh,.br{display:flex;gap:22px}
+.bh{font-size:11px;color:#6e6e73;letter-spacing:.12em;margin-bottom:10px;font-weight:600}
+.br{margin-bottom:8px}
+.cells{display:flex;gap:4px}
+.cell{width:28px;height:40px;border-radius:5px;background:linear-gradient(180deg,#1c1c1e 0 49%,#111 51%);display:grid;place-items:center;font:600 21px/1 var(--sans);color:#f5f5f7;position:relative}
+.cell::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:#000}
+.cell.g{color:var(--gold)}.cell.l{color:var(--lume)}
+@media(max-width:600px){.cell{width:19px;height:28px;font-size:14px}.bh,.br{gap:12px}}
+/* contact */
+.contact{display:grid;grid-template-columns:1fr 1.05fr;gap:70px;align-items:start;text-align:left}
+@media(max-width:900px){.contact{grid-template-columns:1fr;gap:44px}}
+.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
+.note{margin-top:28px;padding:16px 18px;border-radius:16px;background:#141210;color:#cdbf9f;font-size:15px}
+form{background:var(--panel);border-radius:28px;padding:30px}
+label{display:block;font-size:13px;color:var(--mute);margin:16px 0 7px;font-weight:500}
+label:first-child{margin-top:0}
+.in{width:100%;padding:14px 16px;border-radius:14px;border:0;background:#1c1c1e;color:var(--ink);-webkit-text-fill-color:var(--ink);color-scheme:dark;font-size:16px}
+.in:focus{outline:none;box-shadow:0 0 0 2px var(--gold)}
+textarea.in{min-height:96px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.two{grid-template-columns:1fr}}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:8px 14px;border-radius:999px;font-size:14px;background:#1c1c1e;color:#d2d2d7;transition:all .2s}
+.chip[aria-pressed=true]{background:var(--gold);color:#120e08;font-weight:600}
+form .pill{margin-top:22px;width:100%;justify-content:center;padding:15px}
+.err{color:#ff8a7a;font-size:14px;min-height:20px;margin-top:8px}
+.sent{text-align:center;padding:50px 10px}.sent h3{font:700 36px/1.1 var(--sans);letter-spacing:-.03em;margin:16px 0 8px}.sent p{color:var(--mute)}
+footer{position:relative;z-index:3;background:#000;border-top:1px solid #1d1d1f;padding:40px 0 34px;color:var(--mute);font-size:13px}
+.fg{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.fg a:hover{color:var(--ink)}
+.fallback{display:none;position:absolute;inset:0;place-items:center;color:var(--mute)}
+.no-gl .fallback{display:grid}
+.no-gl #gl,.no-gl .chap,.no-gl .cue,.no-gl #labels{display:none}
+.no-gl .film{height:auto}.no-gl .film .stage{position:relative;height:auto;padding:110px 0 20px;overflow:visible}
+.no-gl .film .stage::after{display:none}
+.no-gl .cap,.no-gl .cap.left,.no-gl .cap.left.hero{position:relative;inset:auto;opacity:1!important;transform:none!important;width:min(1180px,100% - 40px);margin:0 auto 90px;pointer-events:auto}
+.no-gl .fallback{display:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.tile{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+ <a class="brand" href="#top">Pontime</a>
+ <ul><li><a href="#film">Het horloge</a></li><li><a href="#diensten">Diensten</a></li><li><a href="#werkwijze">Werkwijze</a></li><li><a href="#contact">Contact</a></li></ul>
+ <a class="pill" href="#contact">Afspraak</a>
+</div></header>
+
+<canvas id="gl" role="img" aria-label="3D-horloge dat bij het scrollen draait, opent en uit elkaar gaat"></canvas>
+
+<main id="top">
+<section class="film" id="film">
+ <div class="stage">
+  <div class="fallback">Je browser ondersteunt geen 3D. Scroll verder voor alle informatie.</div>
+  <div id="labels" aria-hidden="true"></div>
+
+  <div class="cap left hero" data-a="-1" data-b=".085">
+   <p class="eyebrow">Pontime Watchmakers · Naarden/Bussum</p>
+   <h1 class="hx">Elke seconde<br>verdient een <span class="s">vakman.</span></h1>
+   <p class="sub">Twee broers, drie horlogemakers. Specialist in Rolex, modern en vintage.</p>
+  </div>
+  <div class="cue" id="cue">Scroll om het licht aan te doen<i></i></div>
+
+  <div class="cap left" data-a=".11" data-b=".2">
+   <p class="eyebrow">Ons vak</p>
+   <h2 class="h2">Rolex.<br>Modern en <span class="s">vintage.</span></h2>
+   <p class="sub">Maar ook je <b>Cartier, Omega, IWC</b> of <b>Patek Philippe</b> is bij ons in goede handen.</p>
+  </div>
+  <div class="cap left" data-a=".24" data-b=".41">
+   <p class="eyebrow">Full service</p>
+   <h2 class="h2">Laag voor laag<br><span class="s">uit elkaar.</span></h2>
+   <p class="sub">Elk onderdeel eruit, gereinigd, gesmeerd en afgesteld. Nieuwe pakkingen erin. Daarna weer in elkaar, tot hij loopt als op de eerste dag.</p>
+   <div class="meta"><div><b>± 4 wk</b><span>doorlooptijd</span></div><div><b>3</b><span>horlogemakers</span></div></div>
+  </div>
+  <div class="cap left" data-a=".45" data-b=".545">
+   <p class="eyebrow">Polijsten &amp; lapideren</p>
+   <h2 class="h2">Strak.<br>Tot op de <span class="s">rand.</span></h2>
+   <p class="sub">Gepolijste vlakken weer spiegelend, geborstelde vlakken met hun originele structuur. Scherpe randen blijven scherp.</p>
+   <div class="meta"><div><b>± 1 wk</b><span>doorlooptijd</span></div></div>
+  </div>
+  <div class="cap left" data-a=".575" data-b=".665">
+   <p class="eyebrow">Bezels &amp; glas</p>
+   <h2 class="h2">Elke klik<br>weer <span class="s">precies.</span></h2>
+   <p class="sub">Nieuw saffierglas, bezels die weer soepel draaien en iets nieuws: we snijden ook <b>gouden Rolex-bezels</b>.</p>
+  </div>
+  <div class="cap left" data-a=".7" data-b=".8">
+   <p class="eyebrow">Echtheid &amp; reparatie</p>
+   <h2 class="h2">We kijken<br>naar <span class="s">binnen.</span></h2>
+   <p class="sub">Twijfel je over een aankoop? We openen de kast en controleren of uurwerk en onderdelen kloppen.</p>
+  </div>
+  <div class="cap left" data-a=".83" data-b=".905">
+   <p class="eyebrow">Laserlassen</p>
+   <h2 class="h2">Restauratie<br>op <span class="s">microniveau.</span></h2>
+   <p class="sub">Materiaal precies opbouwen waar het weg was. Voor deuken, diepe krassen en versleten lugs.</p>
+  </div>
+  <div class="cap left hero" data-a=".935" data-b="1.01">
+   <p class="eyebrow">Terug op tijd</p>
+   <h2 class="hx">Zo hoort hij<br>te <span class="s">lopen.</span></h2>
+   <p class="sub" style="pointer-events:auto"><a class="pill gold big" href="#contact" style="margin-top:8px">Plan je service</a></p>
+  </div>
+
+  <nav class="chap" id="chap" aria-label="Hoofdstukken"></nav>
+ </div>
+</section>
+
+<section class="s center" id="diensten">
+ <div class="wrap">
+  <p class="eyebrow">Alles onder één dak</p>
+  <h2 class="h2">Wat we <span class="s">doen.</span></h2>
+  <p class="sub">Van een routine-service tot een volledige restauratie. Je weet vooraf wat het kost.</p>
+  <div class="specs" style="text-align:left">
+   <div class="sp"><h3>Full service &amp; reparatie</h3><p>Volledig demonteren, reinigen, smeren, afstellen en nieuwe pakkingen.</p><em>± 4 weken</em></div>
+   <div class="sp"><h3>Polijsten &amp; lapideren</h3><p>Kast en band: spiegelend waar het moet, geborsteld waar het hoort.</p><em>± 1 week</em></div>
+   <div class="sp"><h3>Laserlassen</h3><p>Materiaal opbouwen voor echte restauraties van kast en lugs.</p><em>op aanvraag</em></div>
+   <div class="sp"><h3>Banden &amp; kasten</h3><p>Uitgerekte banden strak, deuken en krassen uit de kast.</p><em>op aanvraag</em></div>
+   <div class="sp"><h3>Glas &amp; wijzerplaat</h3><p>Nieuw saffierglas of een nieuwe wijzerplaat, stofvrij geplaatst.</p><em>op aanvraag</em></div>
+   <div class="sp"><h3>Echtheidscontrole</h3><p>We openen het horloge en controleren uurwerk en onderdelen.</p><em>op aanvraag</em></div>
+   <div class="sp"><h3>Gouden bezels snijden<span class="new">Nieuw</span></h3><p>Het snijden van gouden Rolex-bezels, met de hand afgewerkt.</p><em>op aanvraag</em></div>
+  </div>
+ </div>
+</section>
+
+<section class="s center" id="werkwijze" style="padding-top:60px">
+ <div class="wrap">
+  <h2 class="h2">Zo komt je horloge <span class="s">bij ons.</span></h2>
+  <div class="tiles" style="text-align:left">
+   <div class="tile"><span class="n">01</span><h3>Neem contact op</h3><p>Bel, app of mail. Vertel welk horloge het is en wat er speelt.</p></div>
+   <div class="tile"><span class="n">02</span><h3>Inspectie &amp; prijs</h3><p>We bekijken hem en vertellen vooraf wat er moet gebeuren en wat het kost.</p></div>
+   <div class="tile"><span class="n">03</span><h3>In de werkplaats</h3><p>Onze horlogemakers gaan aan de slag. Komt er iets bij, dan hoor je het eerst.</p></div>
+   <div class="tile"><span class="n">04</span><h3>Terug om je pols</h3><p>Ophalen in Naarden/Bussum, op 20 minuten van Amsterdam en Utrecht.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="s center" id="klanten" style="padding-top:60px">
+ <div class="wrap">
+  <h2 class="h2">Horloges komen <span class="s">van ver.</span></h2>
+  <p class="sub">Particulieren en professionals uit heel Nederland, en uit München, Stockholm, Kopenhagen en Wenen.</p>
+  <div class="board" aria-hidden="true"><div class="bh" id="bh"><span>VAN</span><span>NAAR</span><span>STATUS</span></div><div id="rows"></div></div>
+ </div>
+</section>
+
+<section class="s" id="contact">
+ <div class="wrap contact">
+  <div>
+   <h2 class="h2">Een horloge dat<br><span class="s">aandacht</span> nodig heeft?</h2>
+   <p class="sub">Vertel ons welk horloge het is en wat er speelt. We reageren zo snel mogelijk met een eerlijk advies.</p>
+   <div class="acts"><a class="pill gold big" href="tel:+31616551611">Bel 06 1655 1611</a><a class="pill ghost big" href="https://wa.me/31616551611" target="_blank" rel="noopener">WhatsApp</a><a class="pill ghost big" href="mailto:info@pontime.nl">Mail</a></div>
+   <p class="note">Let op: het adres dat Google toont is niet van ons. Neem altijd eerst contact op, dan spreken we een moment af.</p>
+  </div>
+  <form id="form" novalidate><div id="fbody">
+   <div class="two"><div><label for="fn">Naam</label><input class="in" id="fn" autocomplete="name"></div><div><label for="ft">Telefoon</label><input class="in" id="ft" inputmode="tel" autocomplete="tel"></div></div>
+   <label for="fe">E-mail</label><input class="in" id="fe" type="email" autocomplete="email">
+   <label for="fm">Merk en model</label><input class="in" id="fm" placeholder="Bijv. Rolex Submariner 16610">
+   <label>Wat moet er gebeuren?</label>
+   <div class="chips" id="chips"><button type="button" class="chip" aria-pressed="false">Full service</button><button type="button" class="chip" aria-pressed="false">Reparatie</button><button type="button" class="chip" aria-pressed="false">Polijsten</button><button type="button" class="chip" aria-pressed="false">Glas of wijzerplaat</button><button type="button" class="chip" aria-pressed="false">Band</button><button type="button" class="chip" aria-pressed="false">Echtheid</button><button type="button" class="chip" aria-pressed="false">Weet ik niet</button></div>
+   <label for="fb">Bericht</label><textarea class="in" id="fb" placeholder="Loopt achter, glas gekrast, laatste service in 2015..."></textarea>
+   <p class="err" id="err"></p>
+   <button class="pill gold" type="submit">Verstuur aanvraag</button>
+  </div></form>
+ </div>
+</section>
+</main>
+<footer><div class="wrap fg">
+ <span><span class="brand" style="font-size:18px;color:var(--ink)">Pontime</span> &nbsp;Watchmakers · Naarden/Bussum · Alleen op afspraak</span>
+ <span><a href="tel:+31616551611">+31 6 1655 1611</a> &nbsp;·&nbsp; <a href="mailto:info@pontime.nl">info@pontime.nl</a> &nbsp;·&nbsp; <a href="https://www.instagram.com/pontime.nl" target="_blank" rel="noopener">Instagram</a></span>
+</div></footer>
+
+<script>
+/* ---------- niet-3D onderdelen ---------- */
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// tegels
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.25});
+$$('.tile').forEach((t,i)=>{t.style.transitionDelay=i*.1+'s';io.observe(t)});
+// split-flap
+const CITIES=['AMSTERDAM','HAARLEM','UTRECHT','HILVERSUM','MUNCHEN','STOCKHOLM','KOPENHAGEN','WENEN','BUSSUM'],STAT=['OP TIJD','IN SERVICE','KLAAR'],CH='ABCDEFGHIJKLMNOPQRSTUVWXYZ ';
+const rows=[];for(let r=0;r<4;r++){const row=document.createElement('div');row.className='br';const mk=(n,c)=>{const g=document.createElement('div');g.className='cells';const a=[];for(let i=0;i<n;i++){const d=document.createElement('div');d.className='cell '+(c||'');d.textContent=' ';g.appendChild(d);a.push(d)}row.appendChild(g);return a};rows.push({a:mk(10),b:mk(7,'g'),c:mk(10,'l')});$('#rows').appendChild(row)}
+const hd=$$('#bh span');requestAnimationFrame(()=>$$('#rows .br:first-child .cells').forEach((c,i)=>hd[i].style.width=c.offsetWidth+'px'));
+function flap(cells,t){t=t.padEnd(cells.length).slice(0,cells.length);cells.forEach((c,i)=>{if(c.textContent===t[i])return;let k=reduce?0:5+((Math.random()*7)|0)+i;(function s(){if(k--<=0){c.textContent=t[i];return}c.textContent=CH[(Math.random()*CH.length)|0];setTimeout(s,50)})()})}
+let ci=0;const tickB=()=>{rows.forEach((r,i)=>{flap(r.a,CITIES[(ci+i)%CITIES.length]);flap(r.b,'NAARDEN');flap(r.c,STAT[(ci+i)%3])});ci++};
+new IntersectionObserver(es=>{clearInterval(window.bt);if(es[0].isIntersecting){tickB();window.bt=setInterval(tickB,4200)}},{threshold:.3}).observe($('.board'));
+// formulier
+$('#chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(b)b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true')});
+$('#form').addEventListener('submit',e=>{e.preventDefault();const er=$('#err'),n=$('#fn').value.trim(),t=$('#ft').value.trim(),m=$('#fe').value.trim();
+ if(!n)return er.textContent='Vul je naam in.';if(!t&&!m)return er.textContent='Vul een telefoonnummer of e-mailadres in.';if(m&&!/^\S+@\S+\.\S+$/.test(m))return er.textContent='Dit e-mailadres klopt niet helemaal.';
+ $('#fbody').innerHTML=`<div class="sent"><svg width="56" height="56" viewBox="0 0 56 56"><circle cx="28" cy="28" r="26" fill="none" stroke="#d6bd8f" stroke-width="2"/><path d="M17 29l7 7 15-16" fill="none" stroke="#d6bd8f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Aanvraag verstuurd</h3><p>Bedankt, ${n.split(' ')[0]}. We nemen zo snel mogelijk contact met je op.</p></div>`});
+setTimeout(()=>{if(!document.documentElement.classList.contains('has-gl'))document.documentElement.classList.add('no-gl')},2500);
+</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/","lenis":"https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.mjs"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+
+/* ---------- vloeiend scrollen ---------- */
+let lenis=null;
+import('lenis').then(m=>{ if(matchMedia('(prefers-reduced-motion: reduce)').matches) return; lenis=new m.default({lerp:.09,smoothWheel:true}); document.documentElement.classList.add('lenis','lenis-smooth');
+ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();lenis.scrollTo(t,{offset:a.getAttribute('href')==='#film'?0:-52})}})); }).catch(()=>{});
+
+/* ---------- renderer ---------- */
+const canvas=document.getElementById('gl');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'high-performance'});
+document.documentElement.classList.add('has-gl');
+const DPR=Math.min(innerWidth<=820?1.5:1.75,devicePixelRatio||1);renderer.setPixelRatio(DPR);
+renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.95;
+renderer.setClearColor(0x000000,1);
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(24,1,.1,100);
+const pmrem=new THREE.PMREMGenerator(renderer);
+scene.environment=pmrem.fromScene(new RoomEnvironment(renderer),.02).texture;scene.environmentRotation=new THREE.Euler(0,.9,0);
+const hemi=new THREE.HemisphereLight(0xffffff,0x1a1714,.25);scene.add(hemi);
+scene.environmentRotation=new THREE.Euler(0,.6,0);
+
+// achtergrond: zachte spot achter het horloge
+const bgMat=new THREE.ShaderMaterial({depthWrite:false,uniforms:{uC:{value:new THREE.Vector2(.62,.52)},uI:{value:1}},vertexShader:'varying vec2 v;void main(){v=uv;gl_Position=vec4(position.xy,0.999,1.);}',
+ fragmentShader:'varying vec2 v;uniform vec2 uC;uniform float uI;void main(){float d=distance(v*vec2(1.6,1.),uC*vec2(1.6,1.));vec3 c=mix(vec3(.022,.019,.015)*uI,vec3(0.),smoothstep(0.,.75,d));gl_FragColor=vec4(c,1.);}'});
+const bg=new THREE.Mesh(new THREE.PlaneGeometry(2,2),bgMat);bg.frustumCulled=false;bg.renderOrder=-1;scene.add(bg);
+
+const key=new THREE.DirectionalLight(0xffffff,1.7);key.position.set(4,5,6);scene.add(key);
+const rim=new THREE.DirectionalLight(0xcfe0ff,1.2);rim.position.set(-6,2,-4);scene.add(rim);
+const sweep=new THREE.SpotLight(0xffffff,0,20,.35,.6,1);sweep.position.set(3,2,4);scene.add(sweep);scene.add(sweep.target);
+
+/* ---------- textures ---------- */
+const maxAniso=renderer.capabilities.getMaxAnisotropy();
+const cv=(w,h,draw,rot)=>{const c=document.createElement('canvas');c.width=w;c.height=h;draw(c.getContext('2d'),w,h);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=maxAniso;if(rot){t.center.set(.5,.5);t.rotation=Math.PI/2}return t};
+function dialTex(){return cv(2048,2048,(x,w)=>{const c=w/2;
+ const g=x.createRadialGradient(c,c*.85,20,c,c,c);g.addColorStop(0,'#2a463c');g.addColorStop(.55,'#12221d');g.addColorStop(1,'#040706');x.fillStyle=g;x.fillRect(0,0,w,w);
+ for(let i=0;i<720;i++){const a=i/720*Math.PI*2;x.strokeStyle=i%2?'rgba(255,255,255,.028)':'rgba(0,0,0,.05)';x.lineWidth=4;x.beginPath();x.moveTo(c,c);x.lineTo(c+Math.cos(a)*c,c+Math.sin(a)*c);x.stroke()}
+ for(let i=0;i<60;i++){const b=i%5===0;x.save();x.translate(c,c);x.rotate(i/60*Math.PI*2);x.fillStyle=b?'#e7e0d2':'rgba(231,224,210,.7)';x.fillRect(-(b?5:2.5),-c*.975,b?10:5,b?44:28);x.restore()}
+ x.textAlign='center';x.fillStyle='#efe4cb';x.font='italic 150px "Instrument Serif",Georgia,serif';x.fillText('Pontime',c,c-300);
+ x.fillStyle='#a49c8c';x.font='600 40px "Inter Tight",sans-serif';x.letterSpacing='14px';x.fillText('NAARDEN · BUSSUM',c,c-225);
+ x.fillStyle='#d8f5e2';x.font='600 38px "Inter Tight",sans-serif';x.letterSpacing='10px';x.fillText('SERVICED',c,c+330);
+ x.fillStyle='#a49c8c';x.font='500 34px "Inter Tight",sans-serif';x.letterSpacing='8px';x.fillText('28.800 A/H · 300 M',c,c+385);
+ x.fillStyle='#f6f1e7';x.fillRect(c+520,c-75,200,150);x.fillStyle='#111';x.font='700 112px "Inter Tight",sans-serif';x.letterSpacing='0px';x.fillText(String(new Date().getDate()),c+620,c+40);
+},true)}
+function insertTex(){return cv(2048,2048,(x,w)=>{const c=w/2;const g=x.createRadialGradient(c,c,c*.8,c,c,c);g.addColorStop(0,'#0c1c15');g.addColorStop(1,'#06100c');x.fillStyle=g;x.fillRect(0,0,w,w);
+ x.fillStyle='#d9bf8c';x.textAlign='center';x.font='600 92px "Inter Tight",sans-serif';
+ for(let i=1;i<60;i++){x.save();x.translate(c,c);x.rotate(i/60*Math.PI*2);if(i%10===0){x.fillText(String(i),0,-c*.885)}else if(i%5===0){x.fillRect(-10,-c*.985,20,70)}else if(i<15){x.fillRect(-4,-c*.985,8,46)}x.restore()}
+ x.save();x.translate(c,c);x.beginPath();x.moveTo(0,-c*.85);x.lineTo(-52,-c*.985);x.lineTo(52,-c*.985);x.closePath();x.fillStyle='#d9bf8c';x.fill();x.beginPath();x.arc(0,-c*.93,16,0,7);x.fillStyle='#d8f5e2';x.fill();x.restore();
+},true)}
+function backTex(){return cv(2048,2048,(x,w)=>{const c=w/2;x.fillStyle='#9d9890';x.fillRect(0,0,w,w);
+ for(let r=4;r<c;r+=2){const v=r%6?255:40;x.strokeStyle=`rgba(${v},${v},${v},.07)`;x.beginPath();x.arc(c,c,r,0,7);x.stroke()}
+ x.fillStyle='#45413b';x.font='600 64px "Inter Tight",sans-serif';x.textAlign='center';const t='PONTIME WATCHMAKERS · NAARDEN · BUSSUM · SERVICED · ';
+ x.save();x.translate(c,c);for(let i=0;i<t.length;i++){x.save();x.rotate(i/t.length*Math.PI*2);x.fillText(t[i],0,-c*.8);x.restore()}x.restore();
+ x.font='italic 220px "Instrument Serif",Georgia,serif';x.fillText('Pontime',c,c+70);
+},true)}
+const cotes=(gold)=>{const t=cv(512,512,(x,w)=>{for(let i=0;i<8;i++){const g=x.createLinearGradient(i*64,0,i*64+64,0);g.addColorStop(0,gold?'#8f6f3b':'#8f8a81');g.addColorStop(.48,gold?'#f2dcaa':'#f0ece4');g.addColorStop(1,gold?'#8a6a37':'#8a857c');x.fillStyle=g;x.fillRect(i*64,0,64,w)}});t.wrapS=t.wrapT=THREE.RepeatWrapping;t.rotation=.55;t.repeat.set(2.6,2.6);return t};
+const perl=()=>{const t=cv(512,512,(x,w)=>{x.fillStyle='#55504a';x.fillRect(0,0,w,w);for(let y=0;y<w;y+=24)for(let i=0;i<w;i+=24){const g=x.createRadialGradient(i+8,y+8,1,i+12,y+12,16);g.addColorStop(0,'#b2aca1');g.addColorStop(1,'#4a453f');x.fillStyle=g;x.beginPath();x.arc(i+12,y+12,15,0,7);x.fill()}});t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(2,2);return t};
+
+/* ---------- materialen ---------- */
+const M={
+ polish:new THREE.MeshPhysicalMaterial({color:0xe8e6e3,metalness:1,roughness:.08,clearcoat:.5,clearcoatRoughness:.05}),
+ brushed:new THREE.MeshPhysicalMaterial({color:0xcfccc6,metalness:1,roughness:.32,anisotropy:.85,anisotropyRotation:0}),
+ gold:new THREE.MeshPhysicalMaterial({color:0xe8c27a,metalness:1,roughness:.16,clearcoat:.4}),
+ goldD:new THREE.MeshPhysicalMaterial({color:0xb08a4c,metalness:1,roughness:.22}),
+ white:new THREE.MeshPhysicalMaterial({color:0xf2f2f2,metalness:1,roughness:.12}),
+ lume:new THREE.MeshStandardMaterial({color:0xeefaf1,emissive:0xa6f2c4,emissiveIntensity:.35,roughness:.55}),
+ dial:new THREE.MeshPhysicalMaterial({map:dialTex(),metalness:.25,roughness:.35,clearcoat:1,clearcoatRoughness:.06,envMapIntensity:.8}),
+ insert:new THREE.MeshPhysicalMaterial({map:insertTex(),metalness:.15,roughness:.18,clearcoat:1,clearcoatRoughness:.04}),
+ back:new THREE.MeshPhysicalMaterial({map:backTex(),metalness:.9,roughness:.36}),
+ rhod:new THREE.MeshPhysicalMaterial({map:cotes(false),metalness:1,roughness:.26}),
+ goldC:new THREE.MeshPhysicalMaterial({map:cotes(true),metalness:1,roughness:.24}),
+ plate:new THREE.MeshPhysicalMaterial({map:perl(),metalness:.95,roughness:.35}),
+ ruby:new THREE.MeshPhysicalMaterial({color:0xa50f28,roughness:.04,clearcoat:1}),
+ blue:new THREE.MeshPhysicalMaterial({color:0x2a3ea5,metalness:1,roughness:.18}),
+ glass:new THREE.MeshPhysicalMaterial({color:0xffffff,metalness:0,roughness:0,transparent:true,opacity:.12,clearcoat:1,clearcoatRoughness:0,envMapIntensity:1.6,depthWrite:false}),
+ dark:new THREE.MeshStandardMaterial({color:0x080808,roughness:.6}),
+};
+
+/* ---------- hulpfuncties ---------- */
+const lathe=(pts,mat,seg=160)=>{const g=new THREE.LatheGeometry(pts.map(([r,z])=>new THREE.Vector2(r,z)),seg);g.rotateX(Math.PI/2);return new THREE.Mesh(g,mat)};
+const disc=(r,h,m,seg=128)=>{const g=new THREE.CylinderGeometry(r,r,h,seg);g.rotateX(Math.PI/2);return new THREE.Mesh(g,m)};
+const ext=(sh,d,m,bv=0,bs=0)=>new THREE.Mesh(new THREE.ExtrudeGeometry(sh,{depth:d,bevelEnabled:bv>0,bevelThickness:bv,bevelSize:bs||bv,bevelSegments:4,curveSegments:48}),m);
+const at=(o,x,y,z)=>{o.position.set(x,y,z);return o};
+function gearShape(r,n,th=.022,holes=5){const s=new THREE.Shape();for(let i=0;i<n;i++){const a=i/n*Math.PI*2,st=Math.PI*2/n;[[a,r-th],[a+st*.18,r],[a+st*.5,r],[a+st*.68,r-th]].forEach(([aa,rr],j)=>{const X=Math.cos(aa)*rr,Y=Math.sin(aa)*rr;(i||j)?s.lineTo(X,Y):s.moveTo(X,Y)})}s.closePath();
+ for(let k=0;k<holes;k++){const a=k/holes*Math.PI*2+.3,h=new THREE.Path();h.absarc(Math.cos(a)*r*.52,Math.sin(a)*r*.52,r*.21,0,Math.PI*2,true);s.holes.push(h)}const c=new THREE.Path();c.absarc(0,0,r*.08,0,Math.PI*2,true);s.holes.push(c);return s}
+function sector(r1,r2,a0,a1){const s=new THREE.Shape();s.absarc(0,0,r2,a0,a1,false);s.absarc(0,0,r1,a1,a0,true);s.closePath();return s}
+
+/* ---------- het horloge ---------- */
+const root=new THREE.Group();scene.add(root);
+const watch=new THREE.Group();root.add(watch);
+const parts=[];const part=(z,ex,label)=>{const g=new THREE.Group();g.position.z=z;g.userData={z,ex,label};watch.add(g);parts.push(g);return g};
+
+// kast met geïntegreerde lugs (één vorm, afgeschuinde randen)
+const caseG=new THREE.Group();watch.add(caseG);
+{const s=new THREE.Shape(),R=1.0,ao=Math.acos(.47/R),lx=.47,li=.27,ly=1.32;
+ // rechtsboven lug -> rond rechterflank -> rechtsonder lug ...
+ s.moveTo(li,ly);s.lineTo(lx-.04,ly);s.quadraticCurveTo(lx+.02,ly,lx+.02,ly-.06);s.bezierCurveTo(lx+.03,1.1,R*Math.cos(ao)+.08,R*Math.sin(ao)+.02,R*Math.cos(ao-.08),R*Math.sin(ao-.08));
+ s.absarc(0,0,R,ao-.08,-(ao-.08),true);
+ s.bezierCurveTo(R*Math.cos(ao)+.08,-R*Math.sin(ao)-.02,lx+.03,-1.1,lx+.02,-ly+.06);s.quadraticCurveTo(lx+.02,-ly,lx-.04,-ly);s.lineTo(li,-ly);s.lineTo(li,-1.06);s.quadraticCurveTo(0,-1.1,-li,-1.06);s.lineTo(-li,-ly);
+ s.lineTo(-lx+.04,-ly);s.quadraticCurveTo(-lx-.02,-ly,-lx-.02,-ly+.06);s.bezierCurveTo(-lx-.03,-1.1,-R*Math.cos(ao)-.08,-R*Math.sin(ao)-.02,-R*Math.cos(ao-.08),-R*Math.sin(ao-.08));
+ s.absarc(0,0,R,Math.PI+(ao-.08),Math.PI-(ao-.08),true);
+ s.bezierCurveTo(-R*Math.cos(ao)-.08,R*Math.sin(ao)+.02,-lx-.03,1.1,-lx-.02,ly-.06);s.quadraticCurveTo(-lx-.02,ly,-lx+.04,ly);s.lineTo(-li,ly);s.lineTo(-li,1.06);s.quadraticCurveTo(0,1.1,li,1.06);s.closePath();
+ const hole=new THREE.Path();hole.absarc(0,0,.86,0,Math.PI*2,true);s.holes.push(hole);
+ const body=ext(s,.24,[M.brushed,M.polish],.035,.035);body.position.z=-.155;caseG.add(body);
+ // springbars
+ [1,-1].forEach(sy=>caseG.add(at((()=>{const g=new THREE.CylinderGeometry(.018,.018,.56,16);g.rotateZ(Math.PI/2);return new THREE.Mesh(g,M.polish)})(),0,sy*1.2,-.03)));
+}
+// kroon + kroonbeschermers
+const crownG=part(0,0,null);crownG.userData.side=.75;
+{const cr=new THREE.Group();cr.position.x=1.12;crownG.add(cr);
+ const c=new THREE.Mesh(new THREE.CylinderGeometry(.12,.12,.17,48),M.polish);c.rotation.z=Math.PI/2;cr.add(c);
+ for(let i=0;i<36;i++){const r=new THREE.Mesh(new THREE.BoxGeometry(.16,.016,.014),M.brushed);const a=i/36*Math.PI*2;r.position.set(0,Math.cos(a)*.121,Math.sin(a)*.121);r.rotation.x=a;cr.add(r)}
+ const cap=new THREE.Mesh(new THREE.CylinderGeometry(.1,.1,.01,48),M.polish);cap.rotation.z=Math.PI/2;cap.position.x=.09;cr.add(cap);}
+
+// schakelband
+{const geoC=new RoundedBoxGeometry(.25,.19,.11,3,.035),geoS=new RoundedBoxGeometry(.17,.19,.1,3,.035);
+ const N=16,R=2.4,mC=new THREE.InstancedMesh(geoC,M.polish,N*2),mS=new THREE.InstancedMesh(geoS,M.brushed,N*4);const d=new THREE.Object3D();let ic=0,is=0;
+ [1,-1].forEach(sy=>{for(let i=0;i<N;i++){const ph=(i+.5)*.205/R;const y=sy*(1.24+Math.sin(ph)*R),z=-.03-(1-Math.cos(ph))*R;
+  d.position.set(0,y,z);d.rotation.set(-sy*ph,0,0);d.updateMatrix();mC.setMatrixAt(ic++,d.matrix);
+  [-1,1].forEach(sx=>{d.position.set(sx*.215,y,z);d.updateMatrix();mS.setMatrixAt(is++,d.matrix)})}});
+ caseG.add(mC,mS);
+ [1,-1].forEach(sy=>{const e=new THREE.Mesh(new RoundedBoxGeometry(.56,.16,.12,3,.04),M.brushed);e.position.set(0,sy*1.17,-.03);caseG.add(e)});}
+
+// kastbodem
+const back=part(-.2,-2.0,'Kastbodem');
+back.add(lathe([[0,-.03],[.84,-.03],[.9,0],[.87,.03],[0,.03]],M.brushed));
+{const b=new THREE.Mesh(new THREE.CircleGeometry(.8,128),M.back);b.rotation.y=Math.PI;b.position.z=-.031;back.add(b);
+ for(let i=0;i<6;i++){const n=new THREE.Mesh(new THREE.BoxGeometry(.1,.05,.03),M.polish);const a=i/6*Math.PI*2;n.position.set(Math.cos(a)*.86,Math.sin(a)*.86,-.03);n.rotation.z=a;back.add(n)}}
+// rotor
+const rotorG=part(-.14,-1.6,'Rotor');
+const rotor=ext(sector(.12,.8,Math.PI,Math.PI*2),.026,M.goldC,.004);rotorG.add(rotor);
+rotorG.add(at(disc(.1,.04,M.rhod),0,0,.01));rotorG.add(at(disc(.035,.05,M.blue,32),0,0,.02));
+// bruggen + balans
+const bridges=part(-.09,-1.18,'Bruggen & balans');
+[[.3,.82,2.0,3.05],[.3,.82,.1,1.25],[.55,.82,3.5,4.3]].forEach(([a,b,c,d])=>bridges.add(ext(sector(a,b,c,d),.034,M.rhod,.004)));
+const bal=new THREE.Group();bal.position.set(-.42,-.43,.045);bridges.add(bal);
+bal.add(new THREE.Mesh(new THREE.TorusGeometry(.24,.02,16,96),M.gold));
+for(let k=0;k<3;k++){const sp=new THREE.Mesh(new THREE.BoxGeometry(.016,.24,.012),M.gold);sp.position.set(Math.cos(k*2.094)*.12,Math.sin(k*2.094)*.12,0);sp.rotation.z=k*2.094-Math.PI/2;bal.add(sp)}
+{const pts=[];for(let t=0;t<14*Math.PI;t+=.12){const r=.015+t*.004;pts.push(new THREE.Vector3(Math.cos(t)*r,Math.sin(t)*r,.02))}bal.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color:0x7d8fd1})))}
+[[-.31,.27],[0,0],[.3,.28],[.38,-.15],[.25,-.46],[-.42,-.43]].forEach(([x,y])=>{bridges.add(at(disc(.03,.05,M.polish,24),x,y,.03));bridges.add(at(disc(.018,.06,M.ruby,24),x,y,.035))});
+[[-.73,.15],[-.23,.75],[.23,.73],[.73,.15],[-.65,-.54]].forEach(([x,y])=>bridges.add(at(disc(.03,.05,M.blue,24),x,y,.04)));
+// raderwerk
+const gearsG=part(-.04,-.8,'Raderwerk');
+const wheels=[[-.31,.27,.37,90,.4],[0,0,.22,64,-3],[.3,.28,.15,50,9],[.38,-.15,.14,44,-6],[.25,-.46,.1,15,24,1]].map(([x,y,r,n,s,esc])=>{const m=ext(gearShape(r,n,esc?.035:.02,esc?0:5),.02,esc?M.polish:M.gold);m.position.set(x,y,0);m.userData={s,esc};gearsG.add(m);return m});
+// werkplaat
+const plateG=part(-.1,-.42,null);plateG.add(disc(.84,.04,[M.brushed,M.plate,M.plate]));
+// wijzerplaat + indexen
+const dialG=part(.1,.5,'Wijzerplaat');
+dialG.add(disc(.86,.02,[M.dark,M.dial,M.dark]));
+{const geo=new RoundedBoxGeometry(.075,.19,.03,2,.012),lg=new RoundedBoxGeometry(.038,.15,.03,2,.01);
+ for(let h=0;h<12;h++){if(h===3)continue;const a=Math.PI/2-h/12*Math.PI*2,xs=h===0?[-.05,.05]:[0];
+  xs.forEach(off=>{const g=new THREE.Group();g.position.set(Math.cos(a)*.62+Math.cos(a-Math.PI/2)*off,Math.sin(a)*.62+Math.sin(a-Math.PI/2)*off,.022);g.rotation.z=a-Math.PI/2;
+   g.add(new THREE.Mesh(geo,M.white));g.add(at(new THREE.Mesh(lg,M.lume),0,0,.009));dialG.add(g)})}
+ // datumrand
+ [[.521,.069,.18,.014],[.521,-.069,.18,.014],[.433,0,.014,.152],[.609,0,.014,.152]].forEach(([x,y,w,h])=>dialG.add(at(new THREE.Mesh(new RoundedBoxGeometry(w,h,.016,2,.005),M.white),x,y,.016)));
+ const dw=new THREE.Mesh(new THREE.PlaneGeometry(.135,.11),M.dial);dw.visible=false;}
+// wijzers (gefacetteerd: twee helften)
+const handsG=part(.14,.88,'Wijzers');
+function facetHand(L,W,lumeL){const g=new THREE.Group();
+ const half=(sx,m)=>{const s=new THREE.Shape();s.moveTo(0,-.09);s.lineTo(sx*W,-.06);s.lineTo(sx*W*.85,L*.78);s.lineTo(0,L);s.closePath();const e=ext(s,.012,m);g.add(e)};
+ half(1,M.white);half(-1,M.polish);
+ const ls=new THREE.Shape();ls.moveTo(-W*.38,.02);ls.lineTo(W*.38,.02);ls.lineTo(W*.32,lumeL);ls.lineTo(0,lumeL+.03);ls.lineTo(-W*.32,lumeL);ls.closePath();g.add(at(ext(ls,.004,M.lume),0,0,.013));return g}
+const hH=facetHand(.42,.042,.32),hM=facetHand(.66,.032,.54),hS=new THREE.Group();
+hM.position.z=.018;hS.position.z=.036;
+hS.add(at(new THREE.Mesh(new THREE.BoxGeometry(.012,.9,.006),M.white),0,.27,0));
+{const r=new THREE.Mesh(new THREE.TorusGeometry(.04,.01,12,40),M.white);r.position.y=.5;hS.add(r);hS.add(at(disc(.032,.006,M.lume,32),0,.5,.002))}
+handsG.add(hH,hM,hS);handsG.add(at(disc(.045,.03,M.white,40),0,0,.05));
+// bezel
+const bezelG=part(.205,1.26,'Bezel');
+const bezelSpin=new THREE.Group();bezelG.add(bezelSpin);
+bezelSpin.add(lathe([[.84,-.03],[1.02,-.03],[1.04,.0],[1.02,.045],[.97,.06],[.84,.06],[.84,-.03]],M.polish));
+{const ins=new THREE.Mesh(new THREE.RingGeometry(.865,.985,180,1),M.insert);ins.position.z=.062;bezelSpin.add(ins);
+ const p=ins.geometry.attributes.position,uv=ins.geometry.attributes.uv;for(let i=0;i<p.count;i++)uv.setXY(i,p.getX(i)/2+.5,p.getY(i)/2+.5);
+ const n=new THREE.InstancedMesh(new THREE.BoxGeometry(.024,.02,.07),M.brushed,120),d=new THREE.Object3D();
+ for(let i=0;i<120;i++){const a=i/120*Math.PI*2;d.position.set(Math.cos(a)*1.035,Math.sin(a)*1.035,.012);d.rotation.z=a;d.updateMatrix();n.setMatrixAt(i,d.matrix)}bezelSpin.add(n);}
+// saffierglas (licht gewelfd)
+const glassG=part(.27,1.66,'Saffierglas');
+{const g=new THREE.SphereGeometry(4,96,24,0,Math.PI*2,0,Math.asin(.86/4));g.rotateX(Math.PI/2);g.translate(0,0,-Math.sqrt(16-.86*.86));glassG.add(new THREE.Mesh(g,M.glass))}
+
+/* ---------- vonken (laserlassen) ---------- */
+const SP=90,sparkGeo=new THREE.BufferGeometry(),sPos=new Float32Array(SP*3),sVel=[],sLife=new Float32Array(SP);
+sparkGeo.setAttribute('position',new THREE.BufferAttribute(sPos,3));
+const sparks=new THREE.Points(sparkGeo,new THREE.PointsMaterial({color:0xffc27a,size:.035,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false}));
+const sparkOrigin=new THREE.Vector3(.4,1.18,.14);caseG.add(sparks);
+for(let i=0;i<SP;i++){sVel.push(new THREE.Vector3());sLife[i]=-Math.random()}
+const laser=new THREE.PointLight(0xffb060,0,1.6,2);laser.position.copy(sparkOrigin);caseG.add(laser);
+
+/* ---------- labels ---------- */
+const lbWrap=document.getElementById('labels');
+parts.forEach(p=>{if(!p.userData.label)return;const d=document.createElement('div');d.className='lbl';d.innerHTML=`<i></i><span>${p.userData.label}</span>`;lbWrap.appendChild(d);p.userData.el=d});
+
+/* ---------- camera-choreografie ---------- */
+// p: scrollpositie in film; r: rotatie horloge; c: camera positie; t: kijkpunt; ex: uit elkaar; bk: kastbodem eraf; ox/oy: beeldverschuiving; sw: lichtveeg; bz: bezel draai; lz: laser
+const K=[
+ {p:0,   r:[.12,-.32,.05],   c:[0,0,10.5], t:[0,0,0], ex:0,bk:0,ox:.2,  oy:0},
+ {p:.07, r:[.18,-.45,0],   c:[0,0,9.8],  t:[0,0,0],  ex:0,bk:0,ox:.19,  oy:0},
+ {p:.13, r:[.28,-.62,-.12],c:[0,0,8.4],    t:[0,0,0],    ex:0,bk:0,ox:.17,oy:0},
+ {p:.21, r:[.3,-.95,-.15], c:[0,.2,9.6],   t:[0,0,0],    ex:0,bk:0,ox:.17,oy:0},
+ {p:.29, r:[.32,-1.02,-.18],c:[0,.2,10.6], t:[0,0,0],    ex:1,bk:0,ox:.17,oy:0},
+ {p:.4,  r:[.32,-1.02,-.18],c:[0,.2,10.6], t:[0,0,0],    ex:1,bk:0,ox:.17,oy:0},
+ {p:.46, r:[.22,-1.05,.1],  c:[.2,.1,6.6],  t:[.2,0,.3], ex:0,bk:0,ox:.2,oy:0,sw:0},
+ {p:.54, r:[.22,-1.15,.1],  c:[.2,.1,6.4],  t:[.2,0,.3], ex:0,bk:0,ox:.2,oy:0,sw:1},
+ {p:.585,r:[.72,-.3,0],    c:[0,.6,6.2],   t:[0,.3,.2], ex:0,bk:0,ox:.23,oy:0,bz:0},
+ {p:.665,r:[.72,-.3,0],    c:[0,.6,6.2],   t:[0,.3,.2], ex:0,bk:0,ox:.23,oy:0,bz:1},
+ {p:.72, r:[.2,Math.PI-.45,0],c:[0,0,7.4], t:[0,0,0],    ex:0,bk:1,ox:.2,oy:0},
+ {p:.8,  r:[.2,Math.PI-.55,0],c:[0,0,7.2], t:[0,0,0],    ex:0,bk:1,ox:.2,oy:0},
+ {p:.845,r:[.42,-.55,0],   c:[.2,1.0,6.6], t:[.3,.6,0],ex:0,bk:0,ox:.23,oy:0,lz:0},
+ {p:.9,  r:[.42,-.55,0],   c:[.2,1.0,6.6], t:[.3,.6,0],ex:0,bk:0,ox:.23,oy:0,lz:1},
+ {p:.95, r:[.12,-.32,.05],   c:[0,0,10.5], t:[0,0,0], ex:0,bk:0,ox:.2,  oy:0},
+ {p:1,   r:[.12,-.32,.05],   c:[0,0,10.5], t:[0,0,0], ex:0,bk:0,ox:.2,  oy:0},
+];
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2,lerp=(a,b,t)=>a+(b-a)*t;
+const L3=(a,b,t)=>[lerp(a[0],b[0],t),lerp(a[1],b[1],t),lerp(a[2],b[2],t)];
+function key_(p){let i=0;while(i<K.length-2&&p>=K[i+1].p)i++;const A=K[i],B=K[i+1],t=ease(clamp((p-A.p)/(B.p-A.p)));
+ const g=(k,d=0)=>lerp(A[k]??d,B[k]??d,t);return{r:L3(A.r,B.r,t),c:L3(A.c,B.c,t),t:L3(A.t,B.t,t),ex:g('ex'),bk:g('bk'),ox:g('ox'),oy:g('oy'),sw:(A.sw!==undefined&&B.sw!==undefined)?lerp(A.sw,B.sw,t):0,bz:g('bz'),lz:g('lz'),swOn:A.sw!==undefined&&B.sw!==undefined,bzOn:A.bz!==undefined&&B.bz!==undefined,lzOn:A.lz!==undefined&&B.lz!==undefined}}
+
+/* ---------- scroll & loop ---------- */
+const film=document.getElementById('film'),caps=[...document.querySelectorAll('.cap')],cue=document.getElementById('cue'),chap=document.getElementById('chap');
+const stops=[0,.165,.335,.5,.625,.76,.87,.975];
+stops.forEach((s,i)=>{const b=document.createElement('button');b.setAttribute('aria-label','Hoofdstuk '+(i+1));b.onclick=()=>{const y=film.offsetTop+(film.offsetHeight-innerHeight)*s;lenis?lenis.scrollTo(y):scrollTo({top:y,behavior:'smooth'})};chap.appendChild(b)});
+const dots=[...chap.children];
+let W=0,H=0,mob=false;
+/* selectieve bloom: alleen lume gloeit, de rest blijft scherp (zoals three.js voorbeeld) */
+const BLOOM=1,bloomLayer=new THREE.Layers();bloomLayer.set(BLOOM);
+scene.traverse(o=>{if(o.material===M.lume)o.layers.enable(BLOOM)});
+const darkMat=new THREE.MeshBasicMaterial({color:0x000000}),saved=new Map();
+const renderPass=new RenderPass(scene,camera);
+const bloomComposer=new EffectComposer(renderer);bloomComposer.renderToScreen=false;
+const bloom=new UnrealBloomPass(new THREE.Vector2(256,256),.28,.08,0);bloomComposer.addPass(renderPass);bloomComposer.addPass(bloom);
+const mixPass=new ShaderPass(new THREE.ShaderMaterial({uniforms:{baseTexture:{value:null},bloomTexture:{value:bloomComposer.renderTarget2.texture},uB:{value:0}},
+ vertexShader:'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
+ fragmentShader:'uniform sampler2D baseTexture;uniform sampler2D bloomTexture;uniform float uB;varying vec2 vUv;void main(){gl_FragColor=texture2D(baseTexture,vUv)+uB*texture2D(bloomTexture,vUv);}'}),'baseTexture');
+mixPass.needsSwap=true;
+const composer=new EffectComposer(renderer);composer.addPass(renderPass);composer.addPass(mixPass);composer.addPass(new OutputPass());
+function darken(o){if((o.isMesh||o.isLine||o.isPoints)&&!bloomLayer.test(o.layers)){const hide=!o.isMesh||(o.material&&o.material.transparent);saved.set(o,hide?{v:o.visible}:o.material);if(hide)o.visible=false;else o.material=darkMat}}
+function restore(o){if(saved.has(o)){const v=saved.get(o);if(v&&v.v!==undefined)o.visible=v.v;else o.material=v;saved.delete(o)}}
+const MATS=Object.values(M).filter(m=>'envMapIntensity' in m);MATS.forEach(m=>m.userData.env=m.envMapIntensity);
+const LB={key:key.intensity,rim:rim.intensity,hemi:hemi.intensity};
+function resize(){W=innerWidth;H=innerHeight;mob=W<=820;renderer.setSize(W,H,false);composer.setSize(W,H);composer.setPixelRatio(DPR);bloomComposer.setSize(W,H);bloomComposer.setPixelRatio(DPR);camera.aspect=W/H;camera.updateProjectionMatrix();needs=true}
+addEventListener('resize',resize);
+let sp=0,needs=true,last=performance.now(),visible=true;
+new IntersectionObserver(e=>{visible=e[0].isIntersecting;canvas.classList.toggle('off',!visible)},{rootMargin:'0px 0px -10% 0px'}).observe(film);
+const tgt=new THREE.Vector3(),v=new THREE.Vector3();
+function frame(now){
+ requestAnimationFrame(frame);
+ lenis&&lenis.raf(now);
+ const dt=Math.min(80,now-last);last=now;
+ const r=film.getBoundingClientRect(),tp=clamp(-r.top/(r.height-innerHeight));
+ sp+= (tp-sp)*(1-Math.pow(.84,dt/16.7)); if(Math.abs(tp-sp)<.00005)sp=tp;
+ // captions
+ caps.forEach(c=>{const a=+c.dataset.a,b=+c.dataset.b,f=.022;const o=clamp((sp-a)/f)*clamp((b-sp)/f);c.style.opacity=o;c.classList.toggle('on',o>.5);
+  const y=(1-o)*16;c.style.transform=c.classList.contains('left')&&!mob?`translateY(calc(-50% + ${y}px))`:`translateY(${y}px)`});
+ cue.style.opacity=sp>.01?0:1;
+ let ai=0;stops.forEach((s,i)=>{if(sp>=s-.04)ai=i});dots.forEach((d,i)=>d.classList.toggle('on',i===ai));
+ if(!visible)return;
+ const k=key_(sp),t=now/1000;
+ // horloge
+ const D=Math.max(1-ease(clamp(sp/.055)),ease(clamp((sp-.94)/.035)));
+ const straight=mob?(1-clamp(sp/.1))+clamp((sp-.93)/.05):0; // op mobiel recht in beeld bij opening/einde
+ watch.rotation.set((k.r[0]+Math.sin(t*.5)*.015)*(1-straight*.6),(k.r[1]+Math.sin(t*.35)*.025)*(1-straight*.9),k.r[2]*(1-straight));
+ parts.forEach(g=>{const u=g.userData;g.position.z=u.z+u.ex*k.ex;if(u.side)g.position.x=u.side*k.ex});
+ back.position.z+= -1.3*k.bk;back.rotation.y=-.5*k.bk;back.position.x=.9*k.bk;
+ rotor.rotation.z=-sp*Math.PI*6+t*.12;
+ bezelSpin.rotation.z=k.bzOn?-Math.round(k.bz*120)/120*Math.PI*2*.5:0;
+ // camera
+ const dist=mob?(1.75+.45*k.ex):1;
+ camera.position.set(k.c[0],k.c[1],k.c[2]*dist);tgt.set(k.t[0],k.t[1],k.t[2]);camera.lookAt(tgt);
+ const ox=mob?0:k.ox,oy=mob?.2:k.oy;
+ camera.setViewOffset(W,H,-ox*W,oy*H,W,H);
+ bgMat.uniforms.uC.value.set(.5+ox,.5+(mob?.16:-k.oy));
+ // lichtveeg bij polijsten
+ sweep.intensity=k.swOn?60*Math.sin(Math.PI*clamp(k.sw)):0;sweep.position.set(4,lerp(3,-3,clamp(k.sw)),4);sweep.target.position.set(.25,0,.6);
+ // tijd
+ const d=new Date(),sec=d.getSeconds()+Math.floor(d.getMilliseconds()/125)/8,min=d.getMinutes()+sec/60,hr=d.getHours()%12+min/60;
+ // in nachtstand staan de wijzers op 10:10 (logo vrij), daarna echte tijd
+ const P=D>.001?ease(clamp(D)):0, toA=(real,pose)=>{let d=pose-real;d=((d+Math.PI)%(Math.PI*2)+Math.PI*2)%(Math.PI*2)-Math.PI;return real+d*P};
+ hS.rotation.z=toA(-sec/60*Math.PI*2,-Math.PI);hM.rotation.z=toA(-min/60*Math.PI*2,-10/60*Math.PI*2);hH.rotation.z=toA(-hr/12*Math.PI*2,-(10+10/60)/12*Math.PI*2);
+ wheels.forEach(w=>{w.rotation.z=w.userData.esc?-Math.floor(t*8)*(Math.PI*2/30):t*w.userData.s*.1});
+ bal.rotation.z=Math.sin(t*Math.PI*8)*3.4;
+ // vonken
+ const lz=k.lzOn?Math.sin(Math.PI*clamp(k.lz)):0;laser.intensity=lz*(2.5+Math.random()*2.5);sparks.visible=lz>.02;
+ if(sparks.visible){for(let i=0;i<SP;i++){sLife[i]-=dt/600;if(sLife[i]<=0&&Math.random()<lz*.25){sLife[i]=1;sPos.set([sparkOrigin.x,sparkOrigin.y,sparkOrigin.z],i*3);sVel[i].set((Math.random()-.5)*.9,Math.random()*.9+.1,Math.random()*.7)}
+  if(sLife[i]>0){sVel[i].y-=dt/1000*2.2;sPos[i*3]+=sVel[i].x*dt/1000;sPos[i*3+1]+=sVel[i].y*dt/1000;sPos[i*3+2]+=sVel[i].z*dt/1000}else{sPos[i*3+1]=-99}}
+  sparkGeo.attributes.position.needsUpdate=true}
+ // nachtstand (begin + eind): staal bijna zwart met randlicht, lume gloeit selectief
+ key.intensity=LB.key*(1-D*.6);rim.intensity=LB.rim*(1+D*.5);hemi.intensity=LB.hemi*(1-D);
+ MATS.forEach(m=>m.envMapIntensity=m.userData.env*(1-D*.965));
+ M.lume.emissiveIntensity=.35+D*.55;M.lume.emissive.setHex(D>.5?0x5cff7a:0xa6f2c4);M.lume.color.setHex(D>.5?0x9dffb0:0xeefaf1);
+ bgMat.uniforms.uI.value=1-D*.7;mixPass.uniforms.uB.value=D;
+ if(D>.01){scene.traverse(darken);bloomComposer.render();scene.traverse(restore)}
+ composer.render();
+ // labels
+ const sh=clamp((k.ex-.8)/.2);
+ parts.forEach((g,i)=>{const el=g.userData.el;if(!el)return;if(sh<=0){el.style.opacity=0;return}v.set(0,i%2?-.98:.98,0);g.localToWorld(v);v.project(camera);
+  el.style.transform=`translate(${(v.x*.5+.5)*W}px,${(-v.y*.5+.5)*H}px)`;el.style.opacity=sh});
+}
+document.fonts&&document.fonts.ready.then(()=>{M.dial.map=dialTex();M.insert.map=insertTex();M.back.map=backTex();[M.dial,M.insert,M.back].forEach(m=>m.needsUpdate=true)});
+resize();requestAnimationFrame(frame);
+</script>
+</body>
+</html>
