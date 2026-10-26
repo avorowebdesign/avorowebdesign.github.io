@@ -37,6 +37,15 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"AVORO","url":"https://avoroweb.nl","inLanguage":"nl-NL"}
 </script>
+<style>
+.reel{background:#141414;color:var(--bg);padding:clamp(60px,8vw,110px) 0}
+.reel .sh em{font-style:italic;color:var(--t)}
+.reel-s{color:#a9a196;max-width:52ch;font-weight:300;margin-bottom:2.2rem}
+.reel-v{position:relative;border-radius:14px;overflow:hidden;background:#0c0c0d;box-shadow:0 30px 80px rgba(0,0,0,.45);aspect-ratio:16/9}
+.reel-v video{display:block;width:100%;height:100%;object-fit:cover}
+.reel-t{position:absolute;right:14px;bottom:14px;font:500 .75rem var(--db);color:#fff;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.2);padding:.45rem .9rem;border-radius:999px;cursor:pointer;backdrop-filter:blur(6px)}
+.reel-t:focus-visible{outline:2px solid var(--t);outline-offset:2px}
+</style>
 </head>
 <body>
 <nav id="nav">
@@ -100,6 +109,19 @@
 <div class="st"><div class="sn">01</div><h3>Strategie</h3><p>We beginnen met jouw doelen. Wie is je klant, wat moet de site bereiken, en hoe meten we succes?</p></div>
 <div class="st"><div class="sn">02</div><h3>Design & Bouw</h3><p>Van ontwerp tot werkende site. Je ziet het resultaat groeien en geeft feedback voordat er iets live gaat.</p></div>
 <div class="st"><div class="sn">03</div><h3>Lancering & Groei</h3><p>Na de lancering monitoren we prestaties, optimaliseren waar nodig en zorgen dat je site blijft groeien.</p></div>
+</div>
+</div></section>
+
+<section class="reel"><div class="container">
+<p class="eyebrow fu">Concepten</p>
+<h2 class="sh fu">Zo kan jouw site <em>bewegen</em></h2>
+<p class="reel-s fu">Een greep uit de concepten die we voor ondernemers ontwierpen. Elk ontwerp op maat, met interactie die bezoekers onthouden.</p>
+<div class="reel-v fu">
+<video id="reelVid" autoplay muted loop playsinline preload="metadata" poster="/media/showreel-poster.jpg" aria-label="Showreel van AVORO-concepten: een horlogemaker, car detailing, zonnepanelen, schildersbedrijf en nanny-bureau">
+<source src="/media/showreel.webm" type="video/webm">
+<source src="/media/showreel.mp4" type="video/mp4">
+</video>
+<button class="reel-t" id="reelT" aria-label="Pauzeer video">Pauze</button>
 </div>
 </div></section>
 
@@ -241,6 +263,12 @@ document.querySelectorAll('.fu').forEach(e=>ob.observe(e));
 
 
 document.querySelectorAll('.pf-scroll').forEach(s=>{s.addEventListener('scroll',()=>{if(s.scrollTop>20)s.classList.add('scrolled')},{once:true})});
+</script>
+<script>
+(function(){const v=document.getElementById('reelVid'),b=document.getElementById('reelT');if(!v)return;
+if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();b.textContent='Afspelen';b.setAttribute('aria-label','Speel video af')}
+b.onclick=()=>{if(v.paused){v.play();b.textContent='Pauze';b.setAttribute('aria-label','Pauzeer video')}else{v.pause();b.textContent='Afspelen';b.setAttribute('aria-label','Speel video af')}};
+new IntersectionObserver(e=>{if(b.textContent==='Afspelen')return;e[0].isIntersecting?v.play().catch(()=>{}):v.pause()},{threshold:.2}).observe(v)})();
 </script>
 </body>
 </html>
