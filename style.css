@@ -1,3 +1,4 @@
+img{height:auto}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{--c:#292929;--bg:#FAF8F5;--t:#C5B9A5;--lt:#E5DED3;--mid:#8A8070;--df:'Cormorant Garamond',Georgia,serif;--db:'Inter',-apple-system,sans-serif;--r:6px}
 html{scroll-behavior:smooth}
@@ -311,3 +312,6 @@ section{padding:55px 0}
 
 .hero-trust{justify-content:flex-end}
 @media(max-width:768px){.hero-trust{justify-content:center}}
+
+/* Trust labels mogen op smalle telefoons naar een tweede regel */
+@media(max-width:440px){.tb{flex-wrap:wrap;justify-content:center;row-gap:.45rem}.tb span{font-size:.62rem;padding:.3rem .65rem}}

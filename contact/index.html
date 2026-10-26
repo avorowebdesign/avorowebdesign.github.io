@@ -14,18 +14,21 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css?v=7">
+<link rel="stylesheet" href="/style.css?v=8">
 <link rel="canonical" href="https://avoroweb.nl/contact/">
 <meta name="robots" content="index, follow">
 <meta http-equiv="content-language" content="nl">
 <meta name="geo.region" content="NL">
 <meta name="geo.placename" content="Nederland">
 <link rel="alternate" hreflang="nl" href="https://avoroweb.nl/contact/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ContactPage","url":"https://avoroweb.nl/contact/","name":"Contact","description":"Neem contact op met AVORO voor een website of webshop.","inLanguage":"nl-NL","isPartOf":{"@type":"WebSite","name":"AVORO","url":"https://avoroweb.nl"},"publisher":{"@type":"Organization","name":"AVORO","url":"https://avoroweb.nl","logo":"https://avoroweb.nl/logo.webp"},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://avoroweb.nl/"},{"@type":"ListItem","position":2,"name":"Contact","item":"https://avoroweb.nl/contact/"}]},"mainEntity":{"@type":"Organization","name":"AVORO","url":"https://avoroweb.nl","logo":"https://avoroweb.nl/logo.webp","email":"info@avoroweb.nl","contactPoint":{"@type":"ContactPoint","email":"info@avoroweb.nl","contactType":"customer service","availableLanguage":["Dutch","English"]}}}
+</script>
 </head>
 <body>
 <nav id="nav" class="dn">
 <div class="container">
-<a class="logo" href="/"><img src="/logo.webp" alt="AVORO"></a>
+<a class="logo" href="/"><img src="/logo.webp" alt="AVORO" width="1172" height="184"></a>
 <ul class="nl">
 <li><a href="/diensten/">Diensten</a></li>
 <li><a href="/over-ons/">Over ons</a></li>
@@ -52,12 +55,13 @@
 <section><div class="container"><div class="cc fu">
 <div class="cf"><h2>Stuur een bericht</h2>
 <form id="cf" action="https://formspree.io/f/xeajzjqp" method="POST">
-<div class="fg2"><label>Naam *</label><input type="text" name="name" placeholder="Je volledige naam" required></div>
-<div class="fg2"><label>Email *</label><input type="email" name="email" placeholder="je@email.nl" required></div>
-<div class="fg2"><label>Telefoon</label><input type="tel" name="phone" placeholder="06 - 12345678"></div>
-<div class="fg2"><label>Waar ben je naar op zoek?</label>
-<select name="service"><option value="" disabled selected>Kies een optie</option><option>Nieuwe website</option><option>Webshop (Shopify)</option><option>Webshop (Magento)</option><option>Website redesign</option><option>SEO & Performance</option><option>Anders</option></select></div>
-<div class="fg2"><label>Bericht *</label><textarea name="message" placeholder="Vertel kort over je project..." required></textarea></div>
+<div class="fg2"><label for="cf-name">Naam *</label><input id="cf-name" type="text" name="name" placeholder="Je volledige naam" required></div>
+<div class="fg2"><label for="cf-email">Email *</label><input id="cf-email" type="email" name="email" placeholder="je@email.nl" required></div>
+<div class="fg2"><label for="cf-phone">Telefoon</label><input id="cf-phone" type="tel" name="phone" placeholder="06 - 12345678"></div>
+<div class="fg2"><label for="cf-service">Waar ben je naar op zoek?</label>
+<select id="cf-service" name="service"><option value="" disabled selected>Kies een optie</option><option>Nieuwe website</option><option>Webshop (Shopify)</option><option>Webshop (Magento)</option><option>Website redesign</option><option>SEO & Performance</option><option>Anders</option></select></div>
+<div class="fg2"><label for="cf-message">Bericht *</label><textarea id="cf-message" name="message" placeholder="Vertel kort over je project..." required></textarea></div>
+<input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 <input type="hidden" name="_subject" value="Nieuw bericht via avoroweb.nl">
 <button type="submit" class="bp" style="width:100%;justify-content:center">Verstuur bericht <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M8 2l5 5-5 5"/></svg></button>
 </form>
@@ -66,7 +70,7 @@
 <div class="ci"><h2>Direct contact</h2>
 <div class="cii"><h4>Reactietijd</h4><p>We reageren binnen 24 uur op werkdagen. Vaak sneller.</p></div>
 <div class="cii"><h4>E-mail</h4><p><a href="mailto:info@avoroweb.nl" style="color:var(--t)">info@avoroweb.nl</a></p></div>
-<div class="cii"><h4>Socials</h4><p><a href="https://www.instagram.com/avoroweb.nl" target="_blank">Instagram</a></p><p><a href="https://www.linkedin.com/company/avoroweb.nl" target="_blank">LinkedIn</a></p><p><a href="https://www.tiktok.com/@avoroweb.nl" target="_blank">TikTok</a></p></div>
+<div class="cii"><h4>Socials</h4><p><a href="https://www.instagram.com/avoroweb.nl" target="_blank" rel="noopener">Instagram</a></p><p><a href="https://www.linkedin.com/company/avoroweb.nl" target="_blank" rel="noopener">LinkedIn</a></p><p><a href="https://www.tiktok.com/@avoroweb.nl" target="_blank" rel="noopener">TikTok</a></p></div>
 <div class="cii"><h4>Locatie</h4><p>Nederland</p></div>
 </div>
 </div></div></section>
@@ -75,20 +79,20 @@
 <footer><div class="container">
 <div class="fg">
 <div>
-<div class="fb"><a href="/"><img src="/logo.webp" alt="AVORO" style="height:30px;display:block"></a></div>
+<div class="fb"><a href="/"><img src="/logo.webp" alt="AVORO" style="height:30px;display:block;width:auto" width="1172" height="184"></a></div>
 <p class="ft">Websites die presteren. Resultaten die tellen. Gebouwd voor ondernemers die het verschil willen maken.</p>
 <div class="sb">
-<a href="https://www.instagram.com/avoroweb.nl" target="_blank" class="sba" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
-<a href="https://www.linkedin.com/company/avoroweb.nl" target="_blank" class="sba" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-<a href="https://www.tiktok.com/@avoroweb.nl" target="_blank" class="sba" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg></a>
-<span style="width:1px;height:20px;background:var(--lt);margin:0 .3rem"></span><img src="/favicon.png" alt="AVORO" style="width:32px;height:32px;border-radius:50%;border:1px solid var(--lt)"><div><div style="color:#F5A623;font-size:.7rem;letter-spacing:1px">&#9733;&#9733;&#9733;&#9733;&#9733;</div><span style="font-size:.7rem;color:var(--mid);font-weight:300">23+ ondernemers succesvol geholpen</span></div>
+<a href="https://www.instagram.com/avoroweb.nl" target="_blank" rel="noopener" class="sba" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+<a href="https://www.linkedin.com/company/avoroweb.nl" target="_blank" rel="noopener" class="sba" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+<a href="https://www.tiktok.com/@avoroweb.nl" target="_blank" rel="noopener" class="sba" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg></a>
+<span style="width:1px;height:20px;background:var(--lt);margin:0 .3rem"></span><img src="/favicon.png" alt="AVORO" style="width:32px;height:32px;border-radius:50%;border:1px solid var(--lt)" width="64" height="64"><div><div style="color:#F5A623;font-size:.7rem;letter-spacing:1px">&#9733;&#9733;&#9733;&#9733;&#9733;</div><span style="font-size:.7rem;color:var(--mid);font-weight:300">23+ ondernemers succesvol geholpen</span></div>
 </div></div>
 <div><h4>Navigatie</h4><ul>
 <li><a href="/">Home</a></li><li><a href="/diensten/">Diensten</a></li><li><a href="/over-ons/">Over ons</a></li><li><a href="/projecten/">Projecten</a></li><li><a href="/blog/">Blog</a></li><li><a href="/contact/">Contact</a></li><li><a href="/privacy/">Privacy</a></li>
 </ul></div>
 <div><h4>Contact</h4><ul>
 <li><a href="mailto:info@avoroweb.nl">info@avoroweb.nl</a></li>
-<li><a href="/contact/">Plan een gesprek ›</a></li><li><a href="https://www.instagram.com/avoroweb.nl" target="_blank">Instagram</a></li><li><a href="https://www.linkedin.com/company/avoroweb.nl" target="_blank">LinkedIn</a></li><li><a href="https://www.tiktok.com/@avoroweb.nl" target="_blank">TikTok</a></li>
+<li><a href="/contact/">Plan een gesprek ›</a></li><li><a href="https://www.instagram.com/avoroweb.nl" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.linkedin.com/company/avoroweb.nl" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.tiktok.com/@avoroweb.nl" target="_blank" rel="noopener">TikTok</a></li>
 </ul></div></div>
 <div class="fbot"><span>© 2026 AVORO</span><span>Alle rechten voorbehouden</span></div>
 </div></footer>
