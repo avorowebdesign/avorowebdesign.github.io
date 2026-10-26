@@ -315,3 +315,6 @@ section{padding:55px 0}
 
 /* Trust labels mogen op smalle telefoons naar een tweede regel */
 @media(max-width:440px){.tb{flex-wrap:wrap;justify-content:center;row-gap:.45rem}.tb span{font-size:.62rem;padding:.3rem .65rem}}
+
+/* Contact sidebar: h3 met dezelfde stijl als de oude h4 (juiste koppenvolgorde) */
+.cii h3.cih{font-family:'Inter',sans-serif;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--t);margin-bottom:.35rem;line-height:1.5}
