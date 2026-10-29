@@ -12,10 +12,9 @@
 <meta property="og:image" content="https://avoroweb.nl/og-image.jpg">
 <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css?v=8">
+<link rel="preload" href="/fonts/cormorant-garamond-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css?v=9">
 <link rel="canonical" href="https://avoroweb.nl/">
 <meta name="robots" content="index, follow">
 <meta http-equiv="content-language" content="nl">
@@ -117,9 +116,9 @@
 <h2 class="sh fu">Zo kan jouw site <em>bewegen</em></h2>
 <p class="reel-s fu">Een greep uit de concepten die we voor ondernemers ontwierpen. Elk ontwerp op maat, met interactie die bezoekers onthouden.</p>
 <div class="reel-v fu">
-<video id="reelVid" autoplay muted loop playsinline preload="metadata" poster="/media/showreel-poster.jpg" aria-label="Showreel van AVORO-concepten: een horlogemaker, car detailing, zonnepanelen, schildersbedrijf en nanny-bureau">
-<source src="/media/showreel.webm" type="video/webm">
-<source src="/media/showreel.mp4" type="video/mp4">
+<video id="reelVid" muted loop playsinline preload="none" poster="/media/showreel-poster.webp" width="1280" height="720" aria-label="Showreel van AVORO-concepten: een horlogemaker, car detailing, zonnepanelen, schildersbedrijf en nanny-bureau">
+<source data-src="/media/showreel.webm" type="video/webm">
+<source data-src="/media/showreel.mp4" type="video/mp4">
 </video>
 <button class="reel-t" id="reelT" aria-label="Pauzeer video">Pauze</button>
 </div>
@@ -266,9 +265,14 @@ document.querySelectorAll('.pf-scroll').forEach(s=>{s.addEventListener('scroll',
 </script>
 <script>
 (function(){const v=document.getElementById('reelVid'),b=document.getElementById('reelT');if(!v)return;
-if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();b.textContent='Afspelen';b.setAttribute('aria-label','Speel video af')}
-b.onclick=()=>{if(v.paused){v.play();b.textContent='Pauze';b.setAttribute('aria-label','Pauzeer video')}else{v.pause();b.textContent='Afspelen';b.setAttribute('aria-label','Speel video af')}};
-new IntersectionObserver(e=>{if(b.textContent==='Afspelen')return;e[0].isIntersecting?v.play().catch(()=>{}):v.pause()},{threshold:.2}).observe(v)})();
+// Video pas laden als hij bijna in beeld is, zodat de homepage snel blijft
+let loaded=false;const load=()=>{if(loaded)return;loaded=true;v.querySelectorAll('source[data-src]').forEach(s=>{s.src=s.dataset.src});v.load()};
+const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const setBtn=p=>{b.textContent=p?'Pauze':'Afspelen';b.setAttribute('aria-label',p?'Pauzeer video':'Speel video af')};
+let userPaused=still;setBtn(!still);
+b.onclick=()=>{load();if(v.paused){userPaused=false;v.play().catch(()=>{});setBtn(true)}else{userPaused=true;v.pause();setBtn(false)}};
+new IntersectionObserver(e=>{if(e[0].isIntersecting)load()},{rootMargin:'400px 0px'}).observe(v);
+new IntersectionObserver(e=>{if(userPaused)return;e[0].isIntersecting?v.play().catch(()=>{}):v.pause()},{threshold:.2}).observe(v)})();
 </script>
 </body>
 </html>
