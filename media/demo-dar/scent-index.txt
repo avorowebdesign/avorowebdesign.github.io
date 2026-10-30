@@ -1,0 +1,39 @@
+<section class="index" id="geuren">
+  <div class="wrap">
+    <div class="index__head">
+      <h2 class="h2">{{ section.settings.heading }}</h2>
+      <p class="muted">{{ section.settings.text }}</p>
+    </div>
+    <div class="index__grid">
+      <ol class="rows" id="rows">
+        {%- for p in collections[section.settings.collection].products -%}
+          {%- capture col -%}{% render 'scent-color', p: p %}{%- endcapture -%}
+          {%- if p.featured_image -%}{%- assign img = p.featured_image | image_url: width: 900 -%}{%- else -%}{%- assign img = section.settings.preview_base | append: p.metafields.dar.no.value | append: '.jpg' -%}{%- endif -%}
+          <li class="rowi{% if forloop.first %} is-act{% endif %}" style="--c:{{ col }}" data-img="{{ img }}" data-fam="{{ p.metafields.dar.family.value }}" data-no="No. {{ p.metafields.dar.no.value }}" data-url="{{ p.url }}">
+            <a href="{{ p.url }}">
+              <img class="rowi__thumb" src="{{ img }}" alt="" loading="lazy" width="120" height="120">
+              <span class="rowi__no">No. {{ p.metafields.dar.no.value }}</span>
+              <span class="rowi__fam">{{ p.metafields.dar.family.value }}</span>
+              <span class="rowi__notes">{{ p.metafields.dar.top.value }} <i>—</i> {{ p.metafields.dar.heart.value }} <i>—</i> {{ p.metafields.dar.base.value }}</span>
+              <span class="rowi__price">{{ p.price | money }}</span>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ol>
+      {%- assign first = collections[section.settings.collection].products.first -%}
+      <figure class="preview" id="preview">
+        <div class="preview__img"><img id="pvImg" src="{% if first.featured_image %}{{ first.featured_image | image_url: width: 900 }}{% else %}{{ section.settings.preview_base }}{{ first.metafields.dar.no.value }}.jpg{% endif %}" alt="" width="900" height="900" loading="lazy"></div>
+        <figcaption><span id="pvNo">No. {{ first.metafields.dar.no.value }}</span><span id="pvFam">{{ first.metafields.dar.family.value }}</span></figcaption>
+      </figure>
+    </div>
+    <a class="link" href="{{ routes.collections_url }}/{{ section.settings.collection }}">Alle geuren bekijken</a>
+  </div>
+</section>
+{% schema %}
+{ "name": "Geuren-index", "settings": [
+  { "type": "text", "id": "heading", "label": "Kop", "default": "De geuren" },
+  { "type": "textarea", "id": "text", "label": "Tekst", "default": "Elke geur is een recept: van de eerste indruk tot wat er na uren nog op je huid zit." },
+  { "type": "text", "id": "collection", "label": "Collectie handle", "default": "dar-geuren" },
+  { "type": "text", "id": "preview_base", "label": "Voorbeeldbeeld (zonder productfoto)", "default": "https://avoroweb.nl/media/demo-dar/s" }
+], "presets": [{ "name": "Geuren-index" }] }
+{% endschema %}

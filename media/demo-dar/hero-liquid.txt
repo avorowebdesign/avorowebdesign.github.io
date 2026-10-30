@@ -1,0 +1,32 @@
+<section class="hero" id="hero" aria-label="Introductie">
+  <canvas class="hero__gl" id="heroGl" aria-hidden="true"></canvas>
+  <figure class="hero__bottle" id="heroBottle"><img src="{{ section.settings.bottle }}" alt="Een flesje dar extrait de parfum, van achteren belicht" width="1600" height="1600" fetchpriority="high"></figure>
+  <div class="wrap hero__in">
+    <p class="hero__kicker"><span>{{ section.settings.kicker }}</span></p>
+    <h1 class="hero__t">{{ section.settings.line1 }}<br><span>{{ section.settings.line2 }}</span></h1>
+    <div class="hero__foot">
+      <p class="hero__lead">{{ section.settings.text }}</p>
+      <div class="row">
+        <a class="btn btn--gold" href="{{ routes.collections_url }}/dar-geuren">{{ section.settings.cta1 }}</a>
+        <a class="btn btn--line" href="#fusion">{{ section.settings.cta2 }}</a>
+      </div>
+    </div>
+  </div>
+  <a class="hero__cue" href="#manifest">Ontdek</a>
+</section>
+<script src="{{ 'liquid-light.js' | asset_url }}" defer></script>
+{% schema %}
+{
+  "name": "Hero vloeibaar licht",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Bovenregel", "default": "Extrait de parfum · 50 ml" },
+    { "type": "text", "id": "bottle", "label": "Afbeelding flesje (URL)", "default": "https://avoroweb.nl/media/demo-dar/h01.jpg" },
+    { "type": "text", "id": "line1", "label": "Kop regel 1", "default": "Geuren die je kent." },
+    { "type": "text", "id": "line2", "label": "Kop regel 2", "default": "Gemaakt als extrait." },
+    { "type": "textarea", "id": "text", "label": "Tekst", "default": "Hoge concentratie parfumolie, tot 14 uur op je huid. Dezelfde sfeer als het grote merk, voor een fractie van de prijs." },
+    { "type": "text", "id": "cta1", "label": "Knop 1", "default": "Bekijk de geuren" },
+    { "type": "text", "id": "cta2", "label": "Knop 2", "default": "Mix je eigen geur" }
+  ],
+  "presets": [{ "name": "Hero vloeibaar licht" }]
+}
+{% endschema %}

@@ -1,0 +1,28 @@
+<section class="manifest" id="manifest">
+  <div class="wrap manifest__grid">
+    <div>
+      <p class="manifest__t">{{ section.settings.text }}</p>
+      <dl class="facts">
+        <div><dt>{{ section.settings.f1 }}</dt><dd>{{ section.settings.f1_l }}</dd></div>
+        <div><dt>{{ section.settings.f2 }}</dt><dd>{{ section.settings.f2_l }}</dd></div>
+        <div><dt>{{ section.settings.f3 }}</dt><dd>{{ section.settings.f3_l }}</dd></div>
+      </dl>
+    </div>
+    <ol class="steps">
+      <li><span>01</span><div><b>{{ section.settings.s1 }}</b><p>{{ section.settings.s1_t }}</p></div></li>
+      <li><span>02</span><div><b>{{ section.settings.s2 }}</b><p>{{ section.settings.s2_t }}</p></div></li>
+      <li><span>03</span><div><b>{{ section.settings.s3 }}</b><p>{{ section.settings.s3_t }}</p></div></li>
+    </ol>
+  </div>
+</section>
+{% schema %}
+{ "name": "Manifest", "settings": [
+  { "type": "textarea", "id": "text", "label": "Manifest", "default": "Een geur zegt wie je bent, nog voor je iets zegt. Wij maken de geuren die je kent opnieuw, als extrait de parfum. Zonder de prijs van de naam." },
+  { "type": "text", "id": "f1", "label": "Feit 1", "default": "14 uur" }, { "type": "text", "id": "f1_l", "label": "Feit 1 uitleg", "default": "op je huid" },
+  { "type": "text", "id": "f2", "label": "Feit 2", "default": "Extrait" }, { "type": "text", "id": "f2_l", "label": "Feit 2 uitleg", "default": "hoge concentratie parfumolie" },
+  { "type": "text", "id": "f3", "label": "Feit 3", "default": "Morgen" }, { "type": "text", "id": "f3_l", "label": "Feit 3 uitleg", "default": "in huis, voor 16:00 besteld" },
+  { "type": "text", "id": "s1", "label": "Stap 1", "default": "Kies een geur die je kent" }, { "type": "text", "id": "s1_t", "label": "Stap 1 tekst", "default": "Zoek in de collectie naar het geurprofiel dat bij je past." },
+  { "type": "text", "id": "s2", "label": "Stap 2", "default": "Wij maken onze versie" }, { "type": "text", "id": "s2_t", "label": "Stap 2 tekst", "default": "Als extrait de parfum, met een hoge concentratie parfumolie." },
+  { "type": "text", "id": "s3", "label": "Stap 3", "default": "Jij betaalt een fractie" }, { "type": "text", "id": "s3_t", "label": "Stap 3 tekst", "default": "Dezelfde sfeer, zonder de prijs van het grote merk." }
+], "presets": [{ "name": "Manifest" }] }
+{% endschema %}
