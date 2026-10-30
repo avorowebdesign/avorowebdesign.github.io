@@ -170,7 +170,11 @@ button,input,textarea{font:inherit;color:inherit}
 .namef input::placeholder{color:rgba(242,230,207,.35)}
 .fusion__buy{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:26px;border-top:1px solid var(--line-l)}
 .fusion__price{font-size:26px;font-weight:300}
-@media (max-width:900px){.fusion__grid{grid-template-columns:1fr}.vial{width:min(70%,300px)}.chips{grid-template-columns:1fr 1fr}}
+@media (max-width:900px){.fusion__grid{grid-template-columns:1fr;gap:28px}.chips{grid-template-columns:1fr 1fr}
+  /* mobiel: het flesje blijft klein bovenin staan terwijl je kiest, zodat je het ziet vollopen */
+  .fusion__stage{position:sticky;top:64px;z-index:5;display:grid;grid-template-columns:auto 1fr;justify-items:start;align-items:center;gap:18px;background:rgba(36,8,14,.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);margin-inline:calc(-1 * var(--gut));padding:10px var(--gut);border-bottom:1px solid var(--line-l)}
+  .vial{width:100px}
+  .fusion__mix{font-size:12px;line-height:1.5}}
 
 /* geurvinder */
 .finder{background:var(--paper);padding-block:clamp(88px,11vw,160px)}
