@@ -276,7 +276,7 @@ async function hero() {
   function frame(now) {
     requestAnimationFrame(frame); const dt = Math.min(64, now - last); last = now;
     const b = sec.getBoundingClientRect(), tp = clamp(-b.top / (b.height - innerHeight));
-    sp += reduce ? (tp - sp) : (tp - sp) * (1 - Math.pow(.88, dt / 16.7));
+    sp += reduce ? (tp - sp) : (tp - sp) * (1 - Math.pow(.91, dt / 16.7));
     const ph = Math.min(3, Math.floor(sp * 4 + .02)); phs.forEach((p, i) => p.classList.toggle('is-on', i === ph)); dots.forEach((d, i) => d.classList.toggle('is-on', i <= ph));
     if (cue) cue.style.opacity = sp > .02 ? 0 : .7;
     const d = new Date(); if (d.getSeconds() !== lastSec) { lastSec = d.getSeconds(); if (tEl) tEl.textContent = d.toLocaleTimeString('nl-NL', { timeZone: 'Europe/Amsterdam', hour: '2-digit', minute: '2-digit' }) }

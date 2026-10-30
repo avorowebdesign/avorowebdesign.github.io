@@ -25,6 +25,7 @@
     <span class="avoro__dot" aria-hidden="true"></span><span>Concept <span class="avoro__long">door </span><b>AVORO</b><span class="avoro__long"> webdesign</span></span>
   </a>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
   <script src="{{ 'theme.js' | asset_url }}" defer></script>
 </body>
 </html>

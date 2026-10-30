@@ -1,0 +1,32 @@
+(function(){
+  const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // vloeiend scrollen op desktop: wieltikken worden één zachte beweging, zodat het 3D-horloge rustig meedraait
+  if(window.Lenis&&!reduce&&matchMedia('(pointer:fine)').matches){
+    const lenis=new Lenis({lerp:.07,wheelMultiplier:.75,smoothWheel:true});window.__lenis=lenis;
+    (function raf(t){lenis.raf(t);requestAnimationFrame(raf)})(performance.now());
+    document.addEventListener('click',e=>{const a=e.target.closest('a[href*="#"]');if(!a)return;const u=new URL(a.href,location.href);if(u.pathname!==location.pathname||!u.hash)return;const el=document.querySelector(u.hash);if(!el)return;e.preventDefault();lenis.scrollTo(el,{offset:-80,duration:1.4});history.replaceState(null,'',u.hash)});
+  }
+
+  // header: solide na hero
+  const hdr=$('#hdr');
+  if(hdr&&hdr.classList.contains('hdr--over')){const h=$('#h3d');const on=()=>hdr.classList.toggle('is-solid',!h||scrollY>h.offsetHeight-innerHeight-10);addEventListener('scroll',on,{passive:true});on()}
+  // mobiel menu
+  const bg=$('#burger'),mn=$('#mnav');
+  if(bg)bg.addEventListener('click',()=>{const o=bg.getAttribute('aria-expanded')!=='true';bg.setAttribute('aria-expanded',o);mn.classList.toggle('is-open',o)});
+
+  // product: variant kiezen + ajax toevoegen
+  const vj=$('#variants');
+  if(vj){const V=JSON.parse(vj.textContent),fmt=c=>'€'+(c/100).toLocaleString('nl-NL',{minimumFractionDigits:c%100?2:0});
+    const upd=()=>{const sel=$$('.opts').map(fs=>{const i=fs.querySelector('input:checked');return i?i.value:null});const v=V.find(v=>v.options.every((o,i)=>o===sel[i]));if(!v)return;
+      $('#variantId').value=v.id;$('#price').textContent=fmt(v.price);const b=$('#addBtn');b.disabled=!v.available;b.textContent=v.available?'In winkelmand':'Uitverkocht';
+      const u=new URL(location);u.searchParams.set('variant',v.id);history.replaceState(null,'',u)};
+    $$('.opts input').forEach(i=>i.addEventListener('change',upd));
+    $('#addForm').addEventListener('submit',async e=>{e.preventDefault();const b=$('#addBtn');b.disabled=true;
+      try{await fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:[{id:+$('#variantId').value,quantity:1}]})});
+        const c=await (await fetch('/cart.js')).json();const n=$('#cartCount');n.textContent=c.item_count;n.hidden=false;
+        const t=$('#toast');t.innerHTML='Toegevoegd aan je winkelmand <a href="/cart">Bekijk</a>';t.classList.add('is-on');setTimeout(()=>t.classList.remove('is-on'),3500)}
+      finally{b.disabled=false}});
+  }
+})();
