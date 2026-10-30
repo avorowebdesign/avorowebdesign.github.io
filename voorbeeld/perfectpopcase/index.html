@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b4737">
+<title>Perfect Pop Case – homepage concept</title>
+<link rel="preload" href="archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/h-orange.jpg" as="image">
+<style>
+@font-face{font-family:"Archivo";src:url(archivo.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+:root{
+  --green:#0b4737;      /* hun huisgroen */
+  --green-2:#083a2d;
+  --green-3:#052a20;
+  --gold:#d6b56d;       /* goud van het wapen */
+  --gold-2:#b8954c;
+  --cream:#f2ebdd;      /* crème van hun tekst */
+  --paper:#f7f2e8;
+  --ink:#0f2a21;
+  --ink-2:#4b5d54;
+  --on-green-2:rgba(242,235,221,.74);
+  --line-green:rgba(214,181,109,.32);
+  --line-cream:rgba(15,42,33,.14);
+  --f:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --gut:20px;
+  --max:1240px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--green);color:var(--cream);font:400 16px/1.55 var(--f);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+.wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+.wide{font-stretch:125%}
+section{scroll-margin-top:62px}
+h1,h2,h3{margin:0;font-weight:600;font-stretch:125%;letter-spacing:-.012em}
+
+/* ---------- balk + header ---------- */
+.bar{background:var(--green-3);color:var(--on-green-2);font-size:12.5px;letter-spacing:.01em}
+.bar .wrap{display:flex;justify-content:center;gap:28px;padding-top:8px;padding-bottom:8px}
+.bar__alt{display:none}
+.hdr{position:sticky;top:0;z-index:40;background:var(--green);border-bottom:1px solid transparent;transition:border-color .3s}
+.hdr.is-stuck{border-bottom-color:var(--line-green)}
+.hdr .wrap{display:grid;grid-template-columns:44px 1fr 44px;align-items:center;height:62px}
+.hdr__menu{display:grid;place-items:center;width:44px;height:44px;margin-left:-10px;background:none;border:0;cursor:pointer}
+.hdr__menu i{display:block;width:20px;height:1.5px;background:var(--cream);position:relative;transition:transform .35s var(--ease),background .2s}
+.hdr__menu i::before,.hdr__menu i::after{content:"";position:absolute;left:0;width:20px;height:1.5px;background:var(--cream);transition:transform .35s var(--ease)}
+.hdr__menu i::before{top:-6px}.hdr__menu i::after{top:6px}
+.hdr__menu[aria-expanded=true] i{background:transparent}
+.hdr__menu[aria-expanded=true] i::before{transform:translateY(6px) rotate(45deg)}
+.hdr__menu[aria-expanded=true] i::after{transform:translateY(-6px) rotate(-45deg)}
+.brand{justify-self:center;display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{width:30px;height:30px;object-fit:contain}
+.brand span{font-size:11.5px;font-weight:500;font-stretch:125%;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+.hdr__nav{display:none}
+.bag{justify-self:end;position:relative;display:grid;place-items:center;width:44px;height:44px;margin-right:-10px;text-decoration:none}
+.bag svg{width:21px;height:21px}
+.bag b{position:absolute;top:6px;right:5px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:var(--gold);color:var(--green-3);font-size:10px;font-weight:600;line-height:16px;text-align:center}
+.mnav{position:fixed;left:0;right:0;bottom:0;top:95px;z-index:39;background:var(--green);padding:8px var(--gut) 40px;transform:translateY(-8px);opacity:0;visibility:hidden;transition:opacity .3s var(--ease),transform .3s var(--ease),visibility 0s .3s}
+.mnav.is-open{opacity:1;transform:none;visibility:visible;transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.mnav a{display:flex;justify-content:space-between;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line-green);text-decoration:none;font-size:24px;font-weight:550;font-stretch:125%}
+.mnav a small{font-size:13px;font-weight:400;font-stretch:100%;color:var(--on-green-2)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:4px 0 44px;overflow:hidden}
+.hero::before{content:"";position:absolute;left:50%;top:-10%;width:150vw;max-width:1500px;aspect-ratio:1;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(40,120,90,.42),rgba(11,71,55,0) 70%);pointer-events:none}
+.hero .wrap{position:relative;display:grid;gap:18px}
+.stage{position:relative;width:min(74vw,360px);aspect-ratio:1;margin:0 auto}
+.disc{position:absolute;inset:12.5%;border-radius:50%;overflow:hidden;background:#173f35;box-shadow:0 30px 60px -28px rgba(0,0,0,.55),inset 0 0 0 1px rgba(214,181,109,.25)}
+.disc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .7s var(--ease),transform 1.1s var(--ease)}
+.disc img.is-on{opacity:1;transform:none}
+.ring{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.ring__turn{transform-origin:0 0;transition:transform 1.1s var(--ease)}
+.ring circle{fill:none;stroke:var(--gold);stroke-width:.32}
+.ring .tip{fill:var(--gold)}
+.copy h1{font-size:clamp(40px,11.6vw,58px);line-height:.94;font-weight:640}
+.copy p{margin:14px 0 0;max-width:34em;color:var(--on-green-2);font-size:15.5px}
+.pick{margin:20px 0 0;padding:0;border:0;min-width:0}
+.pick legend{padding:0;margin-bottom:12px;font-size:13.5px;color:var(--on-green-2)}
+.pick legend b{color:var(--cream);font-weight:550}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative;width:36px;height:36px}
+.chip input{position:absolute;inset:0;margin:0;opacity:0;cursor:pointer;z-index:1}
+.chip span{position:absolute;inset:0;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),inset 0 -6px 10px rgba(0,0,0,.16),inset 0 5px 8px rgba(255,255,255,.22);transition:transform .35s var(--ease)}
+.chip span::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1.5px solid var(--gold);opacity:0;transform:scale(.86);transition:opacity .3s,transform .35s var(--ease)}
+.chip input:checked+span::after{opacity:1;transform:none}
+.chip input:focus-visible+span{outline:2px solid var(--cream);outline-offset:7px}
+@media (hover:hover){.chip:hover span{transform:scale(1.08)}}
+.cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:22px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border-radius:999px;background:var(--gold);color:var(--green-3);font-weight:600;font-size:15px;text-decoration:none;transition:background .2s,transform .2s}
+.btn:hover{background:#e2c482}
+.btn:active{transform:scale(.98)}
+.tlink{font-size:15px;font-weight:500;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:5px;text-decoration-thickness:1px}
+@media (max-width:759px){.cta .btn{flex:1 1 100%}}
+.copy .note{margin-top:22px;font-size:12px;line-height:1.5;color:rgba(242,235,221,.5);max-width:36em}
+
+/* ---------- ladder ---------- */
+.ladder{background:var(--cream);color:var(--ink);padding:64px 0 72px}
+.sec-h{max-width:38em}
+.sec-h h2{font-size:clamp(30px,8vw,46px);line-height:1}
+.sec-h p{margin:14px 0 0;color:var(--ink-2)}
+.lad{list-style:none;margin:36px 0 0;padding:0;position:relative}
+.lad::before{content:"";position:absolute;left:39px;top:40px;bottom:40px;width:1px;background:linear-gradient(var(--gold-2),var(--gold))}
+.lad li+li{margin-top:14px}
+.lad a{position:relative;display:grid;grid-template-columns:80px 1fr;gap:18px;align-items:center;padding:6px 0;text-decoration:none}
+.lad__img{position:relative;width:80px;height:80px;border-radius:50%;overflow:hidden;background:#d9d1c1;box-shadow:0 0 0 1px var(--gold-2),0 0 0 5px var(--cream),0 0 0 6px rgba(184,149,76,.35)}
+.lad__img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.lad__row{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.lad h3{font-size:21px;line-height:1.1;font-weight:600}
+.lad__price{font-size:14px;font-weight:500;white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--ink)}
+.lad__price small{font-size:12px;font-weight:400;color:var(--ink-2)}
+.lad p{margin:4px 0 0;font-size:14.5px;line-height:1.45;color:var(--ink-2)}
+@media (hover:hover){.lad a:hover .lad__img img{transform:scale(1.07)}.lad a:hover h3{text-decoration:underline;text-decoration-color:var(--gold-2);text-underline-offset:4px;text-decoration-thickness:1px}}
+.ladder__foot{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;margin-top:36px}
+.btn--ink{background:var(--green);color:var(--cream)}
+.btn--ink:hover{background:#0f5643}
+.ladder .tlink{color:var(--ink);text-decoration-color:var(--gold-2)}
+
+/* ---------- apple ---------- */
+.apple{background:var(--green-3);padding:64px 0 72px}
+.apple .sec-h p{color:var(--on-green-2)}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:78%;gap:14px;margin:32px calc(var(--gut)*-1) 0;padding:0 var(--gut) 6px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 var(--gut);scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.card{scroll-snap-align:start;text-decoration:none;display:block}
+.card__img{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:4px;background:#0c1712}
+.card__img img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.card__img::after{content:"";position:absolute;inset:0;border-radius:4px;box-shadow:inset 0 0 0 1px rgba(214,181,109,.2)}
+.card__meta{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-top:14px}
+.card h3{font-size:20px;font-weight:600}
+.card__meta span{font-size:13.5px;color:var(--on-green-2)}
+@media (hover:hover){.card:hover .card__img img{transform:scale(1.04)}}
+
+/* ---------- reisetui ---------- */
+.box{background:var(--green);padding:68px 0 76px;position:relative;overflow:hidden}
+.box .wrap{display:grid;gap:36px}
+.box__stage{position:relative;width:min(78vw,400px);aspect-ratio:1;margin:0 auto}
+.box__stage .disc img{opacity:1;transform:none}
+.box .sec-h p{color:var(--on-green-2)}
+.promise{display:grid;gap:0;margin:26px 0 0;padding:0}
+.promise div{display:grid;grid-template-columns:28px 1fr;gap:4px 14px;padding:16px 0;border-top:1px solid var(--line-green)}
+.promise div:last-child{border-bottom:1px solid var(--line-green)}
+.promise svg{grid-row:span 2;width:22px;height:22px;margin-top:2px;color:var(--gold)}
+.promise dt{font-weight:600;font-size:16px}
+.promise dd{margin:0;font-size:14.5px;color:var(--on-green-2)}
+
+/* ---------- footer ---------- */
+.foot{background:var(--green-3);color:var(--on-green-2);padding:56px 0 110px;font-size:14px}
+.foot__top{display:grid;gap:34px}
+.foot__brand img{width:64px;height:64px;object-fit:contain}
+.foot__brand p{margin:14px 0 0;max-width:24em}
+.foot__cols{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.foot h4{margin:0 0 10px;color:var(--cream);font-size:14px;font-weight:600}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--cream)}
+.foot__legal{margin-top:40px;padding-top:20px;border-top:1px solid var(--line-green);font-size:12.5px;line-height:1.55;color:rgba(242,235,221,.5)}
+
+/* ---------- AVORO ---------- */
+.avoro{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));z-index:60;display:flex;align-items:center;gap:7px;padding:7px 11px 7px 9px;border-radius:999px;background:rgba(5,42,32,.86);color:var(--cream);font:500 11px/1 var(--f);text-decoration:none;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(242,235,221,.16)}
+.avoro b{font-weight:600;letter-spacing:.06em}
+.avoro__dot{width:8px;height:8px;border-radius:50%;background:#7ac68f;box-shadow:0 0 0 3px rgba(122,198,143,.22)}
+.avoro__long{display:none}
+
+/* ---------- laad-moment: ring tekent zich, foto komt binnen ---------- */
+.js .ring circle{stroke-dasharray:315;stroke-dashoffset:315}
+.js .ring .tip{opacity:0;transform:scale(.4);transform-box:fill-box;transform-origin:center}
+.js .stage .disc{opacity:0;transform:scale(.94)}
+.js .copy>*{opacity:0;transform:translateY(10px)}
+.ready .ring circle{stroke-dashoffset:0;transition:stroke-dashoffset 1.6s var(--ease) .1s}
+.ready .ring .tip{opacity:1;transform:none;transition:opacity .5s .95s,transform .6s var(--ease) .95s}
+.ready .stage .disc{opacity:1;transform:none;transition:opacity .9s var(--ease) .25s,transform 1.2s var(--ease) .25s}
+.ready .copy>*{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .8s var(--ease)}
+.ready .copy>*:nth-child(1){transition-delay:.45s}.ready .copy>*:nth-child(2){transition-delay:.55s}.ready .copy>*:nth-child(3){transition-delay:.65s}.ready .copy>*:nth-child(4){transition-delay:.75s}.ready .copy>*:nth-child(5){transition-delay:.85s}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.01ms!important;transition-delay:0s!important;animation:none!important}
+}
+
+/* ---------- tablet / desktop ---------- */
+@media (min-width:760px){
+  :root{--gut:36px}
+  .bar .wrap{justify-content:space-between}
+  .bar__alt{display:block}
+  .rail{grid-auto-flow:row;grid-auto-columns:auto;grid-template-columns:repeat(3,1fr);overflow:visible;margin:40px 0 0;padding:0;gap:22px}
+  .foot__top{grid-template-columns:1.2fr 2fr}
+  .foot__cols{grid-template-columns:repeat(3,1fr)}
+  .avoro{font-size:12px;padding:8px 14px 8px 10px;gap:8px;right:auto;left:max(14px,env(safe-area-inset-left,0px));bottom:max(14px,env(safe-area-inset-bottom,0px))}
+  .avoro__long{display:inline}
+}
+@media (min-width:1000px){
+  .hdr .wrap{grid-template-columns:auto 1fr auto;height:76px}
+  .hdr__menu{display:none}
+  .brand{justify-self:start}
+  .brand img{width:36px;height:36px}
+  .brand span{font-size:12.5px}
+  .hdr__nav{display:flex;justify-content:center;gap:34px}
+  .hdr__nav a{font-size:14.5px;font-weight:500;text-decoration:none;color:var(--on-green-2);padding:6px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+  .hdr__nav a:hover{color:var(--cream);border-bottom-color:var(--gold)}
+  .bag{margin-right:-8px}
+  .mnav{display:none}
+  .hero{padding:40px 0 90px}
+  .hero::before{left:72%;top:-30%;width:1200px}
+  .hero .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:center;gap:40px}
+  .stage{order:2;width:min(100%,600px);margin:0 0 0 auto}
+  .copy h1{font-size:clamp(58px,6.2vw,88px)}
+  .copy p{font-size:17px;max-width:30em}
+  .chip{width:42px;height:42px}
+  .chips{gap:12px}
+  .ladder{padding:100px 0 110px}
+  .lad{display:grid;grid-template-columns:repeat(6,1fr);gap:24px;margin-top:56px}
+  .lad::before{left:calc(100%/12);right:calc(100%/12);top:66px;bottom:auto;width:auto;height:1px;background:linear-gradient(90deg,var(--gold-2),var(--gold))}
+  .lad li+li{margin-top:0}
+  .lad a{grid-template-columns:1fr;justify-items:center;text-align:center;gap:18px;padding:0}
+  .lad__img{width:132px;height:132px}
+  .lad__row{flex-direction:column;align-items:center;gap:6px}
+  .lad h3{font-size:22px}
+  .lad p{max-width:15em;margin-top:8px}
+  .ladder__foot{margin-top:56px;justify-content:center}
+  .apple{padding:100px 0 110px}
+  .box{padding:110px 0}
+  .box .wrap{grid-template-columns:1fr 1fr;align-items:center;gap:72px}
+  .box__stage{width:min(100%,520px);margin:0}
+  .box h2{font-size:42px}
+  .foot{padding:72px 0 64px}
+}
+</style>
+</head>
+<body>
+<div class="bar"><div class="wrap"><span>Free travel case with every order</span><span class="bar__alt">Worldwide shipping, 14 days to return</span></div></div>
+
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <button class="hdr__menu" id="menuBtn" aria-expanded="false" aria-controls="mnav" aria-label="Menu"><i></i></button>
+    <a class="brand" href="#top" aria-label="Perfect Pop Case home"><img src="img/crest.png" alt="" width="36" height="36"><span>Perfect Pop Case</span></a>
+    <nav class="hdr__nav" aria-label="Main">
+      <a href="#cases">Royal Pop cases</a>
+      <a href="#colour">Straps by colour</a>
+      <a href="#apple">Apple Watch</a>
+      <a href="#box">Travel case</a>
+    </nav>
+    <a class="bag" href="#" aria-label="Bag, 0 items"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 8h14l-1.2 12.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></a>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Mobile">
+  <a href="#cases">Royal Pop cases <small>6 collections</small></a>
+  <a href="#colour">Straps by colour <small>8 colours</small></a>
+  <a href="#apple">Apple Watch <small>3 finishes</small></a>
+  <a href="#box">Travel case <small>with every order</small></a>
+</nav>
+
+<main id="top">
+  <section class="hero" id="colour">
+    <div class="wrap">
+      <div class="stage" aria-hidden="true">
+        <div class="disc" id="disc"><img class="is-on" src="img/h-orange.jpg" alt="" data-k="orange"></div>
+        <svg class="ring" viewBox="-60 -60 120 120"><g class="ring__turn" id="turn">
+          <circle r="50" transform="rotate(-90)"/>
+          <g transform="rotate(0)"><path class="tip" d="M0-57.5 3.1-50.6 0-52.2-3.1-50.6Z"/></g>
+          <g transform="rotate(90)"><path class="tip" d="M0-57.5 3.1-50.6 0-52.2-3.1-50.6Z"/></g>
+          <g transform="rotate(180)"><path class="tip" d="M0-57.5 3.1-50.6 0-52.2-3.1-50.6Z"/></g>
+          <g transform="rotate(270)"><path class="tip" d="M0-57.5 3.1-50.6 0-52.2-3.1-50.6Z"/></g>
+        </g></svg>
+      </div>
+      <div class="copy">
+        <h1>Dress your<br>Royal Pop.</h1>
+        <p>Cases and straps that turn the AP × Swatch Royal Pop into a wristwatch. Shipped worldwide in our green travel case.</p>
+        <fieldset class="pick">
+          <legend>Strap colour: <b id="cName">Orange</b></legend>
+          <div class="chips" id="chips"></div>
+        </fieldset>
+        <div class="cta"><a class="btn" id="cBtn" href="#cases">Shop orange straps</a><a class="tlink" href="#apple">Apple Watch cases</a></div>
+        <p class="note">Royal Pop not included. Perfect Pop Case is not affiliated with Audemars Piguet or Swatch.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ladder" id="cases">
+    <div class="wrap">
+      <div class="sec-h">
+        <h2>Six ways to wear it</h2>
+        <p>From a rubber strap to a full steel bracelet. Every collection fits the Royal Pop, with the crown at 12 or 3 o'clock.</p>
+      </div>
+      <ol class="lad">
+        <li><a href="#"><span class="lad__img"><img src="img/c-essential.jpg" alt="Essential collection, rubber straps" loading="lazy" width="440" height="440"></span><div><div class="lad__row"><h3>Essential</h3><span class="lad__price"><small>from</small> €68,95</span></div><p>Rubber strap, single colour or two-tone.</p></div></a></li>
+        <li><a href="#"><span class="lad__img"><img src="img/c-prestige.jpg" alt="Prestige collection, ceramic straps" loading="lazy" width="440" height="440"></span><div><div class="lad__row"><h3>Prestige</h3><span class="lad__price"><small>from</small> €81,95</span></div><p>Ceramic strap with a click-in fitting.</p></div></a></li>
+        <li><a href="#"><span class="lad__img"><img src="img/c-exclusive.jpg" alt="Exclusive collection, steel case with rubber strap" loading="lazy" width="440" height="440"></span><div><div class="lad__row"><h3>Exclusive</h3><span class="lad__price"><small>from</small> €109,95</span></div><p>Steel case with a rubber strap.</p></div></a></li>
+        <li><a href="#"><span class="lad__img"><img src="img/c-master.jpg" alt="Master collection, rose gold case" loading="lazy" width="440" height="440"></span><div><div class="lad__row"><h3>Master</h3><span class="lad__price">€204,95</span></div><p>316L steel case in rose gold, steel or yellow gold.</p></div></a></li>
+        <li><a href="#"><span class="lad__img"><img src="img/c-royal.jpg" alt="Royal collection, steel bracelet" loading="lazy" width="440" height="440"></span><div><div class="lad__row"><h3>Royal</h3><span class="lad__price">€273,95</span></div><p>Brushed steel bracelet in black, rose gold or silver.</p></div></a></li>
+        <li><a href="#"><span class="lad__img"><img src="img/c-legacy.jpg" alt="Legacy collection, case and bracelet" loading="lazy" width="440" height="440"></span><div><div class="lad__row"><h3>Legacy</h3><span class="lad__price">€318,95</span></div><p>Case and bracelet in one, rose gold, steel or yellow gold.</p></div></a></li>
+      </ol>
+      <div class="ladder__foot"><a class="btn btn--ink" href="#">See all Royal Pop cases</a><a class="tlink" href="#colour">Or start with a colour</a></div>
+    </div>
+  </section>
+
+  <section class="apple" id="apple">
+    <div class="wrap">
+      <div class="sec-h">
+        <h2>Also for Apple Watch</h2>
+        <p>A 316L steel case with strap for Series 10 and 11, 46 mm. Water resistant, fits wrists from 15 to 25 cm. Every finish is €250,95.</p>
+      </div>
+      <div class="rail">
+        <a class="card" href="#"><div class="card__img"><img src="img/a-eclipse.jpg" alt="Eclipse case in black with an orange strap" loading="lazy" width="600" height="750"></div><div class="card__meta"><h3>Eclipse</h3><span>Black PVD</span></div></a>
+        <a class="card" href="#"><div class="card__img"><img src="img/a-golden.jpg" alt="Golden case in rose gold with a white strap" loading="lazy" width="600" height="750"></div><div class="card__meta"><h3>Golden</h3><span>Rose gold</span></div></a>
+        <a class="card" href="#"><div class="card__img"><img src="img/a-vanguard.jpg" alt="Vanguard case in stainless steel with a black strap" loading="lazy" width="600" height="750"></div><div class="card__meta"><h3>Vanguard</h3><span>Stainless steel</span></div></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="box" id="box">
+    <div class="wrap">
+      <div class="box__stage" aria-hidden="true">
+        <div class="disc"><img src="img/travel-disc.jpg" alt="" loading="lazy" width="800" height="800"></div>
+        <svg class="ring" viewBox="-60 -60 120 120"><circle r="50" style="stroke-dasharray:none;stroke-dashoffset:0"/></svg>
+      </div>
+      <div>
+        <div class="sec-h">
+          <h2>Every order arrives in our green travel case</h2>
+          <p>Zip-round, crest in gold, with a soft cushion for one watch. Your case or strap comes in it, together with a lifetime warranty card.</p>
+        </div>
+        <dl class="promise">
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.6 3.1 8.2 7.5 9.5 4.4-1.3 7.5-4.9 7.5-9.5V6L12 3Z"/><path d="m8.8 12 2.2 2.2 4.4-4.4"/></svg><dt>Lifetime warranty</dt><dd>Register with the card in the box.</dd></div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4h4"/></svg><dt>14 days to return</dt><dd>Money back if it isn't right.</dd></div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.4 3.6 5.2 3.6 8.5s-1.2 6.1-3.6 8.5c-2.4-2.4-3.6-5.2-3.6-8.5S9.6 5.9 12 3.5Z"/></svg><dt>Worldwide shipping</dt><dd>Shipping costs are shown at checkout.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__top">
+      <div class="foot__brand"><img src="img/crest.png" alt="Perfect Pop Case" width="64" height="64"><p>Cases and straps for the AP × Swatch Royal Pop, and steel cases for Apple Watch.</p></div>
+      <div class="foot__cols">
+        <div><h4>Shop</h4><ul><li><a href="#cases">Royal Pop cases</a></li><li><a href="#colour">Straps by colour</a></li><li><a href="#apple">Apple Watch</a></li></ul></div>
+        <div><h4>Help</h4><ul><li><a href="#">Shipping</a></li><li><a href="#">Returns</a></li><li><a href="#">Warranty</a></li><li><a href="#">Contact</a></li></ul></div>
+        <div><h4>Follow</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">TikTok</a></li></ul></div>
+      </div>
+    </div>
+    <p class="foot__legal">The AP × Swatch Royal Pop is not included. Perfect Pop Case is not affiliated with Audemars Piguet or Swatch. © 2026 Perfect Pop Case</p>
+  </div>
+</footer>
+
+<a class="avoro" href="https://avoroweb.nl" target="_blank" rel="noopener" aria-label="Concept door AVORO webdesign"><span class="avoro__dot" aria-hidden="true"></span><span>Concept <span class="avoro__long">door </span><b>AVORO</b><span class="avoro__long"> webdesign</span></span></a>
+
+<script>
+(function(){
+  var d=document.documentElement;d.classList.add('js');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var C=[
+    {k:'orange',n:'Orange',c:'#ff6a13',f:'Exclusive'},
+    {k:'lime',n:'Lime green',c:'#7ccf35',f:'Exclusive'},
+    {k:'red',n:'Red',c:'#d71f2a',f:'Exclusive'},
+    {k:'yellow',n:'Yellow',c:'#ffc928',f:'Essential'},
+    {k:'babyblue',n:'Baby blue',c:'#9fd0ec',f:'Essential'},
+    {k:'navy',n:'Navy',c:'#1e2b68',f:'Prestige'},
+    {k:'white',n:'White',c:'#f3f1ea',f:'Master'},
+    {k:'black',n:'Black',c:'#161616',f:'Master'}
+  ];
+  var chips=document.getElementById('chips'),disc=document.getElementById('disc'),turn=document.getElementById('turn'),cName=document.getElementById('cName'),cBtn=document.getElementById('cBtn'),deg=0,cur='orange';
+  C.forEach(function(o,i){
+    var l=document.createElement('label');l.className='chip';l.style.setProperty('--c',o.c);
+    l.innerHTML='<input type="radio" name="strap" value="'+o.k+'"'+(i?'':' checked')+'><span></span><b class="sr">'+o.n+'</b>';
+    chips.appendChild(l);
+  });
+  var cache={};
+  function img(k){if(cache[k])return cache[k];var i=new Image();i.src='img/h-'+k+'.jpg';i.alt='';i.dataset.k=k;cache[k]=i;return i}
+  cache.orange=disc.querySelector('img');
+  chips.addEventListener('change',function(e){
+    var k=e.target.value;if(k===cur)return;var o=C.filter(function(x){return x.k===k})[0];cur=k;
+    cName.textContent=o.n;cBtn.textContent='Shop '+o.n.toLowerCase()+' straps';
+    var nx=img(k),old=disc.querySelector('.is-on');
+    var show=function(){if(cur!==k)return;if(nx.parentNode!==disc)disc.appendChild(nx);nx.classList.remove('is-on');void nx.offsetWidth;nx.classList.add('is-on');if(old&&old!==nx)old.classList.remove('is-on')};
+    nx.complete?show():nx.onload=show;
+    deg+=90;turn.style.transform='rotate('+deg+'deg)';
+  });
+  var pre=function(){C.forEach(function(o){img(o.k)})};
+  ('requestIdleCallback' in window)?requestIdleCallback(pre):setTimeout(pre,1200);
+
+  var hdr=document.getElementById('hdr');
+  addEventListener('scroll',function(){hdr.classList.toggle('is-stuck',scrollY>40)},{passive:true});
+  var mb=document.getElementById('menuBtn'),mn=document.getElementById('mnav');
+  mb.addEventListener('click',function(){mn.style.top=hdr.getBoundingClientRect().bottom+'px';var o=mb.getAttribute('aria-expanded')!=='true';mb.setAttribute('aria-expanded',o);mn.classList.toggle('is-open',o);document.body.style.overflow=o?'hidden':''});
+  mn.addEventListener('click',function(e){if(e.target.closest('a')){mb.setAttribute('aria-expanded','false');mn.classList.remove('is-open');document.body.style.overflow=''}});
+
+  var go=function(){requestAnimationFrame(function(){d.classList.add('ready')})};
+  var first=cache.orange;
+  if(reduce)go();else if(first.complete)go();else{first.addEventListener('load',go);setTimeout(go,1500)}
+})();
+</script>
+</body>
+</html>
