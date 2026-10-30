@@ -1,0 +1,27 @@
+{%- assign p = all_products[section.settings.product] -%}
+<section class="sec detail" id="detail">
+  <div class="wrap detail__grid">
+    <figure class="detail__fig">
+      {%- if p.media[2] -%}{{ p.media[2] | image_url: width: 1400 | image_tag: loading: 'lazy', sizes: '(min-width: 900px) 55vw, 100vw', widths: '700,1000,1400', alt: p.media[2].alt }}{%- endif -%}
+      <span class="pin" style="--x:86%;--y:22%" aria-hidden="true">1</span>
+      <span class="pin" style="--x:30%;--y:30%" aria-hidden="true">2</span>
+      <span class="pin" style="--x:63%;--y:47%" aria-hidden="true">3</span>
+    </figure>
+    <div class="detail__txt">
+      <h2 class="h2">{{ section.settings.heading }}</h2>
+      <p class="lead">{{ section.settings.text }}</p>
+      <ol class="specs">
+        <li><b>Gegroefde bezel</b><span>Gepolijst staal met scherpe groeven die bij elke beweging het licht pakken.</span></li>
+        <li><b>Romeinse cijfers</b><span>Opgezette cijfers en indexen die boven de wijzerplaat uitsteken.</span></li>
+        <li><b>Datum met vergrootglas</b><span>Op 3 uur, onder een vergrootglas in het glas. Ook zonder bril goed leesbaar.</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+{% schema %}
+{ "name": "Het detail", "settings": [
+  { "type": "text", "id": "heading", "label": "Kop", "default": "Het zit in het detail." },
+  { "type": "textarea", "id": "text", "label": "Tekst", "default": "Een horloge draag je elke dag. Daarom letten we op de dingen die je pas na een week opvallen." },
+  { "type": "text", "id": "product", "label": "Product handle", "default": "valore-imperial-blue" }
+], "presets": [{ "name": "Het detail" }] }
+{% endschema %}

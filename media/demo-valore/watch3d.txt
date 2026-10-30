@@ -285,10 +285,11 @@ async function hero() {
     const useBlack = sp > .532; blue.visible = !useBlack; black.visible = useBlack;
     setTime(useBlack ? black : blue, d);
     rig.rotation.set(k[1] + Math.sin(t * .5) * .025 * sw, k[2] + Math.sin(t * .35) * .04 * sw, k[3]);
-    const base = mob ? .72 : 1; rig.scale.setScalar(k[4] * base);
-    // horloge rechts op desktop, boven op mobiel
-    const X = mob ? 0 : 1.15, Y = mob ? 1.05 : 0;
-    rig.position.set(X + k[5] * base, Y + k[6] * base + Math.sin(t * .8) * .03 * sw, 0);
+    // desktop: horloge rechts naast de tekst. mobiel: kleiner, gecentreerd tussen header en tekst, close-up minder diep
+    const base = mob ? Math.min(.6, (W / H) * 1.28) : 1, zoom = mob ? 1 + (k[4] - 1) * .42 : k[4], om = mob ? .3 : 1;
+    rig.scale.setScalar(zoom * base);
+    const X = mob ? -.16 : 1.15, Y = mob ? .74 : 0;
+    rig.position.set(X + k[5] * om, Y + k[6] * om + Math.sin(t * .8) * .03 * sw, 0);
     r.render(scene, cam);
   }
   requestAnimationFrame(frame);

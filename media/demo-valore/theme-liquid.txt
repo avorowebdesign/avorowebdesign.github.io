@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page_title }}{% unless page_title contains shop.name %} · VALORÉ Amsterdam{% endunless %}</title>
+  {%- if page_description -%}<meta name="description" content="{{ page_description | escape }}">{%- else -%}<meta name="description" content="VALORÉ Amsterdam: herenhorloges in roestvrij staal met gegroefde bezel en Romeinse cijfers. Gratis verzending, 14 dagen geld terug en 2 jaar garantie.">{%- endif -%}
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta property="og:title" content="{{ page_title | escape }}">
+  {%- if product -%}<meta property="og:image" content="https:{{ product.featured_image | image_url: width: 1200 }}">{%- else -%}<meta property="og:image" content="https://avoroweb.nl/media/demo-valore/imperial-blue-1.jpg">{%- endif -%}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+  {{ content_for_header }}
+</head>
+<body class="tpl-{{ template.name }}">
+  <a class="skip" href="#main">Naar inhoud</a>
+  {% section 'announcement' %}
+  {% section 'header' %}
+  <main id="main">{{ content_for_layout }}</main>
+  {% section 'footer' %}
+  <a class="avoro" href="https://avoroweb.nl" target="_blank" rel="noopener" aria-label="Concept door AVORO webdesign">
+    <span class="avoro__dot" aria-hidden="true"></span><span>Concept <span class="avoro__long">door </span><b>AVORO</b><span class="avoro__long"> webdesign</span></span>
+  </a>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="{{ 'theme.js' | asset_url }}" defer></script>
+</body>
+</html>
