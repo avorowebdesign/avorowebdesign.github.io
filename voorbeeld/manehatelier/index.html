@@ -193,6 +193,15 @@ p{margin:0}
 .amounts li{padding:10px 18px;border:1.5px solid rgba(255,255,255,.4);border-radius:999px;font-weight:600;font-variant-numeric:tabular-nums}
 .doneer .btn{background:#fff;color:var(--rood);justify-self:start}
 .doneer .btn:hover{background:var(--kalk)}
+.tlink--icon{display:inline-flex;align-items:center;gap:8px;text-decoration-color:var(--blauw)}
+.tlink--icon svg{width:19px;height:19px;color:var(--blauw)}
+.deel{margin-top:18px;padding-top:26px;border-top:1.5px dashed rgba(255,255,255,.35);display:grid;gap:14px}
+.deel__t{font-weight:600;color:#fff!important}
+.deel__b{display:flex;flex-wrap:wrap;gap:10px}
+.pill{display:inline-flex;align-items:center;gap:9px;min-height:48px;padding:0 20px;border-radius:999px;border:1.5px solid rgba(255,255,255,.55);background:transparent;color:#fff;font:600 15.5px/1 var(--sans);text-decoration:none;cursor:pointer;transition:background .2s,border-color .2s}
+.pill:hover{background:rgba(255,255,255,.1);border-color:#fff}
+.pill svg{width:19px;height:19px}
+.pill.is-done{background:#fff;color:var(--blauw);border-color:#fff}
 .doneer small{font-size:14.5px;color:rgba(255,255,255,.85)}
 
 /* footer */
@@ -286,6 +295,7 @@ p{margin:0}
         <div class="cta">
           <a class="btn" href="https://tikkie.me/pay/r25q14pk6kjdsrkpmt6g" target="_blank" rel="noopener">Doneer via Tikkie <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></a>
           <a class="tlink" href="#verhaal">Lees ons verhaal</a>
+          <a class="share-wa tlink tlink--icon" href="https://wa.me/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 19.5 5.3 16A7.6 7.6 0 1 1 8.4 19z"/><path d="M9 10.5h6M9 13.5h4"/></svg>Deel via WhatsApp</a>
         </div>
       </div>
       <figure class="boog">
@@ -407,6 +417,13 @@ p{margin:0}
       <p>Je kiest zelf je bedrag in Tikkie, bijvoorbeeld €5, €10, €25 of €50. Elk bedrag is welkom.</p>
       <a class="btn" href="https://tikkie.me/pay/r25q14pk6kjdsrkpmt6g" target="_blank" rel="noopener">Doneer via Tikkie</a>
       <small>Een vrijwillige donatie, zonder aankoop of tegenprestatie.</small>
+      <div class="deel">
+        <p class="deel__t">Geen geld om te geven? Delen helpt net zo goed.</p>
+        <div class="deel__b">
+          <a class="pill share-wa" href="https://wa.me/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 19.5 5.3 16A7.6 7.6 0 1 1 8.4 19z"/><path d="M9 10.5h6M9 13.5h4"/></svg>Deel via WhatsApp</a>
+          <button class="pill" type="button" id="copyLink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg><span>Kopieer de link</span></button>
+        </div>
+      </div>
     </div>
   </section>
 </main>
@@ -450,6 +467,13 @@ p{margin:0}
   var rt;addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(draw,150)});
   var kaart=document.querySelector('.kaart');
   if(kaart&&!reduce&&'IntersectionObserver' in window){document.documentElement.classList.add('js-kaart');var ko=new IntersectionObserver(function(e){if(e[0].isIntersecting){kaart.classList.add('go');ko.disconnect()}},{threshold:.35});ko.observe(kaart.querySelector('.kaart__map'))}
+  // delen: WhatsApp met een kant-en-klaar bericht, of de link kopiëren
+  var url=location.origin+location.pathname;
+  var msg='Steun jij dit ook? Zes HvA-studenten bouwen een naaiatelier in Tanger, waar vrouwen leren naaien en werken aan een eigen inkomen. Elke euro helpt: '+url;
+  [].forEach.call(document.querySelectorAll('.share-wa'),function(a){a.href='https://wa.me/?text='+encodeURIComponent(msg)});
+  var cb=document.getElementById('copyLink');
+  if(cb)cb.addEventListener('click',function(){var done=function(){cb.classList.add('is-done');cb.querySelector('span').textContent='Link gekopieerd';setTimeout(function(){cb.classList.remove('is-done');cb.querySelector('span').textContent='Kopieer de link'},2200)};
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(url).then(done,function(){prompt('Kopieer de link:',url)});else prompt('Kopieer de link:',url)});
   var hdr=document.getElementById('hdr');
   addEventListener('scroll',function(){hdr.classList.toggle('is-stuck',scrollY>20)},{passive:true});
 })();
