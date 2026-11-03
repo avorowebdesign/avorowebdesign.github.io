@@ -17,5 +17,7 @@
       <div class="dr-cmp2__row is-dar"><dt>{{ product.title }}</dt><dd><span class="dr-cmp2__bar" aria-hidden="true"><i style="width:{{ w }}%"></i></span><b>{{ v.price | money }}</b></dd></div>
     </dl>
     <p class="dr-cmp2__save">Je bespaart ± €{{ save_eur }} ({{ pct }}%) op hetzelfde geurprofiel</p>
+  {%- else -%}
+    <p class="dr-cmp2__price">{% if product.price_varies %}vanaf {{ product.price_min | money }}{% else %}{{ v.price | money }}{% endif %}</p>
   {%- endif -%}
 </div>

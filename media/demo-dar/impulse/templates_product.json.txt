@@ -3,10 +3,6 @@
   "main": {
    "type": "main-product",
    "blocks": {
-    "price": {
-     "type": "price",
-     "settings": {}
-    },
     "variant_picker": {
      "type": "variant_picker",
      "settings": {
@@ -76,7 +72,6 @@
     }
    },
    "block_order": [
-    "price",
     "cmp",
     "variant_picker",
     "buy_buttons",
