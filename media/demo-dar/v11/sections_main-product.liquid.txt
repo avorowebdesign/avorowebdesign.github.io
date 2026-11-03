@@ -1,0 +1,68 @@
+{%- assign v = product.selected_or_first_available_variant -%}
+{%- capture col -%}{% render 'scent-color', p: product %}{%- endcapture -%}
+{%- assign mf = product.metafields.dar -%}
+<section class="pdp" style="--c:{{ col }}">
+  <div class="wrap pdp__grid">
+    <div class="pdp__vis">
+      {%- if product.media.size > 0 -%}
+        {%- for m in product.media -%}<div class="pdp__img">{{ m | image_url: width: 1400 | image_tag: loading: 'eager', sizes: '(min-width: 990px) 50vw, 100vw', widths: '600,900,1200,1400', alt: m.alt }}</div>{%- endfor -%}
+      {%- elsif mf.no.value != blank -%}
+        <div class="pdp__img pdp__img--render"><img src="https://avoroweb.nl/media/demo-dar/s{{ mf.no.value }}.jpg" alt="{{ product.title | escape }}, flesje extrait de parfum 50 ml" width="1600" height="1600" fetchpriority="high"></div>
+      {%- else -%}
+        <div class="pdp__field" aria-hidden="true">
+          <span class="pdp__big">{% if mf.no.value != blank %}No. {{ mf.no.value }}{% else %}{{ product.title }}{% endif %}</span>
+          <span class="pdp__fieldfam">{{ mf.family.value }}</span>
+          <span class="pdp__note">Productfoto volgt</span>
+        </div>
+      {%- endif -%}
+    </div>
+    <div class="pdp__info">
+      <nav class="crumbs"><a href="{{ routes.root_url }}">Home</a> / <a href="{{ routes.collections_url }}/dar-geuren">Geuren</a></nav>
+      <p class="kicker">{{ mf.family.value | default: 'Extrait de parfum' }}</p>
+      <h1 class="pdp__t">{{ product.title }}</h1>
+      {%- if mf.profile.value != blank -%}<p class="pdp__profile">Geïnspireerd op {{ mf.profile.value }}</p>{%- endif -%}
+      <p class="pdp__price" id="price">{{ v.price | money }} <span>· 50 ml extrait de parfum</span></p>
+      {%- if mf.top.value != blank -%}
+      <dl class="pyr">
+        <div><dt>Top</dt><dd>{{ mf.top.value }}</dd><span>de eerste minuten</span></div>
+        <div><dt>Hart</dt><dd>{{ mf.heart.value }}</dd><span>na een half uur</span></div>
+        <div><dt>Basis</dt><dd>{{ mf.base.value }}</dd><span>wat blijft hangen</span></div>
+      </dl>
+      <div class="dur"><span>Houdbaarheid op de huid</span><div class="dur__bar"><i style="width:86%"></i></div><span>tot 14 uur</span></div>
+      {%- endif -%}
+      <div class="rte">{{ product.description }}</div>
+      <form class="pdp__form" id="addForm" action="{{ routes.cart_add_url }}" method="post">
+        <input type="hidden" name="id" id="variantId" value="{{ v.id }}">
+        <button class="btn btn--dark btn--block" type="submit" id="addBtn"{% unless v.available %} disabled{% endunless %}>{% if v.available %}In winkelmand{% else %}Uitverkocht{% endif %}</button>
+      </form>
+      {%- if mf.original.value != blank -%}
+      <div class="cmp"><div><span>Het grote merk</span><b>± {{ mf.original.value }}</b></div><div class="cmp__dar"><span>Dar</span><b>{{ v.price | money }}</b></div></div>
+      {%- endif -%}
+      <ul class="usp"><li>Morgen in huis, voor 16:00 besteld</li><li>Gratis verzending vanaf €70</li><li>Achteraf betalen met Klarna</li></ul>
+      <a class="upsell" href="{{ routes.root_url }}#fusion"><span>Liever je eigen mix?</span> Combineer deze geur in Dar Fusion</a>
+    </div>
+  </div>
+  <script type="application/json" id="variants">{{ product.variants | json }}</script>
+  {%- assign thr = settings.free_ship | default: 70 -%}
+  <div class="satc" id="satc" aria-hidden="true" inert>
+    <div class="satc__row">
+      <div class="satc__m"><span class="satc__t">{{ product.title }}</span><span class="satc__p">{{ v.price | money }}</span></div>
+      <button class="btn btn--dark" type="submit" form="addForm"{% unless v.available %} disabled{% endunless %}>{% if v.available %}In winkelmand{% else %}Uitverkocht{% endif %}</button>
+    </div>
+    <ul class="satc__usp"><li>Morgen in huis</li><li>Gratis vanaf €{{ thr }}</li><li>Achteraf betalen</li></ul>
+  </div>
+</section>
+<section class="index index--more">
+  <div class="wrap">
+    <div class="index__head"><h2 class="h2">Meer geuren</h2></div>
+    <ol class="rows">
+      {%- for p in collections['dar-geuren'].products -%}{%- if p.id != product.id -%}
+        {%- capture c2 -%}{% render 'scent-color', p: p %}{%- endcapture -%}
+        <li class="rowi" style="--c:{{ c2 }}"><a href="{{ p.url }}"><span class="rowi__no">No. {{ p.metafields.dar.no.value }}</span><span class="rowi__fam">{{ p.metafields.dar.family.value }}</span><span class="rowi__notes">{{ p.metafields.dar.top.value }} <i>—</i> {{ p.metafields.dar.heart.value }} <i>—</i> {{ p.metafields.dar.base.value }}</span><span class="rowi__price">{{ p.price | money }}</span></a></li>
+      {%- endif -%}{%- endfor -%}
+    </ol>
+  </div>
+</section>
+{% schema %}
+{ "name": "Product", "settings": [] }
+{% endschema %}

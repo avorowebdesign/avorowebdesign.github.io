@@ -1,0 +1,48 @@
+{%- liquid
+  assign c_all = collections['dar-geuren']
+  assign c_best = collections['bestsellers']
+  assign c_h = collections['herenparfums']
+  assign c_d = collections['damesparfums']
+  assign c_u = collections['unisex']
+-%}
+<header class="hdr{% if template.name == 'index' %} hdr--over{% endif %}" id="hdr">
+  <div class="wrap hdr__in">
+    <nav class="nav" aria-label="Hoofdmenu">
+      <div class="dd" id="dd">
+        <button class="dd__b" type="button" aria-expanded="false" aria-controls="ddP">Geuren <svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg></button>
+        <div class="dd__p" id="ddP">
+          <a href="{{ routes.collections_url }}/dar-geuren">Alle geuren <span>{{ c_all.products_count }}</span></a>
+          <a href="{{ routes.collections_url }}/bestsellers">Bestsellers</a>
+          <hr>
+          <a href="{{ routes.collections_url }}/herenparfums">Heren <span>{{ c_h.products_count }}</span></a>
+          <a href="{{ routes.collections_url }}/damesparfums">Dames <span>{{ c_d.products_count }}</span></a>
+          <a href="{{ routes.collections_url }}/unisex">Unisex <span>{{ c_u.products_count }}</span></a>
+        </div>
+      </div>
+      <a href="{{ routes.root_url }}#fusion">Dar Fusion</a>
+      <a href="{{ routes.root_url }}#exclusive">Dar Exclusive</a>
+    </nav>
+    <a class="logo" href="{{ routes.root_url }}" aria-label="dar parfum, naar home">{% render 'wordmark' %}</a>
+    <div class="hdr__r">
+      <a class="nav__l" href="{{ routes.root_url }}#vinder">Ontdek jouw geur</a>
+      <a class="ico" href="{{ routes.search_url }}" aria-label="Zoeken"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></a>
+      <a class="ico cart" href="{{ routes.cart_url }}" data-cd-open aria-label="Winkelmand, {{ cart.item_count }} artikelen"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cart__n" id="cartCount"{% if cart.item_count == 0 %} hidden{% endif %}>{{ cart.item_count }}</span></a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mnav" id="mnav">
+    <a href="{{ routes.collections_url }}/dar-geuren">Alle geuren</a>
+    <div class="mnav__sub">
+      <a href="{{ routes.collections_url }}/bestsellers">Bestsellers</a>
+      <a href="{{ routes.collections_url }}/herenparfums">Heren</a>
+      <a href="{{ routes.collections_url }}/damesparfums">Dames</a>
+      <a href="{{ routes.collections_url }}/unisex">Unisex</a>
+    </div>
+    <a href="{{ routes.root_url }}#fusion">Dar Fusion</a>
+    <a href="{{ routes.root_url }}#exclusive">Dar Exclusive</a>
+    <a href="{{ routes.root_url }}#vinder">Ontdek jouw geur</a>
+  </div>
+</header>
+{% schema %}
+{ "name": "Header", "settings": [] }
+{% endschema %}

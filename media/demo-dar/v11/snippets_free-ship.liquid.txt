@@ -1,0 +1,17 @@
+{%- comment -%} Balk richting gratis verzending. Drempel staat in Thema-instellingen → Winkelmand. {%- endcomment -%}
+{%- liquid
+  assign thr = settings.free_ship | default: 70 | times: 100
+  assign left = thr | minus: cart.total_price
+  if thr > 0
+    assign pct = cart.total_price | times: 100 | divided_by: thr
+  else
+    assign pct = 100
+  endif
+  if pct > 100
+    assign pct = 100
+  endif
+-%}
+<div class="fs{% if left <= 0 %} is-done{% endif %}">
+  <p class="fs__t">{% if left > 0 %}Nog <b>{{ left | money }}</b> tot gratis verzending{% else %}Je bestelling wordt <b>gratis verzonden</b>{% endif %}</p>
+  <div class="fs__bar" role="progressbar" aria-label="Op weg naar gratis verzending" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ pct }}"><i style="width:{{ pct }}%"></i></div>
+</div>

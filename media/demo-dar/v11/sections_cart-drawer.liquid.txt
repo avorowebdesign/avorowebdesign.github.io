@@ -1,0 +1,94 @@
+{%- comment -%}
+  Winkelmand die van rechts inschuift. Wordt na elke wijziging opnieuw opgehaald via de Section Rendering API
+  (/cart/add.js en /cart/change.js met sections: 'cart-drawer'), zodat prijzen en de verzendbalk altijd uit Shopify komen.
+{%- endcomment -%}
+{%- assign thr = settings.free_ship | default: 70 | times: 100 -%}
+<div class="cd" id="cartDrawer" data-count="{{ cart.item_count }}" inert>
+  <div class="cd__scrim" data-cd-close></div>
+  <div class="cd__panel" role="dialog" aria-modal="true" aria-labelledby="cdTitle" tabindex="-1">
+    <div class="cd__head">
+      <h2 class="cd__t" id="cdTitle">Winkelmand{% if cart.item_count > 0 %} <span>{{ cart.item_count }}</span>{% endif %}</h2>
+      <button class="cd__x" type="button" data-cd-close aria-label="Sluit de winkelmand"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+    </div>
+    {%- if cart.item_count > 0 -%}
+      {% render 'free-ship', cart: cart %}
+      <div class="cd__body">
+        <ul class="cd__items">
+          {%- for item in cart.items -%}
+            {%- capture col -%}{% render 'scent-color', p: item.product %}{%- endcapture -%}
+            {%- capture img -%}{% if item.image %}{{ item.image | image_url: width: 240 }}{% else %}{% render 'scent-img', p: item.product, w: 240 %}{% endif %}{%- endcapture -%}
+            <li class="cdi" style="--c:{{ col }}">
+              <a class="cdi__img" href="{{ item.url }}" tabindex="-1" aria-hidden="true">{% if img != blank %}<img src="{{ img }}" alt="" width="120" height="120" loading="lazy">{% else %}<span>{{ item.product.metafields.dar.family.value | default: 'dar' }}</span>{% endif %}</a>
+              <div class="cdi__m">
+                <a class="cdi__t" href="{{ item.url }}">{{ item.product.title }}</a>
+                {%- unless item.product.has_only_default_variant -%}<span class="cdi__v">{{ item.variant.title }}</span>{%- endunless -%}
+                {%- for p in item.properties -%}{%- assign f = p.first | slice: 0 -%}{%- if p.last != blank and f != '_' -%}<span class="cdi__v">{{ p.first }}: {{ p.last }}</span>{%- endif -%}{%- endfor -%}
+                <div class="cdi__row">
+                  <div class="qt" role="group" aria-label="Aantal van {{ item.product.title | escape }}">
+                    <button type="button" data-line="{{ forloop.index }}" data-q="{{ item.quantity | minus: 1 }}" aria-label="Eén minder">−</button>
+                    <span>{{ item.quantity }}</span>
+                    <button type="button" data-line="{{ forloop.index }}" data-q="{{ item.quantity | plus: 1 }}" aria-label="Eén meer">+</button>
+                  </div>
+                  <button class="cdi__rm" type="button" data-line="{{ forloop.index }}" data-q="0" aria-label="Verwijder {{ item.product.title | escape }}">Verwijder</button>
+                </div>
+              </div>
+              <span class="cdi__p">{{ item.final_line_price | money }}</span>
+            </li>
+          {%- endfor -%}
+        </ul>
+        {%- if cart.total_price < thr -%}
+          {%- assign shown = 0 -%}
+          {%- capture more -%}
+            {%- for p in collections['dar-geuren'].products -%}
+              {%- assign incart = false -%}
+              {%- for item in cart.items -%}{%- if item.product_id == p.id -%}{%- assign incart = true -%}{%- endif -%}{%- endfor -%}
+              {%- if incart == false and shown < 2 and p.available -%}
+                {%- assign shown = shown | plus: 1 -%}
+                {%- capture c2 -%}{% render 'scent-color', p: p %}{%- endcapture -%}
+                {%- capture i2 -%}{% render 'scent-img', p: p, w: 160 %}{%- endcapture -%}
+                <li class="cdm" style="--c:{{ c2 }}">
+                  <a class="cdm__img" href="{{ p.url }}" tabindex="-1" aria-hidden="true">{% if i2 != blank %}<img src="{{ i2 }}" alt="" width="80" height="80" loading="lazy">{% endif %}</a>
+                  <a class="cdm__m" href="{{ p.url }}"><span class="cdm__t">{{ p.title }}</span><span class="cdm__f">{{ p.metafields.dar.family.value }}</span><span class="cdm__pr">{{ p.price | money }}</span></a>
+                  <button class="cdm__add" type="button" data-add="{{ p.selected_or_first_available_variant.id }}" aria-label="Voeg {{ p.title | escape }} toe, {{ p.price | money }}">Voeg toe</button>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endcapture -%}
+          {%- if shown > 0 -%}
+            <div class="cd__more">
+              <p class="cd__mt">Nog een geur erbij?</p>
+              <ul>{{ more }}</ul>
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+      <div class="cd__foot">
+        <div class="cd__sum"><span>Subtotaal</span><b>{{ cart.total_price | money }}</b></div>
+        <p class="cd__note">Een kortingscode vul je in bij het afrekenen.</p>
+        <form action="{{ routes.cart_url }}" method="post"><button class="btn btn--dark btn--block" type="submit" name="checkout">Afrekenen</button></form>
+        <p class="cd__pay">Achteraf betalen met Klarna</p>
+        {%- if shop.enabled_payment_types.size > 0 -%}
+          <div class="cd__icons">{%- for t in shop.enabled_payment_types -%}{{ t | payment_type_svg_tag: class: 'payi' }}{%- endfor -%}</div>
+        {%- endif -%}
+      </div>
+    {%- else -%}
+      <div class="cd__empty">
+        <p class="cd__et">Je winkelmand is nog leeg.</p>
+        <p class="muted">Kies een geur, of laat je helpen met vier korte vragen.</p>
+        <div class="cd__ebtn">
+          <a class="btn btn--dark btn--block" href="{{ routes.collections_url }}/dar-geuren">Bekijk de geuren</a>
+          <a class="btn btn--ghost btn--block" href="{{ routes.root_url }}#vinder" data-cd-close>Ontdek jouw geur</a>
+        </div>
+        <nav class="cd__cats" aria-label="Categorieën">
+          <a href="{{ routes.collections_url }}/bestsellers">Bestsellers</a>
+          <a href="{{ routes.collections_url }}/herenparfums">Heren</a>
+          <a href="{{ routes.collections_url }}/damesparfums">Dames</a>
+          <a href="{{ routes.collections_url }}/unisex">Unisex</a>
+        </nav>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+{% schema %}
+{ "name": "Winkelmand-lade", "settings": [] }
+{% endschema %}

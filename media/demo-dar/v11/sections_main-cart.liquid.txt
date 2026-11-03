@@ -1,0 +1,36 @@
+<section class="sec cartpg">
+  <div class="wrap">
+    <h1 class="h1">Winkelmand</h1>
+    {%- if cart.item_count > 0 -%}
+      <div class="cartpg__fs">{% render 'free-ship', cart: cart %}</div>
+      <form action="{{ routes.cart_url }}" method="post" class="cart__grid">
+        <div class="cart__items">
+          {%- for item in cart.items -%}
+            <div class="ci">
+              <a class="ci__img" href="{{ item.url }}">{%- capture img -%}{% if item.image %}{{ item.image | image_url: width: 300 }}{% else %}{% render 'scent-img', p: item.product, w: 300 %}{% endif %}{%- endcapture -%}{% if img != blank %}<img src="{{ img }}" alt="" width="150" height="150" loading="lazy">{% endif %}</a>
+              <div class="ci__m">
+                <a href="{{ item.url }}" class="ci__t">{{ item.product.title }}</a>
+                {%- unless item.product.has_only_default_variant -%}<span class="muted">{{ item.variant.title }}</span>{%- endunless -%}
+                {%- for p in item.properties -%}{%- assign f = p.first | slice: 0 -%}{%- if p.last != blank and f != '_' -%}<span class="muted">{{ p.first }}: {{ p.last }}</span>{%- endif -%}{%- endfor -%}
+                <label class="qty">Aantal <input type="number" name="updates[]" value="{{ item.quantity }}" min="0"></label>
+              </div>
+              <span class="ci__p">{{ item.final_line_price | money_without_trailing_zeros }}</span>
+            </div>
+          {%- endfor -%}
+        </div>
+        <aside class="cart__sum">
+          <div class="sumrow"><span>Subtotaal</span><b>{{ cart.total_price | money_without_trailing_zeros }}</b></div>
+          <p class="muted">Verzending en btw worden berekend bij het afrekenen.</p>
+          <button class="btn btn--dark btn--block" type="submit" name="checkout">Afrekenen</button>
+          <button class="btn btn--ghost-dark btn--block" type="submit" name="update">Bijwerken</button>
+        </aside>
+      </form>
+    {%- else -%}
+      <p class="lead">Je winkelmand is leeg.</p>
+      <div class="row"><a class="btn btn--dark" href="{{ routes.collections_url }}/dar-geuren">Bekijk de geuren</a></div>
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{ "name": "Winkelmand", "settings": [] }
+{% endschema %}

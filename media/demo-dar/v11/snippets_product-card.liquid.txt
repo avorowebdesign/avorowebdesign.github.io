@@ -1,0 +1,9 @@
+{%- capture col -%}{% render 'scent-color', p: product %}{%- endcapture -%}
+{%- capture img -%}{% render 'scent-img', p: product, w: 800 %}{%- endcapture -%}
+<a class="pc" href="{{ product.url }}" style="--c:{{ col }}">
+  <div class="pc__vis">
+    {%- if img != blank -%}<img src="{{ img }}" alt="{{ product.title | escape }}" width="800" height="800" loading="lazy">{%- else -%}<span class="pc__no">{% if product.metafields.dar.no.value != blank %}No. {{ product.metafields.dar.no.value }}{% else %}{{ product.title | split: ' ' | first }}{% endif %}</span>{%- endif -%}
+  </div>
+  <div class="pc__meta"><span class="pc__t">{{ product.title }}</span><span class="pc__p">{{ product.price_min | money }}</span></div>
+  <span class="pc__v">{{ product.metafields.dar.family.value | default: 'Extrait de parfum' }}</span>
+</a>

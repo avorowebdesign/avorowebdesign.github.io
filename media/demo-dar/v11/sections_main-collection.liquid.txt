@@ -1,0 +1,24 @@
+<section class="colhead">
+  <div class="wrap">
+    <h1 class="h1">{{ collection.title }}</h1>
+    {% if collection.description != blank %}<div class="lead">{{ collection.description }}</div>{% endif %}
+    <nav class="colnav" aria-label="Categorieën">
+      {%- assign hs = 'dar-geuren,bestsellers,herenparfums,damesparfums,unisex' | split: ',' -%}
+      {%- assign ls = 'Alle geuren,Bestsellers,Heren,Dames,Unisex' | split: ',' -%}
+      {%- for h in hs -%}<a href="{{ routes.collections_url }}/{{ h }}"{% if collection.handle == h %} aria-current="page"{% endif %}>{{ ls[forloop.index0] }}</a>{%- endfor -%}
+    </nav>
+  </div>
+</section>
+<section class="sec sec--tight">
+  <div class="wrap">
+    {%- paginate collection.products by 24 -%}
+      <div class="grid">
+        {%- for product in collection.products -%}{% render 'product-card', product: product %}{%- else -%}<p class="muted">Nog geen geuren in deze collectie.</p>{%- endfor -%}
+      </div>
+      {%- if paginate.pages > 1 -%}<div class="pag">{{ paginate | default_pagination }}</div>{%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>
+{% schema %}
+{ "name": "Collectie", "settings": [] }
+{% endschema %}

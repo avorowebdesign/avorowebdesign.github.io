@@ -1,0 +1,21 @@
+{
+ "sections": {
+  "hero": {"type": "hero-liquid", "settings": {}},
+  "manifest": {"type": "manifest", "settings": {}},
+  "categorieen": {
+   "type": "categories",
+   "settings": {"heading": "Voor wie zoek je?"},
+   "blocks": {
+    "heren": {"type": "tile", "settings": {"title": "Heren", "collection": "herenparfums"}},
+    "dames": {"type": "tile", "settings": {"title": "Dames", "collection": "damesparfums"}},
+    "unisex": {"type": "tile", "settings": {"title": "Unisex", "collection": "unisex"}}
+   },
+   "block_order": ["heren", "dames", "unisex"]
+  },
+  "index": {"type": "scent-index", "settings": {}},
+  "fusion": {"type": "fusion", "settings": {}},
+  "finder": {"type": "finder", "settings": {}},
+  "exclusive": {"type": "exclusive", "settings": {}}
+ },
+ "order": ["hero","manifest","categorieen","index","fusion","finder","exclusive"]
+}

@@ -1,0 +1,123 @@
+(function(){
+  const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const toast=html=>{const t=$('#toast');if(!t)return;t.innerHTML=html;t.classList.add('is-on');setTimeout(()=>t.classList.remove('is-on'),3800)};
+  const bumpCart=async()=>{try{const c=await (await fetch('/cart.js')).json();const n=$('#cartCount');if(n){n.textContent=c.item_count;n.hidden=!c.item_count}}catch(e){}};
+
+  // vloeiend scrollen op desktop
+  let lenis=null;
+  if(window.Lenis&&!reduce&&matchMedia('(pointer:fine)').matches){
+    lenis=new Lenis({lerp:.08,wheelMultiplier:.85,smoothWheel:true});
+    (function raf(t){lenis.raf(t);requestAnimationFrame(raf)})(performance.now());
+    document.addEventListener('click',e=>{const a=e.target.closest('a[href*="#"]');if(!a)return;const u=new URL(a.href,location.href);if(u.pathname!==location.pathname||!u.hash)return;const el=document.querySelector(u.hash);if(!el)return;e.preventDefault();lenis.scrollTo(el,{offset:-70,duration:1.3});history.replaceState(null,'',u.hash)});
+  }
+
+  // header: transparant op de hero, daarna crème
+  const hdr=$('#hdr');
+  if(hdr&&hdr.classList.contains('hdr--over')){const h=$('#hero');const on=()=>hdr.classList.toggle('is-solid',!h||scrollY>h.offsetHeight-80);addEventListener('scroll',on,{passive:true});on()}
+  const bg=$('#burger'),mn=$('#mnav');
+  if(bg)bg.addEventListener('click',()=>{const o=bg.getAttribute('aria-expanded')!=='true';bg.setAttribute('aria-expanded',o);mn.classList.toggle('is-open',o)});
+
+  // menu: Geuren klapt open met alle categorieën (hover op desktop, tik op touch)
+  const dd=$('#dd');
+  if(dd){const b=dd.querySelector('.dd__b');const set=o=>{dd.classList.toggle('is-open',o);b.setAttribute('aria-expanded',o)};
+    b.addEventListener('click',()=>set(!dd.classList.contains('is-open')));
+    document.addEventListener('click',e=>{if(!dd.contains(e.target))set(false)});
+    dd.addEventListener('keydown',e=>{if(e.key==='Escape'){set(false);b.focus()}});
+    dd.addEventListener('focusout',e=>{if(!dd.contains(e.relatedTarget))set(false)});}
+
+  // winkelmand-lade: alles komt opnieuw uit Shopify (Section Rendering API), dus prijzen en de verzendbalk kloppen altijd
+  const cd=$('#cartDrawer');let back=null;
+  const panel=()=>cd.querySelector('.cd__panel');
+  const cdOpen=()=>{if(!cd)return;back=document.activeElement;cd.removeAttribute('inert');cd.classList.add('is-open');document.documentElement.classList.add('cd-on');lenis&&lenis.stop();setTimeout(()=>panel().focus({preventScroll:true}),60)};
+  const cdClose=()=>{if(!cd||!cd.classList.contains('is-open'))return;cd.classList.remove('is-open');cd.setAttribute('inert','');document.documentElement.classList.remove('cd-on');lenis&&lenis.start();back&&back.focus&&back.focus({preventScroll:true})};
+  const setCount=n=>{const c=$('#cartCount');if(c){c.textContent=n;c.hidden=!n}const a=$('[data-cd-open]');if(a)a.setAttribute('aria-label','Winkelmand, '+n+' artikelen')};
+  const cdRender=html=>{if(!cd||!html)return;const d=new DOMParser().parseFromString(html,'text/html').querySelector('#cartDrawer');if(!d)return;panel().innerHTML=d.querySelector('.cd__panel').innerHTML;cd.dataset.count=d.dataset.count;setCount(+d.dataset.count)};
+  const cartPost=async(url,body)=>{const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(Object.assign(body,{sections:'cart-drawer',sections_url:location.pathname}))});const j=await r.json();if(!r.ok)throw j;
+    if(j.sections&&j.sections['cart-drawer'])cdRender(j.sections['cart-drawer']);else{const s=await (await fetch(location.pathname+'?sections=cart-drawer')).json();cdRender(s['cart-drawer'])}return j};
+  const busy=(on)=>cd&&panel().classList.toggle('is-busy',on);
+  const addItems=async items=>{if(!cd){await fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items})});location.href='/cart';return}
+    await cartPost('/cart/add.js',{items});cdOpen()};
+  if(cd&&!document.body.classList.contains('tpl-cart')){
+    document.addEventListener('click',async e=>{
+      if(e.target.closest('[data-cd-open]')){e.preventDefault();cdOpen();return}
+      if(e.target.closest('[data-cd-close]')){cdClose();return}
+      const q=e.target.closest('.cd [data-line]');
+      if(q){const line=+q.dataset.line,lab=q.getAttribute('aria-label');busy(true);
+        try{await cartPost('/cart/change.js',{line,quantity:+q.dataset.q});const f=panel().querySelector('[data-line="'+line+'"][aria-label="'+lab+'"]');(f||panel()).focus({preventScroll:true})}
+        catch(err){toast('Dat lukte niet, probeer het opnieuw')}finally{busy(false)}return}
+      const a=e.target.closest('.cd [data-add]');
+      if(a){busy(true);try{await cartPost('/cart/add.js',{items:[{id:+a.dataset.add,quantity:1}]});panel().focus({preventScroll:true})}catch(err){toast((err&&err.description)||'Dat lukte niet, probeer het opnieuw')}finally{busy(false)}}
+    });
+    cd.addEventListener('keydown',e=>{if(e.key==='Escape')cdClose();
+      if(e.key==='Tab'){const f=[...panel().querySelectorAll('a[href],button:not([disabled]),input')].filter(x=>x.offsetParent);if(!f.length)return;const a=f[0],z=f[f.length-1];
+        if(e.shiftKey&&(document.activeElement===a||document.activeElement===panel())){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}});
+  }
+
+  // productpagina op mobiel: vaste knop onderin zodra de gewone knop uit beeld is
+  const sa=$('#satc'),ab=$('#addBtn');
+  if(sa&&ab&&'IntersectionObserver' in window){const mq=matchMedia('(max-width:900px)');let seen=true;
+    const upd=()=>{const on=mq.matches&&!seen&&!(cd&&cd.classList.contains('is-open'));sa.classList.toggle('is-on',on);sa.setAttribute('aria-hidden',!on);on?sa.removeAttribute('inert'):sa.setAttribute('inert','');document.body.classList.toggle('satc-on',on);if(on)document.documentElement.style.setProperty('--satc-h',sa.offsetHeight+'px')};
+    new IntersectionObserver(([en])=>{seen=en.isIntersecting;upd()}).observe(ab);
+    mq.addEventListener('change',upd);
+    if(cd)new MutationObserver(upd).observe(cd,{attributes:true,attributeFilter:['class']});}
+
+  // geuren-index: het venster rechts toont het flesje van de rij waar je op staat
+  const rows=$('#rows'),pv=$('#pvImg');
+  if(rows&&pv){
+    let cur=rows.querySelector('.is-act');
+    const act=li=>{if(!li||li===cur)return;cur&&cur.classList.remove('is-act');li.classList.add('is-act');cur=li;
+      const img=new Image();img.src=li.dataset.img;pv.classList.add('is-out');
+      const swap=()=>{pv.src=li.dataset.img;$('#pvNo').textContent=li.dataset.no;$('#pvFam').textContent=li.dataset.fam;$('#preview').style.setProperty('--c',getComputedStyle(li).getPropertyValue('--c'));requestAnimationFrame(()=>pv.classList.remove('is-out'))};
+      img.complete?setTimeout(swap,180):img.onload=()=>setTimeout(swap,120)};
+    rows.addEventListener('pointerover',e=>act(e.target.closest('.rowi')));
+    rows.addEventListener('focusin',e=>act(e.target.closest('.rowi')));
+  }
+
+  // hero: flesje beweegt licht mee met de muis
+  const hb=$('#heroBottle'),hs=$('#hero');
+  if(hb&&hs&&!reduce&&matchMedia('(pointer:fine)').matches){let x=0,y=0,tx=0,ty=0;
+    hs.addEventListener('pointermove',e=>{const r=hs.getBoundingClientRect();tx=(e.clientX-r.left)/r.width-.5;ty=(e.clientY-r.top)/r.height-.5});
+    (function loop(){x+=(tx-x)*.05;y+=(ty-y)*.05;hb.style.setProperty('--px',(x*-18).toFixed(2)+'px');hb.style.setProperty('--py',(y*-12).toFixed(2)+'px');requestAnimationFrame(loop)})();}
+
+  // Dar Fusion: kies 2-3 geuren → lagen in het flesje, naam live op het etiket, toevoegen met eigenschappen
+  const ff=$('#fusionForm');
+  if(ff){
+    const L=$('#layers'),btn=$('#fusionBtn'),nm=$('#fName'),vn=$('#vname'),mixT=$('#mixText'),boxes=$$('#chips input');
+    const TOP=150,BOT=400,NS='http://www.w3.org/2000/svg';
+    const draw=()=>{
+      const sel=boxes.filter(b=>b.checked);L.innerHTML='';
+      const fill=sel.length?Math.min(1,.32*sel.length+.12):0,h=(BOT-TOP)*fill,each=sel.length?h/sel.length:0;
+      sel.forEach((b,i)=>{const r=document.createElementNS(NS,'rect');r.setAttribute('x',0);r.setAttribute('width',300);r.setAttribute('y',BOT-each*(i+1));r.setAttribute('height',each+1);r.setAttribute('fill',b.dataset.c);r.setAttribute('opacity','.9');r.style.transition='y .8s cubic-bezier(.2,.7,.2,1),height .8s cubic-bezier(.2,.7,.2,1)';L.appendChild(r)});
+      if(sel.length){const s=document.createElementNS(NS,'rect');s.setAttribute('x',0);s.setAttribute('width',300);s.setAttribute('y',BOT-h);s.setAttribute('height',3);s.setAttribute('fill','rgba(255,255,255,.35)');L.appendChild(s)}
+      boxes.forEach(b=>{b.disabled=!b.checked&&sel.length>=3});
+      const names=sel.map(b=>b.value);
+      mixT.textContent=names.length?names.join(' × '):'Kies je eerste geur';
+      btn.disabled=names.length<2;btn.textContent=names.length<2?(names.length?'Kies nog een geur':'Kies eerst 2 geuren'):'Leg jouw mix in de winkelmand';
+    };
+    boxes.forEach(b=>b.addEventListener('change',draw));
+    nm.addEventListener('input',()=>{vn.textContent=nm.value.trim()||'Jouw naam'});
+    ff.addEventListener('submit',async e=>{e.preventDefault();const id=+ff.dataset.variant;const sel=boxes.filter(b=>b.checked).map(b=>b.value);if(!id||sel.length<2)return;btn.disabled=true;
+      try{const props={'Geuren':sel.join(' + ')};if(nm.value.trim())props['Naam op etiket']=nm.value.trim();
+        await addItems([{id,quantity:1,properties:props}])}catch(err){toast('Dat lukte niet, probeer het opnieuw')}finally{btn.disabled=false}});
+    draw();
+  }
+
+  // Geurvinder
+  const fd=$('#finderData'),fb=$('#finder');
+  if(fd&&fb){
+    const D=JSON.parse(fd.textContent),qs=$$('#finder .q'),pg=$$('#fProg li');let step=0,score={};
+    const show=i=>{qs.forEach((q,j)=>q.classList.toggle('is-on',j===i));pg.forEach((p,j)=>p.classList.toggle('is-on',j<=Math.min(i,3)))};
+    fb.addEventListener('click',e=>{const b=e.target.closest('.q__a button');if(!b)return;b.dataset.s.split(',').forEach(k=>score[k]=(score[k]||0)+1);step++;
+      if(step>=4){const best=Object.keys(D).sort((a,b)=>(score[b]||0)-(score[a]||0))[0]||Object.keys(D)[0],d=D[best];
+        $('#resNo').textContent='No. '+best;$('#resFam').textContent=d.fam||'';$('#resNotes').textContent=d.notes||'';$('#resLink').href=d.url;fb.style.setProperty('--c',d.c)}
+      show(step)});
+    $('#resAgain').addEventListener('click',()=>{step=0;score={};fb.style.removeProperty('--c');show(0)});
+  }
+
+  // product: ajax toevoegen
+  const af=$('#addForm');
+  if(af){af.addEventListener('submit',async e=>{e.preventDefault();const bs=$$('#addBtn,#satc .btn');bs.forEach(b=>b.disabled=true);
+    try{await addItems([{id:+$('#variantId').value,quantity:1}])}catch(err){toast((err&&err.description)||'Dat lukte niet, probeer het opnieuw')}
+    finally{bs.forEach(b=>b.disabled=false)}})}
+})();

@@ -1,0 +1,43 @@
+{%- comment -%} Drie tegels: Heren, Dames, Unisex. Beeld = eerste geur in die collectie (of een eigen afbeelding), families komen uit de geuren zelf. {%- endcomment -%}
+<section class="cats" id="categorieen">
+  <div class="wrap">
+    <div class="cats__head">
+      <h2 class="h2">{{ section.settings.heading }}</h2>
+      <a class="link cats__all" href="{{ routes.collections_url }}/dar-geuren">Alle geuren</a>
+    </div>
+    <div class="cats__grid">
+      {%- for block in section.blocks -%}
+        {%- assign c = block.settings.collection -%}
+        {%- assign first = c.products.first -%}
+        {%- capture col -%}{% if first %}{% render 'scent-color', p: first %}{% else %}#c9a24a{% endif %}{%- endcapture -%}
+        {%- capture img -%}{% if block.settings.image %}{{ block.settings.image | image_url: width: 900 }}{% elsif first %}{% render 'scent-img', p: first, w: 900 %}{% endif %}{%- endcapture -%}
+        {%- capture fams -%}{%- for p in c.products limit: 3 -%}{%- if p.metafields.dar.family.value != blank -%}<span>{{ p.metafields.dar.family.value }}</span>{%- endif -%}{%- endfor -%}{%- endcapture -%}
+        <a class="cat" href="{% if c %}{{ c.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}" style="--c:{{ col }}" {{ block.shopify_attributes }}>
+          <div class="cat__vis">{% if img != blank %}<img src="{{ img }}" alt="" width="900" height="900" loading="lazy">{% endif %}</div>
+          <div class="cat__meta">
+            <span class="cat__t">{{ block.settings.title }}</span>
+            {%- if c -%}<span class="cat__n">{{ c.products_count }} {% if c.products_count == 1 %}geur{% else %}geuren{% endif %}</span>{%- endif -%}
+          </div>
+          {%- if fams != blank -%}<span class="cat__f">{{ fams }}</span>{%- endif -%}
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Categorieën",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Kop", "default": "Voor wie zoek je?" }
+  ],
+  "blocks": [
+    { "type": "tile", "name": "Tegel", "settings": [
+      { "type": "text", "id": "title", "label": "Naam", "default": "Heren" },
+      { "type": "collection", "id": "collection", "label": "Collectie" },
+      { "type": "image_picker", "id": "image", "label": "Eigen afbeelding", "info": "Leeg laten: dan staat het flesje van de eerste geur erin." }
+    ] }
+  ],
+  "max_blocks": 4,
+  "presets": [{ "name": "Categorieën", "blocks": [{ "type": "tile" }, { "type": "tile" }, { "type": "tile" }] }]
+}
+{% endschema %}
