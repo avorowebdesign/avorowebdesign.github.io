@@ -9,14 +9,14 @@
   --ease:cubic-bezier(.2,.7,.2,1);
 }
 .dr{font:400 16px/1.65 var(--f);color:var(--ink);-webkit-font-smoothing:antialiased;text-align:left}
-.dr *,.dr *::before,.dr *::after{box-sizing:border-box}
-.dr img{max-width:100%;height:auto;display:block}
-.dr a{color:inherit}
-.dr button,.dr input,.dr textarea{font:inherit;color:inherit;letter-spacing:inherit}
-.dr h1,.dr h2,.dr h3,.dr p,.dr ol,.dr ul,.dr dl,.dr dd,.dr figure,.dr fieldset{font-family:var(--f);text-transform:none}
-.dr h1,.dr h2,.dr h3{color:inherit}
-.dr label{text-transform:none;letter-spacing:inherit;font-weight:inherit;margin:0}
-.dr input[type=checkbox]{width:auto;height:auto}
+.dr :where(*,*::before,*::after){box-sizing:border-box}
+.dr :where(img){max-width:100%;height:auto;display:block}
+.dr :where(a){color:inherit}
+.dr :where(button,input,textarea){font:inherit;color:inherit;letter-spacing:inherit}
+.dr :where(h1,h2,h3,p,ol,ul,dl,dd,figure,fieldset){font-family:var(--f);text-transform:none}
+.dr :where(h1,h2,h3){color:inherit}
+.dr :where(label){text-transform:none;letter-spacing:inherit;font-weight:inherit;margin:0}
+.dr :where(input[type=checkbox]){width:auto;height:auto}
 .dr :focus-visible{outline:1px solid var(--gold);outline-offset:4px}
 .dr-wrap{max-width:var(--max);margin:0 auto;padding-left:var(--gut);padding-right:max(20px,env(safe-area-inset-right,0px))}
 .dr-narrow{max-width:720px}
