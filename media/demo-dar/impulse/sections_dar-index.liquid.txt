@@ -6,7 +6,7 @@
     </div>
     <div class="dr-index__grid">
       <ol class="dr-rows" id="rows">
-        {%- for p in collections[section.settings.collection].products -%}
+        {%- for p in collections[section.settings.collection].products limit: section.settings.limit -%}
           {%- capture col -%}{% render 'dar-scent-color', p: p %}{%- endcapture -%}
           {%- if p.featured_image -%}{%- assign img = p.featured_image | image_url: width: 900 -%}{%- else -%}{%- assign img = section.settings.preview_base | append: p.metafields.dar.no.value | append: '.jpg' -%}{%- endif -%}
           <li class="dr-rowi{% if forloop.first %} is-act{% endif %}" style="--c:{{ col }}" data-img="{{ img }}" data-fam="{{ p.metafields.dar.family.value }}" data-no="No. {{ p.metafields.dar.no.value }}" data-url="{{ p.url }}">
@@ -34,6 +34,7 @@
   { "type": "text", "id": "heading", "label": "Kop", "default": "De geuren" },
   { "type": "textarea", "id": "text", "label": "Tekst", "default": "Elke geur is een recept: van de eerste indruk tot wat er na uren nog op je huid zit." },
   { "type": "text", "id": "collection", "label": "Collectie handle", "default": "dar-geuren" },
+  { "type": "range", "id": "limit", "label": "Aantal geuren tonen", "min": 3, "max": 12, "step": 1, "default": 6, "info": "De rest staat achter de link Alle geuren bekijken." },
   { "type": "text", "id": "preview_base", "label": "Voorbeeldbeeld (zonder productfoto)", "default": "https://avoroweb.nl/media/demo-dar/s" }
 ], "presets": [{ "name": "Dar – Geuren-index" }] }
 {% endschema %}

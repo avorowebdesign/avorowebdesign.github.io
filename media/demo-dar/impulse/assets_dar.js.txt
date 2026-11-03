@@ -44,29 +44,59 @@
     hs.addEventListener('pointermove',e=>{const r=hs.getBoundingClientRect();tx=(e.clientX-r.left)/r.width-.5;ty=(e.clientY-r.top)/r.height-.5});
     (function loop(){x+=(tx-x)*.05;y+=(ty-y)*.05;hb.style.setProperty('--px',(x*-18).toFixed(2)+'px');hb.style.setProperty('--py',(y*-12).toFixed(2)+'px');requestAnimationFrame(loop)})();}
 
-  // Dar Fusion: kies 2-3 geuren → lagen in het flesje, naam live op het etiket, toevoegen met eigenschappen
-  const ff=$('#fusionForm');
-  if(ff){
-    const L=$('#layers'),btn=$('#fusionBtn'),nm=$('#fName'),vn=$('#vname'),mixT=$('#mixText'),boxes=$$('#chips input');
-    const TOP=150,BOT=400,NS='http://www.w3.org/2000/svg';
+  // Dar Fusion: kies 2 of 3 geuren via zoekvelden (nummer, naam, familie, noten, "geïnspireerd op" en zoekwoorden)
+  const ff=$('#fusionForm'),fdata=$('#fusionData');
+  if(ff&&fdata){
+    const ALL=JSON.parse(fdata.textContent).filter(x=>x&&x.no);
+    const norm=s=>(s||'').toString().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,' ').trim();
+    ALL.forEach(x=>{x.label='No. '+x.no;x.hay=' '+norm([x.label,x.no,x.t,x.f,x.n,x.i,x.k].join(' '))+' '});
+    const L=$('#layers'),btn=$('#fusionBtn'),nm=$('#fName'),vn=$('#vname'),mixT=$('#mixText'),price=$('#fPrice');
+    const slots=$$('#slots .dr-slot'),TOP=150,BOT=400,NS='http://www.w3.org/2000/svg';
+    const pick=[null,null,null];let count=2;
+    const need=()=>count-pick.slice(0,count).filter(Boolean).length;
     const draw=()=>{
-      const sel=boxes.filter(b=>b.checked);L.innerHTML='';
+      const sel=pick.slice(0,count).filter(Boolean);L.innerHTML='';
       const fill=sel.length?Math.min(1,.32*sel.length+.12):0,h=(BOT-TOP)*fill,each=sel.length?h/sel.length:0;
-      sel.forEach((b,i)=>{const r=document.createElementNS(NS,'rect');r.setAttribute('x',0);r.setAttribute('width',300);r.setAttribute('y',BOT-each*(i+1));r.setAttribute('height',each+1);r.setAttribute('fill',b.dataset.c);r.setAttribute('opacity','.9');L.appendChild(r)});
+      sel.forEach((x,i)=>{const r=document.createElementNS(NS,'rect');r.setAttribute('x',0);r.setAttribute('width',300);r.setAttribute('y',BOT-each*(i+1));r.setAttribute('height',each+1);r.setAttribute('fill',x.c);r.setAttribute('opacity','.9');L.appendChild(r)});
       if(sel.length){const s=document.createElementNS(NS,'rect');s.setAttribute('x',0);s.setAttribute('width',300);s.setAttribute('y',BOT-h);s.setAttribute('height',3);s.setAttribute('fill','rgba(255,255,255,.35)');L.appendChild(s)}
-      boxes.forEach(b=>{b.disabled=!b.checked&&sel.length>=3});
-      const names=sel.map(b=>b.value);
-      mixT.textContent=names.length?names.join(' × '):'Kies je eerste geur';
-      btn.disabled=names.length<2;btn.textContent=names.length<2?(names.length?'Kies nog een geur':'Kies eerst 2 geuren'):'Leg jouw mix in de winkelmand';
+      mixT.textContent=sel.length?sel.map(x=>x.label).join(' × '):'Kies je eerste geur';
+      const n=need();btn.disabled=n>0;btn.textContent=n>0?(n===count?'Kies eerst '+count+' geuren':'Kies nog '+n+(n===1?' geur':' geuren')):'Leg jouw mix in de winkelmand';
+      price.textContent=count===3&&ff.dataset.p3?ff.dataset.p3:ff.dataset.p2;
     };
-    boxes.forEach(b=>b.addEventListener('change',draw));
-    // vanaf een productpagina: ?mix=02 vinkt die geur alvast aan
-    const pre=new URLSearchParams(location.search).get('mix');
-    if(pre){const b=boxes.find(x=>x.value==='No. '+pre);if(b)b.checked=true}
+    const setSlot=(i,x)=>{pick[i]=x;const s=slots[i],inp=s.querySelector('input'),dot=s.querySelector('.dr-combo__dot'),cl=s.querySelector('.dr-combo__clear');
+      inp.value=x?(x.label+(x.f?', '+x.f:'')):'';dot.style.background=x?x.c:'';dot.classList.toggle('is-set',!!x);cl.hidden=!x;s.classList.toggle('is-set',!!x);draw()};
+    const close=s=>{const inp=s.querySelector('input'),ul=s.querySelector('ul');ul.hidden=true;inp.setAttribute('aria-expanded','false');inp.removeAttribute('aria-activedescendant');const i=+s.dataset.slot;if(pick[i])inp.value=pick[i].label+(pick[i].f?', '+pick[i].f:'')};
+    const esc=t=>t.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    const render=(s,q)=>{
+      const i=+s.dataset.slot,ul=s.querySelector('ul'),inp=s.querySelector('input'),words=norm(q).split(' ').filter(Boolean);
+      const taken=new Set(pick.filter((x,j)=>x&&j!==i).map(x=>x.no));
+      let res=ALL.filter(x=>words.every(w=>x.hay.includes(' '+w)||x.hay.includes(w)));
+      if(words.length){const w0=words[0].replace(/^0+/,'');res.sort((a,b)=>(String(b.no).replace(/^0+/,'')===w0)-(String(a.no).replace(/^0+/,'')===w0))}
+      ul.innerHTML=res.length?res.slice(0,60).map(x=>{const dis=taken.has(x.no);return '<li role="option" id="o'+i+'-'+esc(String(x.no))+'" data-no="'+esc(String(x.no))+'" aria-selected="false"'+(dis?' aria-disabled="true"':'')+'><i style="background:'+esc(x.c)+'"></i><span class="no">'+esc(x.label)+'</span><span class="fam">'+esc(x.f||'')+'</span>'+(x.i?'<span class="nt">Geïnspireerd op '+esc(x.i)+'</span>':'')+(x.n?'<span class="nt">'+esc(x.n)+'</span>':'')+'</li>'}).join('')
+        :'<li class="dr-combo__empty" role="presentation">Geen geur gevonden voor “'+esc(q)+'”. <a href="#exclusive">Vraag hem aan via Dar Exclusive</a></li>';
+      ul.hidden=false;inp.setAttribute('aria-expanded','true');s._act=-1;
+    };
+    const move=(s,d)=>{const opts=[...s.querySelectorAll('li[role=option]:not([aria-disabled])')];if(!opts.length)return;s._act=(s._act+d+opts.length)%opts.length;opts.forEach((o,k)=>o.setAttribute('aria-selected',k===s._act));const o=opts[s._act];o.scrollIntoView({block:'nearest'});s.querySelector('input').setAttribute('aria-activedescendant',o.id)};
+    const choose=(s,li)=>{if(!li||li.getAttribute('aria-disabled'))return;const x=ALL.find(y=>String(y.no)===li.dataset.no);setSlot(+s.dataset.slot,x);close(s);
+      const next=slots.slice(0,count).find((t,k)=>!pick[k]);if(next&&matchMedia('(pointer:fine)').matches)next.querySelector('input').focus()};
+    slots.forEach(s=>{const inp=s.querySelector('input'),ul=s.querySelector('ul');
+      inp.addEventListener('focus',()=>{inp.select();render(s,pick[+s.dataset.slot]?'':inp.value)});
+      inp.addEventListener('input',()=>render(s,inp.value));
+      inp.addEventListener('keydown',e=>{if(e.key==='ArrowDown'){e.preventDefault();if(ul.hidden)render(s,inp.value);move(s,1)}else if(e.key==='ArrowUp'){e.preventDefault();move(s,-1)}
+        else if(e.key==='Enter'){e.preventDefault();const opts=[...ul.querySelectorAll('li[role=option]:not([aria-disabled])')];choose(s,opts[s._act>=0?s._act:0])}else if(e.key==='Escape'){close(s)}});
+      ul.addEventListener('mousedown',e=>e.preventDefault());
+      ul.addEventListener('click',e=>choose(s,e.target.closest('li[role=option]')));
+      inp.addEventListener('blur',()=>setTimeout(()=>close(s),120));
+      s.querySelector('.dr-combo__clear').addEventListener('click',()=>{setSlot(+s.dataset.slot,null);inp.focus()});
+    });
+    $$('#fusionForm input[name=n]').forEach(r=>r.addEventListener('change',()=>{count=+r.value;slots[2].hidden=count<3;if(count<3&&pick[2])setSlot(2,null);draw()}));
     nm.addEventListener('input',()=>{vn.textContent=nm.value.trim()||'Jouw naam'});
-    ff.addEventListener('submit',async e=>{e.preventDefault();const id=+ff.dataset.variant;const sel=boxes.filter(b=>b.checked).map(b=>b.value);if(!id||sel.length<2)return;btn.disabled=true;
-      try{const props={'Geuren':sel.join(' + ')};if(nm.value.trim())props['Naam op etiket']=nm.value.trim();await addItems([{id,quantity:1,properties:props}])}
+    ff.addEventListener('submit',async e=>{e.preventDefault();if(need()>0)return;const id=+(count===3&&ff.dataset.v3?ff.dataset.v3:ff.dataset.v2);btn.disabled=true;
+      try{const props={'Geuren':pick.slice(0,count).map(x=>x.label).join(' + ')};if(nm.value.trim())props['Naam op etiket']=nm.value.trim();await addItems([{id,quantity:1,properties:props}])}
       catch(err){mixT.textContent=(err&&err.description)||'Dat lukte niet, probeer het opnieuw'}finally{btn.disabled=false}});
+    // vanaf een productpagina: ?mix=02 zet die geur alvast in vakje 1
+    const pre=new URLSearchParams(location.search).get('mix');
+    if(pre){const x=ALL.find(y=>String(y.no)===pre);if(x)setSlot(0,x)}
     draw();
   }
 
