@@ -440,3 +440,8 @@
 .dr-combo__list li[aria-disabled=true]{opacity:.35;cursor:not-allowed}
 .dr-combo__empty{padding:12px 14px;font-size:14px;line-height:1.5;color:rgba(242,230,207,.75)}
 .dr-combo__empty a{color:var(--gold)}
+/* fix: Fusion-mixer niet breder dan het scherm op mobiel (fieldset heeft standaard een minimale breedte) */
+.dr-pick{min-width:0}
+.dr-fusion__txt,.dr-fusion__form{min-width:0}
+.dr-fusion__grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+@media (max-width:900px){.dr-fusion__grid{grid-template-columns:minmax(0,1fr)}}
