@@ -1,6 +1,6 @@
 {%- comment -%}
   "Mix deze geur met een tweede geur" (Dar Fusion). Alleen bij losse geuren (met een nummer).
-  De link opent de Fusion-mixer op de homepage met deze geur al aangevinkt (?mix=02).
+  De link opent de Fusion-productpagina (met de mixer) met deze geur al gekozen (?mix=02).
 {%- endcomment -%}
 {%- assign no = product.metafields.dar.no.value -%}
 {%- if no != blank -%}
@@ -8,7 +8,8 @@
   {%- capture c1 -%}{% render 'dar-scent-color', p: product %}{%- endcapture -%}
   {%- assign c2 = '#c8875b' -%}
   {%- for p in collections['dar-geuren'].products -%}{%- if p.id != product.id -%}{%- capture c2 -%}{% render 'dar-scent-color', p: p %}{%- endcapture -%}{%- break -%}{%- endif -%}{%- endfor -%}
-  <a class="dr dr-fus" href="{{ routes.root_url }}?mix={{ no | url_encode }}#fusion">
+  {%- if fu.url -%}{%- capture fus_url -%}{{ fu.url }}?mix={{ no | url_encode }}{%- endcapture -%}{%- else -%}{%- capture fus_url -%}{{ routes.root_url }}?mix={{ no | url_encode }}#fusion{%- endcapture -%}{%- endif -%}
+  <a class="dr dr-fus" href="{{ fus_url }}">
     <svg class="dr-fus__vial" viewBox="0 0 300 420" width="76" height="106" aria-hidden="true">
       <defs><clipPath id="drFusClip"><path d="M70 120 H230 L270 160 V360 L230 400 H70 L30 360 V160 Z"/></clipPath></defs>
       <rect x="120" y="92" width="60" height="30" fill="#2a2627"/>

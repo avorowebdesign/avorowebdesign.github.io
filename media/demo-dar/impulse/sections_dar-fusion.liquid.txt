@@ -39,7 +39,7 @@
     </div>
     <div class="dr-fusion__txt">
       <p class="dr-kicker">Dar Fusion</p>
-      <h2 class="dr-h2">{{ section.settings.heading }}</h2>
+      {%- if template.name == 'product' -%}<h1 class="dr-h2">{{ section.settings.heading }}</h1>{%- else -%}<h2 class="dr-h2">{{ section.settings.heading }}</h2>{%- endif -%}
       <p class="dr-lead">{{ section.settings.text }}</p>
       <form class="dr-fusion__form" id="fusionForm" data-v2="{{ v2.id }}" data-p2="{{ v2.price | money }}"{% if v3 %} data-v3="{{ v3.id }}" data-p3="{{ v3.price | money }}"{% endif %} novalidate>
         <fieldset class="dr-pick"><legend><b>1</b> Hoeveel geuren?</legend>

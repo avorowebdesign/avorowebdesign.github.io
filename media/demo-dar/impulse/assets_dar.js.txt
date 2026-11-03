@@ -24,7 +24,14 @@
   let fsT=0;const refreshFs=()=>{if(!fsEls.length&&!more)return;clearTimeout(fsT);fsT=setTimeout(async()=>{try{const c=await (await fetch('/cart.js',{headers:{Accept:'application/json'}})).json();drawFs(c);drawMore(c)}catch(e){}},300)};
   if(fsEls.length||more){refreshFs();
     document.addEventListener('ajaxProduct:added',refreshFs);document.addEventListener('cart:build',refreshFs);
-    const sub=$('#CartDrawer [data-subtotal]');if(sub)new MutationObserver(refreshFs).observe(sub,{childList:true,characterData:true,subtree:true});}
+    $$('[data-subtotal]').forEach(sub=>new MutationObserver(refreshFs).observe(sub,{childList:true,characterData:true,subtree:true}));}
+
+  // sorteren en filters altijd in het Nederlands, ook als de winkeltaal Engels is
+  const NL={'featured':'Uitgelicht','best-selling':'Bestsellers','title-ascending':'Alfabetisch, A-Z','title-descending':'Alfabetisch, Z-A','price-ascending':'Prijs, laag naar hoog','price-descending':'Prijs, hoog naar laag','created-ascending':'Datum, oud naar nieuw','created-descending':'Datum, nieuw naar oud','manual':'Uitgelicht','relevance':'Relevantie'};
+  const NLT={'Availability':'Beschikbaarheid','Price':'Prijs','In stock':'Op voorraad','Out of stock':'Niet op voorraad','Product type':'Soort','Brand':'Merk','Vendor':'Merk','Sort by':'Sorteren','Filter':'Filter','Clear all':'Alles wissen','Apply':'Toepassen','Reset':'Wissen'};
+  const tr=()=>{$$('select option').forEach(o=>{if(NL[o.value])o.textContent=NL[o.value]});
+    $$('.collection-filter__item, .tag-list__header, .collapsible-trigger, .filter-form label, .tag__text, .collection-filter label').forEach(el=>{el.childNodes.forEach(n=>{if(n.nodeType===3){const t=n.textContent.trim();if(NLT[t])n.textContent=n.textContent.replace(t,NLT[t])}})})};
+  tr();document.addEventListener('collection:reloaded',tr);document.addEventListener('ajaxProduct:added',tr);
 
   // geuren-index: het venster rechts toont het flesje van de rij waar je op staat
   const rows=$('#rows'),pv=$('#pvImg');
@@ -112,12 +119,12 @@
     $('#resAgain').addEventListener('click',()=>{step=0;score={};fb.style.removeProperty('--c');show(0)});
   }
 
-  // productpagina op mobiel: vaste knop onderin zodra de knop van Impulse uit beeld is
+  // productpagina op mobiel: vaste knop onderin zodra je voorbij de knop van Impulse bent gescrold
   const sa=$('#drSatc'),sb=$('#drSatcBtn');
   const real=$('.product-single__form [name="add"]')||$('form[action*="/cart/add"] [name="add"]');
   if(sa&&sb&&real&&'IntersectionObserver' in window){const mq=matchMedia('(max-width:768px)');let seen=true;
     const upd=()=>{const on=mq.matches&&!seen;sa.classList.toggle('is-on',on);sa.setAttribute('aria-hidden',!on);on?sa.removeAttribute('inert'):sa.setAttribute('inert','');document.body.classList.toggle('dr-satc-on',on);if(on)document.documentElement.style.setProperty('--dr-satc-h',sa.offsetHeight+'px')};
-    new IntersectionObserver(([en])=>{seen=en.isIntersecting;upd()}).observe(real);
+    new IntersectionObserver(([en])=>{seen=en.isIntersecting||en.boundingClientRect.top>0;upd()}).observe(real);
     mq.addEventListener('change',upd);
     sb.addEventListener('click',()=>real.click());
   }

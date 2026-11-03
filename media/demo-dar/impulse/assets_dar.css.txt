@@ -447,3 +447,73 @@
 @media (max-width:900px){.dr-fusion__grid{grid-template-columns:minmax(0,1fr)}}
 .dr-count{grid-template-columns:repeat(2,minmax(0,1fr))}
 .dr-count__o span{flex-wrap:wrap;text-transform:none;letter-spacing:0;padding:13px 14px}
+
+/* ===== responsive ronde (alle schermformaten) ===== */
+
+/* geuren-index op telefoon en tablet: prijs netjes naast het nummer, oude prijs klein erboven */
+@media (max-width:860px){
+  .dr-rowi a{align-items:center}
+  .dr-rowi__price{display:grid;justify-items:end;line-height:1.35;white-space:nowrap;font-size:15px;color:var(--wine)}
+  .dr-rowi__price s{font-size:12.5px;color:var(--mut)}
+}
+@media (max-width:400px){
+  .dr-rowi a{grid-template-columns:64px minmax(0,1fr) auto;gap:4px 14px}
+  .dr-rowi__thumb{width:64px;height:64px}
+  .dr-rowi__no{font-size:28px;min-width:0}
+}
+
+/* Dar Exclusive: tekst niet meer tegen het gouden kader aan */
+@media (max-width:860px){
+  .dr-excl::before{inset:10px}
+  .dr-excl>.dr-wrap{padding-left:34px;padding-right:34px}
+}
+
+/* hero op tablets (staand): flesje boven, tekst eronder, geen leeg vlak ertussen */
+@media (min-width:601px) and (max-width:1180px) and (orientation:portrait){
+  .dr-hero{min-height:0;align-items:flex-end}
+  .dr-hero__cue{display:none}
+  .dr-hero__bottle{right:50%;top:120px;width:min(58vw,520px);transform:translateX(50%)}
+  .dr-hero__in{z-index:1;padding-top:calc(min(58vw,520px) + 150px);padding-bottom:64px}
+  .dr-hero__in::before{content:"";position:absolute;left:0;right:0;bottom:0;height:62%;z-index:-1;background:linear-gradient(to top,#24080e 30%,rgba(36,8,14,0))}
+  .dr-hero__t{font-size:clamp(48px,7.4vw,76px)}
+  .dr-hero__lead{font-size:17px}
+}
+
+/* aankondigingsbalk: tussen telefoon en laptop past de rij niet, dan de slider van Impulse */
+@media (min-width:769px) and (max-width:1023px){
+  .announcement-bar .slideshow-wrapper{display:block!important}
+  .dr-annrow{display:none!important}
+}
+.dr-annrow li,.dr-annrow a{white-space:nowrap}
+
+/* header op kleine laptops en tablets liggend: menu achter de hamburger i.p.v. op twee regels */
+@media (min-width:769px) and (max-width:1023px){
+  .site-header .header-item--split-left .site-navigation,
+  .site-header .header-item--split-right .site-navigation{display:none!important}
+  .site-header .header-item--left .site-nav.small--hide{display:none!important}
+  .site-header .header-item--left .site-nav.medium-up--hide{display:block!important}
+  .site-header .header-item--icons .medium-up--hide{display:inline-block!important}
+}
+
+/* collectiepagina: categorieën als één rij om te swipen op telefoon */
+@media (max-width:768px){
+  .dr-colnavw .page-width{padding-left:0;padding-right:0}
+  .dr-colnav{flex-wrap:nowrap;overflow-x:auto;padding:0 var(--gut) 2px;scroll-padding-inline:var(--gut);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .dr-colnav::-webkit-scrollbar{display:none}
+  .dr-colnav a{flex:none;white-space:nowrap}
+}
+
+/* "Meer geuren" op tablets: kleinere kaarten, je ziet er meer tegelijk */
+@media (min-width:481px) and (max-width:768px){.dr-more__list{grid-auto-columns:36%}}
+
+/* vaste knop onderin op kleine telefoons */
+@media (max-width:374px){
+  .dr-satc__usp{font-size:10.5px;gap:4px}
+  .dr-satc__usp li{gap:4px}
+  .dr-satc__usp li::before{width:6px}
+}
+
+/* winkelmandpagina: balk gratis verzending en Klarna, net als in de zijbalk */
+.dr-fs--page{padding:0 0 18px;margin:0 0 6px}
+.dr-fs--page .dr-fs__t{font-size:15px}
+.cart__page .dr-cdpay{margin-top:12px}

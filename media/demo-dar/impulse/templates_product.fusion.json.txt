@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "fusion": {
+      "type": "dar-fusion",
+      "settings": {
+        "heading": "Jouw geur. Jouw naam erop.",
+        "text": "Kies twee of drie geuren en wij mengen ze tot jouw signatuur. Met je naam op het etiket, zodat er maar één van bestaat.",
+        "collection": "dar-geuren",
+        "product": "dar-fusion"
+      }
+    },
+    "more": {
+      "type": "dar-more",
+      "settings": {
+        "heading": "Liever een kant-en-klare geur?",
+        "collection": "dar-geuren"
+      }
+    }
+  },
+  "order": ["fusion", "more"]
+}

@@ -6,7 +6,8 @@
       <a class="dr-more__all" href="{{ routes.collections_url }}/{{ section.settings.collection }}">Bekijk alles</a>
     </div>
     <ul class="dr-more__list">
-      {%- for p in collections[section.settings.collection].products -%}{%- if p.id != product.id -%}
+      {%- capture in_cart -%},{% for it in cart.items %}{{ it.product_id }},{% endfor %}{%- endcapture -%}
+      {%- for p in collections[section.settings.collection].products -%}{%- capture pid -%},{{ p.id }},{%- endcapture -%}{%- if p.id != product.id and in_cart contains pid -%}{%- continue -%}{%- endif -%}{%- if p.id != product.id -%}
         {%- capture c2 -%}{% render 'dar-scent-color', p: p %}{%- endcapture -%}
         {%- capture i2 -%}{% render 'dar-scent-img', p: p, w: 600 %}{%- endcapture -%}
         {%- capture oc -%}{% render 'dar-orig-cents', p: p %}{%- endcapture -%}{%- assign oc = oc | strip | plus: 0 -%}
