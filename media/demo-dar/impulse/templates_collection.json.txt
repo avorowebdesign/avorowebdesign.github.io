@@ -1,0 +1,79 @@
+{
+ "sections": {
+  "collection-header": {
+   "type": "collection-header",
+   "settings": {}
+  },
+  "colnav": {
+   "type": "dar-colnav",
+   "blocks": {
+    "a": {
+     "type": "link",
+     "settings": {
+      "title": "Alle geuren",
+      "collection": "dar-geuren"
+     }
+    },
+    "b": {
+     "type": "link",
+     "settings": {
+      "title": "Bestsellers",
+      "collection": "bestsellers"
+     }
+    },
+    "c": {
+     "type": "link",
+     "settings": {
+      "title": "Heren",
+      "collection": "herenparfums"
+     }
+    },
+    "d": {
+     "type": "link",
+     "settings": {
+      "title": "Dames",
+      "collection": "damesparfums"
+     }
+    },
+    "e": {
+     "type": "link",
+     "settings": {
+      "title": "Unisex",
+      "collection": "unisex"
+     }
+    }
+   },
+   "block_order": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e"
+   ],
+   "settings": {}
+  },
+  "main-collection": {
+   "type": "main-collection",
+   "blocks": {
+    "collection_description": {
+     "type": "collection_description",
+     "settings": {}
+    },
+    "product_grid": {
+     "type": "product_grid",
+     "settings": {}
+    }
+   },
+   "block_order": [
+    "collection_description",
+    "product_grid"
+   ],
+   "settings": {}
+  }
+ },
+ "order": [
+  "collection-header",
+  "colnav",
+  "main-collection"
+ ]
+}

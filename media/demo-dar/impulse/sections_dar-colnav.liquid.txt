@@ -1,0 +1,21 @@
+<nav class="dr dr-colnavw" aria-label="Categorieën">
+  <div class="page-width">
+    <div class="dr-colnav">
+      {%- for block in section.blocks -%}
+        {%- assign c = block.settings.collection -%}
+        {%- if c -%}<a href="{{ c.url }}"{% if collection.handle == c.handle %} aria-current="page"{% endif %} {{ block.shopify_attributes }}>{{ block.settings.title | default: c.title }}</a>{%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</nav>
+{% schema %}
+{
+  "name": "Dar – Categorieknoppen",
+  "max_blocks": 8,
+  "blocks": [{ "type": "link", "name": "Categorie", "settings": [
+    { "type": "text", "id": "title", "label": "Naam" },
+    { "type": "collection", "id": "collection", "label": "Collectie" }
+  ] }],
+  "presets": [{ "name": "Dar – Categorieknoppen" }]
+}
+{% endschema %}

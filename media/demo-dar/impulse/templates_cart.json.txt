@@ -1,0 +1,19 @@
+{
+ "sections": {
+  "main": {
+   "type": "main-cart",
+   "settings": {}
+  },
+  "more": {
+   "type": "dar-more",
+   "settings": {
+    "heading": "Nog een geur erbij?",
+    "collection": "dar-geuren"
+   }
+  }
+ },
+ "order": [
+  "main",
+  "more"
+ ]
+}

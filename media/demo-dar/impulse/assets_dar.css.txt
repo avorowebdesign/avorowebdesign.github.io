@@ -238,3 +238,10 @@
 .dr-avoro b{font-weight:600;letter-spacing:.06em}
 .dr-avoro__dot{width:8px;height:8px;border-radius:50%;background:#7ac68f;box-shadow:0 0 0 3px rgba(122,198,143,.22)}
 @media (max-width:820px){.dr-avoro{left:auto;right:max(12px,env(safe-area-inset-right,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));font-size:11px;padding:7px 11px 7px 9px;gap:7px}.dr-avoro__long{display:none}}
+
+/* collectiepagina: snel wisselen tussen categorieën */
+.dr-colnavw{padding:0 0 26px}
+.dr-colnav{display:flex;flex-wrap:wrap;gap:8px}
+.dr-colnav a{padding:9px 16px;border:1px solid var(--line);font-size:14px;text-decoration:none;color:var(--wine);transition:border-color .2s,background .2s}
+.dr-colnav a:hover{border-color:var(--wine)}
+.dr-colnav a[aria-current]{background:var(--wine);border-color:var(--wine);color:var(--cream)}
