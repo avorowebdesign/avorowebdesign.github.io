@@ -318,3 +318,16 @@
 .dr-cmp2__row dd{grid-template-columns:1fr 92px}
 .dr-cmp2__price{margin:0;font-size:24px;font-weight:300;color:var(--wine);font-variant-numeric:tabular-nums}
 @media (max-width:480px){.dr-cmp2__row dd{grid-template-columns:1fr 84px}.dr-cmp2__row.is-dar b{font-size:20px}}
+
+/* productpagina: rustiger – alles links op één lijn, één stijl voor de rijen onderaan, minder lijntjes */
+.template-product .product-single__meta,.template-product .product-block--header,.template-product .product-single__title{text-align:left}
+.template-product .product-single__meta .sales-points,.template-product .product-single__meta .sales-point,.template-product .product-single__meta .icon-and-text{justify-content:flex-start;text-align:left;margin-left:0;margin-right:0}
+.dr-cmp2__save{border-top:0;padding-top:4px}
+.dr-dur{border-top:0;border-bottom:0;padding:16px 0 4px}
+.dr-upsell{background:none;padding:18px 0;border-top:1px solid var(--line)}
+.dr-upsell span{margin-bottom:2px}
+.template-product .product-block--tab .collapsible-trigger-btn--borders{border:0;border-top:1px solid rgba(58,15,24,.14);padding:18px 0;text-transform:none;letter-spacing:0;font-size:16px;font-weight:300;text-align:left}
+.template-product .product-block--tab .collapsibles-wrapper--border-bottom{border-bottom:1px solid rgba(58,15,24,.14)}
+.template-product .product-block--tab .collapsible-content__inner{padding:0 0 16px}
+.dr-index--more{padding-block:48px 80px}
+@media (max-width:768px){.dr-index--more{padding-block:24px 64px}}
