@@ -42,7 +42,7 @@
     "upsell": {
      "type": "custom",
      "settings": {
-      "code": "<a class=\"dr dr-upsell\" href=\"/#fusion\"><span>Liever je eigen mix?</span>Combineer deze geur in Dar Fusion</a>"
+      "code": "{% render 'dar-product-fusion', product: product %}"
      }
     },
     "tab": {

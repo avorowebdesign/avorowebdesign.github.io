@@ -1,0 +1,27 @@
+{%- comment -%}
+  "Mix deze geur met een tweede geur" (Dar Fusion). Alleen bij losse geuren (met een nummer).
+  De link opent de Fusion-mixer op de homepage met deze geur al aangevinkt (?mix=02).
+{%- endcomment -%}
+{%- assign no = product.metafields.dar.no.value -%}
+{%- if no != blank -%}
+  {%- assign fu = all_products['dar-fusion'] -%}
+  {%- capture c1 -%}{% render 'dar-scent-color', p: product %}{%- endcapture -%}
+  {%- assign c2 = '#c8875b' -%}
+  {%- for p in collections['dar-geuren'].products -%}{%- if p.id != product.id -%}{%- capture c2 -%}{% render 'dar-scent-color', p: p %}{%- endcapture -%}{%- break -%}{%- endif -%}{%- endfor -%}
+  <a class="dr dr-fus" href="{{ routes.root_url }}?mix={{ no | url_encode }}#fusion">
+    <svg class="dr-fus__vial" viewBox="0 0 300 420" width="76" height="106" aria-hidden="true">
+      <defs><clipPath id="drFusClip"><path d="M70 120 H230 L270 160 V360 L230 400 H70 L30 360 V160 Z"/></clipPath></defs>
+      <rect x="120" y="92" width="60" height="30" fill="#2a2627"/>
+      <rect x="96" y="30" width="108" height="66" rx="5" fill="#141213"/>
+      <g clip-path="url(#drFusClip)"><rect width="300" height="420" fill="rgba(247,241,230,.55)"/><rect y="300" width="300" height="100" fill="{{ c1 }}"/><rect y="215" width="300" height="86" fill="{{ c2 }}"/></g>
+      <path d="M70 120 H230 L270 160 V360 L230 400 H70 L30 360 V160 Z" fill="none" stroke="rgba(58,15,24,.35)" stroke-width="4"/>
+      <rect x="30" y="262" width="240" height="46" fill="#f2e6cf"/><text x="48" y="294" font-family="Jost, sans-serif" font-size="24" fill="#3a0f18">dar</text>
+    </svg>
+    <span class="dr-fus__txt">
+      <span class="dr-fus__kick">Dar Fusion</span>
+      <span class="dr-fus__h">Mix No. {{ no }} met een tweede geur</span>
+      <span class="dr-fus__p">Wij mengen ze tot één geur, met jouw naam op het etiket.</span>
+      <span class="dr-fus__row"><span class="dr-fus__lnk">Maak je mix</span><span class="dr-fus__pr">{% if fu %}{{ fu.price | money }}{% endif %}</span></span>
+    </span>
+  </a>
+{%- endif -%}

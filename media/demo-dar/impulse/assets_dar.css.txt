@@ -394,3 +394,16 @@
 .template-product [data-product-blocks] .product-block .product-block{margin-bottom:0}
 .dr-cmp2{margin-bottom:4px}
 .dr-story{margin-bottom:8px}
+
+/* productpagina: Dar Fusion (variant A) */
+.dr-fus{display:grid;grid-template-columns:76px 1fr;gap:16px;align-items:center;padding:20px 0;border-top:1px solid var(--line);text-decoration:none;color:var(--ink);text-align:left}
+.dr-fus__vial{width:76px;height:auto;transition:transform .5s var(--ease)}
+.dr-fus:hover .dr-fus__vial{transform:translateY(-3px)}
+.dr-fus__txt{display:grid;gap:4px}
+.dr-fus__kick{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-t)}
+.dr-fus__h{font-size:19px;font-weight:300;line-height:1.25;color:var(--wine)}
+.dr-fus__p{font-size:14px;font-weight:300;line-height:1.5;color:var(--mut)}
+.dr-fus__row{display:flex;justify-content:space-between;align-items:baseline;margin-top:6px}
+.dr-fus__lnk{font-size:12.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--wine);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:5px}
+.dr-fus__pr{font-size:15px;font-variant-numeric:tabular-nums}
+@media (min-width:769px){.dr-fus{grid-template-columns:88px 1fr;gap:20px}.dr-fus__vial{width:88px}}
