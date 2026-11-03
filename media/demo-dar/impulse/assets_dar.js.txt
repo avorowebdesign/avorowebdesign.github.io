@@ -128,4 +128,25 @@
     mq.addEventListener('change',upd);
     sb.addEventListener('click',()=>real.click());
   }
+  // AVORO-label zweeft rustig over de pagina en kaatst terug tegen de randen (alleen in de conceptfase)
+  const av=$('.dr-avoro');
+  if(av){
+    const B=()=>{const m=innerWidth<821,w=av.offsetWidth,h=av.offsetHeight;return{x0:8,x1:Math.max(8,innerWidth-w-8),y0:m?74:96,y1:Math.max(m?74:96,innerHeight-h-(m?130:96))}};
+    let b=B(),x=b.x0+12,y=b.y0+(b.y1-b.y0)*.35,a=0.62,vx=Math.cos(a),vy=Math.sin(a),hold=false,last=0;
+    const put=()=>{av.style.setProperty('--ax',x.toFixed(1)+'px');av.style.setProperty('--ay',y.toFixed(1)+'px')};
+    if(reduce){b=B();x=b.x1;y=b.y0;put()}
+    else{
+      ['pointerenter','focus'].forEach(e=>av.addEventListener(e,()=>hold=true));
+      ['pointerleave','blur'].forEach(e=>av.addEventListener(e,()=>hold=false));
+      addEventListener('resize',()=>{b=B();x=Math.min(Math.max(x,b.x0),b.x1);y=Math.min(Math.max(y,b.y0),b.y1)});
+      const step=t=>{const dt=last?Math.min(.05,(t-last)/1000):0;last=t;
+        if(!hold){const sp=innerWidth<821?36:48;b=B();x+=vx*sp*dt;y+=vy*sp*dt;
+          if(x<=b.x0){x=b.x0;vx=Math.abs(vx)}else if(x>=b.x1){x=b.x1;vx=-Math.abs(vx)}
+          if(y<=b.y0){y=b.y0;vy=Math.abs(vy)}else if(y>=b.y1){y=b.y1;vy=-Math.abs(vy)}
+          put()}
+        requestAnimationFrame(step)};
+      put();requestAnimationFrame(step);
+    }
+  }
+
 })();
