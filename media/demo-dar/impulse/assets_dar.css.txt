@@ -445,3 +445,5 @@
 .dr-fusion__txt,.dr-fusion__form{min-width:0}
 .dr-fusion__grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 @media (max-width:900px){.dr-fusion__grid{grid-template-columns:minmax(0,1fr)}}
+.dr-count{grid-template-columns:repeat(2,minmax(0,1fr))}
+.dr-count__o span{flex-wrap:wrap;text-transform:none;letter-spacing:0;padding:13px 14px}
