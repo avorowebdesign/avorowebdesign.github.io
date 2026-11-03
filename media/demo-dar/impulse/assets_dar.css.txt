@@ -205,7 +205,7 @@
 .dr-upsell{display:block;padding:18px 20px;background:var(--sand);text-decoration:none;font-weight:300;text-align:left}.dr-upsell span{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-t);margin-bottom:4px}
 
 /* gratis-verzendbalk in de winkelmand */
-.dr-fs{padding:14px 0 16px;margin:0 0 6px;border-bottom:1px solid var(--line);text-align:left}
+.dr-fs{padding:14px 30px 16px;margin:0;border-bottom:1px solid var(--line);text-align:left}
 .dr-fs:empty{display:none}
 .dr-fs__t{margin:0 0 10px;font-size:14px}
 .dr-fs__t b{font-weight:500;color:var(--wine)}
@@ -245,3 +245,4 @@
 .dr-colnav a{padding:9px 16px;border:1px solid var(--line);font-size:14px;text-decoration:none;color:var(--wine);transition:border-color .2s,background .2s}
 .dr-colnav a:hover{border-color:var(--wine)}
 .dr-colnav a[aria-current]{background:var(--wine);border-color:var(--wine);color:var(--cream)}
+@media (max-width:768px){.dr-fs{padding-inline:20px}}
