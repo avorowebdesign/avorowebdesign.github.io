@@ -246,3 +246,14 @@
 .dr-colnav a:hover{border-color:var(--wine)}
 .dr-colnav a[aria-current]{background:var(--wine);border-color:var(--wine);color:var(--cream)}
 @media (max-width:768px){.dr-fs{padding-inline:20px}}
+
+/* aankondigingsbalk: op desktop alle USP's tegelijk, op mobiel de slider van Impulse */
+.dr-annrow{display:none}
+@media (min-width:769px){
+  .announcement-bar .slideshow-wrapper{display:none}
+  .dr-annrow{display:flex;justify-content:center;align-items:center;list-style:none;margin:0;padding:10px 0}
+  .dr-annrow li{display:flex;align-items:baseline;gap:8px;padding:0 30px;line-height:1.4}
+  .dr-annrow li+li{border-left:1px solid rgba(242,230,207,.25)}
+  .dr-annrow .announcement-text,.dr-annrow .announcement-link-text{display:inline;margin:0}
+  .dr-annrow a{display:flex;align-items:baseline;gap:8px;text-decoration:none;color:inherit}
+}
