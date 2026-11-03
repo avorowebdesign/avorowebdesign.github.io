@@ -68,7 +68,7 @@
       if(sel.length){const s=document.createElementNS(NS,'rect');s.setAttribute('x',0);s.setAttribute('width',300);s.setAttribute('y',BOT-h);s.setAttribute('height',3);s.setAttribute('fill','rgba(255,255,255,.35)');L.appendChild(s)}
       mixT.textContent=sel.length?sel.map(x=>x.label).join(' × '):'Kies je eerste geur';
       const n=need();btn.disabled=n>0;btn.textContent=n>0?(n===count?'Kies eerst '+count+' geuren':'Kies nog '+n+(n===1?' geur':' geuren')):'Leg jouw mix in de winkelmand';
-      price.textContent=count===3&&ff.dataset.p3?ff.dataset.p3:ff.dataset.p2;
+      const named=!!nm.value.trim(),D=ff.dataset;price.textContent=count===3&&D.p3?(named&&D.p3n?D.p3n:D.p3):(named&&D.p2n?D.p2n:D.p2);
     };
     const setSlot=(i,x)=>{pick[i]=x;const s=slots[i],inp=s.querySelector('input'),dot=s.querySelector('.dr-combo__dot'),cl=s.querySelector('.dr-combo__clear');
       inp.value=x?(x.label+(x.f?', '+x.f:'')):'';dot.style.background=x?x.c:'';dot.classList.toggle('is-set',!!x);cl.hidden=!x;s.classList.toggle('is-set',!!x);draw()};
@@ -97,8 +97,8 @@
       s.querySelector('.dr-combo__clear').addEventListener('click',()=>{setSlot(+s.dataset.slot,null);inp.focus()});
     });
     $$('#fusionForm input[name=n]').forEach(r=>r.addEventListener('change',()=>{count=+r.value;slots[2].hidden=count<3;if(count<3&&pick[2])setSlot(2,null);draw()}));
-    nm.addEventListener('input',()=>{vn.textContent=nm.value.trim()||'Jouw naam'});
-    ff.addEventListener('submit',async e=>{e.preventDefault();if(need()>0)return;const id=+(count===3&&ff.dataset.v3?ff.dataset.v3:ff.dataset.v2);btn.disabled=true;
+    nm.addEventListener('input',()=>{vn.textContent=nm.value.trim()||'Jouw naam';draw()});
+    ff.addEventListener('submit',async e=>{e.preventDefault();if(need()>0)return;const D=ff.dataset,named=!!nm.value.trim(),id=+(count===3&&D.v3?(named&&D.v3n?D.v3n:D.v3):(named&&D.v2n?D.v2n:D.v2));btn.disabled=true;
       try{const props={'Geuren':pick.slice(0,count).map(x=>x.label).join(' + ')};if(nm.value.trim())props['Naam op etiket']=nm.value.trim();await addItems([{id,quantity:1,properties:props}])}
       catch(err){mixT.textContent=(err&&err.description)||'Dat lukte niet, probeer het opnieuw'}finally{btn.disabled=false}});
     // vanaf een productpagina: ?mix=02 zet die geur alvast in vakje 1

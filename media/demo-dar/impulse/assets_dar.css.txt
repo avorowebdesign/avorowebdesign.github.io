@@ -517,3 +517,7 @@
 .dr-fs--page{padding:0 0 18px;margin:0 0 6px}
 .dr-fs--page .dr-fs__t{font-size:15px}
 .cart__page .dr-cdpay{margin-top:12px}
+
+/* Fusion: meerprijs voor naam op het etiket */
+.dr-namef__x{margin-left:6px;font-size:12px;font-weight:400;letter-spacing:.04em;text-transform:none;color:var(--gold)}
+.dr-namef input::placeholder{color:rgba(242,230,207,.42)}

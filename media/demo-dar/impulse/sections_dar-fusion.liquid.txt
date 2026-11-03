@@ -4,15 +4,29 @@
 {%- endcomment -%}
 {%- assign fu = all_products[section.settings.product] -%}
 {%- liquid
+  comment
+    Varianten van het Fusion-product: aantal geuren (2 of 3) en eventueel "Met naam" (naam op het etiket, met meerprijs).
+  endcomment
   assign v2 = fu.selected_or_first_available_variant
   assign v3 = nil
+  assign v2n = nil
+  assign v3n = nil
   for v in fu.variants
-    if v.title contains '3'
+    assign vt = v.title | downcase
+    if vt contains '3' and vt contains 'met naam'
+      assign v3n = v
+    elsif vt contains '3'
       assign v3 = v
-    elsif v.title contains '2'
+    elsif vt contains 'met naam'
+      assign v2n = v
+    else
       assign v2 = v
     endif
   endfor
+  assign extra = 0
+  if v2n
+    assign extra = v2n.price | minus: v2.price
+  endif
 -%}
 <section class="dr dr-fusion" id="fusion">
   <div class="dr-wrap dr-fusion__grid">
@@ -41,7 +55,7 @@
       <p class="dr-kicker">Dar Fusion</p>
       {%- if template.name == 'product' -%}<h1 class="dr-h2">{{ section.settings.heading }}</h1>{%- else -%}<h2 class="dr-h2">{{ section.settings.heading }}</h2>{%- endif -%}
       <p class="dr-lead">{{ section.settings.text }}</p>
-      <form class="dr-fusion__form" id="fusionForm" data-v2="{{ v2.id }}" data-p2="{{ v2.price | money }}"{% if v3 %} data-v3="{{ v3.id }}" data-p3="{{ v3.price | money }}"{% endif %} novalidate>
+      <form class="dr-fusion__form" id="fusionForm" data-v2="{{ v2.id }}" data-p2="{{ v2.price | money }}"{% if v3 %} data-v3="{{ v3.id }}" data-p3="{{ v3.price | money }}"{% endif %}{% if v2n %} data-v2n="{{ v2n.id }}" data-p2n="{{ v2n.price | money }}"{% endif %}{% if v3n %} data-v3n="{{ v3n.id }}" data-p3n="{{ v3n.price | money }}"{% endif %} novalidate>
         <fieldset class="dr-pick"><legend><b>1</b> Hoeveel geuren?</legend>
           <div class="dr-count">
             <label class="dr-count__o"><input type="radio" name="n" value="2" checked><span>2 geuren<small>{{ v2.price | money }}</small></span></label>
@@ -63,7 +77,7 @@
             {%- endfor -%}
           </div>
         </fieldset>
-        <div class="dr-namef"><label for="fName"><b>3</b> Jouw naam op het etiket</label><input id="fName" name="naam" maxlength="16" placeholder="bijv. Sara" autocomplete="off"></div>
+        <div class="dr-namef"><label for="fName"><b>3</b> Jouw naam op het etiket <span class="dr-namef__x">{% if extra > 0 %}+{{ extra | money }}{% else %}optioneel{% endif %}</span></label><input id="fName" name="naam" maxlength="16" placeholder="bijv. Sara (optioneel)" autocomplete="off"></div>
         <div class="dr-fusion__buy"><span class="dr-fusion__price" id="fPrice">{{ v2.price | money }}</span><button class="dr-btn dr-btn--gold" type="submit" id="fusionBtn" disabled>Kies eerst 2 geuren</button></div>
       </form>
     </div>
