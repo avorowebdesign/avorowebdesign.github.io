@@ -1,0 +1,17 @@
+{%- comment -%} Onder de prijs op de productpagina: waar de geur op lijkt, de geurpiramide en de prijsvergelijking. {%- endcomment -%}
+{%- assign mf = product.metafields.dar -%}
+{%- capture col -%}{% render 'dar-scent-color', p: product %}{%- endcapture -%}
+<div class="dr dr-pmeta" style="--c:{{ col }}">
+  {%- if mf.profile.value != blank -%}<p class="dr-pmeta__insp">Geïnspireerd op {{ mf.profile.value }}</p>{%- endif -%}
+  {%- if mf.original.value != blank -%}
+    <div class="dr-cmp"><div><span>Het grote merk</span><b>± {{ mf.original.value }}</b></div><div class="dr-cmp__dar"><span>Dar</span><b>{{ product.selected_or_first_available_variant.price | money }}</b></div></div>
+  {%- endif -%}
+  {%- if mf.top.value != blank -%}
+    <dl class="dr-pyr">
+      <div><dt>Top</dt><dd>{{ mf.top.value }}</dd><span>de eerste minuten</span></div>
+      <div><dt>Hart</dt><dd>{{ mf.heart.value }}</dd><span>na een half uur</span></div>
+      <div><dt>Basis</dt><dd>{{ mf.base.value }}</dd><span>wat blijft hangen</span></div>
+    </dl>
+    <div class="dr-dur"><span>Op de huid</span><div class="dr-dur__bar"><i style="width:86%"></i></div><span>tot 14 uur</span></div>
+  {%- endif -%}
+</div>

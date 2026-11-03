@@ -1,0 +1,20 @@
+{%- comment -%} Vaste knop onderin op mobiel. Klikt op de gewone knop van Impulse, zodat de winkelmand van het thema zelf opent. {%- endcomment -%}
+{%- assign v = product.selected_or_first_available_variant -%}
+<div class="dr dr-satc" id="drSatc" aria-hidden="true" inert>
+  <div class="dr-satc__row">
+    <div class="dr-satc__m"><span class="dr-satc__t">{{ product.title }}</span><span class="dr-satc__p">{{ v.price | money }}</span></div>
+    <button class="dr-btn dr-btn--dark" type="button" id="drSatcBtn"{% unless v.available %} disabled{% endunless %}>{% if v.available %}{{ section.settings.label }}{% else %}Uitverkocht{% endif %}</button>
+  </div>
+  {%- if section.blocks.size > 0 -%}
+    <ul class="dr-satc__usp">{%- for block in section.blocks -%}<li {{ block.shopify_attributes }}>{{ block.settings.text }}</li>{%- endfor -%}</ul>
+  {%- endif -%}
+</div>
+{% schema %}
+{
+  "name": "Dar – Vaste knop mobiel",
+  "settings": [{ "type": "text", "id": "label", "label": "Knoptekst", "default": "In winkelmand" }],
+  "max_blocks": 3,
+  "blocks": [{ "type": "usp", "name": "USP", "settings": [{ "type": "text", "id": "text", "label": "Tekst", "default": "Morgen in huis" }] }],
+  "presets": [{ "name": "Dar – Vaste knop mobiel" }]
+}
+{% endschema %}

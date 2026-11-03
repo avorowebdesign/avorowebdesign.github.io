@@ -1,0 +1,140 @@
+{
+ "sections": {
+  "main": {
+   "type": "main-product",
+   "blocks": {
+    "price": {
+     "type": "price",
+     "settings": {}
+    },
+    "meta": {
+     "type": "custom",
+     "settings": {
+      "code": "{% render 'dar-product-meta', product: product %}"
+     }
+    },
+    "variant_picker": {
+     "type": "variant_picker",
+     "settings": {
+      "variant_labels": true,
+      "picker_type": "button",
+      "color_swatches": false
+     }
+    },
+    "buy_buttons": {
+     "type": "buy_buttons",
+     "settings": {
+      "show_dynamic_checkout": false,
+      "surface_pickup_enable": false
+     }
+    },
+    "sp1": {
+     "type": "sales_point",
+     "settings": {
+      "icon": "truck",
+      "text": "Voor 16:00 besteld, morgen in huis"
+     }
+    },
+    "sp2": {
+     "type": "sales_point",
+     "settings": {
+      "icon": "package",
+      "text": "Gratis verzending vanaf €70"
+     }
+    },
+    "sp3": {
+     "type": "sales_point",
+     "settings": {
+      "icon": "lock",
+      "text": "Achteraf betalen met Klarna"
+     }
+    },
+    "description": {
+     "type": "description",
+     "settings": {
+      "is_tab": false
+     }
+    },
+    "upsell": {
+     "type": "custom",
+     "settings": {
+      "code": "<a class=\"dr dr-upsell\" href=\"/#fusion\"><span>Liever je eigen mix?</span>Combineer deze geur in Dar Fusion</a>"
+     }
+    },
+    "tab": {
+     "type": "tab",
+     "settings": {
+      "title": "Verzenden en betalen",
+      "content": "<p>Voor 16:00 besteld, morgen in huis. Gratis verzending vanaf €70.</p><p>Betaal met iDEAL, creditcard of achteraf met Klarna.</p>"
+     }
+    }
+   },
+   "block_order": [
+    "price",
+    "meta",
+    "variant_picker",
+    "buy_buttons",
+    "sp1",
+    "sp2",
+    "sp3",
+    "description",
+    "upsell",
+    "tab"
+   ],
+   "settings": {
+    "sku_enable": false,
+    "image_position": "left",
+    "image_size": "medium",
+    "product_zoom_enable": true,
+    "thumbnail_position": "below",
+    "thumbnail_arrows": false,
+    "mobile_layout": "full",
+    "enable_video_looping": true,
+    "product_video_style": "muted"
+   }
+  },
+  "sticky": {
+   "type": "dar-sticky-atc",
+   "settings": {
+    "label": "In winkelmand"
+   },
+   "blocks": {
+    "u1": {
+     "type": "usp",
+     "settings": {
+      "text": "Morgen in huis"
+     }
+    },
+    "u2": {
+     "type": "usp",
+     "settings": {
+      "text": "Gratis vanaf €70"
+     }
+    },
+    "u3": {
+     "type": "usp",
+     "settings": {
+      "text": "Achteraf betalen"
+     }
+    }
+   },
+   "block_order": [
+    "u1",
+    "u2",
+    "u3"
+   ]
+  },
+  "more": {
+   "type": "dar-more",
+   "settings": {
+    "heading": "Meer geuren",
+    "collection": "dar-geuren"
+   }
+  }
+ },
+ "order": [
+  "main",
+  "sticky",
+  "more"
+ ]
+}

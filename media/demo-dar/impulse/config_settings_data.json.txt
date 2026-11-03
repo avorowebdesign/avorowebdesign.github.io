@@ -1,0 +1,181 @@
+{
+ "current": {
+  "color_body_bg": "#f8f3ea",
+  "color_body_text": "#2b0b12",
+  "color_price": "#3a0f18",
+  "color_savings_text": "#7a1f33",
+  "color_borders": "#e2d6c2",
+  "color_button": "#3a0f18",
+  "color_button_text": "#f2e6cf",
+  "color_sale_tag": "#3a0f18",
+  "color_sale_tag_text": "#f2e6cf",
+  "color_cart_dot": "#c2a15a",
+  "color_small_image_bg": "#efe6d6",
+  "color_large_image_bg": "#24080e",
+  "color_header": "#f8f3ea",
+  "color_header_text": "#3a0f18",
+  "color_announcement": "#24080e",
+  "color_announcement_text": "#f2e6cf",
+  "color_footer": "#24080e",
+  "color_footer_text": "#e6d8bd",
+  "color_drawer_background": "#f8f3ea",
+  "color_drawer_text": "#2b0b12",
+  "color_drawer_border": "#e2d6c2",
+  "color_drawer_button": "#3a0f18",
+  "color_drawer_button_text": "#f2e6cf",
+  "color_modal_overlays": "#24080e",
+  "color_image_text": "#f2e6cf",
+  "color_image_overlay": "#24080e",
+  "color_image_overlay_opacity": 10,
+  "color_image_overlay_text_shadow": 0,
+  "type_header_font_family": "jost_n3",
+  "type_header_spacing": "-25",
+  "type_header_base_size": 44,
+  "type_header_line_height": 1.1,
+  "type_header_capitalize": false,
+  "type_headers_align_text": false,
+  "type_base_font_family": "jost_n4",
+  "type_base_spacing": "0",
+  "type_base_size": 16,
+  "type_base_line_height": 1.6,
+  "type_body_align_text": false,
+  "type_navigation_style": "body",
+  "type_navigation_size": 14,
+  "type_navigation_capitalize": false,
+  "type_product_style": "body",
+  "type_product_capitalize": false,
+  "type_collection_font": "heading",
+  "type_collection_size": 24,
+  "button_style": "square",
+  "icon_weight": "2px",
+  "icon_linecaps": "miter",
+  "product_save_amount": true,
+  "product_save_type": "percent",
+  "vendor_enable": false,
+  "quick_shop_enable": true,
+  "quick_shop_text": "Snel bekijken",
+  "product_grid_image_size": "square",
+  "product_grid_image_fill": true,
+  "product_hover_image": false,
+  "collection_grid_style": "below",
+  "collection_grid_shape": "portrait",
+  "collection_grid_image": "product",
+  "collection_grid_text_align": "left",
+  "collection_grid_tint": "#24080e",
+  "collection_grid_opacity": 0,
+  "collection_grid_gutter": true,
+  "cart_type": "drawer",
+  "cart_icon": "bag-minimal",
+  "cart_notes_enable": false,
+  "cart_additional_buttons": false,
+  "search_enable": true,
+  "search_type": "product,collection",
+  "predictive_search_enabled": true,
+  "predictive_search_show_price": true,
+  "show_breadcrumbs": false,
+  "checkout_accent_color": "#3a0f18",
+  "checkout_button_color": "#3a0f18",
+  "checkout_body_background_color": "#ffffff",
+  "checkout_sidebar_background_color": "#f8f3ea",
+  "sections": {
+   "header": {
+    "type": "header",
+    "blocks": {
+     "logo_block": {
+      "type": "logo",
+      "settings": {
+       "logo": "shopify://shop_images/dar-parfum-logo.png",
+       "logo-inverted": "shopify://shop_images/dar-parfum-logo-licht.png",
+       "desktop_logo_width": 170,
+       "mobile_logo_width": 120
+      }
+     },
+     "ann1": {
+      "type": "announcement",
+      "settings": {
+       "text": "Voor 16:00 besteld",
+       "link_text": "Morgen in huis"
+      }
+     },
+     "ann2": {
+      "type": "announcement",
+      "settings": {
+       "text": "Gratis verzending",
+       "link_text": "Vanaf €70"
+      }
+     },
+     "ann3": {
+      "type": "announcement",
+      "settings": {
+       "text": "Achteraf betalen",
+       "link_text": "Met Klarna"
+      }
+     }
+    },
+    "block_order": [
+     "logo_block",
+     "ann1",
+     "ann2",
+     "ann3"
+    ],
+    "settings": {
+     "main_menu_link_list": "dar-menu",
+     "mega_menu_images": false,
+     "main_menu_alignment": "center-split",
+     "header_style": "sticky",
+     "sticky_index": true,
+     "sticky_collection": false,
+     "announcement_compact": true,
+     "announcement_above_header": false,
+     "toolbar_social": false,
+     "show_locale_selector": false,
+     "show_currency_selector": false,
+     "show_currency_flags": false
+    }
+   },
+   "footer": {
+    "type": "footer",
+    "blocks": {
+     "about": {
+      "type": "custom",
+      "settings": {
+       "show_footer_title": true,
+       "title": "dar parfum",
+       "text": "<p>Luxe geuren, eerlijke prijs. Extrait de parfum met een hoge concentratie parfumolie, tot 14 uur op je huid.</p>",
+       "container_width": 35
+      }
+     },
+     "links": {
+      "type": "menu",
+      "settings": {
+       "show_footer_title": true,
+       "menu": "dar-footer",
+       "container_width": 25
+      }
+     }
+    },
+    "block_order": [
+     "about",
+     "links"
+    ],
+    "settings": {
+     "show_payment_icons": true,
+     "show_copyright": true,
+     "copyright_text": "dar parfum. Concept door AVORO webdesign."
+    }
+   },
+   "newsletter-popup": {
+    "type": "newsletter-popup",
+    "settings": {}
+   },
+   "collection-header": {
+    "type": "collection-header",
+    "settings": {
+     "enable": true,
+     "collection_image_enable": false,
+     "parallax": false
+    }
+   }
+  }
+ }
+}

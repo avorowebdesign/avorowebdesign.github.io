@@ -1,0 +1,22 @@
+<section class="dr dr-index dr-index--more">
+  <div class="dr-wrap">
+    <div class="dr-index__head"><h2 class="dr-h2">{{ section.settings.heading }}</h2></div>
+    <ol class="dr-rows">
+      {%- for p in collections[section.settings.collection].products -%}{%- if p.id != product.id -%}
+        {%- capture c2 -%}{% render 'dar-scent-color', p: p %}{%- endcapture -%}
+        {%- capture i2 -%}{% render 'dar-scent-img', p: p, w: 240 %}{%- endcapture -%}
+        <li class="dr-rowi" style="--c:{{ c2 }}"><a href="{{ p.url }}">{% if i2 != blank %}<img class="dr-rowi__thumb" src="{{ i2 }}" alt="" loading="lazy" width="120" height="120">{% endif %}<span class="dr-rowi__no">No. {{ p.metafields.dar.no.value }}</span><span class="dr-rowi__fam">{{ p.metafields.dar.family.value }}</span><span class="dr-rowi__notes">{{ p.metafields.dar.top.value }} <i>—</i> {{ p.metafields.dar.heart.value }} <i>—</i> {{ p.metafields.dar.base.value }}</span><span class="dr-rowi__price">{{ p.price | money }}</span></a></li>
+      {%- endif -%}{%- endfor -%}
+    </ol>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Dar – Meer geuren",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Kop", "default": "Meer geuren" },
+    { "type": "text", "id": "collection", "label": "Collectie handle", "default": "dar-geuren" }
+  ],
+  "presets": [{ "name": "Dar – Meer geuren" }]
+}
+{% endschema %}

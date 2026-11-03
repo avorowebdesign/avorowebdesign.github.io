@@ -1,0 +1,28 @@
+<section class="dr dr-excl" id="exclusive">
+  <div class="dr-wrap dr-excl__grid">
+    <div>
+      <p class="dr-kicker">Dar Exclusive</p>
+      <h2 class="dr-h2">{{ section.settings.heading }}</h2>
+      <p class="dr-lead">{{ section.settings.text }}</p>
+      <p class="dr-excl__price">{{ section.settings.price }}</p>
+    </div>
+    <div class="dr-excl__form">
+      {%- form 'contact', id: 'exclForm' -%}
+        {%- if form.posted_successfully? -%}<p class="dr-excl__ok">Bedankt. We nemen binnen een werkdag contact met je op.</p>{%- else -%}
+        <input type="hidden" name="contact[onderwerp]" value="Dar Exclusive aanvraag">
+        <label for="exName">Naam</label><input id="exName" name="contact[name]" required autocomplete="name">
+        <label for="exMail">E-mailadres</label><input id="exMail" type="email" name="contact[email]" required autocomplete="email">
+        <label for="exBody">Welke geur zoek je?</label><textarea id="exBody" name="contact[body]" rows="3" placeholder="Een geur die je kent, of een mix die je in je hoofd hebt" required></textarea>
+        <button class="dr-btn dr-btn--gold" type="submit">Aanvraag versturen</button>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{ "name": "Dar – Exclusive", "settings": [
+  { "type": "text", "id": "heading", "label": "Kop", "default": "Jouw geur, op aanvraag." },
+  { "type": "textarea", "id": "text", "label": "Tekst", "default": "Zoek je een geur die niet in de collectie staat? Vertel ons welke, en wij maken hem voor je. Persoonlijk, met de hand afgevuld." },
+  { "type": "text", "id": "price", "label": "Prijsregel", "default": "Vanaf €49,95" }
+], "presets": [{ "name": "Dar – Exclusive" }] }
+{% endschema %}

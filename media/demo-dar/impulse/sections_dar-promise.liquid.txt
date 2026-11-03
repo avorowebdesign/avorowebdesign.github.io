@@ -1,0 +1,25 @@
+<section class="dr dr-promisewrap">
+  <div class="dr-wrap">
+    <ul class="dr-promise">
+      {%- for block in section.blocks -%}
+        <li {{ block.shopify_attributes }}><b>{{ block.settings.title }}</b><span>{{ block.settings.text }}</span></li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Dar – Beloftes",
+  "max_blocks": 4,
+  "blocks": [{ "type": "item", "name": "Belofte", "settings": [
+    { "type": "text", "id": "title", "label": "Titel", "default": "Gratis verzending" },
+    { "type": "text", "id": "text", "label": "Tekst", "default": "vanaf €70" }
+  ] }],
+  "default": { "blocks": [
+    { "type": "item", "settings": { "title": "Tot 14 uur", "text": "geur op je huid" } },
+    { "type": "item", "settings": { "title": "Morgen in huis", "text": "voor 16:00 besteld" } },
+    { "type": "item", "settings": { "title": "Gratis verzending", "text": "vanaf €70" } },
+    { "type": "item", "settings": { "title": "Achteraf betalen", "text": "met Klarna" } }
+  ] }
+}
+{% endschema %}

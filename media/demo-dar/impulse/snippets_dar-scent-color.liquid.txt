@@ -1,0 +1,1 @@
+{%- comment -%} render 'scent-color', p: product  → hex kleur van de geur {%- endcomment -%}{%- if p.metafields.dar.color.value != blank -%}{{ p.metafields.dar.color.value }}{%- else -%}#c9a24a{%- endif -%}

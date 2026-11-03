@@ -1,0 +1,35 @@
+<section class="dr dr-finder" id="vinder">
+  <div class="dr-wrap dr-finder__grid">
+    <div class="dr-finder__intro">
+      <p class="dr-kicker">Ontdek jouw geur</p>
+      <h2 class="dr-h2">{{ section.settings.heading }}</h2>
+      <p class="dr-muted">{{ section.settings.text }}</p>
+      <ol class="dr-finder__prog" id="fProg" aria-hidden="true"><li class="is-on"></li><li></li><li></li><li></li></ol>
+    </div>
+    <div class="dr-finder__box" id="finder" aria-live="polite">
+      <div class="dr-q is-on" data-q="0"><p class="dr-q__t">Wanneer draag je je geur het meest?</p><div class="dr-q__a"><button data-s="02,04">Overdag</button><button data-s="01,03">'s Avonds</button><button data-s="01,02,03,04">Altijd</button></div></div>
+      <div class="dr-q" data-q="1"><p class="dr-q__t">Welke sfeer trekt je?</p><div class="dr-q__a"><button data-s="02">Fris en schoon</button><button data-s="04,01">Warm en zoet</button><button data-s="03">Donker en houtig</button></div></div>
+      <div class="dr-q" data-q="2"><p class="dr-q__t">Hoe opvallend mag hij zijn?</p><div class="dr-q__a"><button data-s="04,02">Subtiel, dichtbij</button><button data-s="01,03">Iedereen mag hem ruiken</button></div></div>
+      <div class="dr-q" data-q="3"><p class="dr-q__t">Welke ruik je het liefst?</p><div class="dr-q__a"><button data-s="02">Citrus</button><button data-s="04">Vanille</button><button data-s="01">Amber</button><button data-s="03">Leer en oud</button></div></div>
+      <div class="dr-q dr-q--res" data-q="4">
+        <p class="dr-kicker">Jouw geur</p>
+        <p class="dr-res__no" id="resNo">No. 01</p>
+        <p class="dr-res__fam" id="resFam"></p>
+        <p class="dr-res__notes dr-muted" id="resNotes"></p>
+        <div class="dr-row"><a class="dr-btn dr-btn--dark" id="resLink" href="#">Bekijk deze geur</a><button class="dr-btn dr-btn--ghost" id="resAgain" type="button">Opnieuw</button></div>
+      </div>
+    </div>
+  </div>
+  <script type="application/json" id="finderData">{
+    {%- for p in collections[section.settings.collection].products -%}
+      "{{ p.metafields.dar.no.value | default: forloop.index }}": {"url": {{ p.url | json }}, "fam": {{ p.metafields.dar.family.value | json }}, "notes": {{ p.metafields.dar.top.value | append: ' · ' | append: p.metafields.dar.heart.value | append: ' · ' | append: p.metafields.dar.base.value | json }}, "c": {{ p.metafields.dar.color.value | default: '#c9a24a' | json }}}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  }</script>
+</section>
+{% schema %}
+{ "name": "Dar – Geurvinder", "settings": [
+  { "type": "text", "id": "heading", "label": "Kop", "default": "Vier vragen. Eén geur." },
+  { "type": "textarea", "id": "text", "label": "Tekst", "default": "Weet je niet waar je moet beginnen? Beantwoord vier korte vragen en wij vertellen welke Dar bij je past." },
+  { "type": "text", "id": "collection", "label": "Collectie handle", "default": "dar-geuren" }
+], "presets": [{ "name": "Dar – Geurvinder" }] }
+{% endschema %}

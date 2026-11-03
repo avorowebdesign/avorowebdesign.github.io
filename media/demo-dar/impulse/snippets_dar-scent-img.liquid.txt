@@ -1,0 +1,1 @@
+{%- comment -%} render 'scent-img', p: product, w: 600 → beeld-URL: de productfoto, anders het voorbeeldflesje van die geur {%- endcomment -%}{%- if p.featured_image -%}{{ p.featured_image | image_url: width: w }}{%- elsif p.metafields.dar.no.value != blank -%}https://avoroweb.nl/media/demo-dar/s{{ p.metafields.dar.no.value }}.jpg{%- endif -%}
