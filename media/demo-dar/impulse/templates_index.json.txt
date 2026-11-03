@@ -61,9 +61,9 @@
  },
  "order": [
   "hero",
-  "manifest",
   "categorieen",
   "index",
+  "manifest",
   "fusion",
   "finder",
   "exclusive"

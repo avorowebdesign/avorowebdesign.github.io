@@ -7,12 +7,6 @@
      "type": "price",
      "settings": {}
     },
-    "meta": {
-     "type": "custom",
-     "settings": {
-      "code": "{% render 'dar-product-meta', product: product %}"
-     }
-    },
     "variant_picker": {
      "type": "variant_picker",
      "settings": {
@@ -67,16 +61,29 @@
       "title": "Verzenden en betalen",
       "content": "<p>Voor 16:00 besteld, morgen in huis. Gratis verzending vanaf €70.</p><p>Betaal met iDEAL, creditcard of achteraf met Klarna.</p>"
      }
+    },
+    "cmp": {
+     "type": "custom",
+     "settings": {
+      "code": "{% render 'dar-product-compare', product: product %}"
+     }
+    },
+    "notes": {
+     "type": "custom",
+     "settings": {
+      "code": "{% render 'dar-product-notes', product: product %}"
+     }
     }
    },
    "block_order": [
     "price",
-    "meta",
+    "cmp",
     "variant_picker",
     "buy_buttons",
     "sp1",
     "sp2",
     "sp3",
+    "notes",
     "description",
     "upsell",
     "tab"

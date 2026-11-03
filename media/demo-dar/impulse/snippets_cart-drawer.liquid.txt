@@ -19,6 +19,23 @@
         <div class="drawer__scrollable">
           <div data-products class="appear-animation appear-delay-2"></div>
 
+          {%- comment -%} dar: geuren om met één klik toe te voegen; dar.js toont er max. 2 die nog niet in de winkelmand zitten, zolang gratis verzending nog niet gehaald is {%- endcomment -%}
+          <div class="dr dr-cdm" data-dr-more hidden>
+            <p class="dr-cdm__t">Nog een geur erbij?</p>
+            <ul class="dr-cdm__list">
+              {%- for p in collections['dar-geuren'].products -%}
+                {%- if p.available -%}
+                  {%- capture c2 -%}{% render 'dar-scent-color', p: p %}{%- endcapture -%}
+                  <li class="dr-cdm__i" data-pid="{{ p.id }}" style="--c:{{ c2 }}" hidden>
+                    <span class="dr-cdm__img">{% if p.featured_image %}<img src="{{ p.featured_image | image_url: width: 160 }}" alt="" width="56" height="56" loading="lazy">{% endif %}</span>
+                    <span class="dr-cdm__m"><span class="dr-cdm__n">{{ p.title }}</span><span class="dr-cdm__f">{{ p.metafields.dar.family.value }}</span><span class="dr-cdm__f">{{ p.price | money }}</span></span>
+                    <button type="button" class="dr-cdm__add" data-dr-add="{{ p.selected_or_first_available_variant.id }}" aria-label="Voeg {{ p.title | escape }} toe, {{ p.price | money }}">Voeg toe</button>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </div>
+
           {% if settings.cart_notes_enable %}
             <div class="appear-animation appear-delay-3">
               <label for="CartNoteDrawer">{{ 'cart.general.note' | t }}</label>
@@ -71,6 +88,8 @@
             <button type="submit" name="checkout" data-terms-required="{{ settings.cart_terms_conditions_enable }}" class="btn cart__checkout">
               {{ 'cart.general.checkout' | t }}
             </button>
+
+            <p class="dr dr-cdpay">Achteraf betalen met Klarna</p>
 
             {% if additional_checkout_buttons and settings.cart_additional_buttons %}
               <div class="additional-checkout-buttons additional-checkout-buttons--vertical">{{ content_for_additional_checkout_buttons }}</div>

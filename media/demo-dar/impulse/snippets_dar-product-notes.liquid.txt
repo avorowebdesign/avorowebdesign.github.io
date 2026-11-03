@@ -1,0 +1,12 @@
+{%- assign mf = product.metafields.dar -%}
+{%- capture col -%}{% render 'dar-scent-color', p: product %}{%- endcapture -%}
+{%- if mf.top.value != blank -%}
+  <div class="dr dr-pmeta" style="--c:{{ col }}">
+    <dl class="dr-pyr">
+      <div><dt>Top</dt><dd>{{ mf.top.value }}</dd><span>de eerste minuten</span></div>
+      <div><dt>Hart</dt><dd>{{ mf.heart.value }}</dd><span>na een half uur</span></div>
+      <div><dt>Basis</dt><dd>{{ mf.base.value }}</dd><span>wat blijft hangen</span></div>
+    </dl>
+    <div class="dr-dur"><span>Op de huid</span><div class="dr-dur__bar"><i style="width:86%"></i></div><span>tot 14 uur</span></div>
+  </div>
+{%- endif -%}

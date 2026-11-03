@@ -1,0 +1,1 @@
+{%- comment -%} Geeft de prijs van het origineel in centen, uit metafield dar.original (bijv. "€180"). 0 als die er niet is. {%- endcomment -%}{%- assign o = p.metafields.dar.original.value | remove: '€' | remove: '±' | remove: ' ' | remove: '.' | replace: ',', '.' | plus: 0 -%}{{ o | times: 100 | round }}

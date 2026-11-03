@@ -1,0 +1,7 @@
+{%- assign mf = product.metafields.dar -%}
+{%- if mf.family.value != blank or mf.profile.value != blank -%}
+  <div class="dr dr-card">
+    {%- if mf.family.value != blank -%}<span class="dr-card__fam">{{ mf.family.value }}</span>{%- endif -%}
+    {%- if mf.profile.value != blank -%}<span class="dr-card__insp">Geïnspireerd op {{ mf.profile.value }}</span>{%- endif -%}
+  </div>
+{%- endif -%}

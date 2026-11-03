@@ -13,8 +13,16 @@
   const drawFs=c=>fsEls.forEach(el=>{const thr=+el.dataset.threshold||7000;if(!c||!c.item_count){el.innerHTML='';return}
     const left=thr-c.total_price,pct=Math.min(100,Math.round(c.total_price/thr*100));el.classList.toggle('is-done',left<=0);
     el.innerHTML=(left>0?'<p class="dr-fs__t">Nog <b>'+eur(left)+'</b> tot gratis verzending</p>':'<p class="dr-fs__t">Je bestelling wordt <b>gratis verzonden</b></p>')+'<div class="dr-fs__bar" role="progressbar" aria-label="Op weg naar gratis verzending" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+pct+'"><i style="width:'+pct+'%"></i></div>'});
-  let fsT=0;const refreshFs=()=>{if(!fsEls.length)return;clearTimeout(fsT);fsT=setTimeout(async()=>{try{drawFs(await (await fetch('/cart.js',{headers:{Accept:'application/json'}})).json())}catch(e){}},300)};
-  if(fsEls.length){refreshFs();
+  // "Nog een geur erbij?" in de winkelmand: max. 2 geuren die er nog niet in zitten, alleen zolang gratis verzending nog niet gehaald is
+  const more=$('[data-dr-more]');
+  const drawMore=c=>{if(!more)return;const thr=+((fsEls[0]&&fsEls[0].dataset.threshold)||7000);const inCart=new Set((c&&c.items||[]).map(i=>String(i.product_id)));let n=0;
+    more.querySelectorAll('[data-pid]').forEach(li=>{const show=n<2&&!inCart.has(li.dataset.pid);li.hidden=!show;if(show)n++});
+    more.hidden=!c||!c.item_count||c.total_price>=thr||!n};
+  if(more)more.addEventListener('click',async e=>{const b=e.target.closest('[data-dr-add]');if(!b)return;e.preventDefault();b.disabled=true;b.textContent='Toevoegen…';
+    try{await fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({items:[{id:+b.dataset.drAdd,quantity:1}]})});document.dispatchEvent(new CustomEvent('cart:build'));refreshFs()}
+    catch(err){}finally{b.disabled=false;b.textContent='Voeg toe'}});
+  let fsT=0;const refreshFs=()=>{if(!fsEls.length&&!more)return;clearTimeout(fsT);fsT=setTimeout(async()=>{try{const c=await (await fetch('/cart.js',{headers:{Accept:'application/json'}})).json();drawFs(c);drawMore(c)}catch(e){}},300)};
+  if(fsEls.length||more){refreshFs();
     document.addEventListener('ajaxProduct:added',refreshFs);document.addEventListener('cart:build',refreshFs);
     const sub=$('#CartDrawer [data-subtotal]');if(sub)new MutationObserver(refreshFs).observe(sub,{childList:true,characterData:true,subtree:true});}
 

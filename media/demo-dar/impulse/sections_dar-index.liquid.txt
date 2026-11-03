@@ -15,7 +15,7 @@
               <span class="dr-rowi__no">No. {{ p.metafields.dar.no.value }}</span>
               <span class="dr-rowi__fam">{{ p.metafields.dar.family.value }}</span>
               <span class="dr-rowi__notes">{{ p.metafields.dar.top.value }} <i>—</i> {{ p.metafields.dar.heart.value }} <i>—</i> {{ p.metafields.dar.base.value }}</span>
-              <span class="dr-rowi__price">{{ p.price | money }}</span>
+              {%- capture oc -%}{% render 'dar-orig-cents', p: p %}{%- endcapture -%}{%- assign oc = oc | strip | plus: 0 -%}<span class="dr-rowi__price">{% if oc > p.price %}<s>± {{ oc | money_without_trailing_zeros }}</s> {% endif %}{{ p.price | money }}</span>
             </a>
           </li>
         {%- endfor -%}

@@ -1,0 +1,21 @@
+{%- comment -%} Productpagina: waar de geur op lijkt en wat je bespaart t.o.v. het origineel. Bewust geen kaders, zodat het niet op knoppen lijkt. {%- endcomment -%}
+{%- assign mf = product.metafields.dar -%}
+{%- assign v = product.selected_or_first_available_variant -%}
+{%- capture oc -%}{% render 'dar-orig-cents', p: product %}{%- endcapture -%}
+{%- assign oc = oc | strip | plus: 0 -%}
+<div class="dr dr-cmp2">
+  {%- if mf.profile.value != blank -%}<p class="dr-cmp2__insp">Geïnspireerd op {{ mf.profile.value }}</p>{%- endif -%}
+  {%- if oc > v.price -%}
+    {%- liquid
+      assign w = v.price | times: 100.0 | divided_by: oc | round
+      assign save = oc | minus: v.price
+      assign save_eur = save | divided_by: 100
+      assign pct = save | times: 100.0 | divided_by: oc | round
+    -%}
+    <dl class="dr-cmp2__rows">
+      <div class="dr-cmp2__row"><dt>Het origineel</dt><dd><span class="dr-cmp2__bar" aria-hidden="true"><i style="width:100%"></i></span><s>± {{ oc | money_without_trailing_zeros }}</s></dd></div>
+      <div class="dr-cmp2__row is-dar"><dt>{{ product.title }}</dt><dd><span class="dr-cmp2__bar" aria-hidden="true"><i style="width:{{ w }}%"></i></span><b>{{ v.price | money }}</b></dd></div>
+    </dl>
+    <p class="dr-cmp2__save">Je bespaart ± €{{ save_eur }} ({{ pct }}%) op hetzelfde geurprofiel</p>
+  {%- endif -%}
+</div>

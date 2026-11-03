@@ -257,3 +257,57 @@
   .dr-annrow .announcement-text,.dr-annrow .announcement-link-text{display:inline;margin:0}
   .dr-annrow a{display:flex;align-items:baseline;gap:8px;text-decoration:none;color:inherit}
 }
+
+/* productkaarten: geurfamilie, inspiratie en besparing */
+.dr-card{display:grid;gap:2px;margin:3px 0 6px;font-family:var(--f)}
+.dr-card__fam{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-t)}
+.dr-card__insp{font-size:13px;line-height:1.4;color:var(--mut)}
+.dr-card__save{display:block;margin-top:3px;font-size:12px;line-height:1.4;color:var(--gold-t)}
+.dr-card__save s{color:var(--mut);margin-right:4px}
+@media (max-width:768px){.dr-card__insp{display:none}.dr-card__save{font-size:11.5px}}
+
+/* productpagina: besparing als twee balkjes, bewust zonder kaders */
+.dr-cmp2{display:grid;gap:10px;margin:2px 0 22px;text-align:left}
+.dr-cmp2__insp{margin:0;font-size:15px;color:var(--mut);font-weight:300}
+.dr-cmp2__rows{margin:0;display:grid;gap:9px}
+.dr-cmp2__row{display:grid;grid-template-columns:118px 1fr;align-items:center;gap:14px}
+.dr-cmp2__row dt{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dr-cmp2__row dd{margin:0;display:grid;grid-template-columns:1fr 74px;align-items:center;gap:12px}
+.dr-cmp2__bar{display:block;height:6px;background:transparent}
+.dr-cmp2__bar i{display:block;height:100%;background:rgba(58,15,24,.16)}
+.dr-cmp2__row s{font-size:15px;color:var(--mut);text-align:right;font-variant-numeric:tabular-nums}
+.dr-cmp2__row.is-dar dt{color:var(--wine)}
+.dr-cmp2__row.is-dar .dr-cmp2__bar i{background:var(--wine)}
+.dr-cmp2__row.is-dar b{font-size:16px;font-weight:500;color:var(--wine);text-align:right;font-variant-numeric:tabular-nums}
+.dr-cmp2__save{margin:2px 0 0;padding-top:10px;border-top:1px solid var(--line);font-size:14px;font-weight:500;color:var(--gold-t)}
+@media (max-width:480px){.dr-cmp2__row{grid-template-columns:96px 1fr;gap:10px}.dr-cmp2__row dd{grid-template-columns:1fr 66px}}
+.product-single__meta .product__policies,.product-single__meta .product__policies a{color:var(--mut)}
+
+/* winkelmand: geur toevoegen met één klik, Klarna onder afrekenen */
+.dr-cdm{margin:6px 0 10px;padding-top:16px;border-top:1px solid var(--line);text-align:left}
+.dr-cdm[hidden],.dr-cdm__i[hidden]{display:none}
+.dr-cdm__t{margin:0 0 10px;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-t)}
+.dr-cdm__list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.dr-cdm__i{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;padding:8px;background:var(--sand)}
+.dr-cdm__img{width:56px;height:56px;overflow:hidden;background:color-mix(in srgb,var(--c) 30%,var(--sand))}
+.dr-cdm__img img{width:100%;height:100%;object-fit:cover}
+.dr-cdm__m{display:grid;line-height:1.35;min-width:0}
+.dr-cdm__n{font-size:15px;color:var(--wine)}
+.dr-cdm__f{font-size:12px;color:var(--mut)}
+.dr-cdm__add{min-height:40px;padding:0 14px;border:1px solid var(--wine);background:transparent;color:var(--wine);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s}
+.dr-cdm__add:hover{background:var(--wine);color:var(--cream)}
+.dr-cdm__add[disabled]{opacity:.6;cursor:wait}
+.dr-cdpay{margin:10px 0 0;text-align:center;font-size:12px;color:var(--mut)}
+
+/* homepage op mobiel: knoppen in het eerste scherm, verhaal compacter */
+@media (max-width:900px){
+  .dr-hero__bottle{top:96px;width:min(62vw,36svh)}
+  .dr-hero__in{padding-top:calc(min(62vw,36svh) + 104px);padding-bottom:44px}
+  .dr-hero__kicker{margin-bottom:14px}
+  .dr-hero__t{font-size:clamp(36px,10vw,44px)}
+  .dr-hero__foot{margin-top:18px;padding-top:16px;gap:16px}
+  .dr-hero__lead{font-size:15px;line-height:1.55}
+  .dr-manifest{padding-block:72px}
+  .dr-manifest__t{font-size:24px}
+  .dr-facts{margin-top:36px;gap:20px}
+}
