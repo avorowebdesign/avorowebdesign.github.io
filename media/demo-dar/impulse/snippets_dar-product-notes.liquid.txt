@@ -1,12 +1,50 @@
+{%- comment -%}
+  "Ontdek de geur": top-, hart- en basisnoten met een foto, en hoe lang de geur blijft.
+  Alles komt uit de productvelden (Metavelden in Shopify): Topnoten, Hartnoten, Basisnoten en de drie foto's.
+{%- endcomment -%}
 {%- assign mf = product.metafields.dar -%}
 {%- capture col -%}{% render 'dar-scent-color', p: product %}{%- endcapture -%}
-{%- if mf.top.value != blank -%}
-  <div class="dr dr-pmeta" style="--c:{{ col }}">
-    <dl class="dr-pyr">
-      <div><dt>Top</dt><dd>{{ mf.top.value }}</dd><span>de eerste minuten</span></div>
-      <div><dt>Hart</dt><dd>{{ mf.heart.value }}</dd><span>na een half uur</span></div>
-      <div><dt>Basis</dt><dd>{{ mf.base.value }}</dd><span>wat blijft hangen</span></div>
-    </dl>
-    <div class="dr-dur"><span>Op de huid</span><div class="dr-dur__bar"><i style="width:86%"></i></div><span>tot 14 uur</span></div>
+{%- if mf.top.value != blank or mf.heart.value != blank or mf.base.value != blank -%}
+  <div class="dr dr-notes" style="--c:{{ col }}">
+    <h2 class="dr-notes__h">Ontdek de geur</h2>
+    <ul class="dr-notes__list">
+      {%- assign tiers = 'top,heart,base' | split: ',' -%}
+      {%- for t in tiers -%}
+        {%- liquid
+          case t
+            when 'top'
+              assign val = mf.top.value
+              assign img = mf.top_image.value
+              assign lab = 'Top'
+              assign when = 'de eerste minuten'
+            when 'heart'
+              assign val = mf.heart.value
+              assign img = mf.heart_image.value
+              assign lab = 'Hart'
+              assign when = 'na een half uur'
+            else
+              assign val = mf.base.value
+              assign img = mf.base_image.value
+              assign lab = 'Basis'
+              assign when = 'wat blijft hangen'
+          endcase
+        -%}
+        {%- if val != blank -%}
+          <li class="dr-note">
+            <span class="dr-note__img">{%- if img -%}<img src="{{ img | image_url: width: 360 }}" alt="{{ img.alt | escape }}" width="180" height="135" loading="lazy">{%- endif -%}</span>
+            <span class="dr-note__txt">
+              <span class="dr-note__lab">{{ lab }}</span>
+              <span class="dr-note__val">{{ val }}</span>
+              <span class="dr-note__when">{{ when }}</span>
+            </span>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+    <h3 class="dr-notes__h2">Hoe lang blijft de geur hangen?</h3>
+    <div class="dr-last">
+      <div class="dr-last__row"><span>Op de huid</span><b>tot 14 uur</b></div>
+      <div class="dr-last__bar" aria-hidden="true"><i style="width:86%"></i></div>
+    </div>
   </div>
 {%- endif -%}

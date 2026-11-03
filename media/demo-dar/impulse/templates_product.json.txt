@@ -39,12 +39,6 @@
       "text": "Achteraf betalen met Klarna"
      }
     },
-    "description": {
-     "type": "description",
-     "settings": {
-      "is_tab": false
-     }
-    },
     "upsell": {
      "type": "custom",
      "settings": {
@@ -69,6 +63,25 @@
      "settings": {
       "code": "{% render 'dar-product-notes', product: product %}"
      }
+    },
+    "story": {
+     "type": "custom",
+     "settings": {
+      "code": "{% render 'dar-product-story', product: product %}"
+     }
+    },
+    "faq": {
+     "type": "tab",
+     "settings": {
+      "title": "Veelgestelde vragen",
+      "content": "<p><strong>Ruikt het precies hetzelfde als het origineel?</strong><br>Elke Dar is geïnspireerd op het geurprofiel van een bekende geur en gemaakt als extrait de parfum. Dezelfde sfeer, met een eigen karakter.</p><p><strong>Wat is extrait de parfum?</strong><br>De hoogste concentratie parfumolie. Je hebt er minder van nodig en de geur blijft tot 14 uur op je huid.</p><p><strong>Hoe breng ik hem het beste op?</strong><br>Spray op je polsen, hals of achter je oren en wrijf niet, dan blijven de topnoten langer mooi.</p>"
+     }
+    },
+    "ingr": {
+     "type": "custom",
+     "settings": {
+      "code": "{% render 'dar-product-ingredients', product: product %}"
+     }
     }
    },
    "block_order": [
@@ -79,9 +92,11 @@
     "sp2",
     "sp3",
     "notes",
-    "description",
+    "story",
     "upsell",
-    "tab"
+    "tab",
+    "faq",
+    "ingr"
    ],
    "settings": {
     "sku_enable": false,

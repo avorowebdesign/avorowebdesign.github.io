@@ -1,0 +1,13 @@
+{%- comment -%} Beschrijving met de eerste zin als korte kop. De klant past gewoon de productbeschrijving aan. {%- endcomment -%}
+{%- assign txt = product.description | strip_html | strip -%}
+{%- if txt != blank -%}
+  {%- assign parts = txt | split: '. ' -%}
+  <div class="dr dr-story">
+    {%- if parts.size > 1 -%}
+      <h3 class="dr-story__h">{{ parts.first | append: '.' }}</h3>
+      <p class="dr-story__p">{{ txt | remove_first: parts.first | remove_first: '. ' }}</p>
+    {%- else -%}
+      <p class="dr-story__p">{{ txt }}</p>
+    {%- endif -%}
+  </div>
+{%- endif -%}

@@ -1,0 +1,6 @@
+{%- comment -%} Uitklapblok "Ingrediënten", verschijnt pas als het veld Ingrediënten bij het product is ingevuld. {%- endcomment -%}
+{%- assign ingr = product.metafields.dar.ingredients.value -%}
+{%- if ingr != blank -%}
+  {%- capture c -%}<p>{{ ingr | newline_to_br }}</p>{%- endcapture -%}
+  <div class="product-block--tab">{%- render 'tab', id: 'ingredienten', title: 'Ingrediënten', content: c -%}</div>
+{%- endif -%}
