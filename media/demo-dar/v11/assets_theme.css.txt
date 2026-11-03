@@ -63,6 +63,7 @@ button,input,textarea{font:inherit;color:inherit}
 .logo{text-decoration:none;justify-self:center}
 .hdr__r{display:flex;align-items:center;justify-content:flex-end;gap:20px}
 .ico{display:inline-flex;position:relative;text-decoration:none}
+.cart__n[hidden]{display:none}
 .cart__n{position:absolute;top:-6px;right:-9px;min-width:17px;height:17px;border-radius:9px;background:var(--gold);color:var(--wine-d);font-size:10px;font-weight:500;display:grid;place-items:center;padding:0 4px}
 .burger{display:none;width:36px;height:36px;border:0;background:none;color:inherit;cursor:pointer;position:relative}
 .burger span{position:absolute;left:8px;right:8px;height:1px;background:currentColor;transition:transform .25s}
@@ -324,7 +325,7 @@ button,input,textarea{font:inherit;color:inherit}
 .cats__all{margin-top:0;white-space:nowrap}
 .cats__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.6vw,24px)}
 .cat{display:grid;align-content:start;text-decoration:none;color:var(--wine)}
-.cat__vis{aspect-ratio:4/5;overflow:hidden;background:color-mix(in srgb,var(--c) 22%,var(--sand))}
+.cat__vis{aspect-ratio:1/1;overflow:hidden;background:color-mix(in srgb,var(--c) 22%,var(--sand))}
 .cat__vis img{width:100%;height:100%;object-fit:cover;transform:scale(1.02);transition:transform 1.1s var(--ease)}
 .cat:hover .cat__vis img{transform:scale(1.07)}
 .cat__meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:18px;padding-top:16px;border-top:1px solid var(--c)}
