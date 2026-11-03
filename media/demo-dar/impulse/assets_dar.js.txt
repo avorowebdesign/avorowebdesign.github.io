@@ -28,7 +28,7 @@
 
   // sorteren en filters altijd in het Nederlands, ook als de winkeltaal Engels is
   const NL={'featured':'Uitgelicht','best-selling':'Bestsellers','title-ascending':'Alfabetisch, A-Z','title-descending':'Alfabetisch, Z-A','price-ascending':'Prijs, laag naar hoog','price-descending':'Prijs, hoog naar laag','created-ascending':'Datum, oud naar nieuw','created-descending':'Datum, nieuw naar oud','manual':'Uitgelicht','relevance':'Relevantie'};
-  const NLT={'Availability':'Beschikbaarheid','Price':'Prijs','In stock':'Op voorraad','Out of stock':'Niet op voorraad','Product type':'Soort','Brand':'Merk','Vendor':'Merk','Sort by':'Sorteren','Filter':'Filter','Clear all':'Alles wissen','Apply':'Toepassen','Reset':'Wissen'};
+  const NLT={'Availability':'Voorraad','Price':'Prijs','In stock':'Op voorraad','Out of stock':'Niet op voorraad','Product type':'Soort','Brand':'Merk','Vendor':'Merk','Sort by':'Sorteren','Filter':'Filter','Clear all':'Alles wissen','Apply':'Toepassen','Reset':'Wissen'};
   const tr=()=>{$$('select option').forEach(o=>{if(NL[o.value])o.textContent=NL[o.value]});
     $$('.collection-filter__item, .tag-list__header, .collapsible-trigger, .filter-form label, .tag__text, .collection-filter label').forEach(el=>{el.childNodes.forEach(n=>{if(n.nodeType===3){const t=n.textContent.trim();if(NLT[t])n.textContent=n.textContent.replace(t,NLT[t])}})})};
   tr();document.addEventListener('collection:reloaded',tr);document.addEventListener('ajaxProduct:added',tr);

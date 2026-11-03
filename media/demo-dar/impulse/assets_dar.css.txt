@@ -521,3 +521,5 @@
 /* Fusion: meerprijs voor naam op het etiket */
 .dr-namef__x{margin-left:6px;font-size:12px;font-weight:400;letter-spacing:.04em;text-transform:none;color:var(--gold)}
 .dr-namef input::placeholder{color:rgba(242,230,207,.42)}
+/* filterkoppen in de smalle zijbalk (tablet) niet buiten de kolom */
+.collection-sidebar .collapsible-trigger-btn{overflow-wrap:anywhere;padding-right:24px}
