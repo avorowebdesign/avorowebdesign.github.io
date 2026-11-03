@@ -311,3 +311,4 @@
   .dr-manifest__t{font-size:24px}
   .dr-facts{margin-top:36px;gap:20px}
 }
+@media (max-width:768px){.dr-card__long{display:none}}

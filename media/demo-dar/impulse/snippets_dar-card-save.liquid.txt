@@ -2,5 +2,5 @@
 {%- assign oc = oc | strip | plus: 0 -%}
 {%- if oc > product.price -%}
   {%- assign pct = oc | minus: product.price | times: 100.0 | divided_by: oc | round -%}
-  <span class="dr dr-card__save"><s>± {{ oc | money_without_trailing_zeros }}</s> {{ pct }}% goedkoper dan het origineel</span>
+  <span class="dr dr-card__save"><s>± {{ oc | money_without_trailing_zeros }}</s> {{ pct }}% goedkoper<span class="dr-card__long"> dan het origineel</span></span>
 {%- endif -%}
