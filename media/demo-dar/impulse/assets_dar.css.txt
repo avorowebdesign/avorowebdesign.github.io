@@ -523,3 +523,5 @@
 .dr-namef input::placeholder{color:rgba(242,230,207,.42)}
 /* filterkoppen in de smalle zijbalk (tablet) niet buiten de kolom */
 .collection-sidebar .collapsible-trigger-btn{overflow-wrap:anywhere;padding-right:24px}
+/* Fusion op mobiel: vaste balk met flesje dicht, geen tekst die erachter doorschemert */
+@media (max-width:900px){.dr-fusion__stage{background:#24080e;box-shadow:0 -14px 0 #24080e}}
