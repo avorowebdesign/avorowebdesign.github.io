@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /offerte/
 Disallow: /voorbeeld/
+Disallow: /concept/
 
 Sitemap: https://avoroweb.nl/sitemap.xml
