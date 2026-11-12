@@ -1,0 +1,108 @@
+// dar – draaibaar 3D-flesje op de productpagina. Kleur en nummer komen uit data-color en data-no (productvelden dar.color en dar.no).
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const MOB = matchMedia('(max-width: 980px)').matches;
+try { await Promise.race([Promise.all([document.fonts.load('300 60px "Jost"'), document.fonts.load('400 30px "Jost"')]), new Promise(r => setTimeout(r, 1500))]); } catch (e) {}
+
+function oct(w, h, c) { const s = new THREE.Shape(), x = w / 2, y = h / 2; s.moveTo(-x + c, -y); s.lineTo(x - c, -y); s.lineTo(x, -y + c); s.lineTo(x, y - c); s.lineTo(x - c, y); s.lineTo(-x + c, y); s.lineTo(-x, y - c); s.lineTo(-x, -y + c); s.closePath(); return s; }
+function prism(w, h, c, d, b) { const g = new THREE.ExtrudeGeometry(oct(w, h, c), { depth: d, bevelEnabled: true, bevelSize: b, bevelThickness: b, bevelSegments: 3, curveSegments: 1 }); g.translate(0, 0, -d / 2); g.computeVertexNormals(); return g; }
+function rbox(w, h, d, r) { // afgeronde doos voor dop en hals
+  const b = Math.min(r, h / 4), bs = b * .9, x = w / 2 - bs, z = d / 2 - bs, q = Math.max(.001, r - bs), s = new THREE.Shape();
+  s.moveTo(-x + q, -z); s.lineTo(x - q, -z); s.quadraticCurveTo(x, -z, x, -z + q); s.lineTo(x, z - q); s.quadraticCurveTo(x, z, x - q, z);
+  s.lineTo(-x + q, z); s.quadraticCurveTo(-x, z, -x, z - q); s.lineTo(-x, -z + q); s.quadraticCurveTo(-x, -z, -x + q, -z);
+  const g = new THREE.ExtrudeGeometry(s, { depth: h - 2 * b, bevelEnabled: true, bevelSize: bs, bevelThickness: b, bevelSegments: 4, curveSegments: 6 });
+  g.translate(0, 0, -(h - 2 * b) / 2); g.rotateX(-Math.PI / 2); g.computeVertexNormals(); return g;
+}
+function envMap(r) {
+  const sc = new THREE.Scene(), pm = new THREE.PMREMGenerator(r);
+  sc.add(new THREE.Mesh(new THREE.BoxGeometry(20, 20, 20), new THREE.MeshBasicMaterial({ color: 0x8c8a86, side: THREE.BackSide })));
+  const panel = (w, h, x, y, z, k) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(1, 1, 1).multiplyScalar(k), side: THREE.DoubleSide })); m.position.set(x, y, z); m.lookAt(0, 0, 0); sc.add(m); };
+  panel(8, 3, 0, 9, 0, 3.2); panel(3, 7, -8, 2, 3, 2.2); panel(3, 7, 8, 1, -2, 1.6); panel(6, 2, 0, 2, 9, 1.4);
+  const t = pm.fromScene(sc, 0.04).texture; pm.dispose(); return t;
+}
+function labelTex(no) {
+  const W = 1360, H = 320, c = document.createElement('canvas'); c.width = W; c.height = H; const x = c.getContext('2d');
+  x.fillStyle = '#e9e3d9'; x.fillRect(0, 0, W, H);
+  x.fillStyle = '#3a0f18'; x.font = '300 150px "Jost", sans-serif'; x.textBaseline = 'middle'; x.fillText('dar', 60, H / 2 + 6);
+  x.fillStyle = '#c2a15a'; x.fillRect(318, 70, 3, H - 140);
+  x.fillStyle = '#a8874a'; x.font = '400 46px "Jost", sans-serif'; try { x.letterSpacing = '9px'; } catch (e) {} x.fillText('EXTRAIT DE PARFUM', 372, H / 2 - 30);
+  x.fillStyle = '#7b6667'; x.font = '400 34px "Jost", sans-serif'; try { x.letterSpacing = '7px'; } catch (e) {} x.fillText(`NO. ${no} · 50 ML`, 372, H / 2 + 44);
+  const n = 21, s = 10, ox = W - 60 - n * s, oy = (H - n * s) / 2; let seed = (parseInt(no, 10) || 1) * 7919 + 13; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  x.fillStyle = '#5a1a26';
+  for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) { const f = (a, b) => a < 7 && b < 7; if (f(i, j) || f(n - 1 - i, j) || f(i, n - 1 - j)) continue; if (rnd() > .52) x.fillRect(ox + i * s, oy + j * s, s, s); }
+  [[0, 0], [n - 7, 0], [0, n - 7]].forEach(([i, j]) => { x.fillRect(ox + i * s, oy + j * s, 7 * s, 7 * s); x.fillStyle = '#e9e3d9'; x.fillRect(ox + (i + 1) * s, oy + (j + 1) * s, 5 * s, 5 * s); x.fillStyle = '#5a1a26'; x.fillRect(ox + (i + 2) * s, oy + (j + 2) * s, 3 * s, 3 * s); });
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; return t;
+}
+function shadowTex() { const c = document.createElement('canvas'); c.width = c.height = 256; const x = c.getContext('2d'); const g = x.createRadialGradient(128, 128, 8, 128, 128, 128); g.addColorStop(0, 'rgba(60,40,30,.42)'); g.addColorStop(.55, 'rgba(60,40,30,.14)'); g.addColorStop(1, 'rgba(60,40,30,0)'); x.fillStyle = g; x.fillRect(0, 0, 256, 256); return new THREE.CanvasTexture(c); }
+
+function viewer(canvas, opt) {
+  let r;
+  try { r = new THREE.WebGLRenderer({ canvas, antialias: !MOB, alpha: true, powerPreference: 'high-performance' }); } catch (e) { return null; }
+  r.setPixelRatio(Math.min(devicePixelRatio || 1, MOB ? 1.5 : 2)); r.outputColorSpace = THREE.SRGBColorSpace; r.toneMapping = THREE.ACESFilmicToneMapping; r.toneMappingExposure = 1.05;
+  const sc = new THREE.Scene(); sc.environment = envMap(r);
+  const cam = new THREE.PerspectiveCamera(30, 1, .1, 50);
+  const key = new THREE.DirectionalLight(0xffffff, 1.1); key.position.set(3, 5, 4); sc.add(key, new THREE.AmbientLight(0xffffff, .25));
+  const grp = new THREE.Group(), bottle = new THREE.Group(); grp.add(bottle); sc.add(grp);
+  const bodyG = prism(1.5, 1.62, .36, .6, .03);
+  const glassF = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: .05, metalness: 0, transparent: true, opacity: .24, clearcoat: 1, clearcoatRoughness: .03, envMapIntensity: 1.8, depthWrite: false });
+  const glassB = glassF.clone(); glassB.side = THREE.BackSide; glassB.opacity = .12;
+  const gB = new THREE.Mesh(bodyG, glassB), gF = new THREE.Mesh(bodyG, glassF); gB.renderOrder = 2; gF.renderOrder = 3;
+  const edges = new THREE.LineSegments(new THREE.EdgesGeometry(bodyG, 25), new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: .55 })); edges.renderOrder = 4;
+  const col = new THREE.Color(opt.color);
+  const liqM = new THREE.MeshPhysicalMaterial({ color: col, emissive: col, emissiveIntensity: .32, roughness: .16, metalness: 0, transparent: true, opacity: .92, clearcoat: .6, envMapIntensity: .7 });
+  const liq = new THREE.Mesh(prism(1.16, 1.18, .2, .4, .02), liqM); liq.position.y = -.09; liq.renderOrder = 1;
+  const capM = new THREE.MeshPhysicalMaterial({ color: 0x121012, roughness: .3, metalness: .25, clearcoat: .8, clearcoatRoughness: .2 });
+  const neck = new THREE.Mesh(rbox(.44, .17, .3, .04), capM); neck.position.y = .81 + .03 + .085;
+  const cap = new THREE.Mesh(rbox(.82, .46, .52, .07), capM); cap.position.y = neck.position.y + .085 + .23 + .01;
+  const labM = new THREE.MeshStandardMaterial({ map: labelTex(opt.no), roughness: .85, metalness: 0 });
+  const lab = new THREE.Mesh(new THREE.PlaneGeometry(1.38, .325), labM); lab.position.set(0, -.2, .334); lab.renderOrder = 5;
+  bottle.add(liq, gB, gF, edges, neck, cap, lab); bottle.position.y = -.2;
+  const sh = new THREE.Mesh(new THREE.PlaneGeometry(2.8, 1.6), new THREE.MeshBasicMaterial({ map: shadowTex(), transparent: true, depthWrite: false })); sh.rotation.x = -Math.PI / 2; sh.position.y = -1.06; sc.add(sh);
+
+  let ry = -.55, rx = .06, vy = 0, drag = false, px = 0, py = 0, idle = -1e9, vis = true, last = performance.now(), dirty = true, ok = false;
+  const fit = () => { const w = canvas.clientWidth, h = canvas.clientHeight; if (!w || !h) return; r.setSize(w, h, false); cam.aspect = w / h; cam.position.set(0, .25, cam.aspect < .85 ? 7.4 : (opt.dist || 6.3)); cam.lookAt(0, .08, 0); cam.updateProjectionMatrix(); dirty = true; };
+  new ResizeObserver(fit).observe(canvas); fit();
+  new IntersectionObserver(e => { vis = e[0].isIntersecting; }).observe(canvas);
+  if (opt.interactive) {
+    canvas.addEventListener('pointerdown', e => { drag = true; px = e.clientX; py = e.clientY; vy = 0; canvas.setPointerCapture(e.pointerId); opt.onDrag && opt.onDrag(); });
+    canvas.addEventListener('pointermove', e => { if (!drag) return; const dx = e.clientX - px, dy = e.clientY - py; px = e.clientX; py = e.clientY; vy = dx * .012; ry += vy; rx = Math.max(-.45, Math.min(.5, rx + dy * .006)); idle = performance.now(); });
+    const up = () => { drag = false; idle = performance.now(); }; canvas.addEventListener('pointerup', up); canvas.addEventListener('pointercancel', up);
+    canvas.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') { ry -= .25; idle = performance.now(); e.preventDefault(); } if (e.key === 'ArrowRight') { ry += .25; idle = performance.now(); e.preventDefault(); } });
+  }
+  return {
+    setPose(y, x, z) { ry = y; rx = x; if (z != null) grp.position.z = z; dirty = true; },
+    frame(now) {
+      const dt = Math.min(64, now - last) / 16.7; last = now;
+      if (opt.interactive && !drag) { ry += vy; vy *= .93; if (Math.abs(vy) < .0004) vy = 0; if (!reduce && now - idle > 2600 && vy === 0) ry += .004 * dt; rx += (.06 - rx) * .02 * dt; }
+      if (!vis || (opt.paused && opt.paused())) return;
+      grp.rotation.set(rx, ry, 0);
+      if (dirty || opt.interactive) { r.render(sc, cam); dirty = false; if (!ok) { ok = true; opt.onReady && opt.onReady(); } }
+    }
+  };
+}
+
+const stage = document.querySelector('[data-stage]');
+let v1 = null, v2 = null;
+if (stage) {
+  const hint = stage.querySelector('.dpdp__hint');
+  try {
+    v1 = viewer(stage.querySelector('canvas[data-gl="main"]'), { interactive: true, color: stage.dataset.color, no: stage.dataset.no, paused: () => stage.classList.contains('photo'), onReady: () => stage.classList.add('ready'), onDrag: () => hint && hint.classList.add('gone') });
+  } catch (e) { console.warn('dar 3D', e); }
+}
+const st2 = document.querySelector('[data-stage2]');
+if (st2 && !MOB) {
+  try { v2 = viewer(st2.querySelector('canvas'), { interactive: false, dist: 6.6, color: st2.dataset.color, no: st2.dataset.no }); } catch (e) { console.warn('dar 3D', e); }
+  const sec = st2.closest('.dpdp-notes'), prog = [...st2.querySelectorAll('[data-prog] span')];
+  const tints = [[243, 236, 210], [233, 226, 239], [236, 223, 202]];
+  const pose = () => {
+    const rc = sec.getBoundingClientRect(), vh = innerHeight;
+    const p = Math.max(0, Math.min(1, (vh * .35 - rc.top) / Math.max(1, rc.height - vh * .6)));
+    const seg = p * 2, i = Math.min(1, Math.floor(seg)), f = seg - i, a = tints[i], b = tints[i + 1];
+    st2.style.setProperty('--tint', `rgb(${a.map((c, j) => Math.round(c + (b[j] - c) * f)).join(',')})`);
+    const act = p < .36 ? 0 : p < .7 ? 1 : 2; prog.forEach((s, j) => s.classList.toggle('on', j <= act));
+    v2 && v2.setPose(-.7 + p * Math.PI * 1.7, .05 + Math.sin(p * Math.PI) * .18, Math.sin(p * Math.PI) * .6);
+  };
+  addEventListener('scroll', pose, { passive: true }); addEventListener('resize', pose); pose();
+}
+if (v1 || v2) { const loop = t => { v1 && v1.frame(t); v2 && v2.frame(t); requestAnimationFrame(loop); }; requestAnimationFrame(loop); }

@@ -1,0 +1,48 @@
+{
+  "sections": {
+    "main": {
+      "type": "dar-pdp",
+      "blocks": {
+        "u1": { "type": "usp", "settings": { "icon": "truck", "text": "Voor 16:00 besteld, morgen in huis" } },
+        "u2": { "type": "usp", "settings": { "icon": "package", "text": "Gratis verzending vanaf €70" } },
+        "u3": { "type": "usp", "settings": { "icon": "klarna", "text": "Achteraf betalen met Klarna" } },
+        "u4": { "type": "usp", "settings": { "icon": "shield", "text": "14 dagen niet goed? Retourneren" } }
+      },
+      "block_order": ["u1", "u2", "u3", "u4"],
+      "settings": {
+        "show_3d": true,
+        "content": "50 ml",
+        "add_label": "In winkelmand",
+        "whatsapp": "",
+        "whatsapp_label": "Twijfel je? Vraag het ons via WhatsApp",
+        "ship_title": "Bezorging en betalen",
+        "ship_text": "<p>Voor 16:00 besteld, morgen in huis. Gratis verzending vanaf €70. Betaal met iDEAL, of achteraf met Klarna.</p>",
+        "fus_show": true,
+        "fus_image": "shopify://shop_images/h01.jpg",
+        "fus_kicker": "Dar Fusion",
+        "fus_heading": "Twee geuren in één flesje",
+        "fus_text": "<p>Kies een van onze kant-en-klare mixen, of stel zelf je mix samen uit twee geuren uit de collectie. Wij mengen ze voor je tot één geur.</p>",
+        "fus_price": "€44,95 · 50 ml",
+        "fus_b1": "Bekijk de mixen",
+        "fus_b1_url": "shopify://collections/dar-geuren",
+        "fus_b2": "Maak je eigen mix",
+        "fus_b2_url": "shopify://products/dar-fusion"
+      }
+    },
+    "sticky": {
+      "type": "dar-sticky-atc",
+      "settings": { "label": "In winkelmand" },
+      "blocks": {
+        "u1": { "type": "usp", "settings": { "text": "Morgen in huis" } },
+        "u2": { "type": "usp", "settings": { "text": "Gratis vanaf €70" } },
+        "u3": { "type": "usp", "settings": { "text": "Achteraf betalen" } }
+      },
+      "block_order": ["u1", "u2", "u3"]
+    },
+    "more": {
+      "type": "dar-more",
+      "settings": { "heading": "Meer geuren", "collection": "dar-geuren" }
+    }
+  },
+  "order": ["main", "sticky", "more"]
+}
