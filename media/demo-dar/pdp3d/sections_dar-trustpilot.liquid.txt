@@ -1,0 +1,93 @@
+{%- comment -%}
+  Dar – Trustpilot op één plek. Hier zet je per plek de Trustpilot-score aan of uit.
+  De score en reviews komen live van Trustpilot (officiële TrustBox), dus ze zijn altijd actueel.
+  Plekken: USP-balk (desktop), productpagina onder de naam, homepage boven de footer, footer.
+{%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign buid = s.buid | strip
+  assign url = s.url | default: 'https://nl.trustpilot.com/review/darparfum.nl'
+  assign home = false
+  if s.home and template.name == 'index'
+    assign home = true
+  endif
+  assign any = false
+  if buid != blank
+    if s.bar or s.pdp or home or s.footer_score
+      assign any = true
+    endif
+  endif
+-%}
+<style>
+  .dr-tp{background:var(--sand,#efe6d6);border-top:1px solid rgba(58,15,24,.1)}
+  .dr-tp__in{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px 28px;padding-block:22px;text-align:center}
+  .dr-tp__t{margin:0;font:300 18px/1.3 "Jost",system-ui,sans-serif;color:var(--wine,#3a0f18)}
+  .dr-tp__btn{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 18px;border:1px solid rgba(58,15,24,.25);color:var(--wine,#3a0f18);font:500 13px/1 "Jost",system-ui,sans-serif;letter-spacing:.06em;text-decoration:none}
+  .dr-tp__btn:hover{border-color:var(--wine,#3a0f18)}
+  .dr-tp__star{width:18px;height:18px;flex:none}
+  .dr-tp__mini{flex:0 1 260px;min-width:200px}
+  .dr-tp-home{background:var(--paper,#f8f3ea);padding-block:56px}
+  .dr-tp-home h2{margin:0 0 22px;text-align:center;font:300 clamp(30px,3vw,42px)/1.1 "Jost",system-ui,sans-serif;letter-spacing:-.02em;color:var(--ink,#2b0b12)}
+  [data-tp-slot]:empty{display:none}
+  .dpdp__tp{margin-top:10px;max-width:260px}
+  .dr-annrow li[data-tp-slot]{min-width:220px}
+</style>
+
+{%- if home and buid != blank -%}
+  <div class="dr dr-tp-home">
+    <div class="dr-wrap">
+      {%- if s.home_heading != blank -%}<h2>{{ s.home_heading }}</h2>{%- endif -%}
+      <div class="trustpilot-widget" data-locale="nl-NL" data-template-id="{{ s.tpl_home }}" data-businessunit-id="{{ buid }}" data-style-height="240px" data-style-width="100%" data-theme="light" data-stars="4,5" data-review-languages="nl"><a href="{{ url }}" target="_blank" rel="noopener">Trustpilot</a></div>
+    </div>
+  </div>
+{%- endif -%}
+
+{%- if s.review_btn or s.footer_score -%}
+  <div class="dr dr-tp">
+    <div class="dr-wrap dr-tp__in">
+      {%- if s.footer_score and buid != blank -%}
+        <div class="dr-tp__mini"><div class="trustpilot-widget" data-locale="nl-NL" data-template-id="{{ s.tpl_footer }}" data-businessunit-id="{{ buid }}" data-style-height="150px" data-style-width="100%" data-theme="light"><a href="{{ url }}" target="_blank" rel="noopener">Trustpilot</a></div></div>
+      {%- endif -%}
+      {%- if s.review_btn -%}
+        <p class="dr-tp__t">{{ s.review_text }}</p>
+        <a class="dr-tp__btn" href="{{ url }}" target="_blank" rel="noopener"><svg class="dr-tp__star" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" fill="#00b67a"/><path d="M12 4.5l2.2 6.1h6.4l-5.2 3.8 2 6.1L12 16.7l-5.4 3.8 2-6.1-5.2-3.8h6.4z" fill="#fff"/></svg>{{ s.review_label }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{%- if any -%}
+  {%- if s.bar -%}<template data-tp="bar"><div class="trustpilot-widget" data-locale="nl-NL" data-template-id="{{ s.tpl_small }}" data-businessunit-id="{{ buid }}" data-style-height="24px" data-style-width="100%" data-theme="dark"><a href="{{ url }}" target="_blank" rel="noopener">Trustpilot</a></div></template>{%- endif -%}
+  {%- if s.pdp -%}<template data-tp="pdp"><div class="trustpilot-widget" data-locale="nl-NL" data-template-id="{{ s.tpl_small }}" data-businessunit-id="{{ buid }}" data-style-height="24px" data-style-width="100%" data-theme="light"><a href="{{ url }}" target="_blank" rel="noopener">Trustpilot</a></div></template>{%- endif -%}
+  <script>
+    document.querySelectorAll('template[data-tp]').forEach(function(t){
+      document.querySelectorAll('[data-tp-slot="'+t.dataset.tp+'"]').forEach(function(slot){slot.appendChild(t.content.cloneNode(true));slot.hidden=false});
+    });
+  </script>
+  <script src="https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Dar – Trustpilot",
+  "settings": [
+    { "type": "paragraph", "content": "De score en reviews komen live van Trustpilot. Zet een plek pas aan als er genoeg reviews zijn." },
+    { "type": "text", "id": "url", "label": "Link naar je Trustpilot-pagina", "default": "https://nl.trustpilot.com/review/darparfum.nl" },
+    { "type": "text", "id": "buid", "label": "Trustpilot bedrijfs-ID", "default": "6ade3d054716e8a5ad9e9c91" },
+    { "type": "header", "content": "Reviews vragen" },
+    { "type": "checkbox", "id": "review_btn", "label": "Knop 'Schrijf een review' boven de footer", "default": true },
+    { "type": "text", "id": "review_text", "label": "Tekst", "default": "Blij met je geur? Laat het anderen weten." },
+    { "type": "text", "id": "review_label", "label": "Knoptekst", "default": "Schrijf een review op Trustpilot" },
+    { "type": "header", "content": "Score tonen" },
+    { "type": "checkbox", "id": "bar", "label": "In de USP-balk bovenaan (desktop)", "default": false },
+    { "type": "checkbox", "id": "pdp", "label": "Op de productpagina, onder de naam", "default": false },
+    { "type": "checkbox", "id": "home", "label": "Op de homepage, boven de footer", "default": false },
+    { "type": "text", "id": "home_heading", "label": "Kop boven de reviews op de homepage", "default": "Wat klanten zeggen" },
+    { "type": "checkbox", "id": "footer_score", "label": "In de footer", "default": false },
+    { "type": "header", "content": "TrustBox-soorten (uit je Trustpilot-account)" },
+    { "type": "text", "id": "tpl_small", "label": "Klein sterrenregeltje (USP-balk en productpagina)", "default": "5419b732fbfb950b10de65e5" },
+    { "type": "text", "id": "tpl_home", "label": "Reviewbalk homepage", "default": "53aa8912dec7e10d38f59f36" },
+    { "type": "text", "id": "tpl_footer", "label": "Footer", "default": "53aa8807dec7e10d38f59f36" }
+  ]
+}
+{% endschema %}

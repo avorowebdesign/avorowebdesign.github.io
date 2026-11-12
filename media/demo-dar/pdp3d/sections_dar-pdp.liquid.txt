@@ -53,6 +53,7 @@
       <div>
         {%- if mf.family.value != blank -%}<div class="dpdp__fam">{{ mf.family.value }}</div>{%- endif -%}
         <h1 class="dpdp__t">{{ product.title }}</h1>
+        <div class="dpdp__tp" data-tp-slot="pdp" hidden></div>
       </div>
       {% render 'dar-product-compare', product: product %}
 
