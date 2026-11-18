@@ -88,7 +88,7 @@
       "settings": {
        "logo": "shopify://shop_images/mro-logo.png",
        "desktop_logo_width": 100,
-       "mobile_logo_width": 70
+       "mobile_logo_width": 60
       }
      }
     },

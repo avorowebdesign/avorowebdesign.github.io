@@ -89,7 +89,7 @@
   var row2 = $('[data-times-row]');
   if (row2 && form) {
     var quick = [];
-    for (var d = 0; d < days.length && quick.length < 4; d++) { if (!HOURS[days[d].getDay()]) continue; ['11:00', '14:30'].forEach(function (tm) { if (quick.length < 4) quick.push([d, tm]); }); }
+    for (var d = 0; d < days.length && quick.length < 4; d++) { if (!HOURS[days[d].getDay()]) continue; ['11:00', '14:30', '16:00'].forEach(function (tm) { var isToday = days[d].toDateString() === now.date.toDateString(); if (isToday && toH(tm) < now.h + 0.75) return; if (quick.length < 4) quick.push([d, tm]); }); }
     quick.forEach(function (q) {
       var b = document.createElement('button'); b.type = 'button'; b.className = 'mr-btn mr-btn--line mr-btn--sm';
       b.textContent = (days[q[0]].toDateString() === now.date.toDateString() ? 'Vandaag' : short(days[q[0]])) + ', ' + q[1];

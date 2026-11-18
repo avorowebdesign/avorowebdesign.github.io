@@ -58,23 +58,33 @@ body { -webkit-font-smoothing: antialiased; }
 
 /* MR. Optics-blokken: alles hieronder zit in .mr, dus Impulse blijft er af */
 .mr { color: var(--color-ink-2); font-family: var(--font-body); font-size: var(--text-md); line-height: 1.55; }
-.mr *, .mr *::before, .mr *::after { box-sizing: border-box; }
-.mr a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
-.mr :focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
-.mr h1, .mr h2, .mr h3 { margin: 0; font-family: var(--font-display); font-weight: 400; font-synthesis: none; color: var(--color-ink); letter-spacing: -0.02em; line-height: 1.04; overflow-wrap: break-word; min-width: 0; text-wrap: balance; text-transform: none; }
-.mr h1 { font-size: var(--text-display); max-width: 13ch; }
-.mr h2 { font-size: var(--text-section); max-width: 16ch; }
-.mr h3 { font-size: var(--text-title); line-height: 1.2; letter-spacing: -0.01em; }
-.mr p { margin: 0; text-wrap: pretty; }
-.mr img { max-width: 100%; height: auto; display: block; }
-.mr [hidden] { display: none !important; }
-.mr blockquote { margin: 0; padding: 0; border: 0; font-style: normal; text-align: left; }
-.mr blockquote::before { content: none; }
-.mr button, .mr input { font: inherit; color: inherit; letter-spacing: 0; text-transform: none; }
-.mr ul, .mr ol, .mr dl, .mr dd, .mr figure { margin: 0; padding: 0; }
-.mr ul, .mr ol { list-style: none; }
-.mr li { margin: 0; }
-.mr input { border-radius: 0; }
+:where(.mr) *, :where(.mr) *::before, :where(.mr) *::after { box-sizing: border-box; }
+:where(.mr) a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+:where(.mr) :focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+:where(.mr) h1, :where(.mr) h2, :where(.mr) h3 { margin: 0; font-family: var(--font-display); font-weight: 400; font-synthesis: none; color: var(--color-ink); letter-spacing: -0.02em; line-height: 1.04; overflow-wrap: break-word; min-width: 0; text-wrap: balance; text-transform: none; }
+:where(.mr) h1 { font-size: var(--text-display); max-width: 13ch; }
+:where(.mr) h2 { font-size: var(--text-section); max-width: 16ch; }
+:where(.mr) h3 { font-size: var(--text-title); line-height: 1.2; letter-spacing: -0.01em; }
+:where(.mr) p { margin: 0; text-wrap: pretty; }
+:where(.mr) img { max-width: 100%; height: auto; display: block; }
+:where(.mr) [hidden] { display: none !important; }
+:where(.mr) blockquote { margin: 0; padding: 0; border: 0; font-style: normal; text-align: left; }
+:where(.mr) blockquote::before { content: none; }
+:where(.mr) button, :where(.mr) input { font: inherit; color: inherit; letter-spacing: 0; text-transform: none; }
+:where(.mr) ul, :where(.mr) ol, :where(.mr) dl, :where(.mr) dd, :where(.mr) figure { margin: 0; padding: 0; }
+:where(.mr) ul, :where(.mr) ol { list-style: none; }
+:where(.mr) li { margin: 0; }
+:where(.mr) input { border-radius: 0; }
+.mr label, .mr legend { text-transform: none; letter-spacing: 0; font-weight: 400; }
+.mr input { box-shadow: none; }
+.mr .mr-btn, .mr .mr-btn:visited { color: var(--color-paper); }
+.mr .mr-btn--line, .mr .mr-bar .mr-btn { color: var(--color-ink); }
+.mr .mr-btn--line:hover { color: var(--color-paper); }
+.mr .mr-link { color: var(--color-ink); }
+.mr .mr-link:hover { color: var(--color-accent); }
+.site-footer .footer__title, .site-footer h2, .site-footer h3, .site-footer h4 { text-transform: none; letter-spacing: 0; font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; }
+.site-footer .footer__small-text { letter-spacing: 0; }
+
 
 .mr-wrap { width: 100%; max-width: var(--container); margin-inline: auto; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
 .mr-lead { font-size: var(--text-lead); line-height: 1.45; max-width: 40ch; color: var(--color-ink-2); }
@@ -264,3 +274,5 @@ body { -webkit-font-smoothing: antialiased; }
 .collection-hero__title, .section-header__title { letter-spacing: -0.01em; }
 .mr-form fieldset legend { margin-bottom: var(--space-2xs); }
 .mr-days b { font-variant-numeric: tabular-nums; }
+.site-header .header-item--logo img, .site-header .site-header__logo img { max-width: 72px; }
+@media (max-width: 768px) { .site-header .header-item--logo img, .site-header .site-header__logo img { max-width: 52px; } }
