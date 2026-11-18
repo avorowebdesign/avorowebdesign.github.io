@@ -1,0 +1,216 @@
+{
+ "sections": {
+  "hero": {
+   "type": "mr-hero",
+   "settings": {
+    "poster": "shopify://shop_images/mro-cut-lens.jpg",
+    "btn_link": "#afspraak",
+    "link_url": "#vitrine"
+   }
+  },
+  "visit": {
+   "type": "mr-visit",
+   "blocks": {
+    "d1": {
+     "type": "day",
+     "settings": {
+      "day": "1",
+      "name": "Maandag",
+      "open": "",
+      "close": "",
+      "closed_text": "Op afspraak"
+     }
+    },
+    "d2": {
+     "type": "day",
+     "settings": {
+      "day": "2",
+      "name": "Dinsdag",
+      "open": "10:00",
+      "close": "17:30",
+      "closed_text": "Op afspraak"
+     }
+    },
+    "d3": {
+     "type": "day",
+     "settings": {
+      "day": "3",
+      "name": "Woensdag",
+      "open": "10:00",
+      "close": "17:30",
+      "closed_text": "Op afspraak"
+     }
+    },
+    "d4": {
+     "type": "day",
+     "settings": {
+      "day": "4",
+      "name": "Donderdag",
+      "open": "10:00",
+      "close": "17:30",
+      "closed_text": "Op afspraak"
+     }
+    },
+    "d5": {
+     "type": "day",
+     "settings": {
+      "day": "5",
+      "name": "Vrijdag",
+      "open": "10:00",
+      "close": "17:30",
+      "closed_text": "Op afspraak"
+     }
+    },
+    "d6": {
+     "type": "day",
+     "settings": {
+      "day": "6",
+      "name": "Zaterdag",
+      "open": "10:00",
+      "close": "17:00",
+      "closed_text": "Op afspraak"
+     }
+    },
+    "d0": {
+     "type": "day",
+     "settings": {
+      "day": "0",
+      "name": "Zondag",
+      "open": "",
+      "close": "",
+      "closed_text": "Op afspraak"
+     }
+    }
+   },
+   "block_order": [
+    "d1",
+    "d2",
+    "d3",
+    "d4",
+    "d5",
+    "d6",
+    "d0"
+   ],
+   "settings": {}
+  },
+  "vitrine": {
+   "type": "mr-vitrine",
+   "settings": {
+    "col1": "mro2-monturen",
+    "col2": "mro2-zonnebrillen",
+    "all_url": "shopify://collections/mro-collectie"
+   }
+  },
+  "atelier": {
+   "type": "mr-split",
+   "settings": {
+    "anchor": "atelier",
+    "heading": "Rustig of druk geslepen.",
+    "text": "In het atelier van MR. OptiWorks maken we meer dan glaswerk. Een rustige of een drukke slijpvorm, het is allemaal mogelijk.",
+    "image": "shopify://shop_images/mro-cut-lens.jpg",
+    "caption": "Facetgeslepen glas, blauw degradé",
+    "caption_right": "MR. OptiWorks",
+    "btn_label": "Bespreek uw glazen",
+    "btn_link": "#afspraak",
+    "btn_style": "link",
+    "pick": "graveren"
+   },
+   "blocks": {
+    "r1": {
+     "type": "row",
+     "settings": {
+      "title": "Slijpen",
+      "text": "Met de grootste precisie, in de vorm die u kiest."
+     }
+    },
+    "r2": {
+     "type": "row",
+     "settings": {
+      "title": "Graveren",
+      "text": "Met vakmanschap en oog voor detail."
+     }
+    },
+    "r3": {
+     "type": "row",
+     "settings": {
+      "title": "Diamanten",
+      "text": "Van de beste kwaliteit, met certificaat."
+     }
+    }
+   },
+   "block_order": [
+    "r1",
+    "r2",
+    "r3"
+   ]
+  },
+  "eye": {
+   "type": "mr-split",
+   "settings": {
+    "anchor": "oogmeting",
+    "band": true,
+    "heading": "Eerst meten, dan kiezen.",
+    "text": "We meten uw ogen in de winkel en adviseren over montuur, glastype en afwerking.",
+    "btn_label": "Plan een oogmeting",
+    "btn_link": "#afspraak",
+    "btn_style": "line",
+    "pick": "oogmeting"
+   },
+   "blocks": {
+    "e1": {
+     "type": "row",
+     "settings": {
+      "title": "Oogmeting",
+      "text": "In de winkel, op afspraak."
+     }
+    },
+    "e2": {
+     "type": "row",
+     "settings": {
+      "title": "ZEISS DuraVision",
+      "text": "Silver, Platinum en Platinum met BlueGuard."
+     }
+    },
+    "e3": {
+     "type": "row",
+     "settings": {
+      "title": "Dunner glas",
+      "text": "Van standaard tot index 1.74."
+     }
+    },
+    "e4": {
+     "type": "row",
+     "settings": {
+      "title": "Kleur in het glas",
+      "text": "Transitions en degradé, in verschillende kleuren."
+     }
+    }
+   },
+   "block_order": [
+    "e1",
+    "e2",
+    "e3",
+    "e4"
+   ]
+  },
+  "houses": {
+   "type": "mr-houses",
+   "settings": {
+    "image": "shopify://shop_images/mro-campaign.jpg"
+   }
+  },
+  "booking": {
+   "type": "mr-booking",
+   "settings": {}
+  }
+ },
+ "order": [
+  "hero",
+  "visit",
+  "vitrine",
+  "atelier",
+  "eye",
+  "houses",
+  "booking"
+ ]
+}

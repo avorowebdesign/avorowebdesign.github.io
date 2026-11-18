@@ -1,0 +1,52 @@
+{%- comment -%} MR. Optics – tekst links, lijst of foto rechts (atelier, oogmeting) {%- endcomment -%}
+<section class="mr mr-sec{% if section.settings.band %} mr-band{% endif %}"{% if section.settings.anchor != blank %} id="{{ section.settings.anchor }}"{% endif %} aria-labelledby="mr-s-{{ section.id }}">
+  <div class="mr-wrap mr-split {% if section.settings.image != blank %}mr-split--5-7{% else %}mr-split--6-6{% endif %}">
+    <div class="mr-head">
+      <h2 id="mr-s-{{ section.id }}">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<p{% if section.settings.image == blank %} class="mr-lead"{% endif %}>{{ section.settings.text }}</p>{%- endif -%}
+      {%- if section.settings.image != blank and section.blocks.size > 0 -%}
+        <ul class="mr-ruled">
+          {%- for block in section.blocks -%}<li {{ block.shopify_attributes }}><h3>{{ block.settings.title }}</h3><p>{{ block.settings.text }}</p></li>{%- endfor -%}
+        </ul>
+      {%- endif -%}
+      {%- if section.settings.btn_label != blank -%}
+        <a class="{% if section.settings.btn_style == 'line' %}mr-btn mr-btn--line{% else %}mr-link{% endif %}" href="{{ section.settings.btn_link | default: '#afspraak' }}"{% if section.settings.pick != blank %} data-pick="{{ section.settings.pick }}"{% endif %} style="justify-self: start">{{ section.settings.btn_label }}</a>
+      {%- endif -%}
+    </div>
+    {%- if section.settings.image != blank -%}
+      <figure class="mr-print">
+        <div class="mr-print__mat">{{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', sizes: '(min-width: 1060px) 55vw, 100vw' }}</div>
+        {%- if section.settings.caption != blank -%}<figcaption><span>{{ section.settings.caption }}</span><span>{{ section.settings.caption_right }}</span></figcaption>{%- endif -%}
+      </figure>
+    {%- else -%}
+      <ul class="mr-ruled">
+        {%- for block in section.blocks -%}<li {{ block.shopify_attributes }}><h3>{{ block.settings.title }}</h3><p>{{ block.settings.text }}</p></li>{%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MR – Tekst met lijst",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Anker (voor menu-links, bijv. atelier)" },
+    { "type": "checkbox", "id": "band", "label": "Grijze achtergrond", "default": false },
+    { "type": "text", "id": "heading", "label": "Kop", "default": "Rustig of druk geslepen." },
+    { "type": "textarea", "id": "text", "label": "Tekst" },
+    { "type": "image_picker", "id": "image", "label": "Foto rechts (leeg = lijst rechts)" },
+    { "type": "text", "id": "caption", "label": "Bijschrift links" },
+    { "type": "text", "id": "caption_right", "label": "Bijschrift rechts" },
+    { "type": "text", "id": "btn_label", "label": "Knop of link" },
+    { "type": "url", "id": "btn_link", "label": "Knop adres" },
+    { "type": "select", "id": "btn_style", "label": "Stijl", "default": "link", "options": [{ "value": "link", "label": "Onderstreepte link" }, { "value": "line", "label": "Knop met lijn" }] },
+    { "type": "select", "id": "pick", "label": "Kies in het afspraakblok", "default": "", "options": [{ "value": "", "label": "Niets" }, { "value": "oogmeting", "label": "Oogmeting" }, { "value": "advies", "label": "Montuuradvies" }, { "value": "inslijpen", "label": "Inslijpen" }, { "value": "graveren", "label": "Slijpen en graveren" }] }
+  ],
+  "blocks": [
+    { "type": "row", "name": "Regel", "settings": [
+      { "type": "text", "id": "title", "label": "Titel", "default": "Slijpen" },
+      { "type": "text", "id": "text", "label": "Tekst", "default": "Met de grootste precisie, in de vorm die u kiest." } ] }
+  ],
+  "presets": [{ "name": "MR – Tekst met lijst" }]
+}
+{% endschema %}

@@ -1,0 +1,111 @@
+/* MR. Optics – openingstijden, vitrine, afspraak en de afspraakbalk */
+(function () {
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* tijd in Amsterdam */
+  function amsNow() {
+    var p = {}; new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Amsterdam', weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false, year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; });
+    return { d: { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[p.weekday], h: +p.hour % 24 + (+p.minute) / 60, date: new Date(+p.year, +p.month - 1, +p.day) };
+  }
+  function toH(t) { if (!t) return null; var m = String(t).trim().match(/^(\d{1,2})[:.](\d{2})$/); return m ? +m[1] + (+m[2]) / 60 : null; }
+  function fmt(h) { var m = Math.round((h % 1) * 60); return Math.floor(h) + ':' + (m < 10 ? '0' : '') + m; }
+  var DAYN = ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'];
+
+  /* openingstijden uit het blok Bezoek (of de standaard van MR. Optics) */
+  var HOURS = { 0: null, 1: null, 2: [10, 17.5], 3: [10, 17.5], 4: [10, 17.5], 5: [10, 17.5], 6: [10, 17] };
+  var rows = $$('[data-hours] [data-d]');
+  if (rows.length) { HOURS = { 0: null, 1: null, 2: null, 3: null, 4: null, 5: null, 6: null }; rows.forEach(function (r) { var o = toH(r.dataset.open), c = toH(r.dataset.close); HOURS[+r.dataset.d] = (o !== null && c !== null) ? [o, c] : null; }); }
+  var now = amsNow();
+  var row = $('[data-hours] [data-d="' + now.d + '"]'); if (row) row.classList.add('is-today');
+  var t = HOURS[now.d], msg;
+  if (t && now.h >= t[0] && now.h < t[1]) msg = 'Nu open, tot ' + fmt(t[1]) + '.';
+  else if (!t) msg = 'Vandaag alleen op afspraak.';
+  else if (now.h < t[0]) msg = 'Vandaag open vanaf ' + fmt(t[0]) + '.';
+  else { var n = (now.d + 1) % 7, k = 0; while (!HOURS[n] && k++ < 7) n = (n + 1) % 7; msg = HOURS[n] ? 'Nu gesloten, ' + DAYN[n] + ' weer open om ' + fmt(HOURS[n][0]) + '.' : 'Nu gesloten.'; }
+  $$('[data-status]').forEach(function (e) { e.textContent = msg; });
+
+  /* vitrine: monturen en zonnebrillen */
+  $$('[data-tabs]').forEach(function (box) {
+    var tabs = $$('[role="tab"]', box);
+    function sel(tab) { tabs.forEach(function (x) { var on = x === tab; x.setAttribute('aria-selected', String(on)); x.tabIndex = on ? 0 : -1; var p = document.getElementById(x.getAttribute('aria-controls')); if (p) p.hidden = !on; }); }
+    tabs.forEach(function (x, i) {
+      x.addEventListener('click', function () { sel(x); });
+      x.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { var nx = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length]; sel(nx); nx.focus(); e.preventDefault(); } });
+    });
+  });
+
+  /* afspraak */
+  var form = $('[data-book]');
+  var days = [], state = { kind: '', day: 0, time: '' };
+  var wdf = new Intl.DateTimeFormat('nl-NL', { weekday: 'short' }), mf = new Intl.DateTimeFormat('nl-NL', { month: 'short' }), longf = new Intl.DateTimeFormat('nl-NL', { weekday: 'long', day: 'numeric', month: 'long' });
+  var start = new Date(now.date); if (!HOURS[now.d] || now.h > HOURS[now.d][1] - 1) start.setDate(start.getDate() + 1);
+  for (var i = 0; i < 7; i++) { var dt = new Date(start); dt.setDate(start.getDate() + i); days.push(dt); }
+  function short(dt) { return wdf.format(dt).replace('.', '') + ' ' + dt.getDate() + ' ' + mf.format(dt).replace('.', ''); }
+  var pickDay = function () {}, setPick = function () {}, kindG, timeG;
+  if (form && !$('[data-days]', form)) form = null;
+  if (form) {
+    var daysEl = $('[data-days]', form), note = $('[data-daynote]', form);
+    days.forEach(function (dt, i) {
+      var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-pressed', 'false'); b.setAttribute('aria-label', longf.format(dt));
+      b.innerHTML = '<small>' + wdf.format(dt).replace('.', '') + '</small><b>' + dt.getDate() + '</b><small>' + mf.format(dt).replace('.', '') + '</small>';
+      b.addEventListener('click', function () { pickDay(i); });
+      daysEl.appendChild(b);
+    });
+    pickDay = function (i) {
+      state.day = i; $$('button', daysEl).forEach(function (b, k) { b.setAttribute('aria-pressed', String(k === i)); });
+      var h = HOURS[days[i].getDay()];
+      note.textContent = h ? 'Open van ' + fmt(h[0]) + ' tot ' + fmt(h[1]) + '.' : 'Deze dag alleen op afspraak, we bellen u om een tijd af te stemmen.';
+      sync();
+    };
+    setPick = function (group, key, v) { state[key] = v; $$('button', group).forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.v === v)); }); sync(); };
+    kindG = $('[data-pickgroup="kind"]', form); timeG = $('[data-pickgroup="time"]', form);
+    [[kindG, 'kind'], [timeG, 'time']].forEach(function (g) {
+      var pressed = $('[aria-pressed="true"]', g[0]); if (pressed) state[g[1]] = pressed.dataset.v;
+      $$('button', g[0]).forEach(function (b) { b.addEventListener('click', function () { setPick(g[0], g[1], b.dataset.v); }); });
+    });
+    function sync() {
+      var label = (kindG && $('[data-v="' + state.kind + '"]', kindG) || {}).textContent || state.kind;
+      var line = label + ' op ' + longf.format(days[state.day]) + ' om ' + state.time;
+      $('[name="contact[Afspraak]"]', form).value = line;
+      $('[name="contact[body]"]', form).value = 'Afspraak aanvraag: ' + line + '.';
+    }
+    var first = 0; while (first < 6 && !HOURS[days[first].getDay()]) first++;
+    pickDay(first);
+    $$('[data-pick]').forEach(function (a) { a.addEventListener('click', function () { setPick(kindG, 'kind', a.dataset.pick); }); });
+    form.addEventListener('submit', function (e) {
+      var name = $('[name="contact[name]"]', form), mail = $('[name="contact[email]"]', form), tel = $('[name="contact[phone]"]', form), err = $('[data-err]', form), bad = null;
+      [name, mail, tel].forEach(function (f) { f.removeAttribute('aria-invalid'); });
+      if (!name.value.trim()) bad = [name, 'Vul uw naam in, dan weten we wie er komt.'];
+      else if (!/^\S+@\S+\.\S+$/.test(mail.value.trim())) bad = [mail, 'Vul uw e-mailadres in, daar sturen we de bevestiging naartoe.'];
+      else if (tel.value.replace(/\D/g, '').length < 9) bad = [tel, 'Vul een telefoonnummer in, zodat we de afspraak kunnen bevestigen.'];
+      if (bad) { e.preventDefault(); bad[0].setAttribute('aria-invalid', 'true'); err.textContent = bad[1]; bad[0].focus(); return; }
+      sync();
+    });
+  }
+
+  /* snelle tijden in het blok Bezoek */
+  var row2 = $('[data-times-row]');
+  if (row2 && form) {
+    var quick = [];
+    for (var d = 0; d < days.length && quick.length < 4; d++) { if (!HOURS[days[d].getDay()]) continue; ['11:00', '14:30'].forEach(function (tm) { if (quick.length < 4) quick.push([d, tm]); }); }
+    quick.forEach(function (q) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'mr-btn mr-btn--line mr-btn--sm';
+      b.textContent = (days[q[0]].toDateString() === now.date.toDateString() ? 'Vandaag' : short(days[q[0]])) + ', ' + q[1];
+      b.addEventListener('click', function () { pickDay(q[0]); setPick(timeG, 'time', q[1]); form.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); setTimeout(function () { var f = $('[name="contact[name]"]', form); if (f) f.focus({ preventScroll: true }); }, 700); });
+      row2.appendChild(b);
+    });
+    $('[data-times]').hidden = false;
+  }
+
+  /* afspraakbalk: na de opening, weg bij het afspraakblok */
+  var bar = $('[data-bar]'), hero = $('.mr-hero'), book = $('#afspraak');
+  if (bar && hero && 'IntersectionObserver' in window) {
+    var past = false, at = false, link = $('a', bar);
+    $('[data-bartxt]', bar).textContent = msg;
+    var upd = function () { var on = past && !at; bar.classList.toggle('is-on', on); bar.setAttribute('aria-hidden', String(!on)); link.tabIndex = on ? 0 : -1; };
+    new IntersectionObserver(function (es) { past = !es[0].isIntersecting && es[0].boundingClientRect.top < 0; upd(); }).observe(hero);
+    if (book) new IntersectionObserver(function (es) { at = es[0].isIntersecting; upd(); }, { rootMargin: '0px 0px -20% 0px' }).observe(book);
+  }
+})();

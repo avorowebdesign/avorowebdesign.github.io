@@ -1,0 +1,9 @@
+<a class="mr-item" href="{{ product.url }}">
+  <div class="mr-item__img">
+    {%- if product.featured_media -%}{{ product.featured_media | image_url: width: 1200 | image_tag: loading: 'lazy', sizes: '(min-width: 1060px) 50vw, 100vw', alt: product.featured_media.alt | default: product.title }}{%- endif -%}
+  </div>
+  <div class="mr-item__row">
+    <div><p class="mr-item__brand">{{ product.vendor }}</p><p class="mr-item__model">{{ product.title | remove_first: product.vendor | strip }}</p></div>
+    <p class="mr-item__price">{{ product.price | money_without_trailing_zeros }}</p>
+  </div>
+</a>

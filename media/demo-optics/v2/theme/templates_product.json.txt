@@ -1,0 +1,93 @@
+{
+ "sections": {
+  "main": {
+   "type": "main-product",
+   "blocks": {
+    "price": {
+     "type": "price",
+     "settings": {}
+    },
+    "variant_picker": {
+     "type": "variant_picker",
+     "settings": {
+      "variant_labels": true,
+      "picker_type": "button",
+      "color_swatches": false
+     }
+    },
+    "buy_buttons": {
+     "type": "buy_buttons",
+     "settings": {
+      "show_dynamic_checkout": false,
+      "surface_pickup_enable": false
+     }
+    },
+    "sp1": {
+     "type": "sales_point",
+     "settings": {
+      "icon": "checkmark",
+      "text": "Oogmeting in de winkel, op afspraak"
+     }
+    },
+    "sp2": {
+     "type": "sales_point",
+     "settings": {
+      "icon": "checkmark",
+      "text": "Glazen op maat uit ons eigen atelier"
+     }
+    },
+    "afspraak": {
+     "type": "custom",
+     "settings": {
+      "code": "<p class=\"mr-pdp-book\"><a href=\"/#afspraak\">Eerst passen? Maak een afspraak in de winkel</a></p>"
+     }
+    },
+    "description": {
+     "type": "description",
+     "settings": {
+      "is_tab": false
+     }
+    },
+    "tab": {
+     "type": "tab",
+     "settings": {
+      "title": "Glazen en slijpen",
+      "content": "<p>Bij MR. OptiWorks slijpen we glazen met de grootste precisie, in een rustige of een drukke slijpvorm. We graveren met oog voor detail en zetten diamanten met certificaat in het glas.</p>"
+     }
+    },
+    "tab2": {
+     "type": "tab",
+     "settings": {
+      "title": "Winkel en openingstijden",
+      "content": "<p>Aert van Nesstraat 52, 3012 CB Rotterdam.</p><p>Dinsdag tot en met vrijdag 10:00 tot 17:30, zaterdag 10:00 tot 17:00. Maandag en zondag op afspraak.</p>"
+     }
+    }
+   },
+   "block_order": [
+    "price",
+    "variant_picker",
+    "buy_buttons",
+    "sp1",
+    "sp2",
+    "afspraak",
+    "description",
+    "tab",
+    "tab2"
+   ],
+   "settings": {
+    "sku_enable": false,
+    "image_position": "left",
+    "image_size": "large",
+    "product_zoom_enable": true,
+    "thumbnail_position": "below",
+    "thumbnail_arrows": false,
+    "mobile_layout": "full",
+    "enable_video_looping": true,
+    "product_video_style": "muted"
+   }
+  }
+ },
+ "order": [
+  "main"
+ ]
+}

@@ -1,0 +1,61 @@
+{%- comment -%} MR. Optics – adres, openingstijden en snelle tijden {%- endcomment -%}
+<section class="mr mr-sec mr-sec--tight" id="bezoek" aria-labelledby="mr-visit-{{ section.id }}">
+  <div class="mr-wrap mr-split mr-split--5-7">
+    <div class="mr-head">
+      <h2 id="mr-visit-{{ section.id }}">{{ section.settings.heading }}</h2>
+      <p class="mr-status" data-status>{{ section.settings.status_fallback }}</p>
+      <div class="mr-visit__meta">
+        {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+        <p>
+          {%- if section.settings.phone != blank -%}Bel <a href="tel:{{ section.settings.phone | remove: ' ' }}">{{ section.settings.phone }}</a>{%- endif -%}
+          {%- if section.settings.mobile != blank %} of mobiel <a href="tel:{{ section.settings.mobile | remove: ' ' }}">{{ section.settings.mobile }}</a>{%- endif -%}
+        </p>
+      </div>
+      {%- if section.settings.route_url != blank -%}<a class="mr-link" href="{{ section.settings.route_url }}" target="_blank" rel="noopener">{{ section.settings.route_label }}</a>{%- endif -%}
+    </div>
+    <div>
+      <dl class="mr-hours" data-hours>
+        {%- for block in section.blocks -%}
+          <div data-d="{{ block.settings.day }}" data-open="{{ block.settings.open }}" data-close="{{ block.settings.close }}"{% if block.settings.open == blank %} class="is-appt"{% endif %} {{ block.shopify_attributes }}>
+            <dt>{{ block.settings.name }}</dt>
+            <dd>{% if block.settings.open != blank %}{{ block.settings.open }} tot {{ block.settings.close }}{% else %}{{ block.settings.closed_text }}{% endif %}</dd>
+          </div>
+        {%- endfor -%}
+      </dl>
+      <div class="mr-times" data-times hidden>
+        <p class="mr-cfg__label">{{ section.settings.times_label }}</p>
+        <div class="mr-times__row" data-times-row></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MR – Bezoek",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Kop", "default": "Aert van Nesstraat 52, Rotterdam" },
+    { "type": "text", "id": "status_fallback", "label": "Tekst als de live status niet laadt", "default": "Dinsdag tot en met zaterdag open, maandag en zondag op afspraak." },
+    { "type": "textarea", "id": "text", "label": "Tekst", "default": "3012 CB Rotterdam Centrum. Kom monturen passen, of plan eerst een tijd." },
+    { "type": "text", "id": "phone", "label": "Telefoon", "default": "010 229 8403" },
+    { "type": "text", "id": "mobile", "label": "Mobiel", "default": "06 2283 2735" },
+    { "type": "url", "id": "route_url", "label": "Route link", "default": "https://www.google.com/maps/search/?api=1&query=Aert+van+Nesstraat+52+3012CB+Rotterdam" },
+    { "type": "text", "id": "route_label", "label": "Route tekst", "default": "Route in Google Maps" },
+    { "type": "text", "id": "times_label", "label": "Kop boven snelle tijden", "default": "Plan direct een tijd" }
+  ],
+  "blocks": [
+    {
+      "type": "day", "name": "Dag",
+      "settings": [
+        { "type": "select", "id": "day", "label": "Dag", "default": "1", "options": [
+          { "value": "1", "label": "Maandag" }, { "value": "2", "label": "Dinsdag" }, { "value": "3", "label": "Woensdag" }, { "value": "4", "label": "Donderdag" }, { "value": "5", "label": "Vrijdag" }, { "value": "6", "label": "Zaterdag" }, { "value": "0", "label": "Zondag" } ] },
+        { "type": "text", "id": "name", "label": "Naam", "default": "Maandag" },
+        { "type": "text", "id": "open", "label": "Open (bijv. 10:00, leeg = op afspraak)" },
+        { "type": "text", "id": "close", "label": "Dicht (bijv. 17:30)" },
+        { "type": "text", "id": "closed_text", "label": "Tekst als leeg", "default": "Op afspraak" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "MR – Bezoek" }]
+}
+{% endschema %}

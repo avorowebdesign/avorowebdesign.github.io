@@ -1,0 +1,71 @@
+{%- comment -%} MR. Optics – afspraak aanvragen. Gaat via het contactformulier van Shopify naar het winkel-e-mailadres. {%- endcomment -%}
+<section class="mr mr-sec" id="afspraak" aria-labelledby="mr-bk-{{ section.id }}">
+  <div class="mr-wrap mr-split mr-split--5-7">
+    <div class="mr-head">
+      <h2 id="mr-bk-{{ section.id }}">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+      {%- if section.settings.quote != blank -%}
+        <blockquote class="mr-quote"><p>“{{ section.settings.quote }}”</p><footer>{{ section.settings.quote_by }}</footer></blockquote>
+      {%- endif -%}
+    </div>
+    <div class="mr-card">
+      {%- form 'contact', id: 'MrBook', class: 'mr-form', data-book: '', novalidate: 'novalidate' -%}
+        {%- if form.posted_successfully? -%}
+          <div class="mr-done" tabindex="-1" data-done>
+            <h3>{{ section.settings.done_heading }}</h3>
+            <p>{{ section.settings.done_text }}</p>
+          </div>
+          <script>document.addEventListener('DOMContentLoaded',function(){var d=document.querySelector('[data-done]');if(d){d.scrollIntoView({block:'center'});d.focus({preventScroll:true});}});</script>
+        {%- else -%}
+          <input type="hidden" name="contact[Afspraak]" value="">
+          <input type="hidden" name="contact[body]" value="">
+          <fieldset>
+            <legend>Waarvoor komt u?</legend>
+            <div class="mr-seg" data-pickgroup="kind">
+              <button type="button" data-v="oogmeting" aria-pressed="true">Oogmeting</button>
+              <button type="button" data-v="advies" aria-pressed="false">Montuuradvies</button>
+              <button type="button" data-v="inslijpen" aria-pressed="false">Inslijpen</button>
+              <button type="button" data-v="graveren" aria-pressed="false">Slijpen en graveren</button>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Dag</legend>
+            <div class="mr-days" data-days></div>
+            <p class="mr-day-note" data-daynote></p>
+          </fieldset>
+          <fieldset>
+            <legend>Tijd</legend>
+            <div class="mr-seg" data-pickgroup="time">
+              {%- assign slots = section.settings.slots | split: ',' -%}
+              {%- for s in slots -%}{%- assign v = s | strip -%}<button type="button" data-v="{{ v }}" aria-pressed="{% if forloop.index == 2 %}true{% else %}false{% endif %}">{{ v }}</button>{%- endfor -%}
+            </div>
+          </fieldset>
+          <div class="mr-fields">
+            <div class="mr-field"><label for="MrName">Naam</label><input id="MrName" name="contact[name]" autocomplete="name" required></div>
+            <div class="mr-field"><label for="MrTel">Telefoon</label><input id="MrTel" name="contact[phone]" type="tel" autocomplete="tel" inputmode="tel" required></div>
+            <div class="mr-field" style="grid-column: 1 / -1"><label for="MrMail">E-mail</label><input id="MrMail" name="contact[email]" type="email" autocomplete="email" required></div>
+          </div>
+          <p class="mr-err" data-err role="alert">{%- if form.errors -%}{{ form.errors | default_errors }}{%- endif -%}</p>
+          <button class="mr-btn" type="submit">{{ section.settings.submit }}</button>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MR – Afspraak",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Kop", "default": "Maak een afspraak." },
+    { "type": "textarea", "id": "text", "label": "Tekst", "default": "Kies wat u wilt laten doen en wanneer het u past. We bevestigen de afspraak telefonisch." },
+    { "type": "text", "id": "quote", "label": "Review (echte)", "default": "Bij elke afspraak wordt je goed en vakkundig geholpen." },
+    { "type": "text", "id": "quote_by", "label": "Van wie", "default": "Bruce, review op mroptics.nl" },
+    { "type": "text", "id": "slots", "label": "Tijden, gescheiden door komma's", "default": "10:00, 11:00, 12:00, 13:30, 14:30, 15:30, 16:30" },
+    { "type": "text", "id": "submit", "label": "Knop", "default": "Afspraak aanvragen" },
+    { "type": "text", "id": "done_heading", "label": "Kop na versturen", "default": "Uw aanvraag is binnen." },
+    { "type": "textarea", "id": "done_text", "label": "Tekst na versturen", "default": "We bellen u om de afspraak te bevestigen." }
+  ],
+  "presets": [{ "name": "MR – Afspraak" }]
+}
+{% endschema %}

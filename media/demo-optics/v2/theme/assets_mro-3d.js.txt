@@ -1,0 +1,245 @@
+/* MR. Optics – 3D-montuur. Kleuren komen uit mro.css (--gl-*). */
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+
+const stage = document.querySelector('[data-stage]');
+const cfg = document.querySelector('[data-cfg]');
+const canvas = stage.querySelector('canvas');
+const css = getComputedStyle(document.documentElement);
+const tok = (n) => css.getPropertyValue(n).trim();
+const small = matchMedia('(max-width: 640px)').matches;
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function fail() { cfg.classList.add('is-off'); }
+
+let renderer;
+if (stage && cfg) try {
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+} catch (e) { fail(); }
+
+if (renderer) {
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, small ? 1.75 : 2));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(26, 4 / 3, 0.1, 50);
+
+  /* a studio to reflect: soft boxes over a pale floor */
+  const env = document.createElement('canvas'); env.width = 1024; env.height = 512;
+  const g = env.getContext('2d');
+  const sky = g.createLinearGradient(0, 0, 0, 512);
+  sky.addColorStop(0, '#ffffff'); sky.addColorStop(0.45, '#e6ebf0'); sky.addColorStop(0.55, '#b9c0c8'); sky.addColorStop(1, '#6f767e');
+  g.fillStyle = sky; g.fillRect(0, 0, 1024, 512);
+  g.fillStyle = '#ffffff';
+  [[80, 120, 150, 90], [330, 70, 90, 200], [560, 110, 220, 70], [860, 90, 70, 160], [470, 260, 300, 10], [0, 236, 1024, 6]].forEach(r => g.fillRect(...r));
+  g.fillStyle = '#2b3138'; g.fillRect(700, 300, 260, 120); g.fillRect(120, 320, 180, 90);
+  const envTex = new THREE.CanvasTexture(env); envTex.mapping = THREE.EquirectangularReflectionMapping; envTex.colorSpace = THREE.SRGBColorSpace;
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromEquirectangular(envTex).texture;
+
+  const key = new THREE.DirectionalLight(0xffffff, 1.4); key.position.set(2, 3, 4); scene.add(key);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.25));
+
+  const col = (n) => new THREE.Color(tok(n));
+  const metalMat = new THREE.MeshStandardMaterial({ color: col('--gl-gold'), metalness: 1, roughness: 0.22, envMapIntensity: 1.25 });
+  const tipMat = new THREE.MeshStandardMaterial({ color: col('--gl-tip'), metalness: 0.1, roughness: 0.32 });
+  const padMat = new THREE.MeshStandardMaterial({ color: col('--gl-pad'), metalness: 0, roughness: 0.1, transparent: true, opacity: 0.55 });
+  const tintMat = new THREE.MeshStandardMaterial({ vertexColors: true, transparent: true, roughness: 0.4, metalness: 0, side: THREE.DoubleSide, depthWrite: false, envMapIntensity: 0.35 });
+  const shineMat = new THREE.MeshStandardMaterial({ color: 0xffffff, metalness: 1, roughness: 0.04, transparent: true, opacity: 0.16, blending: THREE.AdditiveBlending, depthWrite: false, envMapIntensity: 1.4, side: THREE.FrontSide });
+  const stoneMat = new THREE.MeshStandardMaterial({ color: col('--gl-stone'), metalness: 0.35, roughness: 0, envMapIntensity: 3.2, flatShading: true });
+
+  const TINTS = { clear: '--gl-clear', blue: '--gl-blue', grey: '--gl-grey', brown: '--gl-brown' };
+  const opts = { cut: 'druk', tint: 'blue', metal: 'gold', stone: 'off' };
+
+  /* the lens outline: a soft octagon, narrower at the foot, like the shop's own cut lenses */
+  const A = 0.63, Bh = 0.42;
+  const RS = 720, rad = new Float32Array(RS);
+  (function () {
+    const raw = new Float32Array(RS);
+    for (let i = 0; i < RS; i++) {
+      const t = (i / RS) * Math.PI * 2, c = Math.abs(Math.cos(t)) + 1e-6, s = Math.abs(Math.sin(t)) + 1e-6;
+      const yb = Math.sin(t) < 0 ? Bh * 0.94 : Bh;
+      raw[i] = Math.min(A / c, yb / s, 1.5 / (c / A + s / yb));
+    }
+    const w = 14;
+    for (let i = 0; i < RS; i++) { let sum = 0; for (let j = -w; j <= w; j++) sum += raw[(i + j + RS) % RS]; rad[i] = sum / (2 * w + 1); }
+  })();
+  function outline(t) {
+    const u = ((t / (Math.PI * 2)) % 1 + 1) % 1 * RS, i = Math.floor(u), f = u - i;
+    const r = rad[i % RS] * (1 - f) + rad[(i + 1) % RS] * f;
+    let x = r * Math.cos(t), y = r * Math.sin(t);
+    x *= 1 + 0.05 * (y / Bh);
+    return [x, y];
+  }
+
+  function lensGeometry(cut, tintKey) {
+    const K = cut === 'glad' ? 128 : cut === 'rustig' ? 16 : 48;
+    const d = 0.028, e = 0.006;
+    const pos = [], colr = [], idx = [];
+    const tint = col(TINTS[tintKey]); const white = new THREE.Color(0xffffff);
+    const clear = tintKey === 'clear';
+    const add = (x, y, z, ring) => {
+      pos.push(x, y, z);
+      const f = Math.min(1, Math.max(0, (y + Bh) / (2 * Bh)));
+      const c = white.clone().lerp(tint, clear ? 1 : Math.pow(f, 0.9));
+      let a = clear ? 0.08 : 0.06 + 0.8 * Math.pow(f, 1.1);
+      if (ring) { c.lerp(tint, clear ? 0.4 : 0.75).multiplyScalar(0.78); a = Math.min(0.95, a + (clear ? 0.22 : 0.3)); }
+      colr.push(c.r, c.g, c.b, a);
+      return pos.length / 3 - 1;
+    };
+    const O = [], I = [];
+    for (let k = 0; k < K; k++) {
+      const t = (k / K) * Math.PI * 2 + (cut === 'rustig' ? Math.PI / K : 0);
+      const [x, y] = outline(t);
+      const r = Math.hypot(x, y);
+      const off = cut === 'glad' ? 0.022 : cut === 'rustig' ? 0.085 : (k % 2 ? 0.055 : 0.085);
+      const s = 1 - off / r;
+      O.push([x, y]); I.push([x * s, y * s]);
+    }
+    for (const side of [1, -1]) {
+      const c = add(0, 0, side * d, false);
+      const iv = I.map(([x, y]) => add(x, y, side * d, false));
+      const ov = O.map(([x, y]) => add(x, y, side * e, true));
+      for (let k = 0; k < K; k++) {
+        const n = (k + 1) % K;
+        if (side > 0) { idx.push(c, iv[k], iv[n]); idx.push(iv[k], ov[k], ov[n], iv[k], ov[n], iv[n]); }
+        else { idx.push(c, iv[n], iv[k]); idx.push(iv[k], ov[n], ov[k], iv[k], iv[n], ov[n]); }
+      }
+      if (side < 0) {
+        const front = O.map((_, k) => 1 + K + k);
+        for (let k = 0; k < K; k++) { const n = (k + 1) % K; idx.push(front[k], ov[k], ov[n], front[k], ov[n], front[n]); }
+      }
+    }
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+    geo.setAttribute('color', new THREE.Float32BufferAttribute(colr, 4));
+    geo.setIndex(idx);
+    geo.computeVertexNormals();
+    return geo;
+  }
+
+  const frame = new THREE.Group();
+  const pivot = new THREE.Group(); pivot.add(frame); scene.add(pivot);
+  const LX = 0.84;
+  const lenses = [-1, 1].map(sx => {
+    const g = new THREE.Group(); g.position.set(sx * LX, 0, 0); if (sx < 0) g.scale.x = -1;
+    const tintM = new THREE.Mesh(undefined, tintMat); const shineM = new THREE.Mesh(undefined, shineMat);
+    tintM.renderOrder = 2; shineM.renderOrder = 3;
+    g.add(tintM, shineM); frame.add(g);
+    return { g, tintM, shineM };
+  });
+  function rebuildLenses() {
+    const geo = lensGeometry(opts.cut, opts.tint);
+    lenses.forEach(l => { if (l.tintM.geometry) l.tintM.geometry.dispose(); l.tintM.geometry = geo; l.shineM.geometry = geo; });
+    const flat = opts.cut !== 'glad';
+    tintMat.flatShading = flat; shineMat.flatShading = flat; tintMat.needsUpdate = true; shineMat.needsUpdate = true;
+  }
+
+  const tube = (pts, r, mat, seg = 64) => { const m = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts.map(p => new THREE.Vector3(...p))), seg, r, 12, false), mat); frame.add(m); return m; };
+  const V = (x, y, z) => [x, y, z];
+  // bridge
+  tube([V(-0.27, 0.19, 0.03), V(-0.14, 0.255, 0.06), V(0, 0.275, 0.07), V(0.14, 0.255, 0.06), V(0.27, 0.19, 0.03)], 0.019, metalMat, 48);
+  // straps on the lenses at the bridge and the hinges
+  const box = (w, h, dz, x, y, z) => { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, dz, 2, 2, 2), metalMat); m.position.set(x, y, z); frame.add(m); return m; };
+  [-1, 1].forEach(sx => {
+    box(0.07, 0.085, 0.07, sx * 0.29, 0.18, 0.012);
+    box(0.09, 0.075, 0.075, sx * (LX + A + 0.02), 0.13, 0.0);
+    // pad arms and pads
+    tube([V(sx * 0.27, 0.15, -0.01), V(sx * 0.24, 0.02, -0.1), V(sx * 0.2, -0.07, -0.15)], 0.008, metalMat, 24);
+    const pad = new THREE.Mesh(new THREE.SphereGeometry(1, 20, 14), padMat); pad.scale.set(0.035, 0.075, 0.014); pad.position.set(sx * 0.18, -0.12, -0.17); pad.rotation.set(0.2, sx * 0.5, sx * 0.15); frame.add(pad);
+    // temple, metal then the tip
+    const hx = sx * (LX + A + 0.06);
+    tube([V(hx, 0.13, -0.04), V(hx + sx * 0.03, 0.135, -0.5), V(hx + sx * 0.05, 0.13, -1.2), V(hx + sx * 0.04, 0.11, -1.75)], 0.017, metalMat, 64);
+    tube([V(hx + sx * 0.04, 0.11, -1.72), V(hx + sx * 0.03, 0.08, -2.15), V(hx, -0.08, -2.45), V(hx - sx * 0.03, -0.24, -2.56)], 0.024, tipMat, 48);
+  });
+
+  // diamonds set in the lenses, upper outer corner
+  const stoneGeo = new THREE.LatheGeometry([new THREE.Vector2(0.0005, 0.02), new THREE.Vector2(0.026, 0.02), new THREE.Vector2(0.045, 0.006), new THREE.Vector2(0.045, 0), new THREE.Vector2(0.0005, -0.04)], 8);
+  stoneGeo.rotateX(Math.PI / 2);
+  const stones = [-1, 1].map(sx => { const m = new THREE.Mesh(stoneGeo, stoneMat); m.position.set(sx * (LX + 0.40), 0.27, 0.03); m.scale.setScalar(1.3); m.visible = false; frame.add(m); return m; });
+  // sparkle on the stones
+  const sp = document.createElement('canvas'); sp.width = sp.height = 64; const sg = sp.getContext('2d');
+  const rg = sg.createRadialGradient(32, 32, 0, 32, 32, 32); rg.addColorStop(0, 'rgba(255,255,255,1)'); rg.addColorStop(0.25, 'rgba(255,255,255,0.35)'); rg.addColorStop(1, 'rgba(255,255,255,0)');
+  sg.fillStyle = rg; sg.fillRect(0, 0, 64, 64); sg.fillStyle = 'rgba(255,255,255,0.9)'; sg.fillRect(31, 2, 2, 60); sg.fillRect(2, 31, 60, 2);
+  const spMat = new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(sp), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
+  const sparks = stones.map(s => { const m = new THREE.Sprite(spMat); m.position.copy(s.position).add(new THREE.Vector3(0, 0, 0.03)); m.scale.setScalar(0.16); m.visible = false; frame.add(m); return m; });
+
+  // contact shadow
+  const sh = document.createElement('canvas'); sh.width = 256; sh.height = 128; const shg = sh.getContext('2d');
+  const sr = shg.createRadialGradient(128, 64, 4, 128, 64, 124); sr.addColorStop(0, 'rgba(20,24,30,0.32)'); sr.addColorStop(1, 'rgba(20,24,30,0)');
+  shg.setTransform(1, 0, 0, 0.5, 0, 32); shg.fillStyle = sr; shg.fillRect(0, -64, 256, 256);
+  const shadow = new THREE.Mesh(new THREE.PlaneGeometry(4.2, 3.2), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(sh), transparent: true, depthWrite: false }));
+  shadow.rotation.x = -Math.PI / 2; shadow.position.set(0, -0.56, -1.1); frame.add(shadow);
+
+  frame.position.set(0, 0, 1.15);
+  pivot.position.set(0, 0.04, 0);
+
+  function applyMetal() { metalMat.color.copy(col(opts.metal === 'gold' ? '--gl-gold' : '--gl-silver')); metalMat.roughness = opts.metal === 'gold' ? 0.22 : 0.18; }
+  function applyStone() { const on = opts.stone === 'on'; stones.forEach(s => s.visible = on); sparks.forEach(s => s.visible = on); }
+
+  // size
+  function fit() {
+    const w = stage.clientWidth, h = stage.clientHeight; if (!w || !h) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    const halfW = 1.95, halfH = 1.05;
+    const vf = THREE.MathUtils.degToRad(camera.fov / 2);
+    const distW = halfW / (Math.tan(vf) * camera.aspect), distH = halfH / Math.tan(vf);
+    camera.position.set(0, 0.95, Math.max(distW, distH) + 0.6);
+    camera.lookAt(0, -0.02, 0);
+    camera.updateProjectionMatrix();
+  }
+  new ResizeObserver(fit).observe(stage); fit();
+
+  // turning
+  const base = small ? -0.55 : -0.62;
+  let rotY = base, rotX = 0.06, tY = base, tX = 0.06, drag = null, lastInput = -1e9, spin = 0;
+  canvas.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY, ry: tY, rx: tX, id: e.pointerId, moved: false }; });
+  canvas.addEventListener('pointermove', e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if (!drag.moved && Math.abs(dx) > 6 && Math.abs(dx) > Math.abs(dy)) { drag.moved = true; canvas.setPointerCapture(e.pointerId); }
+    if (!drag.moved) return;
+    tY = drag.ry + dx * 0.009; tX = Math.max(-0.3, Math.min(0.45, drag.rx + dy * 0.004)); lastInput = performance.now();
+  });
+  const end = () => { drag = null; lastInput = performance.now(); };
+  canvas.addEventListener('pointerup', end); canvas.addEventListener('pointercancel', end);
+
+  // controls
+  cfg.querySelectorAll('[data-opt]').forEach(group => {
+    const key = group.dataset.opt;
+    group.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+      opts[key] = b.dataset.v;
+      group.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+      if (key === 'cut' || key === 'tint') rebuildLenses();
+      if (key === 'metal') applyMetal();
+      if (key === 'stone') { applyStone(); if (opts.stone === 'on') { tY = -0.25; tX = 0.1; lastInput = performance.now(); } }
+      if (key === 'cut' && !reduce) spin = 0.9;
+      kick();
+    }));
+  });
+
+  rebuildLenses(); applyMetal(); applyStone();
+
+  // loop, only while in view
+  let visible = true, raf = 0, t0 = performance.now(), live = false;
+  function frameStep(now) {
+    raf = 0;
+    const t = (now - t0) / 1000;
+    const idle = now - lastInput > 2600;
+    if (idle && !drag && !reduce) { tY = base + Math.sin(t * 0.35) * 0.3; tX = 0.06 + Math.sin(t * 0.5) * 0.03; }
+    if (spin > 0.001) { rotY += spin * 0.08; spin *= 0.9; }
+    rotY += (tY - rotY) * 0.08; rotX += (tX - rotX) * 0.08;
+    pivot.rotation.set(rotX, rotY, 0);
+    if (opts.stone === 'on') { const tw = 0.5 + 0.5 * Math.sin(t * 3.1); sparks.forEach((s, i) => { s.material.opacity = 0.35 + 0.65 * Math.pow(Math.abs(Math.sin(t * 2.3 + i * 1.7 + rotY * 4)), 6); s.scale.setScalar(0.12 + 0.06 * tw); }); }
+    renderer.render(scene, camera);
+    if (!live) { live = true; stage.classList.add('is-live'); cfg.classList.remove('is-pending'); }
+    if (visible && !document.hidden) raf = requestAnimationFrame(frameStep);
+  }
+  function kick() { if (!raf && visible && !document.hidden) raf = requestAnimationFrame(frameStep); }
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; kick(); }, { rootMargin: '120px' }).observe(stage);
+  document.addEventListener('visibilitychange', kick);
+  canvas.addEventListener('webglcontextlost', e => { e.preventDefault(); stage.classList.remove('is-live'); fail(); });
+  kick();
+}

@@ -1,0 +1,74 @@
+{%- comment -%} MR. Optics – opening met het draaibare 3D-montuur {%- endcomment -%}
+<section class="mr mr-hero" aria-labelledby="mr-h1-{{ section.id }}">
+  <div class="mr-wrap mr-hero__grid">
+    <div class="mr-hero__text">
+      <h1 id="mr-h1-{{ section.id }}">{{ section.settings.heading }}</h1>
+      {%- if section.settings.text != blank -%}<p class="mr-lead">{{ section.settings.text }}</p>{%- endif -%}
+      <div class="mr-hero__actions">
+        {%- if section.settings.btn_label != blank -%}<a class="mr-btn" href="{{ section.settings.btn_link | default: '#afspraak' }}">{{ section.settings.btn_label }}</a>{%- endif -%}
+        {%- if section.settings.link_label != blank -%}<a class="mr-link" href="{{ section.settings.link_url | default: '#vitrine' }}">{{ section.settings.link_label }}</a>{%- endif -%}
+      </div>
+    </div>
+    <div>
+      <div class="mr-stage" data-stage>
+        {%- if section.settings.poster != blank -%}
+          {{ section.settings.poster | image_url: width: 1400 | image_tag: class: 'mr-stage__poster', loading: 'eager', sizes: '(min-width: 1060px) 58vw, 100vw', alt: section.settings.poster.alt }}
+        {%- endif -%}
+        <canvas role="img" aria-label="Draaibaar 3D-model van een randloze bril met geslepen glazen"></canvas>
+        <p class="mr-stage__hint">{{ section.settings.hint }}</p>
+      </div>
+      <div class="mr-cfg is-pending" data-cfg>
+        <div class="mr-cfg__group">
+          <span class="mr-cfg__label" id="l-cut-{{ section.id }}">Slijpvorm</span>
+          <div class="mr-seg" role="group" aria-labelledby="l-cut-{{ section.id }}" data-opt="cut">
+            <button type="button" data-v="glad" aria-pressed="false">Glad</button>
+            <button type="button" data-v="rustig" aria-pressed="false">Rustig</button>
+            <button type="button" data-v="druk" aria-pressed="true">Druk</button>
+          </div>
+        </div>
+        <div class="mr-cfg__group">
+          <span class="mr-cfg__label" id="l-tint-{{ section.id }}">Glas</span>
+          <div class="mr-seg" role="group" aria-labelledby="l-tint-{{ section.id }}" data-opt="tint">
+            <button type="button" data-v="clear" aria-pressed="false"><i class="mr-sw mr-sw--clear"></i>Helder</button>
+            <button type="button" data-v="blue" aria-pressed="true"><i class="mr-sw" style="--sw: var(--gl-blue)"></i>Blauw</button>
+            <button type="button" data-v="grey" aria-pressed="false"><i class="mr-sw" style="--sw: var(--gl-grey)"></i>Grijs</button>
+            <button type="button" data-v="brown" aria-pressed="false"><i class="mr-sw" style="--sw: var(--gl-brown)"></i>Bruin</button>
+          </div>
+        </div>
+        <div class="mr-cfg__group">
+          <span class="mr-cfg__label" id="l-metal-{{ section.id }}">Montuur</span>
+          <div class="mr-seg" role="group" aria-labelledby="l-metal-{{ section.id }}" data-opt="metal">
+            <button type="button" data-v="gold" aria-pressed="true"><i class="mr-sw" style="--sw: var(--gl-gold)"></i>Goud</button>
+            <button type="button" data-v="silver" aria-pressed="false"><i class="mr-sw" style="--sw: var(--gl-silver)"></i>Zilver</button>
+          </div>
+        </div>
+        <div class="mr-cfg__group">
+          <span class="mr-cfg__label" id="l-stone-{{ section.id }}">Diamant in het glas</span>
+          <div class="mr-seg" role="group" aria-labelledby="l-stone-{{ section.id }}" data-opt="stone">
+            <button type="button" data-v="off" aria-pressed="true">Zonder</button>
+            <button type="button" data-v="on" aria-pressed="false">Met diamant</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<noscript><style>.mr-cfg { display: none; }</style></noscript>
+<script type="module" src="{{ 'mro-3d.js' | asset_url }}"></script>
+
+{% schema %}
+{
+  "name": "MR – Opening met 3D",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Kop", "default": "Kies hoe uw glas geslepen wordt." },
+    { "type": "textarea", "id": "text", "label": "Zin onder de kop", "default": "Monturen van FRED, Chopard en DIOR, met glazen uit ons eigen atelier." },
+    { "type": "text", "id": "btn_label", "label": "Knop", "default": "Maak een afspraak" },
+    { "type": "url", "id": "btn_link", "label": "Knop link" },
+    { "type": "text", "id": "link_label", "label": "Tweede link", "default": "Bekijk de vitrine" },
+    { "type": "url", "id": "link_url", "label": "Tweede link adres" },
+    { "type": "image_picker", "id": "poster", "label": "Foto als het 3D-model niet laadt" },
+    { "type": "text", "id": "hint", "label": "Hulptekst in beeld", "default": "Sleep om het montuur te draaien" }
+  ],
+  "presets": [{ "name": "MR – Opening met 3D" }]
+}
+{% endschema %}

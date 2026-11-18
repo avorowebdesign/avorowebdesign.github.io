@@ -1,0 +1,27 @@
+{%- comment -%} MR. Optics – de merken over een campagnefoto {%- endcomment -%}
+<section class="mr mr-houses" aria-labelledby="mr-hs-{{ section.id }}">
+  {%- if section.settings.image != blank -%}{{ section.settings.image | image_url: width: 2400 | image_tag: class: 'mr-houses__img', loading: 'lazy', sizes: '100vw', alt: section.settings.image.alt }}{%- endif -%}
+  <div class="mr-wrap mr-houses__in">
+    <div class="mr-houses__text">
+      <h2 id="mr-hs-{{ section.id }}">{{ section.settings.heading }}</h2>
+      <ul class="mr-houses__list">
+        {%- assign names = section.settings.brands | split: ',' -%}
+        {%- for n in names -%}<li>{{ n | strip }}</li>{%- endfor -%}
+      </ul>
+      {%- if section.settings.note != blank -%}<p class="mr-houses__note">{{ section.settings.note }}</p>{%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MR – Merken",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Foto (lucht links, mensen rechts werkt het best)" },
+    { "type": "text", "id": "heading", "label": "Kop", "default": "De huizen in onze vitrine" },
+    { "type": "textarea", "id": "brands", "label": "Merken, gescheiden door komma's", "default": "FRED, Chopard, DIOR, Montblanc, Balenciaga, Philipp Plein, Zegna, Maui Jim, Ray-Ban, MHD" },
+    { "type": "text", "id": "note", "label": "Kleine tekst", "default": "Glazen van ZEISS. Campagnebeeld van FRED." }
+  ],
+  "presets": [{ "name": "MR – Merken" }]
+}
+{% endschema %}
