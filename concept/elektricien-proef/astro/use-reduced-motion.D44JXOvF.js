@@ -1,0 +1,1 @@
+import{r as o}from"./index.COiXL8Uj.js";import{h as r,i as s,p as t}from"./react.D5j2e_oU.js";globalThis.process??={};globalThis.process.env??={};function u(){!r.current&&s();const[e]=o.useState(t.current);return e}export{u};
