@@ -276,3 +276,7 @@ body { -webkit-font-smoothing: antialiased; }
 .mr-days b { font-variant-numeric: tabular-nums; }
 .site-header .header-item--logo img, .site-header .site-header__logo img { max-width: 72px; }
 @media (max-width: 768px) { .site-header .header-item--logo img, .site-header .site-header__logo img { max-width: 52px; } }
+/* geen gespatieerde hoofdletters in Impulse-labels */
+.grid-product__vendor, .product-single__vendor, .collapsible-trigger, .collapsible-trigger-btn, .collapsible-trigger__icon, .tag-list__header, .product-block label, .product-block .label, .variant__label, .mr .mr-field label, .mr .mr-form legend, .site-nav__dropdown-link, .mobile-nav__link, .cart__item-name, .drawer__title { text-transform: none !important; letter-spacing: 0 !important; }
+.collapsible-trigger-btn { font-size: 1rem; }
+.product-single__vendor, .grid-product__vendor { color: var(--color-muted); font-size: 0.95rem; }
