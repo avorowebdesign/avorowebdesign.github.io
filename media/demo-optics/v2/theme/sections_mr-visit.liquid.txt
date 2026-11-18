@@ -39,7 +39,7 @@
     { "type": "textarea", "id": "text", "label": "Tekst", "default": "3012 CB Rotterdam Centrum. Kom monturen passen, of plan eerst een tijd." },
     { "type": "text", "id": "phone", "label": "Telefoon", "default": "010 229 8403" },
     { "type": "text", "id": "mobile", "label": "Mobiel", "default": "06 2283 2735" },
-    { "type": "url", "id": "route_url", "label": "Route link", "default": "https://www.google.com/maps/search/?api=1&query=Aert+van+Nesstraat+52+3012CB+Rotterdam" },
+    { "type": "text", "id": "route_url", "label": "Route link", "default": "https://www.google.com/maps/search/?api=1&query=Aert+van+Nesstraat+52+3012CB+Rotterdam" },
     { "type": "text", "id": "route_label", "label": "Route tekst", "default": "Route in Google Maps" },
     { "type": "text", "id": "times_label", "label": "Kop boven snelle tijden", "default": "Plan direct een tijd" }
   ],
