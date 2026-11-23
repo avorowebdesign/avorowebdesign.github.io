@@ -341,9 +341,9 @@ h3{font:500 1rem/1.3 var(--f-body);color:var(--ink)}
 @media (max-width:699px){
   .hero__note,.facts{display:none}
   .divider{padding-top:8px}
-  #shop [data-grid]{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));scroll-padding-inline:max(16px,env(safe-area-inset-left,0px))}
+  #shop [data-grid]{position:relative;display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));scroll-padding-inline:max(16px,env(safe-area-inset-left,0px))}
   #shop [data-grid]::-webkit-scrollbar{display:none}
-  #shop [data-grid] .card{flex:0 0 66%;min-width:0;scroll-snap-align:start}
+  #shop [data-grid] .card{position:relative;flex:0 0 66%;min-width:0;scroll-snap-align:start}
   [data-filters]{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
   [data-filters]::-webkit-scrollbar{display:none}
   [data-filters] button{flex:none}
