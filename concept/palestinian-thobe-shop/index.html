@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Palestinian Thobe Concept</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Design concept by AVORO for Palestinian Thobe: embroidered thobes, shipped worldwide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Hanken+Grotesk:wght@400;500;600&family=Cormorant+Garamond:wght@600&family=Inter:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&text=%D8%AA%D8%B7%D8%B1%D9%8A%D8%B2&display=swap">
+<style>
+:root{
+  /* Layout: a gallery-white storefront. Photos sit on plaster mats, one olive band holds the story,
+     and the brand's own cross-stitch star, repeated as a border, is the only ornament. */
+  color-scheme:light;
+  --paper:#FBFAF7; --plaster:#EFEBE3; --ink:#1C1A15; --ink-2:#4B473D; --muted:#6E695D; --line:#E1DCD1;
+  --gold:#9C8B4C; --gold-deep:#74662F;
+  --olive:#2B3021; --olive-2:#3B4130; --on-olive:#F4F0E6; --on-olive-2:#C9C5B4;
+  --stitch:#9A1B23; --stitch-bg:#F6E9E6;
+  --scrim:rgba(28,26,21,.46); --shadow:rgba(28,26,21,.14);
+  --avoro-bg:#292929; --avoro-fg:#FAF8F5; --avoro-taupe:#C5B9A5; --avoro-edge:rgba(197,185,165,.45); --avoro-shadow:rgba(0,0,0,.28);
+  --f-display:"Libre Caslon Display","Big Caslon","Book Antiqua",Georgia,serif;
+  --f-body:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --f-ar:"Amiri","Geeza Pro","Noto Naskh Arabic",serif;
+  --max:1320px; --ease:cubic-bezier(.2,.7,.2,1);
+  --star:14px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{overflow-x:clip;scroll-behavior:smooth;scroll-padding-top:calc(84px + env(safe-area-inset-top,0px));-webkit-text-size-adjust:100%}
+body{margin:0;overflow-x:clip;background:var(--paper);color:var(--ink-2);font:400 16px/1.55 var(--f-body);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--olive);z-index:60}
+[hidden]{display:none!important}
+img{display:block;max-width:100%;height:auto}
+h1,h2,h3,p,ul,ol,dl,dd,figure{margin:0;padding:0}
+ul,ol{list-style:none}
+a{color:inherit}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+[tabindex="-1"]:focus{outline:none}
+h1,h2,.display{font-family:var(--f-display);font-weight:400;color:var(--ink);letter-spacing:-.012em;line-height:1.04;text-wrap:balance;overflow-wrap:break-word}
+h1{font-size:clamp(2.7rem,9vw,5.2rem)}
+h2{font-size:clamp(2rem,5.2vw,3.1rem)}
+h3{font:500 1rem/1.3 var(--f-body);color:var(--ink)}
+.wrap{width:100%;max-width:var(--max);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.lead{font-size:1.09rem;line-height:1.5;max-width:34ch;color:var(--ink-2)}
+.small{font-size:.86rem;color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.skip{position:absolute;left:8px;top:-60px;z-index:80;background:var(--ink);color:var(--paper);padding:10px 14px}
+.skip:focus{top:calc(8px + env(safe-area-inset-top,0px))}
+
+/* controls */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);font:500 .8rem/1 var(--f-body);letter-spacing:.09em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:background-color .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease)}
+.btn:hover{background:var(--olive);border-color:var(--olive)}
+.btn:disabled{background:var(--plaster);border-color:var(--plaster);color:var(--muted);cursor:not-allowed}
+.btn--ghost{background:transparent;color:var(--ink)}
+.btn--ghost:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn--full{width:100%}
+.btn--light{background:var(--on-olive);border-color:var(--on-olive);color:var(--olive)}
+.btn--light:hover{background:var(--paper);border-color:var(--paper)}
+.link{display:inline-flex;align-items:center;min-height:44px;font-weight:500;color:var(--ink);text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:1px;text-underline-offset:.3em;background:none;border:0;padding:0}
+.link:hover{text-decoration-color:var(--ink)}
+.chip{display:inline-flex;align-items:center;min-height:24px;padding:0 9px;background:var(--paper);color:var(--ink);font:500 .74rem/1 var(--f-body);white-space:nowrap}
+.chip--pre{background:var(--olive);color:var(--on-olive)}
+.chip--last{background:var(--stitch);color:var(--paper)}
+.chip--out{background:var(--paper);color:var(--muted)}
+
+/* the brand star as a stitched border */
+.stitch{height:var(--star);width:calc(var(--star) * 16);background:var(--gold);-webkit-mask:url(img/star.png) left center/var(--star) var(--star) repeat-x;mask:url(img/star.png) left center/var(--star) var(--star) repeat-x}
+.stitch--wide{width:100%;-webkit-mask-repeat:round no-repeat;mask-repeat:round no-repeat}
+
+/* announcement */
+.bar{background:var(--olive);color:var(--on-olive);padding-top:env(safe-area-inset-top,0px)}
+.bar__in{display:grid;min-height:36px;align-items:center;justify-items:center;text-align:center;font-size:.8rem}
+.bar__in p{grid-area:1/1;opacity:0;transition:opacity .5s var(--ease)}
+.bar__in p.is-on{opacity:1}
+
+/* header */
+.hd{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--paper);border-bottom:1px solid var(--line)}
+.hd__in{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;min-height:64px;gap:12px}
+.hd__nav{display:none;gap:26px}
+.hd a.navlink,.hd button.navlink{display:inline-flex;align-items:center;min-height:44px;background:none;border:0;padding:0;font:500 .78rem/1 var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+.hd .navlink:hover{color:var(--gold-deep)}
+.hd__menu{justify-self:start}
+.hd__right{display:flex;justify-content:flex-end;align-items:center;gap:26px}
+.hd__right a.navlink--d{display:none}
+.logo{display:block;width:122px;height:44px;background:var(--gold);-webkit-mask:url(img/logo.png) center/contain no-repeat;mask:url(img/logo.png) center/contain no-repeat}
+.hd__logo{display:block;padding:8px 0}
+.count{display:inline-grid;place-items:center;min-width:20px;height:20px;margin-left:7px;padding:0 5px;border-radius:10px;background:var(--ink);color:var(--paper);font:500 .7rem/1 var(--f-body);letter-spacing:0}
+@media (min-width:980px){.hd__nav{display:flex}.hd button.hd__menu{display:none}.hd__right a.navlink--d{display:inline-flex}.hd__in{min-height:76px}.logo{width:144px;height:52px}}
+
+/* hero */
+.hero{padding-block:0}
+.hero__grid{display:grid;gap:0}
+.hero__txt{position:relative;display:grid;gap:16px;justify-items:start;align-content:center;margin-top:-76px;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding:26px max(16px,env(safe-area-inset-right,0px)) 36px max(16px,env(safe-area-inset-left,0px));background:linear-gradient(to bottom,rgba(251,250,247,0),var(--paper) 62px)}
+.hero__cta{display:flex;flex-wrap:wrap;gap:10px;padding-top:4px}
+.hero__note{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;font-size:.9rem;color:var(--ink)}
+.hero__img{order:-1;background:var(--plaster);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)))}
+.hero__img img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 24%}
+@media (min-width:900px){
+  :root{--star:16px}
+  .hero__grid{grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:56px;align-items:stretch}
+  .hero__txt{margin:0;padding:64px 0;gap:24px;background:none}
+  .hero__img{order:0;margin-inline:0}
+  .hero__img img{height:min(760px,82vh);min-height:560px;aspect-ratio:auto}
+  .lead{font-size:1.2rem}
+}
+@media (prefers-reduced-motion:no-preference){
+  .hero .stitch{animation:stitch 1.5s steps(16) .15s both}
+  .hero h1,.hero .lead,.hero__cta,.hero__note{animation:rise .7s var(--ease) both}
+  .hero .lead{animation-delay:.08s}.hero__cta{animation-delay:.16s}.hero__note{animation-delay:.24s}
+}
+@keyframes stitch{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* service strip */
+.facts{border-block:1px solid var(--line);margin-top:0}
+.facts ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.facts li{padding:16px 12px 16px 0;display:grid;gap:2px;align-content:start}
+.facts li:nth-child(even){padding-left:14px;border-left:1px solid var(--line)}
+.facts li:nth-child(n+3){border-top:1px solid var(--line)}
+.facts b{font-weight:500;color:var(--ink);font-size:.95rem}
+.facts span{font-size:.84rem;color:var(--muted)}
+@media (min-width:900px){.facts ul{grid-template-columns:repeat(4,minmax(0,1fr))}.facts li:nth-child(n){padding:22px 20px;border-top:0}.facts li:nth-child(n+2){border-left:1px solid var(--line)}.facts li:first-child{padding-left:0}}
+
+/* sections */
+.sec{padding-block:64px}
+.sec__head{display:grid;gap:14px;margin-bottom:26px}
+.sec__head p{max-width:52ch}
+@media (min-width:900px){.sec{padding-block:104px}.sec__head{margin-bottom:40px}}
+
+/* filters + grid */
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{min-height:40px;padding:0 14px;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:.9rem;transition:border-color .2s var(--ease),background-color .2s var(--ease),color .2s var(--ease)}
+.filters button:hover{border-color:var(--ink)}
+.filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.filters button span{opacity:.6;margin-left:6px;font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 12px}
+@media (min-width:700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:44px 20px}}
+@media (min-width:1080px){.grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:56px 24px}}
+.card{display:grid;gap:10px;align-content:start;text-decoration:none;color:inherit;min-width:0}
+.card__img{position:relative;background:var(--plaster);overflow:hidden}
+.card__img img{width:100%;aspect-ratio:2/3;object-fit:cover;transition:transform .6s var(--ease)}
+.card__img .chip{position:absolute;left:8px;top:8px}
+@media (hover:hover){.card:hover .card__img img{transform:scale(1.03)}.card:hover h3{text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:.25em}}
+.card.is-out .card__img img{opacity:.62}
+.card__row{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.card h3{font-size:.98rem}
+.card__price{color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.sizes{display:flex;gap:10px;font-size:.82rem;color:var(--ink);font-variant-numeric:tabular-nums}
+.sizes s{color:#A7A193;text-decoration-thickness:1px}
+.sizes i{font-style:normal;color:var(--muted)}
+
+/* spotlight */
+.spot{background:var(--plaster)}
+.spot__grid{display:grid;gap:28px}
+.spot__imgs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.spot__imgs img{width:100%;aspect-ratio:2/3;object-fit:cover}
+.spot__txt{display:grid;gap:18px;align-content:center}
+.ticks{display:grid;gap:8px}
+.ticks li{display:grid;grid-template-columns:14px minmax(0,1fr);gap:12px;align-items:baseline}
+.ticks li::before{content:"";width:11px;height:11px;background:var(--gold);-webkit-mask:url(img/star.png) center/contain no-repeat;mask:url(img/star.png) center/contain no-repeat;transform:translateY(1px)}
+.price{font:400 1.55rem/1 var(--f-display);color:var(--ink);font-variant-numeric:tabular-nums}
+@media (min-width:900px){.spot__grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:64px}.spot__imgs{gap:12px}}
+
+/* buy box */
+.buy{display:grid;gap:14px}
+.buy__label{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:.9rem;color:var(--ink)}
+.sz{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:8px}
+.sz button{display:grid;place-items:center;gap:2px;min-height:58px;border:1px solid var(--line);background:var(--paper);color:var(--ink);transition:border-color .2s var(--ease),background-color .2s var(--ease),color .2s var(--ease)}
+.sz button b{font:400 1.25rem/1 var(--f-display)}
+.sz button small{font-size:.72rem;color:var(--muted)}
+.sz button:hover:not(:disabled){border-color:var(--ink)}
+.sz button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.sz button[aria-pressed="true"] small{color:var(--on-olive-2)}
+.sz button:disabled{cursor:not-allowed;color:#A7A193;background:transparent;background-image:linear-gradient(to top right,transparent calc(50% - .5px),var(--line) calc(50% - .5px),var(--line) calc(50% + .5px),transparent calc(50% + .5px))}
+.sz button:disabled small{color:#A7A193}
+.buy__err{font-size:.88rem;color:var(--stitch);min-height:1.3em}
+.guide{border:1px solid var(--line);padding:14px 16px;display:grid;gap:10px;font-size:.9rem;background:var(--paper)}
+.guide dl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.guide dt{font:400 1.15rem/1 var(--f-display);color:var(--ink)}
+.guide dd{font-size:.84rem}
+.note{display:grid;gap:4px;padding:12px 14px;background:var(--paper);border-left:2px solid var(--gold);font-size:.9rem}
+.spot .note,.spot .guide{background:var(--paper)}
+.note b{font-weight:500;color:var(--ink)}
+.note--last{border-left-color:var(--stitch)}
+
+/* story */
+.story{background:var(--olive);color:var(--on-olive-2)}
+.story .stitch{background:var(--gold)}
+.story__grid{display:grid;gap:36px;padding-block:56px 64px}
+.story h2{color:var(--on-olive)}
+.story__ar{font:400 clamp(3.4rem,15vw,7rem)/1.25 var(--f-ar);color:var(--gold);direction:rtl;text-align:left}
+.story__txt{display:grid;gap:18px;align-content:center;justify-items:start}
+.story__txt p{max-width:46ch}
+.story__txt p.big{font:400 1.45rem/1.3 var(--f-display);color:var(--on-olive);max-width:26ch}
+.story__imgs{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,4fr);gap:10px;align-items:end}
+.story__imgs img{width:100%;object-fit:cover}
+.story__imgs img:first-child{aspect-ratio:2/3}
+.story__imgs img:last-child{aspect-ratio:3/4;object-position:50% 30%}
+@media (min-width:900px){.story__grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:72px;padding-block:96px 104px}.story__txt p.big{font-size:1.8rem}}
+
+/* categories */
+.cats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}
+.cat{display:grid;gap:10px;text-decoration:none;color:inherit;background:none;border:0;padding:0;text-align:left}
+.cat__img{background:var(--plaster);overflow:hidden}
+.cat__img img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 28%;transition:transform .6s var(--ease)}
+@media (hover:hover){.cat:hover img{transform:scale(1.03)}}
+.cat__row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.cat__row b{font:400 1.3rem/1.1 var(--f-display);color:var(--ink)}
+.cat__row span{font-size:.84rem;color:var(--muted);white-space:nowrap}
+@media (min-width:700px){.cats{grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 20px}}
+@media (min-width:1080px){.cats{grid-template-columns:repeat(6,minmax(0,1fr))}}
+
+/* help */
+.help__grid{display:grid;gap:28px}
+.faq{border-top:1px solid var(--ink)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:60px;padding-block:10px;cursor:pointer;list-style:none;font:400 1.25rem/1.25 var(--f-display);color:var(--ink)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";flex:none;width:11px;height:11px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);transform:rotate(45deg) translate(-3px,-3px);transition:transform .25s var(--ease)}
+.faq details[open] summary::after{transform:rotate(-135deg) translate(-3px,-3px)}
+.faq details p{padding:0 0 20px;max-width:62ch}
+.addr{user-select:all;color:var(--ink);font-weight:500}
+.ft .addr{color:var(--on-olive)}
+@media (min-width:900px){.help__grid{grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:72px}}
+
+/* signup */
+.signup{background:var(--plaster)}
+.signup__grid{display:grid;gap:22px;padding-block:56px}
+.form{display:grid;gap:10px;max-width:520px}
+.form__row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+.form input{min-height:52px;border:1px solid var(--ink);background:var(--paper);padding:0 14px;font-size:16px;border-radius:0;min-width:0}
+.form__msg{font-size:.9rem;color:var(--ink);min-height:1.4em}
+.form label{font-size:.9rem;color:var(--ink)}
+@media (min-width:900px){.signup__grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:72px;align-items:center;padding-block:80px}}
+
+/* footer */
+.ft{background:var(--olive);color:var(--on-olive-2);font-size:.9rem}
+.ft a{text-decoration:none}
+.ft a:hover{color:var(--on-olive);text-decoration:underline;text-decoration-color:var(--gold)}
+.ft__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 20px;padding-block:56px 28px}
+.ft__brand{grid-column:1/-1;display:grid;gap:16px;justify-items:start}
+.ft .logo{background:var(--on-olive);width:150px;height:54px}
+.ft h3{color:var(--on-olive);margin-bottom:10px}
+.ft li{line-height:2}
+.ft li a,.ft li button{display:inline-flex;align-items:center;min-height:32px}
+.ft li button{background:none;border:0;padding:0;color:inherit}
+.ft li button:hover{color:var(--on-olive)}
+.pay{display:flex;flex-wrap:wrap;gap:6px}
+.pay li{line-height:1;padding:7px 9px;border:1px solid var(--olive-2);font-size:.76rem;color:var(--on-olive-2)}
+.ft__base{display:grid;gap:10px;padding-block:22px calc(120px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--olive-2);font-size:.82rem}
+@media (min-width:900px){.ft__grid{grid-template-columns:minmax(0,2fr) repeat(3,minmax(0,1fr));padding-block:80px 40px}.ft__brand{grid-column:auto}.ft__base{grid-template-columns:minmax(0,1fr) auto;padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}}
+
+/* product view */
+.pdp{padding-block:0 64px}
+.pdp__back{padding-block:10px}
+.pdp__grid{display:grid;gap:22px}
+.gal{position:relative;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)))}
+.gal__track{display:flex;gap:6px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-inline:max(16px,env(safe-area-inset-left,0px));scroll-padding-inline:max(16px,env(safe-area-inset-left,0px))}
+.gal__track::-webkit-scrollbar{display:none}
+.gal__track li{flex:0 0 86%;min-width:0;scroll-snap-align:start;background:var(--plaster)}
+.gal__track.is-single li{flex-basis:100%}
+.gal__track img{width:100%;aspect-ratio:2/3;object-fit:cover}
+.gal__ui{position:absolute;right:max(16px,env(safe-area-inset-right,0px));bottom:12px;display:flex;align-items:center;gap:6px}
+.gal__ui button{width:40px;height:40px;border:0;background:var(--paper);color:var(--ink);display:grid;place-items:center}
+.gal__ui button::before{content:"";width:9px;height:9px;border-left:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg) translate(1px,-1px)}
+.gal__ui button[data-gal="1"]::before{transform:rotate(-135deg) translate(1px,-1px)}
+.gal__ui span{background:var(--paper);min-height:40px;padding:0 12px;display:grid;place-items:center;font-size:.84rem;color:var(--ink);font-variant-numeric:tabular-nums}
+.pdp__info{display:grid;gap:18px;align-content:start;min-width:0}
+.pdp__top{display:grid;gap:10px}
+.pdp__chips{display:flex;flex-wrap:wrap;gap:6px}
+.pdp__chips .chip{border:1px solid var(--line)}
+.pdp__chips .chip--pre,.pdp__chips .chip--last{border-color:transparent}
+.pdp h1{font-size:clamp(2.2rem,7vw,3.2rem)}
+.pdp__priceRow{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.incl{display:grid;gap:10px;padding-top:6px}
+.incl h2,.more h2{font:500 1rem/1.3 var(--f-body);letter-spacing:0;color:var(--ink)}
+.mini{display:grid;gap:0;border-top:1px solid var(--line)}
+.mini li{display:grid;grid-template-columns:minmax(0,1fr);gap:1px;padding-block:11px;border-bottom:1px solid var(--line);font-size:.9rem}
+.mini b{font-weight:500;color:var(--ink)}
+.more{display:grid;gap:12px}
+.addon{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:12px;align-items:center;padding-block:10px;border-bottom:1px solid var(--line)}
+.addon img{width:64px;aspect-ratio:4/5;object-fit:cover;background:var(--plaster)}
+.addon b{display:block;font-weight:500;color:var(--ink)}
+.addon .btn{min-height:44px;padding:0 16px}
+.rel{padding-top:56px}
+@media (min-width:900px){
+  .pdp{padding-block:0 104px}
+  .pdp__grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:start}
+  .gal{margin-inline:0}
+  .gal__track{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;overflow:visible;padding-inline:0}
+  .gal__track.is-single{grid-template-columns:minmax(0,1fr);max-width:560px}
+  .gal__ui{display:none}
+  .pdp__info{position:sticky;top:calc(96px + env(safe-area-inset-top,0px));max-width:460px}
+  .rel{padding-top:96px}
+}
+.stick{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--paper);border-top:1px solid var(--line);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;transform:translateY(110%);transition:transform .35s var(--ease)}
+.stick.is-on{transform:none}
+.stick b{display:block;font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stick .btn{min-height:48px;padding:0 20px}
+@media (min-width:900px){.stick{display:none}}
+
+/* drawers */
+.scrim{position:fixed;inset:0;z-index:50;background:var(--scrim);opacity:0;pointer-events:none;transition:opacity .3s var(--ease)}
+.scrim.is-on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;bottom:0;right:0;z-index:55;width:min(440px,100%);background:var(--paper);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .38s var(--ease),visibility 0s linear .38s;visibility:hidden;padding-top:env(safe-area-inset-top,0px);box-shadow:-18px 0 50px var(--shadow)}
+.drawer--left{right:auto;left:0;transform:translateX(-100%);box-shadow:18px 0 50px var(--shadow)}
+.drawer.is-on{transform:none;visibility:visible;transition:transform .38s var(--ease)}
+.drawer__hd{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:64px;padding:0 max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--line)}
+.drawer__hd h2{font-size:1.6rem}
+.x{min-height:44px;background:none;border:0;padding:0;font:500 .78rem/1 var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--ink)}
+.drawer__body{flex:1;overflow-y:auto;padding:8px max(16px,env(safe-area-inset-right,0px)) 20px max(16px,env(safe-area-inset-left,0px))}
+.drawer__ft{display:grid;gap:12px;padding:16px max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));border-top:1px solid var(--line)}
+.line{display:grid;grid-template-columns:76px minmax(0,1fr);gap:14px;padding-block:16px;border-bottom:1px solid var(--line)}
+.line img{width:76px;aspect-ratio:2/3;object-fit:cover;background:var(--plaster)}
+.line__main{display:grid;gap:6px;align-content:start;min-width:0}
+.line__row{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.line__row b{font-weight:500;color:var(--ink)}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line)}
+.qty button{width:40px;height:40px;background:none;border:0;font-size:1.1rem;color:var(--ink)}
+.qty span{min-width:26px;text-align:center;color:var(--ink);font-variant-numeric:tabular-nums}
+.line__ft{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-top:4px}
+.empty{display:grid;gap:16px;justify-items:start;padding-block:28px}
+.empty p{font:400 1.5rem/1.2 var(--f-display);color:var(--ink)}
+.sub{display:flex;justify-content:space-between;align-items:baseline;color:var(--ink)}
+.sub b{font:400 1.5rem/1 var(--f-display);font-variant-numeric:tabular-nums}
+.concept{padding:12px 14px;background:var(--plaster);font-size:.88rem;color:var(--ink)}
+.menu li{border-bottom:1px solid var(--line)}
+.menu a,.menu button{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:58px;background:none;border:0;padding:0;text-align:left;text-decoration:none;font:400 1.5rem/1.2 var(--f-display);color:var(--ink)}
+.menu span{font:400 .84rem/1 var(--f-body);color:var(--muted)}
+.menu .sm a,.menu .sm button{font:400 1rem/1.2 var(--f-body);min-height:50px}
+
+/* full shop: collection, pages, search */
+.allrow{display:flex;justify-content:center;margin-top:40px}
+.story__cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px}
+.story__cta .link{color:var(--on-olive)}
+.crumbs{padding-top:14px;font-size:.86rem;color:var(--muted)}
+.crumbs a{color:inherit;text-underline-offset:.2em}
+.chead{display:grid;gap:12px;padding-block:20px 28px}
+.chead h1{font-size:clamp(2.5rem,8.4vw,4.4rem)}
+.chead p{max-width:56ch}
+.tools{display:grid;gap:12px;padding-block:12px;border-top:1px solid var(--ink);border-bottom:1px solid var(--line);margin-bottom:28px}
+.tools__row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.tools__n{font-size:.9rem;color:var(--ink)}
+.sort{display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--ink)}
+.sort select{min-height:40px;border:1px solid var(--line);background:var(--paper);padding:0 8px;font:inherit;font-size:16px;color:var(--ink);border-radius:0}
+.cfoot{margin-top:44px}
+.cn{border:1px dashed var(--gold);padding:14px 16px;display:grid;gap:4px;font-size:.9rem;color:var(--ink-2)}
+.cn b{font-weight:500;color:var(--gold-deep)}
+.page{padding-bottom:72px}
+.vid{display:grid;gap:10px}
+.vid__frame{position:relative;background:var(--olive);aspect-ratio:4/3;overflow:hidden}
+.vid__frame img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;opacity:.5}
+.vid__frame::after{content:"";position:absolute;left:50%;top:50%;width:0;height:0;border-left:22px solid var(--on-olive);border-top:14px solid transparent;border-bottom:14px solid transparent;transform:translate(-40%,-50%)}
+.pdp .faq summary{font-size:1.15rem;min-height:54px}
+.fit{display:grid;gap:0;margin:0 0 14px;max-width:340px}
+.fit div{display:grid;grid-template-columns:5ch minmax(0,1fr) auto;gap:10px;padding-block:7px;border-bottom:1px solid var(--line);font-size:.92rem}
+.fit dt{color:var(--ink);font-weight:500}
+.revs{padding-top:56px;display:grid;gap:16px;max-width:720px}
+.prose{display:grid;gap:16px;max-width:60ch}
+.prose h2{font-size:clamp(1.7rem,4.6vw,2.3rem);margin-top:22px}
+.prose .big{font:400 1.5rem/1.3 var(--f-display);color:var(--ink);max-width:28ch}
+.sgrid{display:grid;gap:36px;padding-top:8px}
+.simgs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-content:start}
+.simgs img{width:100%;aspect-ratio:2/3;object-fit:cover;background:var(--plaster)}
+.simgs img:first-child{grid-column:1/-1;aspect-ratio:4/3;object-position:50% 30%}
+.care{display:grid;gap:28px}
+.care__nav{display:flex;flex-wrap:wrap;gap:8px}
+.care__nav a{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border:1px solid var(--line);text-decoration:none;color:var(--ink);font-size:.9rem}
+.care__nav a:hover{border-color:var(--ink)}
+.care section{scroll-margin-top:96px}
+.form textarea{min-height:140px;border:1px solid var(--ink);background:var(--paper);padding:12px 14px;font:inherit;font-size:16px;color:inherit;border-radius:0;resize:vertical}
+.form--stack input{width:100%}
+.searchbox{padding-block:12px 4px}
+.searchbox input{width:100%;min-height:56px;border:0;border-bottom:1px solid var(--ink);background:none;padding:0;font:400 1.5rem/1.2 var(--f-display);color:var(--ink);border-radius:0;-webkit-appearance:none;appearance:none}
+.searchbox input::placeholder{color:var(--muted)}
+.res{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:12px;align-items:center;padding-block:10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.res img{width:56px;aspect-ratio:4/5;object-fit:cover;object-position:50% 25%;background:var(--plaster)}
+.res b{display:block;font-weight:500}
+.reshint{padding-block:16px 6px;font-size:.9rem;color:var(--muted)}
+.quick{display:flex;flex-wrap:wrap;gap:8px}
+.quick a{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border:1px solid var(--line);text-decoration:none;color:var(--ink);font-size:.9rem}
+@media (max-width:420px){.hd__right{gap:14px}}
+@media (min-width:900px){
+  .tools{grid-template-columns:minmax(0,1fr) auto;align-items:center}
+  .sgrid{grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:72px}
+  .care{grid-template-columns:200px minmax(0,1fr);gap:72px}
+  .care__nav{flex-direction:column;position:sticky;top:110px;align-self:start}
+  .care__nav a{border:0;border-bottom:1px solid var(--line);padding:0;min-height:46px}
+  .page{padding-bottom:112px}
+}
+
+/* AVORO concept pill (AVORO's own colours and faces) */
+.avoro-pill{position:fixed;left:0;top:0;z-index:24;display:flex;align-items:center;gap:8px;padding:8px 14px 8px 10px;border-radius:999px;background:var(--avoro-bg);color:var(--avoro-fg);font:500 12px/1 "Inter",system-ui,sans-serif;text-decoration:none;border:1px solid var(--avoro-edge);box-shadow:0 10px 30px var(--avoro-shadow);transform:translate3d(var(--ax,14px),var(--ay,96px),0);will-change:transform}
+.avoro-pill b{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:1.3em;letter-spacing:.14em}
+.avoro-pill__dot{width:8px;height:8px;border-radius:50%;background:var(--avoro-taupe);box-shadow:0 0 0 3px var(--avoro-edge)}
+@media (max-width:820px){.avoro-pill{font-size:11px;padding:7px 11px 7px 9px;gap:7px}.avoro-pill__long{display:none}}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div id="page">
+<div class="bar"><div class="wrap bar__in" data-bar>
+  <p class="is-on">Worldwide shipping with DHL and PostNL</p>
+  <p aria-hidden="true">In-stock orders ship within 4 working days</p>
+  <p aria-hidden="true">Winter pre-order is open, ships mid-December 2026</p>
+</div></div>
+
+<header class="hd">
+  <div class="wrap hd__in">
+    <button class="navlink hd__menu" type="button" data-open="menu" aria-haspopup="dialog">Menu</button>
+    <nav class="hd__nav" aria-label="Shop">
+      <a class="navlink" href="#c-bridal">Bridal</a>
+      <a class="navlink" href="#c-classic">Classic</a>
+      <a class="navlink" href="#c-exclusive">Exclusive</a>
+      <a class="navlink" href="#c-preorder">Pre-order</a>
+    </nav>
+    <a class="hd__logo" href="#top" aria-label="Palestinian Thobe, home"><span class="logo"></span></a>
+    <div class="hd__right">
+      <a class="navlink navlink--d" href="#our-story">Our story</a>
+      <a class="navlink navlink--d" href="#customer-care">Help</a>
+      <button class="navlink" type="button" data-open="search" aria-haspopup="dialog">Search</button>
+      <button class="navlink" type="button" data-open="bag" aria-haspopup="dialog" data-bagbtn>Bag<span class="count num" data-count>0</span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<div data-view="home">
+  <section class="hero" id="top" aria-labelledby="h1">
+    <div class="wrap hero__grid">
+      <div class="hero__txt">
+        <div class="stitch" aria-hidden="true"></div>
+        <h1 id="h1">Keep the culture alive. Wear it.</h1>
+        <p class="lead">Embroidered thobes by Palestinian sisters, for weddings, henna nights and every celebration. Shipped worldwide.</p>
+        <div class="hero__cta">
+          <a class="btn" href="#c-bridal">Shop bridal</a>
+          <a class="btn btn--ghost" href="#c-thobes">Shop all thobes</a>
+        </div>
+        <p class="hero__note"><span class="chip chip--pre">Pre-order</span><span>17 winter pieces, shipping mid-December.</span> <a class="link" href="#c-preorder">See the pre-order</a></p>
+      </div>
+      <figure class="hero__img"><img src="img/hero.webp" width="887" height="1331" alt="Woman in a burgundy and gold bridal thobe with a matching veil and satin belt" fetchpriority="high"></figure>
+    </div>
+  </section>
+
+  <section class="facts" aria-label="Good to know">
+    <div class="wrap"><ul>
+      <li><b>Worldwide shipping</b><span>With DHL or PostNL, tracked</span></li>
+      <li><b>Ships in 4 working days</b><span>For everything in stock</span></li>
+      <li><b>14-day returns</b><span>Not on sale or pre-order pieces</span></li>
+      <li><b>Pay your way</b><span>iDEAL, PayPal, Apple Pay, cards</span></li>
+    </ul></div>
+  </section>
+
+  <section class="sec" id="shop" aria-labelledby="h-shop">
+    <div class="wrap">
+      <div class="sec__head">
+        <h2 id="h-shop">The thobes</h2>
+        <div class="filters" role="group" aria-label="Filter thobes" data-filters></div>
+      </div>
+      <div class="grid" data-grid aria-live="polite"></div>
+      <p class="allrow"><a class="btn btn--ghost" href="#c-thobes">View the full collection</a></p>
+    </div>
+  </section>
+
+  <section class="spot sec" aria-labelledby="h-spot">
+    <div class="wrap spot__grid">
+      <div class="spot__imgs">
+        <img src="img/ro-1.webp" width="887" height="1331" loading="lazy" alt="Bridal Royal Olive thobe, front, with wide embroidered sleeves and olive satin belt">
+        <img src="img/ro-4.webp" width="887" height="1330" loading="lazy" alt="Close view of the cross-stitch embroidery and satin sleeve of the Royal Olive thobe">
+      </div>
+      <div class="spot__txt">
+        <span class="chip chip--pre" style="justify-self:start">Pre-order, ships mid-December 2026</span>
+        <h2 id="h-spot">Bridal Royal Olive</h2>
+        <p class="lead">Fully embroidered, front and back.</p>
+        <ul class="ticks">
+          <li>Satin panels and crystal embellishments</li>
+          <li>Reversible belt: embroidered on one side, white satin on the other</li>
+          <li>Matching veil included</li>
+        </ul>
+        <p class="price num">€400</p>
+        <div class="buy" data-buy="bridal-royal-olive" data-compact></div>
+        <a class="link" href="#bridal-royal-olive" style="justify-self:start">See all photos and details</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="story" id="story" aria-labelledby="h-story">
+    <div class="stitch stitch--wide" aria-hidden="true"></div>
+    <div class="wrap story__grid">
+      <div class="story__txt">
+        <p class="story__ar" lang="ar" aria-hidden="true">تطريز</p>
+        <h2 id="h-story">Tatreez, 3,000 years in the making</h2>
+        <p>Tatreez is an embroidery technique that goes back to the Canaanites. For centuries Palestinians have stitched it in colours and patterns that speak of community and standing. It records our history, and it keeps our culture alive.</p>
+        <p class="big">We are Palestinian sisters with one dream: to keep our culture and identity alive.</p>
+        <p>We do it to remember the patience and strength of our people, and to bring communities together. Wear your thobe with love and pride.</p>
+        <div class="story__cta"><a class="btn btn--light" href="#c-thobes">Shop all thobes</a><a class="link" href="#our-story">Read our story</a></div>
+      </div>
+      <div class="story__imgs">
+        <img src="img/rail.webp" width="493" height="740" loading="lazy" alt="Four embroidered thobes in burgundy, cream, blue and green on a wooden rail">
+        <img src="img/ln-2.webp" width="893" height="1339" loading="lazy" alt="Close view of red, green and gold cross-stitch on a navy thobe with a light blue satin belt">
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="more" aria-labelledby="h-cats">
+    <div class="wrap">
+      <div class="sec__head">
+        <h2 id="h-cats">For everyone at the table</h2>
+        <p>Mother and daughter sets, djellabas for him, and the keffiyeh, belts and veils that finish the look.</p>
+      </div>
+      <div class="cats">
+        <a class="cat" href="#c-bridal"><span class="cat__img"><img src="img/ramallah.webp" width="493" height="740" loading="lazy" alt="Burgundy bridal thobe with gold embroidery and veil"></span><span class="cat__row"><b>Bridal</b><span>34 pieces</span></span></a>
+        <a class="cat" href="#c-classic"><span class="cat__img"><img src="img/classic-olive.webp" width="493" height="740" loading="lazy" alt="Black classic thobe with olive green embroidery"></span><span class="cat__row"><b>Classic</b><span>37 pieces</span></span></a>
+        <a class="cat" href="#c-kids"><span class="cat__img"><img src="img/mommy-me.webp" width="493" height="740" loading="lazy" alt="Mother and young daughter in matching black and red classic thobes"></span><span class="cat__row"><b>Kids</b><span>Mommy &amp; Me</span></span></a>
+        <a class="cat" href="#c-men"><span class="cat__img"><img src="img/djellaba.webp" width="493" height="740" loading="lazy" alt="Man in an olive djellaba"></span><span class="cat__row"><b>Men</b><span>19 pieces</span></span></a>
+        <a class="cat" href="#c-accessories"><span class="cat__img"><img src="img/keffiyeh.webp" width="492" height="738" loading="lazy" alt="Two women wearing black and white keffiyehs over their shoulders"></span><span class="cat__row"><b>Keffiyeh and veils</b><span>From €30</span></span></a>
+        <a class="cat" href="#c-accessories"><span class="cat__img"><img src="img/belt.webp" width="493" height="740" loading="lazy" alt="Black satin belt worn over a black dress"></span><span class="cat__row"><b>Belts and hairbands</b><span>From €9.99</span></span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="help" aria-labelledby="h-help" style="padding-top:0">
+    <div class="wrap help__grid">
+      <div class="sec__head">
+        <h2 id="h-help">Before you order</h2>
+        <p>Still unsure about a size or a delivery date? Email us at <span class="addr">info@palestinianthobe.nl</span></p>
+        <a class="link" href="#customer-care" style="justify-self:start">All shipping, returns and size help</a>
+      </div>
+      <div class="faq">
+        <details open><summary>Do you ship to my country?</summary><p>Yes. We ship worldwide with DHL or PostNL for an extra fee, which you see at checkout. Import taxes and duties in your country are not included in our prices.</p></details>
+        <details><summary>How fast do you ship?</summary><p>In-stock orders ship within 4 working days. You get a track and trace code by email. Pre-order pieces ship on the date shown on the product.</p></details>
+        <details><summary>Which size do I take?</summary><p>Every thobe comes in sizes 1 to 4. The size guide on each product shows which size matches XS to XXL, because it differs per style.</p></details>
+        <details><summary>Can I return my order?</summary><p>Yes, within 14 days of delivery: unworn, unwashed and with the original tags. Return shipping is at your own cost. Sale items and pre-orders can't be returned, and an order can't be changed once it is placed.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="signup" aria-labelledby="h-news">
+    <div class="wrap signup__grid">
+      <div class="sec__head" style="margin:0">
+        <h2 id="h-news">Know when new thobes arrive</h2>
+        <p>We email you when a new collection or pre-order opens.</p>
+      </div>
+      <form class="form" data-form="news" novalidate>
+        <label for="news-email">Email address</label>
+        <div class="form__row"><input id="news-email" name="email" type="email" autocomplete="email" inputmode="email" required><button class="btn" type="submit">Sign up</button></div>
+        <p class="form__msg" data-msg role="status"></p>
+      </form>
+    </div>
+  </section>
+</div>
+
+<div data-view="pdp" hidden></div>
+<div data-view="page" hidden></div>
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft__grid">
+      <div class="ft__brand">
+        <span class="logo" role="img" aria-label="Palestinian Thobe"></span>
+        <p style="max-width:30ch">Let's keep the Palestinian culture alive.</p>
+        <ul class="pay" aria-label="Payment methods"><li>iDEAL</li><li>PayPal</li><li>Apple Pay</li><li>Google Pay</li><li>Visa</li><li>Mastercard</li><li>Amex</li><li>Bancontact</li></ul>
+      </div>
+      <div><h3>Shop</h3><ul>
+        <li><a href="#c-bridal" data-close>Bridal</a></li>
+        <li><a href="#c-classic" data-close>Classic</a></li>
+        <li><a href="#c-exclusive" data-close>Exclusive</a></li>
+        <li><a href="#c-preorder" data-close>Pre-order</a></li>
+        <li><a href="#c-men">Men</a></li>
+        <li><a href="#c-kids">Kids</a></li>
+        <li><a href="#c-accessories">Accessories</a></li>
+      </ul></div>
+      <div><h3>Help</h3><ul>
+        <li><a href="#care-shipping">Shipping</a></li>
+        <li><a href="#care-returns">Returns</a></li>
+        <li><a href="#care-sizes">Size help</a></li>
+        <li><a href="#care-contact">Contact</a></li>
+        <li><span class="addr">info@palestinianthobe.nl</span></li>
+      </ul></div>
+      <div><h3>Follow</h3><ul>
+        <li><a href="https://www.instagram.com/palestiniannthobe" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.tiktok.com/@palestiniannthobe" target="_blank" rel="noopener">TikTok</a></li>
+        <li><a href="#our-story">Our story</a></li>
+      </ul></div>
+    </div>
+    <div class="ft__base">
+      <p>This is a design concept by AVORO for Palestinian Thobe. It is not the live store and you can't order here.</p>
+      <p>© 2026 Palestinian Thobe</p>
+    </div>
+  </div>
+</footer>
+</div>
+
+<div class="stick" data-stick aria-hidden="true"></div>
+<div class="scrim" data-scrim></div>
+
+<aside class="drawer drawer--left" id="menu" role="dialog" aria-modal="true" aria-labelledby="menu-h" tabindex="-1">
+  <div class="drawer__hd"><h2 id="menu-h">Menu</h2><button class="x" type="button" data-close>Close</button></div>
+  <div class="drawer__body">
+    <ul class="menu">
+      <li><a href="#c-bridal" data-close>Bridal <span>34 pieces</span></a></li>
+      <li><a href="#c-classic" data-close>Classic <span>37 pieces</span></a></li>
+      <li><a href="#c-exclusive" data-close>Exclusive <span>9 pieces</span></a></li>
+      <li><a href="#c-preorder" data-close>Pre-order <span>Ships mid-December</span></a></li>
+      <li><a href="#c-last" data-close>Last sizes</a></li>
+      <li><a href="#c-men" data-close>Men <span>Djellabas and coats</span></a></li>
+      <li><a href="#c-kids" data-close>Kids <span>Mommy &amp; Me</span></a></li>
+      <li><a href="#c-accessories" data-close>Accessories <span>Belts, veils, keffiyeh</span></a></li>
+    </ul>
+    <ul class="menu sm">
+      <li><a href="#our-story" data-close>Our story</a></li>
+      <li><a href="#customer-care" data-close>Shipping, returns and sizes</a></li>
+    </ul>
+  </div>
+</aside>
+
+<aside class="drawer" id="bag" role="dialog" aria-modal="true" aria-labelledby="bag-h" tabindex="-1">
+  <div class="drawer__hd"><h2 id="bag-h">Your bag</h2><button class="x" type="button" data-close>Close</button></div>
+  <div class="drawer__body" data-bag></div>
+  <div class="drawer__ft" data-bagft></div>
+</aside>
+
+<aside class="drawer" id="search" role="dialog" aria-modal="true" aria-labelledby="search-h" tabindex="-1">
+  <div class="drawer__hd"><h2 id="search-h">Search</h2><button class="x" type="button" data-close>Close</button></div>
+  <div class="drawer__body">
+    <div class="searchbox"><label class="vh" for="q">Search the shop</label><input id="q" type="search" placeholder="Bridal, olive, veil…" autocomplete="off" enterkeyhint="search" data-q data-autofocus></div>
+    <div data-results aria-live="polite"></div>
+  </div>
+</aside>
+
+<a class="avoro-pill" href="https://avoroweb.nl" target="_blank" rel="noopener" aria-label="Concept by AVORO webdesign"><span class="avoro-pill__dot" aria-hidden="true"></span><span>Concept <span class="avoro-pill__long">by </span><b>AVORO</b><span class="avoro-pill__long"> webdesign</span></span></a>
+
+<script>
+(function(){
+'use strict';
+var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var SHIP='mid-December 2026';
+
+/* Products, prices, sizes and availability as on palestinianthobe.nl on 23 November 2026 */
+var EXCL='An exclusive piece with cross-stitch embroidery, satin details and shimmering crystal embellishments.';
+var SATIN='An exclusive piece in full satin with shimmering crystal embellishments.';
+var BELT='Reversible belt: embroidered on one side, satin on the other';
+var CLASSIC='The classic thobe is the one with the stripes, up to five of them. The embroidery is subtle and the belt is attached to the dress.';
+var S1=['S','M','L','XL'], S2=['S/M','M/L','L/XL','XL/XXL'];
+var DJ=['XS','S/M','M/L','XL','XXL'], DJL=['1.40 m','1.43 m','1.48 m','1.53 m','1.58 m'], DJD='Comfortable and practical, for casual and formal occasions. The cord adds an elegant touch, and you can take it off.', DJF='The model is 1.82 m, usually wears M and wears size 2.';
+var P=[
+ {id:'bridal-royal-olive',name:'Bridal Royal Olive',price:400,cats:['bridal','exclusive'],pre:1,color:'White / Olive',imgs:['ro-1','ro-2','ro-3','ro-4'],lab:S1,av:[1,1,1,1],desc:'An exclusive piece, fully embroidered on both the front and the back, with satin panels and shimmering crystal embellishments.',incl:['Reversible belt: embroidered on one side, white satin on the other','Matching veil'],alt:'Bridal Royal Olive thobe in white and olive with wide embroidered sleeves'},
+ {id:'layali',name:'Layali Navy',price:320,cats:['exclusive'],pre:1,color:'Navy / Baby blue',imgs:['ln-1','ln-2'],lab:S2,av:[1,1,1,1],desc:EXCL,incl:[BELT,'Matching veil'],alt:'Layali Navy thobe with red and gold embroidery and light blue satin sleeves'},
+ {id:'bridal-ramallah',name:'Bridal Ramallah Burgundy',price:300,cats:['bridal'],pre:1,color:'Burgundy',imgs:['ramallah','ramallah-2','ramallah-3'],lab:S2,av:[1,1,1,1],desc:'The bridal thobe for your special day.',incl:['Belt','Veil'],alt:'Bridal Ramallah thobe in burgundy with gold embroidery and veil'},
+ {id:'bridal-rose-1',name:'Bridal Rose',price:300,cats:['bridal'],color:'White / Red',imgs:['rose','rose-2','rose-3'],lab:S2,av:[1,0,0,0],desc:'A three-piece set. The matching skirt is red on the inside and attaches with its own built-in belt. You can also wear the thobe without it. A satin belt is not included.',incl:['Matching skirt','Matching veil'],alt:'Bridal Rose thobe in white with red rose embroidery and a red belt'},
+ {id:'thobe-red',name:'Thobe Red',price:130,cats:['classic'],color:'Black / Red',imgs:['thobe-red','thobe-red-2','thobe-red-3'],lab:['XS/S','M/L','L/XL','XL/XXL'],av:[1,1,1,1],desc:CLASSIC,incl:[],alt:'Black classic thobe with red embroidered chest panel and stripes'},
+ {id:'velvet-malaka',name:'Velvet Malaka',price:320,cats:['exclusive'],color:'Black / Olive green',imgs:['velvet','velvet-2','velvet-3'],lab:S1,av:[1,0,0,0],desc:'An exclusive piece in velvet with satin details and shimmering crystal embellishments.',incl:[BELT,'Matching veil'],alt:'Velvet Malaka thobe in black and olive with a veil'},
+ {id:'layali-bordeaux',name:'Layali Bordeaux',price:320,cats:['exclusive'],pre:1,color:'Bordeaux / Gold',imgs:['layali-bordeaux','layali-bordeaux-2','layali-bordeaux-3'],lab:S1,av:[1,1,1,1],desc:EXCL,incl:[BELT,'Matching veil'],alt:'Layali Bordeaux thobe in red and cream with a fringed veil'},
+ {id:'olive',name:'Classic Olive',price:130,cats:['classic'],color:'Black / Olive green',imgs:['classic-olive','classic-olive-2','classic-olive-3'],lab:['XS/S/M','M/L','L/XL','XL/XXL'],av:[1,1,1,1],desc:CLASSIC,incl:[],alt:'Black classic thobe with olive green embroidery'},
+ {id:'beit-lahia-bordeaux',name:'Beit Lahia Bordeaux',price:300,cats:['bridal'],pre:1,color:'Cream / Bordeaux',imgs:['beit-lahia','beit-lahia-2','beit-lahia-3'],lab:S1,av:[1,1,1,0],desc:'A fully embroidered thobe.',incl:['Two-sided belt: tatreez on one side, satin on the other','Matching veil with tatreez and coins'],alt:'Beit Lahia thobe in bordeaux and cream, fully embroidered'},
+ {id:'bridal-al-khalil-sea',name:'Satin Al-Khalil Sea Malaka',price:350,cats:['bridal','exclusive'],color:'White / Blue',imgs:['sea','sea-2','sea-3'],lab:S2,av:[1,0,0,0],desc:SATIN,incl:['Reversible belt: embroidered on one side, white satin on the other','Matching veil'],alt:'Satin Al-Khalil thobe in white and blue with a sheer veil'},
+ {id:'classic-blue-1',name:'Classic Blue',price:130,cats:['classic'],color:'Black / Dark blue',imgs:['classic-blue','classic-blue-2'],lab:['XS/S/M','M/L','L/XL','XL/XXL'],av:[1,1,0,0],desc:CLASSIC,incl:[],alt:'Black classic thobe with blue embroidery'},
+ {id:'classic-beige-velvet',name:'Classic Beige Velvet',price:140,cats:['classic'],pre:1,color:'Beige',imgs:['beige-velvet','beige-velvet-2','beige-velvet-3'],lab:['XS/S','S/M','M/L','L/XL'],av:[1,1,1,1],desc:'The classic thobe with the stripes, in velvet, with subtle embroidery.',incl:['Embroidered belt'],alt:'Classic velvet thobe in a warm beige brown with gold embroidery'},
+ {id:'bridal-al-khalil-sage',name:'Bridal Al-Khalil Sage',price:350,cats:['bridal','exclusive'],color:'White / Green',imgs:['khalil-sage'],lab:S2,av:[0,0,0,0],desc:SATIN,incl:['Reversible belt: embroidered on one side, white satin on the other','Matching veil'],alt:'Bridal Al-Khalil thobe in white and green satin'},
+ {id:'bridal-al-khalil-navy',name:'Bridal Al-Khalil Navy',price:350,cats:['bridal','exclusive'],color:'Navy / Light blue',imgs:['khalil-navy'],lab:S2,av:[0,0,0,0],desc:SATIN,incl:['Reversible belt: embroidered on one side, white satin on the other','Matching veil'],alt:'Bridal Al-Khalil thobe in navy and light blue satin'},
+ {id:'bridal-al-khalil-red',name:'Bridal Al-Khalil Red',price:350,cats:['bridal','exclusive'],color:'Red / Gold',imgs:['khalil-red'],lab:S2,av:[0,0,0,0],desc:SATIN,incl:['Reversible belt: embroidered on one side, white satin on the other','Matching veil'],alt:'Bridal Al-Khalil thobe in red and gold satin'},
+ {id:'djellaba-dark-blue',name:'Djellaba Dark Blue',price:70,cats:['men'],color:'Dark blue',imgs:['djellaba-blue-1','djellaba-blue-2'],lab:DJ,len:DJL,av:[1,0,1,1,0],desc:DJD,fit:DJF,incl:[],alt:'Man in a dark blue djellaba'},
+ {id:'djellaba-white',name:'Djellaba White',price:70,cats:['men'],color:'White',imgs:['djellaba-white-1'],lab:DJ,len:DJL,av:[0,0,1,1,0],desc:DJD,fit:DJF,incl:[],alt:'Man in a white djellaba'},
+ {id:'djellaba-olive',name:'Djellaba Olive',price:70,cats:['men'],color:'Olive',imgs:['djellaba'],lab:DJ,len:DJL,av:[0,0,0,0,1],desc:DJD,fit:DJF,incl:[],alt:'Man in an olive djellaba'},
+ {id:'coat-black',name:'Coat Black',price:120,cats:['men'],color:'Black',imgs:['coat-1','coat-2'],lab:S2,av:[1,0,0,0],desc:'A coat for the cold days, with wool on the inside.',fit:'The model is 1.82 m, usually wears M and wears size 1.',incl:[],alt:'Man in a long black coat over a grey djellaba'},
+ {id:'kids-only-off-white-red',name:'Kids Classic White / Red',price:50,cats:['kids'],age:1,color:'White / Red',imgs:['kids-red-1','kids-red-2'],lab:['yr','yrs','yrs','yrs','yrs','yrs'],av:[0,0,0,1,0,0],desc:'The classic kids thobe. The belt is attached to the dress.',incl:[],alt:'Young girl and her mother in matching white thobes with red embroidery'},
+ {id:'kids-classic-soft-sage',name:'Kids Classic Soft Sage',price:50,cats:['kids'],age:1,color:'White / Green',imgs:['kids-sage-1'],lab:['yr','yrs','yrs','yrs','yrs','yrs'],av:[0,0,0,1,0,1],desc:'The classic kids thobe. The belt is attached to the dress. There is an adult version too, so you can match.',incl:[],alt:'Young girl and her mother in matching white thobes with sage green embroidery'},
+ {id:'belt-black',name:'Satin belt, black',price:20,cats:['accessories'],one:1,color:'Black',imgs:['belt'],lab:[],av:[1],desc:'A satin belt, for an extra touch.',incl:[],alt:'Black satin belt worn over a black dress'},
+ {id:'belt-burgundy',name:'Satin belt, burgundy',price:20,cats:['accessories'],one:1,color:'Burgundy',imgs:['belt-burgundy'],lab:[],av:[1],desc:'A satin belt, for an extra touch.',incl:[],alt:'Burgundy satin belt worn over a black dress'},
+ {id:'keffiyeh',name:'Keffiyeh, white and black',price:30,cats:['accessories'],one:1,color:'White / Black',imgs:['keffiyeh'],lab:[],av:[1],desc:'The keffiyeh in white and black.',incl:[],alt:'Two women wearing black and white keffiyehs over their shoulders'},
+ {id:'veil-bordeaux-coins',name:'Veil Bordeaux, coins',price:30,cats:['accessories'],one:1,color:'White / Bordeaux',imgs:['veil-bordeaux'],lab:[],av:[1],desc:'A veil with embroidered sides and coins.',incl:[],alt:'White veil with a bordeaux embroidered edge and gold coins'},
+ {id:'veil-coins-cream',name:'Veil Cream, coins',price:40,cats:['accessories'],one:1,color:'Cream',imgs:['veil-cream'],lab:[],av:[1],desc:'A veil with tassels and coins. The colour can look a shade darker in person.',incl:[],alt:'Cream veil with gold tassels and coins'},
+ {id:'hairband-white-burgundy',name:'Hairband White / Burgundy',price:9.99,cats:['accessories'],one:1,color:'White / Burgundy',imgs:['hairband'],lab:[],av:[1],desc:'An embroidered hairband with coins, on an elastic band. The number of coins can differ per piece.',incl:[],alt:'White hairband with burgundy cross-stitch and gold coins'}
+];
+var byId={}; P.forEach(function(p){byId[p.id]=p});
+var ADD=[byId['belt-black'],byId['keffiyeh']];
+function isThobe(p){return p.cats.indexOf('bridal')>-1||p.cats.indexOf('classic')>-1||p.cats.indexOf('exclusive')>-1}
+var TH=P.filter(isThobe);
+var COLL={
+ thobes:{t:'All thobes',d:'Every thobe is embroidered with tatreez and comes in sizes 1 to 4.',f:isThobe,n:234},
+ bridal:{t:'Bridal',d:'For your wedding and henna night. Most bridal thobes come with a matching veil and belt.',f:function(p){return p.cats.indexOf('bridal')>-1},n:34},
+ classic:{t:'Classic',d:'The thobe with the stripes. Subtle embroidery, and the belt is attached to the dress.',f:function(p){return p.cats.indexOf('classic')>-1},n:37},
+ exclusive:{t:'Exclusive',d:'Cross-stitch embroidery with satin or velvet and crystal embellishments.',f:function(p){return p.cats.indexOf('exclusive')>-1},n:9},
+ preorder:{t:'Winter pre-order',d:'Order now, we ship mid-December 2026. Pre-orders can\'t be returned or cancelled.',f:function(p){return !!p.pre&&left(p)>0},n:17},
+ last:{t:'Last sizes',d:'One or two sizes left. When they are gone, they are gone.',f:function(p){return isLast(p)}},
+ men:{t:'Men',d:'Djellabas with a removable cord, and a wool-lined coat for the cold days.',f:function(p){return p.cats.indexOf('men')>-1},n:19},
+ kids:{t:'Kids',d:'Classic thobes for ages 1 to 6. Several have an adult version, so mother and daughter can match.',f:function(p){return p.cats.indexOf('kids')>-1},n:16},
+ accessories:{t:'Accessories',d:'Satin belts, veils, hairbands and the keffiyeh, to finish the look.',f:function(p){return p.cats.indexOf('accessories')>-1},n:62}
+};
+function home1(p){var k=['bridal','classic','exclusive','men','kids','accessories'].filter(function(c){return p.cats.indexOf(c)>-1})[0];return k}
+function sn(p,s){return p.age?s+(s===1?' year':' years'):'Size '+s+(p.lab[s-1]?' ('+p.lab[s-1]+')':'')}
+function left(p){return p.av.reduce(function(a,b){return a+b},0)}
+function isLast(p){var n=left(p);return !p.one&&n>0&&n<=2}
+function status(p){var n=left(p);
+  if(p.one) return n?null:{k:'out',t:'Sold out'};
+  if(!n) return {k:'out',t:'Sold out'};
+  if(n===1) return {k:'last',t:'Last size'};
+  if(n===2) return {k:'last',t:'2 sizes left'};
+  if(p.pre) return {k:'pre',t:'Pre-order'};
+  return null;}
+var FILTERS=[['all','All'],['bridal','Bridal'],['classic','Classic'],['exclusive','Exclusive'],['preorder','Pre-order'],['last','Last sizes']];
+function match(p,f){return f==='all'||(f==='preorder'?!!p.pre&&left(p)>0:f==='last'?isLast(p):p.cats.indexOf(f)>-1)}
+function eur(n){return '€'+(n%1?n.toFixed(2):n)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+
+var state={bag:[],filter:'all',cf:{},sort:{}}, picked={}, homeY=0;
+
+/* grid */
+function card(p){var st=status(p), w=p.age?'Age':'Size';
+  return '<a class="card'+(st&&st.k==='out'?' is-out':'')+'" href="#'+p.id+'">'+
+    '<div class="card__img"><img src="img/'+p.imgs[0]+'.webp" width="493" height="740" loading="lazy" decoding="async" alt="'+esc(p.alt)+'">'+(st?'<span class="chip chip--'+st.k+'">'+st.t+'</span>':'')+'</div>'+
+    '<div class="card__row"><h3>'+esc(p.name)+'</h3><span class="card__price">'+eur(p.price)+'</span></div>'+
+    (p.one?'<p class="sizes"><i>One size</i></p>':'<p class="sizes"><span class="vh">'+(left(p)?'Available in '+w.toLowerCase()+' '+p.av.map(function(a,i){return a?i+1:0}).filter(Boolean).join(', '):'All sizes sold out')+'</span><i aria-hidden="true">'+w+'</i>'+p.av.map(function(a,i){return a?'<span aria-hidden="true">'+(i+1)+'</span>':'<s aria-hidden="true">'+(i+1)+'</s>'}).join('')+'</p>')+'</a>';}
+function renderFilters(){$('[data-filters]').innerHTML=FILTERS.map(function(f){var n=TH.filter(function(p){return match(p,f[0])}).length;return '<button type="button" data-filter="'+f[0]+'" aria-pressed="'+(state.filter===f[0])+'">'+f[1]+'<span>'+n+'</span></button>'}).join('')}
+function renderGrid(){var list=TH.filter(function(p){return match(p,state.filter)});$('[data-grid]').innerHTML=list.map(card).join('');renderFilters()}
+
+/* buy box */
+function buyBox(p,compact){var sel=picked[p.id], out=!left(p), h='';
+  if(!p.one){h+='<div class="buy__label"><span>'+(sel?sn(p,sel):(p.age?'Choose the age':'Choose your size'))+'</span>'+(p.age?'':'<button class="link" type="button" data-guide aria-expanded="false">Size guide</button>')+'</div>'+
+  '<div class="sz" style="--n:'+p.av.length+'" role="group" aria-label="'+(p.age?'Age':'Size')+'">'+p.av.map(function(a,i){return '<button type="button" data-size="'+(i+1)+'" aria-pressed="'+(sel===i+1)+'"'+(a?'':' disabled')+' aria-label="'+esc(sn(p,i+1))+(a?'':', sold out')+'"><b>'+(i+1)+'</b><small>'+p.lab[i]+'</small></button>'}).join('')+'</div>'+
+  (p.age?'':'<div class="guide" data-guidebox hidden><dl>'+p.lab.map(function(l,i){return '<div><dt>'+(i+1)+'</dt><dd>'+l+(p.len?', length '+p.len[i]:'')+'</dd></div>'}).join('')+'</dl><p class="small">Between two sizes or unsure? Email your height and usual size to <span class="addr">info@palestinianthobe.nl</span></p></div>');}
+  if(out){h+='<form class="form" data-form="notify" novalidate><label for="nt-'+p.id+'">Sold out. Leave your email and we tell you when it is back.</label><div class="form__row"><input id="nt-'+p.id+'" type="email" name="email" autocomplete="email" inputmode="email" required><button class="btn" type="submit">Notify me</button></div><p class="form__msg" data-msg role="status"></p></form>';}
+  else{h+='<p class="buy__err" data-err role="alert"></p><button class="btn btn--full" type="button" data-add="'+p.id+'">'+(p.pre?'Pre-order':'Add to bag')+', '+eur(p.price)+'</button>';
+    if(!compact||p.pre) h+=p.pre?'<p class="note"><b>Ships '+SHIP+'.</b><span>Pre-orders can\'t be returned or cancelled.</span></p>':(isLast(p)?'<p class="note note--last"><b>'+(left(p)===1?'Only '+sn(p,p.av.indexOf(1)+1).toLowerCase()+' is left.':'Only 2 sizes are left.')+'</b><span>Ships within 4 working days.</span></p>':'<p class="note"><b>In stock.</b><span>Ships within 4 working days.</span></p>');}
+  return h;}
+function renderBuy(el){var p=byId[el.dataset.buy];el.innerHTML=buyBox(p,el.hasAttribute('data-compact'))}
+function renderBuys(){$$('[data-buy]').forEach(renderBuy);syncStick()}
+
+/* product view */
+function pdp(p){var st=status(p), chips=[], k=home1(p), th=isThobe(p);
+  if(p.pre&&left(p)) chips.push('<span class="chip chip--pre">Pre-order, ships '+SHIP+'</span>');
+  if(st&&st.k!=='pre') chips.push('<span class="chip chip--'+st.k+'">'+st.t+'</span>');
+  p.cats.forEach(function(c){chips.push('<span class="chip">'+c.charAt(0).toUpperCase()+c.slice(1)+'</span>')});
+  var rel=P.filter(function(x){return x.id!==p.id&&left(x)&&x.cats.some(function(c){return p.cats.indexOf(c)>-1})}).slice(0,4);
+  if(rel.length<4) rel=rel.concat(TH.filter(function(x){return x.id!==p.id&&left(x)&&rel.indexOf(x)<0}).slice(0,4-rel.length));
+  var fit=p.one?'<p>One size.</p>':p.age?'<p>Sizes are by age, from 1 to 6 years.</p>':'<dl class="fit">'+p.lab.map(function(l,i){return '<div><dt>'+(i+1)+'</dt><dd>'+l+'</dd><dd>'+(p.len?'Length '+p.len[i]:'')+'</dd></div>'}).join('')+'</dl>'+(p.fit?'<p>'+esc(p.fit)+'</p>':'<p>The size chart differs per style, so check it for every thobe.</p>');
+  return '<div class="wrap pdp">'+
+  '<p class="crumbs"><a href="#top">Home</a> / <a href="#c-'+k+'">'+COLL[k].t+'</a> / '+esc(p.name)+'</p>'+
+  '<div class="pdp__grid" style="margin-top:12px">'+
+    '<div class="gal"><ul class="gal__track'+(p.imgs.length<2?' is-single':'')+'" data-track tabindex="0" aria-label="Photos of '+esc(p.name)+'">'+p.imgs.map(function(im,i){return '<li><img src="img/'+im+'.webp" width="887" height="1331" '+(i?'loading="lazy"':'fetchpriority="high"')+' alt="'+esc(p.alt)+(i?', photo '+(i+1):'')+'"></li>'}).join('')+'</ul>'+
+      (p.imgs.length>1?'<div class="gal__ui"><button type="button" data-gal="-1" aria-label="Previous photo"></button><span class="num" data-galn>1 / '+p.imgs.length+'</span><button type="button" data-gal="1" aria-label="Next photo"></button></div>':'')+'</div>'+
+    '<div class="pdp__info">'+
+      '<div class="pdp__top"><div class="pdp__chips">'+chips.join('')+'</div><h1 tabindex="-1" data-pdph>'+esc(p.name)+'</h1>'+
+      '<div class="pdp__priceRow"><span class="price num">'+eur(p.price)+'</span></div></div>'+
+      '<p>'+esc(p.desc)+'</p>'+
+      '<div class="buy" data-buy="'+p.id+'" data-main></div>'+
+      (p.incl.length?'<div class="incl"><h2>Comes with</h2><ul class="ticks">'+p.incl.map(function(i){return '<li>'+esc(i)+'</li>'}).join('')+'</ul></div>':'')+
+      '<div class="faq">'+
+        '<details open><summary>Details</summary><p>Colour: '+esc(p.color)+'.'+(th?' Embroidered with tatreez cross-stitch.':'')+'</p></details>'+
+        '<details><summary>Size and fit</summary>'+fit+'</details>'+
+        '<details><summary>Shipping and duties</summary><p>'+(p.pre?'This piece ships '+SHIP+'. ':'Ships within 4 working days. ')+'Worldwide with DHL or PostNL, with track and trace. Import taxes and duties in your country are not included.</p></details>'+
+        '<details><summary>Returns</summary><p>'+(p.pre?'Pre-orders can\'t be returned or cancelled.':'Within 14 days of delivery, unworn, unwashed and with the tags. Return shipping is at your own cost.')+' <a class="link" href="#care-returns">Read the return policy</a></p></details>'+
+      '</div>'+
+      (th?'<div class="vid"><div class="vid__frame"><img src="img/'+p.imgs[p.imgs.length>1?1:0]+'.webp" width="493" height="740" loading="lazy" alt=""></div><p class="cn"><b>Concept note</b><span>A short video of this thobe in motion plays here: the fall of the fabric, the embroidery up close.</span></p></div>':'')+
+      (p.one?'':'<div class="more"><h2>Finish the look</h2>'+ADD.map(function(a){return '<div class="addon"><img src="img/'+a.imgs[0]+'.webp" width="493" height="740" loading="lazy" alt=""><div><b>'+a.name+'</b><span class="num">'+eur(a.price)+'</span></div><button class="btn btn--ghost" type="button" data-add="'+a.id+'">Add</button></div>'}).join('')+'<a class="link" href="#c-accessories" style="justify-self:start">All belts, veils and hairbands</a></div>')+
+    '</div></div>'+
+  '<section class="revs" aria-labelledby="h-revs"><h2 id="h-revs">Reviews</h2><p>No reviews yet.</p><p class="cn"><b>Concept note</b><span>Customer reviews with photos show here once the store collects them. Nothing is filled in until they are real.</span></p></section>'+
+  '<section class="rel" aria-label="More to see"><div class="sec__head"><h2>You may also like</h2></div><div class="grid">'+rel.map(card).join('')+'</div></section></div>';}
+
+/* collection */
+var SORTS=[['feat','Featured'],['low','Price, low to high'],['high','Price, high to low'],['az','Name, A to Z']];
+var CF=[['all','All'],['now','In stock'],['pre','Pre-order'],['last','Last sizes']];
+function cfMatch(p,f){return f==='all'||(f==='now'?left(p)>0&&!p.pre:f==='pre'?!!p.pre&&left(p)>0:isLast(p))}
+function collection(k){var C=COLL[k], base=P.filter(C.f), f=state.cf[k]||'all', so=state.sort[k]||'feat';
+  var list=base.filter(function(p){return cfMatch(p,f)});
+  if(so==='low') list.sort(function(a,b){return a.price-b.price}); else if(so==='high') list.sort(function(a,b){return b.price-a.price}); else if(so==='az') list.sort(function(a,b){return a.name<b.name?-1:1});
+  else list.sort(function(a,b){return (left(b)?1:0)-(left(a)?1:0)});
+  var chips=CF.map(function(c){var n=base.filter(function(p){return cfMatch(p,c[0])}).length;return (c[0]==='all'||n)&&!(k==='preorder'||k==='last')?'<button type="button" data-cf="'+c[0]+'" aria-pressed="'+(f===c[0])+'">'+c[1]+'<span>'+n+'</span></button>':''}).join('');
+  return '<div class="wrap page">'+
+   '<p class="crumbs"><a href="#top">Home</a> / '+C.t+'</p>'+
+   '<div class="chead"><h1 tabindex="-1" data-pageh>'+C.t+'</h1><p>'+C.d+'</p></div>'+
+   '<div class="tools">'+(chips?'<div class="filters" role="group" aria-label="Filter">'+chips+'</div>':'<span class="tools__n">'+list.length+(list.length===1?' piece':' pieces')+'</span>')+
+     '<label class="sort">Sort<select data-sort="'+k+'">'+SORTS.map(function(x){return '<option value="'+x[0]+'"'+(so===x[0]?' selected':'')+'>'+x[1]+'</option>'}).join('')+'</select></label></div>'+
+   (list.length?'<div class="grid">'+list.map(card).join('')+'</div>':'<p>Nothing here right now. <a class="link" href="#c-thobes">See all thobes</a></p>')+
+   (C.n?'<p class="cn cfoot"><b>Concept note</b><span>This concept shows '+base.length+' of the '+C.n+' pieces in this collection. The live store loads all of them, with the same filters and sorting.</span></p>':'')+
+  '</div>';}
+
+/* story and customer care */
+function storyPage(){return '<div class="wrap page">'+
+  '<p class="crumbs"><a href="#top">Home</a> / Our story</p>'+
+  '<div class="chead"><h1 tabindex="-1" data-pageh>Our story</h1></div>'+
+  '<div class="sgrid"><div class="prose">'+
+   '<p class="big">We are Palestinian sisters with one dream: to keep our culture and identity alive.</p>'+
+   '<p>We do it to remember the patience and strength of our people, and to bring communities together.</p>'+
+   '<h2>Tatreez, 3,000 years in the making</h2>'+
+   '<p>Tatreez is an embroidery technique that goes back to the Canaanites. For centuries Palestinians have stitched it in colours and patterns that speak of community and standing.</p>'+
+   '<p>It records our history, and it keeps our culture alive. Every thobe in this shop carries it.</p>'+
+   '<h2>Wear it with love and pride</h2>'+
+   '<p>For your wedding, a henna night, Eid, or any day you want to carry where you come from.</p>'+
+   '<p class="cn"><b>Concept note</b><span>A portrait of the sisters and the story in their own words belong here: how it started, where the thobes are made, who stitches them.</span></p>'+
+   '<p><a class="btn" href="#c-thobes">Shop all thobes</a></p>'+
+  '</div><div class="simgs">'+
+   '<img src="img/all-thobes.webp" width="493" height="740" alt="Embroidered thobes in several colours">'+
+   '<img src="img/ln-2.webp" width="893" height="1339" loading="lazy" alt="Close view of red, green and gold cross-stitch on a navy thobe">'+
+   '<img src="img/kids-red-1.webp" width="470" height="705" loading="lazy" alt="Mother and young daughter in matching white and red thobes">'+
+  '</div></div></div>';}
+function carePage(){return '<div class="wrap page">'+
+  '<p class="crumbs"><a href="#top">Home</a> / Customer care</p>'+
+  '<div class="chead"><h1 tabindex="-1" data-pageh>Customer care</h1><p>Shipping, returns, sizes and how to reach us.</p></div>'+
+  '<div class="care"><nav class="care__nav" aria-label="On this page"><a href="#care-shipping">Shipping</a><a href="#care-returns">Returns</a><a href="#care-sizes">Sizes</a><a href="#care-preorder">Pre-orders</a><a href="#care-contact">Contact</a></nav>'+
+  '<div class="prose">'+
+   '<section id="care-shipping" class="prose"><h2 style="margin-top:0">Shipping</h2><p>In-stock orders ship within 4 working days. You get a track and trace code by email.</p><p>We ship worldwide with DHL or PostNL for an extra fee. You see the fee at checkout, before you pay.</p><p>Import taxes and duties in your country are not included in our prices.</p></section>'+
+   '<section id="care-returns" class="prose"><h2>Returns</h2><p>You can return an order within 14 days of delivery. The piece has to be unworn, unwashed and still have its original tags.</p><p>Return shipping is at your own cost. Sale items and pre-orders can\'t be returned.</p><p>An order can\'t be changed once it is placed, so check your size and address before you pay.</p></section>'+
+   '<section id="care-sizes" class="prose"><h2>Sizes</h2><p>Thobes come in sizes 1 to 4. Which size matches XS to XXL differs per style, so every product has its own size guide.</p><p>Djellabas come in sizes 1 to 5, with the length listed per size. Kids thobes go by age, from 1 to 6 years. Belts, veils and hairbands are one size.</p><p>Between two sizes? Email us your height and the size you usually wear.</p></section>'+
+   '<section id="care-preorder" class="prose"><h2>Pre-orders</h2><p>The winter pre-order ships '+SHIP+'. If you order in-stock pieces together with a pre-order, check the ship date in your bag.</p><p>Pre-orders can\'t be returned or cancelled.</p></section>'+
+   '<section id="care-contact" class="prose"><h2>Contact</h2><p>Email <span class="addr">info@palestinianthobe.nl</span>, or message us on <a class="link" href="https://www.instagram.com/palestiniannthobe" target="_blank" rel="noopener">Instagram</a>.</p>'+
+    '<form class="form form--stack" data-form="contact" novalidate><label for="ct-name">Name</label><input id="ct-name" name="name" type="text" autocomplete="name"><label for="ct-email">Email address</label><input id="ct-email" name="email" type="email" autocomplete="email" inputmode="email" required><label for="ct-msg">Your question</label><textarea id="ct-msg" name="message"></textarea><button class="btn" type="submit" style="justify-self:start">Send message</button><p class="form__msg" data-msg role="status"></p></form></section>'+
+  '</div></div></div>';}
+
+/* search */
+function results(q){q=q.trim().toLowerCase();var box=$('[data-results]');
+  if(!q){box.innerHTML='<p class="reshint">Or go straight to</p><div class="quick">'+['bridal','classic','exclusive','preorder','men','kids','accessories'].map(function(k){return '<a href="#c-'+k+'">'+COLL[k].t+'</a>'}).join('')+'</div>';return}
+  var hit=P.filter(function(p){return (p.name+' '+p.color+' '+p.cats.join(' ')+' '+p.desc).toLowerCase().indexOf(q)>-1});
+  box.innerHTML=hit.length?'<p class="reshint">'+hit.length+(hit.length===1?' result':' results')+'</p>'+hit.map(function(p){var st=status(p);return '<a class="res" href="#'+p.id+'"><img src="img/'+p.imgs[0]+'.webp" width="493" height="740" alt=""><span><b>'+esc(p.name)+'</b><span class="small">'+(st?st.t:(p.one?'One size':'In stock'))+'</span></span><span class="num">'+eur(p.price)+'</span></a>'}).join(''):'<p class="reshint">Nothing found for "'+esc(q)+'". Try a colour, like olive or burgundy.</p>';}
+
+/* bag */
+function count(){return state.bag.reduce(function(a,l){return a+l.qty},0)}
+function total(){return state.bag.reduce(function(a,l){return a+l.qty*byId[l.id].price},0)}
+function renderBag(){var n=count();
+  $$('[data-count]').forEach(function(e){e.textContent=n});
+  $$('[data-bagbtn]').forEach(function(b){b.setAttribute('aria-label','Open bag, '+n+(n===1?' item':' items'))});
+  var body=$('[data-bag]'), ft=$('[data-bagft]');
+  if(!n){body.innerHTML='<div class="empty"><p>Your bag is empty.</p><a class="btn" href="#c-thobes" data-close>Shop all thobes</a></div>';ft.innerHTML='';ft.hidden=true;return}
+  ft.hidden=false;
+  body.innerHTML=state.bag.map(function(l,i){var p=byId[l.id];
+    return '<div class="line"><img src="img/'+p.imgs[0]+'.webp" width="493" height="740" alt=""><div class="line__main"><div class="line__row"><b>'+esc(p.name)+'</b><span class="num">'+eur(p.price*l.qty)+'</span></div>'+
+    '<span class="small">'+(p.one?'One size':sn(p,l.size))+(p.pre?'. Pre-order, ships '+SHIP:'')+'</span>'+
+    '<div class="line__ft"><div class="qty"><button type="button" data-qty="-1" data-i="'+i+'" aria-label="One less '+esc(p.name)+'">−</button><span class="num" aria-live="polite">'+l.qty+'</span><button type="button" data-qty="1" data-i="'+i+'" aria-label="One more '+esc(p.name)+'">+</button></div><button class="link small" type="button" data-remove="'+i+'">Remove</button></div></div></div>'}).join('');
+  ft.innerHTML='<div class="sub"><span>Subtotal</span><b class="num">'+eur(total())+'</b></div><p class="concept" data-concept hidden>This is a design concept, so checkout is switched off. On the live store this button goes to the secure Shopify checkout with iDEAL, PayPal, Apple Pay and cards.</p><button class="btn btn--full" type="button" data-checkout>Checkout securely</button>';}
+function add(id,size){var p=byId[id], key=p.one?0:size, l=state.bag.filter(function(x){return x.id===id&&x.size===key})[0];
+  if(l) l.qty++; else state.bag.push({id:id,size:key,qty:1});
+  renderBag(); open('bag');}
+
+/* drawers */
+var openEl=null, opener=null, page=$('#page'), scrim=$('[data-scrim]');
+function open(id){if(openEl) close(true);opener=document.activeElement;openEl=$('#'+id);openEl.classList.add('is-on');scrim.classList.add('is-on');page.inert=true;$('[data-stick]').inert=true;document.documentElement.style.overflow='hidden';if(id==='search') results($('[data-q]').value);setTimeout(function(){(openEl&&($('[data-autofocus]',openEl)||$('[data-close]',openEl))||openEl).focus()},60)}
+function close(keep){if(!openEl) return;openEl.classList.remove('is-on');scrim.classList.remove('is-on');page.inert=false;$('[data-stick]').inert=false;document.documentElement.style.overflow='';openEl=null;if(!keep&&opener&&opener.focus) opener.focus()}
+
+/* sticky add bar on the product view (phone) */
+var stick=$('[data-stick]'), io=null, current=null;
+function syncStick(){if(!current){stick.classList.remove('is-on');return}
+  var p=current, sel=picked[p.id], ok=p.one||sel;
+  stick.innerHTML='<div><b>'+esc(p.name)+'</b><span class="small num">'+eur(p.price)+(sel?', '+sn(p,sel).toLowerCase():'')+'</span></div>'+(left(p)?'<button class="btn" type="button" '+(ok?'data-add="'+p.id+'"':'data-tosize')+'>'+(ok?(p.pre?'Pre-order':'Add to bag'):(p.age?'Choose age':'Choose size'))+'</button>':'<button class="btn" type="button" data-tosize>Notify me</button>');}
+function watchStick(){if(io) io.disconnect();var target=$('[data-main]');if(!target||!('IntersectionObserver' in window)) return;
+  io=new IntersectionObserver(function(es){var e=es[0];var on=!e.isIntersecting&&e.boundingClientRect.top<0;stick.classList.toggle('is-on',on);stick.setAttribute('aria-hidden',String(!on))},{threshold:0});io.observe(target)}
+
+/* routing: #product-handle opens a product, anything else is the home page */
+var home=$('[data-view="home"]'), view=$('[data-view="pdp"]'), pageV=$('[data-view="page"]'), ys={}, lastH='', lastKind='home';
+function parse(h){if(byId[h]) return {t:'p',p:byId[h]};
+  if(h.indexOf('c-')===0&&COLL[h.slice(2)]) return {t:'c',k:h.slice(2)};
+  if(h==='our-story') return {t:'s'};
+  if(h==='customer-care'||h.indexOf('care-')===0) return {t:'care'};
+  return {t:'home'}}
+function route(first){var h=(location.hash||'').slice(1), r=parse(h), back=lastKind==='p'&&r.t!=='p';
+  if(!first) ys[lastH]=scrollY;
+  if(r.t==='p'){var p=r.p;if(lastKind==='home') homeY=scrollY;current=p;view.innerHTML=pdp(p);home.hidden=true;pageV.hidden=true;pageV.innerHTML='';view.hidden=false;renderBuys();watchStick();scrollTo(0,0);document.title=p.name+' | Palestinian Thobe Concept';if(!first){var t=$('[data-pdph]',view);t&&t.focus({preventScroll:true})}}
+  else if(r.t==='home'){var was=current||!pageV.hidden;current=null;if(io) io.disconnect();stick.classList.remove('is-on');view.hidden=true;view.innerHTML='';pageV.hidden=true;pageV.innerHTML='';home.hidden=false;document.title='Palestinian Thobe Concept';renderBuys();
+    var el=h&&document.getElementById(h);
+    if(el) el.scrollIntoView({behavior:first||reduce||was?'auto':'smooth'}); else if(was) scrollTo(0,back?homeY:0);}
+  else{current=null;if(io) io.disconnect();stick.classList.remove('is-on');view.hidden=true;view.innerHTML='';home.hidden=true;pageV.hidden=false;
+    var same=lastKind===r.t&&r.t==='care';
+    if(!same) pageV.innerHTML=r.t==='c'?collection(r.k):r.t==='s'?storyPage():carePage();
+    document.title=(r.t==='c'?COLL[r.k].t:r.t==='s'?'Our story':'Customer care')+' | Palestinian Thobe Concept';
+    var anchor=r.t==='care'&&h!=='customer-care'&&document.getElementById(h);
+    if(anchor) anchor.scrollIntoView({behavior:same&&!reduce?'smooth':'auto'}); else scrollTo(0,back&&ys[h]?ys[h]:0);
+    if(!first&&!anchor){var ph=$('[data-pageh]',pageV);ph&&ph.focus({preventScroll:true})}}
+  lastH=h;lastKind=r.t;}
+function goShop(f){if(f){state.filter=f;renderGrid()}
+  if(current){location.hash='shop'} else {var s=$('#shop');s.scrollIntoView({behavior:reduce?'auto':'smooth'});if(location.hash!=='#shop') history.replaceState(null,'','#shop')}}
+
+/* events */
+document.addEventListener('click',function(e){var t=e.target, b;
+  if((b=t.closest('[data-cf]'))){var ck=location.hash.slice(3);state.cf[ck]=b.dataset.cf;pageV.innerHTML=collection(ck);var kb=$('[data-cf="'+b.dataset.cf+'"]',pageV);kb&&kb.focus({preventScroll:true});return}
+  if((b=t.closest('[data-open]'))){open(b.dataset.open);return}
+  if((b=t.closest('[data-filter]'))){e.preventDefault();var inDrawer=!!b.closest('.drawer');if(inDrawer) close(true);var go=b.dataset.go||b.getAttribute('href')||inDrawer;state.filter=b.dataset.filter;renderGrid();if(go) goShop();else{var keep=$('[data-filters] [aria-pressed="true"]');keep&&keep.focus({preventScroll:true})}return}
+  if(t.closest('[data-close]')){close(t.closest('a')?true:false);return}
+  if(t===scrim){close();return}
+  if((b=t.closest('[data-size]'))){var box=b.closest('[data-buy]');picked[box.dataset.buy]=+b.dataset.size;renderBuys();var nb=$('[data-size="'+b.dataset.size+'"]',box);nb&&nb.focus({preventScroll:true});return}
+  if((b=t.closest('[data-guide]'))){var g=$('[data-guidebox]',b.closest('[data-buy]'));g.hidden=!g.hidden;b.setAttribute('aria-expanded',String(!g.hidden));return}
+  if((b=t.closest('[data-add]'))){var id=b.dataset.add, p=byId[id];
+    if(p.one){add(id,0);return}
+    if(!left(p)) return;
+    if(!picked[id]){var bx=b.closest('[data-buy]')||$('[data-main]');if(bx){$('[data-err]',bx).textContent='Choose a size first.';var f=$('[data-size]:not(:disabled)',bx);f&&f.focus()}return}
+    add(id,picked[id]);return}
+  if(t.closest('[data-tosize]')){var m=$('[data-main]');if(m){m.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});var f2=$('[data-size]:not(:disabled), input',m);f2&&setTimeout(function(){f2.focus({preventScroll:true})},reduce?0:450)}return}
+  if((b=t.closest('[data-qty]'))){var l=state.bag[+b.dataset.i];l.qty+=+b.dataset.qty;if(l.qty<1) state.bag.splice(+b.dataset.i,1);renderBag();var again=$('[data-qty="'+b.dataset.qty+'"][data-i="'+b.dataset.i+'"]');(again||$('[data-close]',$('#bag'))).focus();return}
+  if((b=t.closest('[data-remove]'))){state.bag.splice(+b.dataset.remove,1);renderBag();$('[data-close]',$('#bag')).focus();return}
+  if(t.closest('[data-checkout]')){var c=$('[data-concept]');c.hidden=false;c.setAttribute('role','status');return}
+  if((b=t.closest('[data-gal]'))){var tr=$('[data-track]');tr.scrollBy({left:+b.dataset.gal*tr.firstElementChild.offsetWidth,behavior:reduce?'auto':'smooth'});return}
+});
+document.addEventListener('change',function(e){var sel=e.target.closest&&e.target.closest('[data-sort]');if(!sel) return;state.sort[sel.dataset.sort]=sel.value;pageV.innerHTML=collection(sel.dataset.sort);var ns=$('[data-sort]',pageV);ns&&ns.focus({preventScroll:true})});
+document.addEventListener('input',function(e){if(e.target.matches&&e.target.matches('[data-q]')) results(e.target.value)});
+document.addEventListener('submit',function(e){var f=e.target.closest('[data-form]');if(!f) return;e.preventDefault();var inp=$('input[type=email]',f), msg=$('[data-msg]',f);
+  if(!/^\S+@\S+\.\S+$/.test(inp.value.trim())){inp.setAttribute('aria-invalid','true');msg.textContent='Enter your email address, like name@example.com.';inp.focus();return}
+  inp.removeAttribute('aria-invalid');msg.textContent=f.dataset.form==='news'?'Thanks. This is a concept, so you are not signed up yet.':f.dataset.form==='contact'?'Thanks. This is a concept, so your message is not sent.':'Thanks. This is a concept, so no email is sent yet.';});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'&&openEl){close();return}
+  if(e.key==='Tab'&&openEl){var f=$$('button:not(:disabled),a[href],input',openEl).filter(function(x){return x.offsetParent!==null});if(!f.length) return;var a=f[0], z=f[f.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}return}
+  var tr=e.target.closest&&e.target.closest('[data-track]');if(tr&&(e.key==='ArrowRight'||e.key==='ArrowLeft')){e.preventDefault();tr.scrollBy({left:(e.key==='ArrowRight'?1:-1)*tr.firstElementChild.offsetWidth,behavior:reduce?'auto':'smooth'})}});
+document.addEventListener('scroll',function(e){var tr=e.target;if(!tr||!tr.matches||!tr.matches('[data-track]')) return;var n=$('[data-galn]');if(!n) return;var w=tr.firstElementChild.offsetWidth+6;n.textContent=Math.min(tr.children.length,Math.round(tr.scrollLeft/w)+1)+' / '+tr.children.length},true);
+addEventListener('hashchange',function(){if(openEl) close(true);route(false)});
+
+/* announcement */
+(function(){var ps=$$('[data-bar] p'), i=0;if(reduce||ps.length<2) return;setInterval(function(){ps[i].classList.remove('is-on');ps[i].setAttribute('aria-hidden','true');i=(i+1)%ps.length;ps[i].classList.add('is-on');ps[i].removeAttribute('aria-hidden')},4500)})();
+
+function start(saved){if(saved&&saved.bag) state.bag=saved.bag.filter(function(l){return byId[l.id]});if(saved&&saved.filter) state.filter=saved.filter;renderGrid();renderBag();route(true)}
+var hot=window.claude&&window.claude.hot;
+if(hot&&hot.snapshot) hot.snapshot(function(){return {bag:state.bag,filter:state.filter}});
+if(hot&&hot.ready) hot.ready(start); else start((hot&&hot.data)||{});
+})();
+
+/* AVORO pill */
+(function(){
+  var av=document.querySelector('.avoro-pill'); if(!av) return;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function B(){var m=innerWidth<821,w=av.offsetWidth,h=av.offsetHeight;return{x0:8,x1:Math.max(8,innerWidth-w-8),y0:m?74:96,y1:Math.max(m?74:96,innerHeight-h-(m?130:96))}}
+  var b=B(),x=b.x0+12,y=b.y0+(b.y1-b.y0)*.35,a=0.62,vx=Math.cos(a),vy=Math.sin(a),hold=false,last=0;
+  function put(){av.style.setProperty('--ax',x.toFixed(1)+'px');av.style.setProperty('--ay',y.toFixed(1)+'px')}
+  if(reduce){b=B();x=b.x1;y=b.y0;put();return}
+  ['pointerenter','focus'].forEach(function(e){av.addEventListener(e,function(){hold=true})});
+  ['pointerleave','blur'].forEach(function(e){av.addEventListener(e,function(){hold=false})});
+  addEventListener('resize',function(){b=B();x=Math.min(Math.max(x,b.x0),b.x1);y=Math.min(Math.max(y,b.y0),b.y1)});
+  function step(t){var dt=last?Math.min(.05,(t-last)/1000):0;last=t;
+    if(!hold){var sp=innerWidth<821?36:48;b=B();x+=vx*sp*dt;y+=vy*sp*dt;
+      if(x<=b.x0){x=b.x0;vx=Math.abs(vx)}else if(x>=b.x1){x=b.x1;vx=-Math.abs(vx)}
+      if(y<=b.y0){y=b.y0;vy=Math.abs(vy)}else if(y>=b.y1){y=b.y1;vy=-Math.abs(vy)}
+      put()}
+    requestAnimationFrame(step)}
+  put();requestAnimationFrame(step);
+})();
+</script>
+</body>
+</html>
