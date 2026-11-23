@@ -337,10 +337,9 @@ h3{font:500 1rem/1.3 var(--f-body);color:var(--ink)}
 /* phone: calmer run-up to the first products */
 @media (max-width:699px){
   .hero__note>span:not(.chip){display:none}
-  .facts ul{display:flex;overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-inline:max(16px,env(safe-area-inset-left,0px));scrollbar-width:none;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
-  .facts ul::-webkit-scrollbar{display:none}
-  .facts li:nth-child(n){flex:0 0 auto;padding:14px 20px 14px 0;border-top:0;border-left:0;scroll-snap-align:start}
-  .facts li:nth-child(n+2){padding-left:20px;border-left:1px solid var(--line)}
+  .facts li:nth-child(n){padding-block:12px}
+  .facts li span{display:none}
+  .facts b{font-size:.9rem}
   #shop{padding-top:44px}
   [data-filters]{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
   [data-filters]::-webkit-scrollbar{display:none}
