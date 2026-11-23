@@ -117,7 +117,8 @@ h3{font:500 1rem/1.3 var(--f-body);color:var(--ink)}
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
 /* service strip */
-.facts{border-block:1px solid var(--line);margin-top:0}
+.facts{border-top:1px solid var(--line);margin-top:0}
+.divider{padding-top:0}
 .facts ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
 .facts li{padding:16px 12px 16px 0;display:grid;gap:2px;align-content:start}
 .facts li:nth-child(even){padding-left:14px;border-left:1px solid var(--line)}
@@ -409,6 +410,7 @@ h3{font:500 1rem/1.3 var(--f-body);color:var(--ink)}
       <li><b>Pay your way</b><span>iDEAL, PayPal, Apple Pay, cards</span></li>
     </ul></div>
   </section>
+  <div class="wrap divider" aria-hidden="true"><div class="stitch stitch--wide"></div></div>
 
   <section class="sec" id="shop" aria-labelledby="h-shop">
     <div class="wrap">
