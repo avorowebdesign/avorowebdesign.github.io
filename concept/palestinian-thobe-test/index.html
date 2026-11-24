@@ -360,7 +360,8 @@ h3{font:500 1rem/1.3 var(--f-body);color:var(--ink)}
 @media (min-width:560px){.acc summary{grid-template-columns:28px 92px minmax(0,1fr) 14px}.acc__ic{grid-row:auto}.acc summary b{grid-column:auto}.acc__val{grid-column:auto;font-size:1rem}.acc summary::after{grid-column:auto;grid-row:auto}}
 /* phone: calmer run-up to the first products */
 @media (max-width:699px){
-  .hero__note,.facts{display:none}
+  .facts{display:none}
+  .hero__note{padding-bottom:6px}
   .divider{padding-top:8px}
   #shop [data-grid]{position:relative;display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));scroll-padding-inline:max(16px,env(safe-area-inset-left,0px))}
   #shop [data-grid]::-webkit-scrollbar{display:none}
