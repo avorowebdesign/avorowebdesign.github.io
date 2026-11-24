@@ -358,10 +358,14 @@ h3{font:500 1rem/1.3 var(--f-body);color:var(--ink)}
 .acc details[open] summary::after{transform:rotate(-135deg) translate(-2px,-2px)}
 .acc details p{padding:0 0 18px 42px;font-size:.92rem;max-width:56ch}
 @media (min-width:560px){.acc summary{grid-template-columns:28px 92px minmax(0,1fr) 14px}.acc__ic{grid-row:auto}.acc summary b{grid-column:auto}.acc__val{grid-column:auto;font-size:1rem}.acc summary::after{grid-column:auto;grid-row:auto}}
+.hero__pre{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;color:inherit;text-decoration:none}
 /* phone: calmer run-up to the first products */
 @media (max-width:699px){
   .facts{display:none}
-  .hero__note{padding-bottom:6px}
+  .hero__pre .link{display:none}
+  .hero__pre{width:100%;min-height:44px;flex-wrap:nowrap;font-size:.84rem}
+  .hero__pre .chip{flex:none}
+  .hero__pre::after{content:"";margin-left:auto;width:8px;height:8px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);transform:rotate(-45deg)}
   .divider{padding-top:8px}
   #shop [data-grid]{position:relative;display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));scroll-padding-inline:max(16px,env(safe-area-inset-left,0px))}
   #shop [data-grid]::-webkit-scrollbar{display:none}
@@ -434,7 +438,7 @@ h3{font:500 1rem/1.3 var(--f-body);color:var(--ink)}
           <a class="btn" href="#shop" data-filter="bridal">Shop bridal</a>
           <a class="btn btn--ghost" href="#shop" data-filter="all">Shop all thobes</a>
         </div>
-        <p class="hero__note"><span class="chip chip--pre">Pre-order</span><span>17 winter pieces, shipping mid-December.</span> <a class="link" href="#shop" data-filter="preorder">See the pre-order</a></p>
+        <p class="hero__note"><a class="hero__pre" href="#shop" data-filter="preorder"><span class="chip chip--pre">Pre-order</span><span>17 winter pieces, shipping mid-December.</span> <span class="link">See the pre-order</span></a></p>
       </div>
       <figure class="hero__img"><img src="img/hero.webp" width="887" height="1331" alt="Woman in a burgundy and gold bridal thobe with a matching veil and satin belt" fetchpriority="high"></figure>
     </div>
