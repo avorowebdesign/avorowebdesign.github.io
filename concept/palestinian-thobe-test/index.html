@@ -372,6 +372,17 @@ h3{font:500 1rem/1.3 var(--f-body);color:var(--ink)}
   [data-filters]::-webkit-scrollbar{display:none}
   [data-filters] button{flex:none}
 }
+@media (min-width:700px){
+  #shop [data-grid]{position:relative;display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+  #shop [data-grid]::-webkit-scrollbar{display:none}
+  #shop [data-grid] .card{position:relative;flex:0 0 calc((100% - 40px)/3);min-width:0;scroll-snap-align:start}
+  .rownav{display:flex;margin-right:-12px}
+  .prog{display:block;margin-top:32px}
+}
+@media (min-width:1080px){
+  #shop [data-grid]{gap:24px}
+  #shop [data-grid] .card{flex-basis:calc((100% - 72px)/4)}
+}
 
 /* AVORO concept pill (AVORO's own colours and faces) */
 .avoro-pill{position:fixed;left:0;top:0;z-index:24;display:flex;align-items:center;gap:8px;padding:8px 14px 8px 10px;border-radius:999px;background:var(--avoro-bg);color:var(--avoro-fg);font:500 12px/1 "Inter",system-ui,sans-serif;text-decoration:none;border:1px solid var(--avoro-edge);box-shadow:0 10px 30px var(--avoro-shadow);transform:translate3d(var(--ax,14px),var(--ay,96px),0);will-change:transform}
