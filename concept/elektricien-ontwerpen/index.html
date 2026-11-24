@@ -24,31 +24,35 @@ a.kaart:hover,a.kaart:focus-visible{border-color:#14161a;outline:none}
 a.kaart h2{margin:0;font-size:24px;letter-spacing:-.01em}
 .stalen{display:flex;gap:8px}
 .stalen span{width:26px;height:26px;border-radius:50%}
-.open{font-weight:700}
+.open{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 22px;border-radius:12px;background:#14161a;color:#fff;font-weight:700;font-size:17px;width:fit-content}
+.open::after{content:"";width:9px;height:9px;border-top:2.5px solid currentColor;border-right:2.5px solid currentColor;transform:rotate(45deg)}
+a.kaart{box-shadow:0 2px 10px rgba(20,22,26,.06)}
+a.kaart:hover .open,a.kaart:focus-visible .open{background:#2f333b}
+@media (max-width:640px){.open{width:100%}}
 </style>
 </head>
 <body>
 <main>
 <h1>Elektricien Amsterdam, drie ontwerpen</h1>
-<p>Echte pagina's met de video, de belknop en de reviews. Open ze op je telefoon: ze zijn eerst voor mobiel gemaakt. Bij elk ontwerp kies je bovenin een kleur. Zo zie je hoe de sites over verschillende kleuren verdeeld kunnen worden.</p>
+<p>Tik op een ontwerp om het te openen. Het zijn echte pagina's met de video, de belknop en de reviews. Open ze op je telefoon: ze zijn eerst voor mobiel gemaakt. Bij elk ontwerp kies je bovenin een kleur. Zo zie je hoe de sites over verschillende kleuren verdeeld kunnen worden.</p>
 <div class="kaarten">
 <a class="kaart" href="ontwerp-1.html">
 <h2>Ontwerp 1, Licht</h2>
 <p>Wit en strak, met één felle kleur per site. De video staat groot en in kleur bovenaan, met het eigen logo en het 24/7-icoon in de kop. Met precies de inhoud die nu live staat.</p>
 <span class="stalen" aria-label="Vijf kleuren"><span style="background:#f5c518"></span><span style="background:#4cd07a"></span><span style="background:#e8403a"></span><span style="background:#5ec4f0"></span><span style="background:#f58a2a"></span></span>
-<span class="open">Bekijk ontwerp 1</span>
+<span class="open">Open ontwerp 1</span>
 </a>
 <a class="kaart" href="ontwerp-2.html">
 <h2>Ontwerp 2, Donker</h2>
 <p>Donkere kop met de video rechts, felle belknop en de diensten als fototegels. Met precies de inhoud die nu live staat.</p>
 <span class="stalen" aria-label="Vijf kleuren"><span style="background:#f57c1f"></span><span style="background:#ffc21a"></span><span style="background:#3ccf7a"></span><span style="background:#58a8ff"></span><span style="background:#ff6a4d"></span></span>
-<span class="open">Bekijk ontwerp 2</span>
+<span class="open">Open ontwerp 2</span>
 </a>
 <a class="kaart" href="ontwerp-3.html">
 <h2>Ontwerp 3, Video</h2>
 <p>Video over het hele scherm, de belknop onder je duim en een blok "Wat is er aan de hand?" waar de bezoeker zijn probleem kiest en meteen weet wat hij moet doen.</p>
 <span class="stalen" aria-label="Zes kleurcombinaties"><span style="background:linear-gradient(135deg,#1652c8 50%,#ffc72c 50%)"></span><span style="background:linear-gradient(135deg,#0e6767 50%,#ff7a59 50%)"></span><span style="background:linear-gradient(135deg,#1b6b3a 50%,#c6ee3a 50%)"></span><span style="background:linear-gradient(135deg,#5a2ca0 50%,#47e6b8 50%)"></span><span style="background:linear-gradient(135deg,#2d3138 50%,#3fa9f5 50%)"></span><span style="background:linear-gradient(135deg,#c4262e 50%,#ffe3c2 50%)"></span></span>
-<span class="open">Bekijk ontwerp 3</span>
+<span class="open">Open ontwerp 3</span>
 </a>
 </div>
 <p>Alle teksten, reviews en het nummer zijn van de Amsterdam-site. Het "Concept door AVORO"-pilletje gaat eraf bij oplevering.</p>
