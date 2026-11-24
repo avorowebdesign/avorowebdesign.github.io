@@ -641,7 +641,7 @@ function status(p){var n=left(p);
   if(n===2) return {k:'last',t:'2 sizes left'};
   if(p.pre) return {k:'pre',t:'Pre-order'};
   return null;}
-var FILTERS=[['all','All'],['bridal','Bridal'],['classic','Classic'],['exclusive','Exclusive'],['preorder','Pre-order'],['last','Last sizes']];
+var FILTERS=[['all','All'],['preorder','Pre-order'],['bridal','Bridal'],['classic','Classic'],['exclusive','Exclusive'],['last','Last sizes']];
 function match(p,f){return f==='all'||(f==='preorder'?!!p.pre&&left(p)>0:f==='last'?isLast(p):p.cats.indexOf(f)>-1)}
 function eur(n){return '€'+n}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
