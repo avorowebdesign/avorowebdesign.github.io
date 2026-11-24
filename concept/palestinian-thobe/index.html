@@ -359,9 +359,11 @@ h3{font:500 1rem/1.3 var(--f-body);color:var(--ink)}
 .acc details p{padding:0 0 18px 42px;font-size:.92rem;max-width:56ch}
 @media (min-width:560px){.acc summary{grid-template-columns:28px 92px minmax(0,1fr) 14px}.acc__ic{grid-row:auto}.acc summary b{grid-column:auto}.acc__val{grid-column:auto;font-size:1rem}.acc summary::after{grid-column:auto;grid-row:auto}}
 .hero__pre{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;color:inherit;text-decoration:none}
+.facts--low{display:none}
 /* phone: calmer run-up to the first products */
 @media (max-width:699px){
   .facts{display:none}
+  .facts.facts--low{display:block;margin-bottom:56px}
   .hero__pre .link{display:none}
   .hero__pre{width:100%;min-height:44px;flex-wrap:nowrap;font-size:.84rem}
   .hero__pre .chip{flex:none}
@@ -520,6 +522,15 @@ h3{font:500 1rem/1.3 var(--f-body);color:var(--ink)}
         <a class="cat" href="https://palestinianthobe.nl/collections/satin-belts" target="_blank" rel="noopener"><span class="cat__img"><img src="img/belt.webp" width="493" height="740" loading="lazy" alt="Black satin belt worn over a black dress"></span><span class="cat__row"><b>Satin belts</b><span>30 colours</span></span></a>
       </div>
     </div>
+  </section>
+
+  <section class="facts facts--low" aria-label="Good to know">
+    <div class="wrap"><ul>
+      <li><b>Worldwide shipping</b><span>With DHL or PostNL, tracked</span></li>
+      <li><b>Ships in 4 working days</b><span>For everything in stock</span></li>
+      <li><b>14-day returns</b><span>Not on sale or pre-order pieces</span></li>
+      <li><b>Pay your way</b><span>iDEAL, PayPal, Apple Pay, cards</span></li>
+    </ul></div>
   </section>
 
   <section class="sec" id="help" aria-labelledby="h-help" style="padding-top:0">
