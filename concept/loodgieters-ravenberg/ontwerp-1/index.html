@@ -21,7 +21,8 @@
 :root{
  --nacht:#07111f;--nacht-2:#0d1b2e;--staal:#0a63b8;--staal-l:#4f9be6;--wit:#fff;--gebroken:#f2f2ef;--steen:#e4e4df;
  --inkt:#0b1422;--tekst:#3f4855;--grijs:#717a86;--lijn:#d9d9d3;--lijn-d:rgba(255,255,255,.14);
- --oranje:#ea5f01;--oranje-h:#ff7314;--cta-ink:#fff;--staal-ink:#fff;
+ --oranje:#0a63b8;--oranje-h:#0b72d4;--cta-ink:#fff;--staal-ink:#fff;
+ --hero-bg:#07111f;--hero-ink:#fff;--hero-zacht:#cfd7e2;--hero-lijn:rgba(255,255,255,.16);
  --cond:"Cond","Arial Narrow",sans-serif;--body:"Barlow",ui-sans-serif,system-ui,sans-serif;--serif:"Serif",Georgia,serif;
  --pad:20px;--max:1280px
 }
@@ -43,8 +44,8 @@ a{color:inherit}
 .knop svg{width:20px;height:20px;flex:none}
 .knop-oranje{background:var(--oranje);color:var(--cta-ink)}
 .knop-oranje:hover{background:var(--oranje-h)}
-.knop-lijn{color:var(--wit);box-shadow:inset 0 0 0 2px rgba(255,255,255,.85)}
-.knop-lijn:hover{background:var(--wit);color:var(--nacht)}
+.knop-lijn{color:var(--hero-ink);box-shadow:inset 0 0 0 2px var(--hero-ink)}
+.knop-lijn:hover{background:var(--hero-ink);color:var(--hero-bg)}
 .knop-donker{background:var(--nacht);color:var(--wit)}
 .knop-donker:hover{background:var(--staal)}
 
@@ -62,26 +63,26 @@ a{color:inherit}
 .kop-bel svg{width:22px;height:22px}
 
 /* hero: donkere foto, grote hoofdletters, rechts de lijst (zoals Spence) */
-.hero{position:relative;isolation:isolate;background:var(--nacht);color:var(--wit);min-height:calc(100svh - 38px);display:flex;align-items:flex-end}
+.hero{position:relative;isolation:isolate;background:var(--hero-bg);color:var(--hero-ink);min-height:calc(100svh - 38px);display:flex;align-items:flex-end}
 .hero-foto{position:absolute;inset:0;z-index:-1}
 .hero-foto img{width:100%;height:100%;object-fit:cover;object-position:62% 30%}
-.hero-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,17,31,.55) 0%,rgba(7,17,31,.35) 30%,rgba(7,17,31,.92) 72%,var(--nacht) 100%)}
+.hero-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,color-mix(in srgb,var(--hero-bg) 55%,transparent) 0%,color-mix(in srgb,var(--hero-bg) 35%,transparent) 30%,color-mix(in srgb,var(--hero-bg) 92%,transparent) 72%,var(--hero-bg) 100%)}
 .hero-in{width:100%;padding-top:150px;padding-bottom:34px;display:grid;gap:30px}
-.hero h1{font-size:clamp(50px,14vw,128px);color:var(--wit)}
+.hero h1{font-size:clamp(50px,14vw,128px);color:var(--hero-ink)}
 .hero h1 span{display:block}
-.hero-zin{font-size:19px;color:#d3dae4;max-width:34ch;margin-top:18px}
+.hero-zin{font-size:19px;color:var(--hero-zacht);max-width:34ch;margin-top:18px}
 .hero .knoppen{display:grid;gap:10px;margin-top:26px}
-.hero-lijst{border-top:1px solid var(--lijn-d)}
-.hero-lijst a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:13px 0;border-bottom:1px solid var(--lijn-d);text-decoration:none;font:600 19px/1.2 var(--cond);text-transform:uppercase;letter-spacing:.03em}
+.hero-lijst{border-top:1px solid var(--hero-lijn)}
+.hero-lijst a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:13px 0;border-bottom:1px solid var(--hero-lijn);text-decoration:none;font:600 19px/1.2 var(--cond);text-transform:uppercase;letter-spacing:.03em}
 .hero-lijst a::after{content:"";width:9px;height:9px;border-top:2px solid var(--staal-l);border-right:2px solid var(--staal-l);transform:rotate(45deg);flex:none}
 .hero-lijst a:hover{color:var(--staal-l)}
 
 /* feiten op nacht, groot in hoofdletters */
-.feiten{background:var(--nacht);color:#b9c3d0;padding:8px 0 56px}
-.feiten ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--lijn-d)}
+.feiten{background:var(--hero-bg);color:var(--hero-zacht);padding:8px 0 56px}
+.feiten ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--hero-lijn)}
 .feiten li{padding:22px 0 0;display:grid;gap:6px;font-size:15px;line-height:1.35}
 .feiten li:nth-child(odd){padding-right:14px}
-.feiten b{font:700 clamp(34px,9vw,58px)/.95 var(--cond);color:var(--wit);text-transform:uppercase}
+.feiten b{font:700 clamp(34px,9vw,58px)/.95 var(--cond);color:var(--hero-ink);text-transform:uppercase}
 
 /* secties */
 .sectie{padding:72px 0}
@@ -162,9 +163,9 @@ a{color:inherit}
 .voet-onder{border-top:1px solid var(--lijn-d);margin-top:40px;padding-top:20px;font-size:14px}
 
 /* belbalk mobiel */
-.belbalk{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:1.4fr 1fr;padding-bottom:env(safe-area-inset-bottom);background:var(--nacht)}
+.belbalk{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:1.4fr 1fr;padding-bottom:env(safe-area-inset-bottom);background:var(--hero-bg);border-top:1px solid var(--hero-lijn)}
 .belbalk .knop{min-height:58px;font-size:18px}
-.belbalk .knop-lijn{box-shadow:none;border-left:1px solid var(--lijn-d)}
+.belbalk .knop-lijn{box-shadow:none;color:var(--hero-ink)}
 
 .avoro-pill{position:fixed;left:0;top:0;z-index:70;display:flex;align-items:center;gap:8px;padding:8px 14px 8px 10px;border-radius:999px;background:rgba(36,8,14,.84);color:#f2e6cf;font:500 12px/1 system-ui,sans-serif;text-decoration:none;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(242,230,207,.14);box-shadow:0 10px 30px rgba(0,0,0,.28);transform:translate3d(var(--ax,14px),var(--ay,96px),0);will-change:transform}
 .avoro-pill:hover{color:#fff}.avoro-pill b{font-weight:600;letter-spacing:.06em}
@@ -188,12 +189,12 @@ a{color:inherit}
  .kop .wrap{min-height:92px;gap:40px}
  .merk{margin-right:0}.merk img{height:52px}
  .kop nav{display:flex;gap:30px;margin-right:auto}
- .kop nav a{color:var(--wit);text-decoration:none;font:600 17px/1 var(--cond);text-transform:uppercase;letter-spacing:.04em;padding:8px 0;border-bottom:2px solid transparent}
+ .kop nav a{color:var(--kop-ink,var(--wit));text-decoration:none;font:600 17px/1 var(--cond);text-transform:uppercase;letter-spacing:.04em;padding:8px 0;border-bottom:2px solid transparent}
  .kop nav a:hover{border-bottom-color:var(--staal-l)}
  .kop-bel{width:auto;padding:0 22px;gap:10px;display:inline-flex;align-items:center;font:700 18px/1 var(--cond);text-transform:uppercase;letter-spacing:.03em;text-decoration:none;min-height:52px}
  .kop-bel span{display:inline}
  .hero{min-height:min(100svh,940px)}
- .hero-foto::after{background:linear-gradient(90deg,rgba(7,17,31,.9) 0%,rgba(7,17,31,.6) 45%,rgba(7,17,31,.25) 75%),linear-gradient(180deg,transparent 60%,var(--nacht) 100%)}
+ .hero-foto::after{background:linear-gradient(90deg,color-mix(in srgb,var(--hero-bg) 92%,transparent) 0%,color-mix(in srgb,var(--hero-bg) 65%,transparent) 45%,color-mix(in srgb,var(--hero-bg) 20%,transparent) 78%),linear-gradient(180deg,transparent 60%,var(--hero-bg) 100%)}
  .hero-in{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);align-items:end;gap:80px;padding-bottom:64px}
  .feiten{padding-bottom:80px}
  .sectie{padding:120px 0}
@@ -220,14 +221,18 @@ a{color:inherit}
 @media (min-width:1040px){.kop-bel span{display:inline}}
 
 /* kleurensets */
-[data-kleur="antraciet"]{--nacht:#121314;--staal:#3a3d42;--staal-l:#ff8a3d;--oranje:#f26b1d;--oranje-h:#ff8236}
-[data-kleur="groen"]{--nacht:#0c1f1b;--staal:#1d5a4c;--staal-l:#d6a74a;--oranje:#d6a74a;--oranje-h:#e6b85c;--cta-ink:#0c1f1b}
-[data-kleur="petrol"]{--nacht:#052328;--staal:#0b7480;--staal-l:#5fc6cf;--oranje:#ff6a3d;--oranje-h:#ff8058}
-[data-kleur="rood"]{--nacht:#0d1522;--staal:#a91f2b;--staal-l:#ff6b6b;--oranje:#c8232f;--oranje-h:#de3340}
-[data-kleur="geel"]{--nacht:#0e0e0e;--staal:#f3c300;--staal-ink:#0e0e0e;--staal-l:#f3c300;--oranje:#f3c300;--oranje-h:#ffd633;--cta-ink:#0e0e0e}
+.logo-k{display:none}
+[data-kleur="groen"]{--nacht:#0c1f1b;--hero-bg:#0c1f1b;--staal:#1d5a4c;--staal-l:#d6a74a;--oranje:#c9a04a;--oranje-h:#d9b25e;--cta-ink:#0c1f1b}
+[data-kleur="antraciet"]{--nacht:#141516;--hero-bg:#141516;--staal:#2b2e33;--staal-l:#c9ced6;--oranje:#ffffff;--oranje-h:#e9ebee;--cta-ink:#141516}
+[data-kleur="licht"],[data-kleur="steen"],[data-kleur="wit"]{--hero-ink:#0b1422;--hero-zacht:#45505e;--hero-lijn:rgba(11,20,34,.16);--kop-ink:#0b1422}
+[data-kleur="licht"]{--hero-bg:#f4f6f9;--gebroken:#f4f6f9;--staal:#0a63b8;--staal-l:#0a63b8;--oranje:#0a63b8;--oranje-h:#0b72d4}
+[data-kleur="steen"]{--hero-bg:#eeede8;--gebroken:#eeede8;--staal:#1d5a4c;--staal-l:#1d5a4c;--oranje:#1d5a4c;--oranje-h:#24705e;--nacht:#10261f}
+[data-kleur="wit"]{--hero-bg:#ffffff;--gebroken:#f5f5f5;--staal:#111111;--staal-l:#111111;--oranje:#111111;--oranje-h:#333333;--nacht:#111111}
+@media (min-width:1040px){:is([data-kleur="licht"],[data-kleur="steen"],[data-kleur="wit"]) .hero-lijst{background:color-mix(in srgb,var(--hero-bg) 94%,transparent);padding:6px 22px;border-top:0}:is([data-kleur="licht"],[data-kleur="steen"],[data-kleur="wit"]) .hero-foto::after{background:linear-gradient(90deg,color-mix(in srgb,var(--hero-bg) 96%,transparent) 0%,color-mix(in srgb,var(--hero-bg) 80%,transparent) 42%,color-mix(in srgb,var(--hero-bg) 10%,transparent) 75%),linear-gradient(180deg,transparent 60%,var(--hero-bg) 100%)}
+[data-kleur="licht"] .logo-w,[data-kleur="steen"] .logo-w,[data-kleur="wit"] .logo-w{display:none}[data-kleur="licht"] .logo-k,[data-kleur="steen"] .logo-k,[data-kleur="wit"] .logo-k{display:block}}
 .kleuren{position:fixed;left:12px;bottom:calc(70px + env(safe-area-inset-bottom));z-index:65;display:flex;align-items:center;gap:6px;background:#fff;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 .kleuren span{font:700 13px/1 var(--cond);text-transform:uppercase;letter-spacing:.04em;color:#0b1422;padding:0 6px 0 4px}
-.kleuren button{width:34px;height:34px;border:0;padding:0;cursor:pointer;display:grid;grid-template-columns:1fr 1fr;outline-offset:2px}
+.kleuren button{width:34px;height:34px;border:1px solid #d0d4da;padding:0;cursor:pointer;display:grid;grid-template-columns:1fr 1fr;outline-offset:2px}
 .kleuren button i{display:block}
 .kleuren button[aria-pressed="true"]{outline:3px solid #0b1422}
 @media (min-width:700px){.kleuren{bottom:20px;left:20px}}
@@ -235,7 +240,7 @@ a{color:inherit}
  .hero{display:block;min-height:0}
  .hero-foto{position:relative;inset:auto;z-index:0;aspect-ratio:4/3.4}
  .hero-foto img{object-position:55% 35%}
- .hero-foto::after{background:linear-gradient(180deg,rgba(7,17,31,.6) 0%,rgba(7,17,31,0) 30%,rgba(7,17,31,0) 60%,var(--nacht) 100%)}
+ .hero-foto::after{background:linear-gradient(180deg,rgba(7,17,31,.55) 0%,rgba(7,17,31,0) 30%,rgba(7,17,31,0) 60%,var(--hero-bg) 100%)}
  .hero-in{padding-top:0;margin-top:-56px;position:relative}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -243,7 +248,7 @@ a{color:inherit}
 </head><body>
 <div class="balk"><a href="#bellen">24/7 spoed? Bel <span class="nr leeg">0XX XXX XX XX</span></a></div>
 <header class="kop"><div class="wrap">
-<a class="merk" href="./" aria-label="Ravenberg Loodgieters, home"><img src="media/logo-wit.png" width="312" height="96" alt="Ravenberg Loodgieters"></a>
+<a class="merk" href="./" aria-label="Ravenberg Loodgieters, home"><img class="logo-w" src="media/logo-wit.png" width="312" height="96" alt="Ravenberg Loodgieters"><img class="logo-k" src="media/logo.png" width="312" height="96" alt=""></a>
 <nav aria-label="Hoofdmenu"><a href="#diensten">Diensten</a><a href="#werkwijze">Werkwijze</a><a href="#tarieven">Tarieven</a><a href="#werkgebied">Werkgebied</a></nav>
 <a class="kop-bel" href="#bellen" aria-label="Bel Ravenberg Loodgieters"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span>Bel direct</span></a>
 </div></header>
@@ -343,7 +348,7 @@ document.getElementById('dienstlijst').innerHTML=D.map(d=>`<a class="dienst" hre
 const P=[['Zuid-Holland',['Rotterdam','Den Haag','Leiden','Dordrecht','Zoetermeer','Delft','Schiedam','Gouda']],['Noord-Holland',['Amsterdam','Haarlem','Alkmaar','Hilversum','Zaandam','Hoofddorp']],['Utrecht',['Utrecht','Amersfoort','Nieuwegein','Zeist','Veenendaal','Houten']],['Noord-Brabant',['Eindhoven','Tilburg','Breda','Den Bosch','Helmond','Oss']]];
 document.getElementById('gebied').innerHTML=P.map(p=>`<div class="prov"><h3>${p[0]}</h3><div class="steden">${p[1].map(s=>`<a href="#werkgebied">${s}</a>`).join('')}</div></div>`).join('');
 document.getElementById('plaatsen').innerHTML=P.flatMap(p=>p[1]).map(s=>`<option value="${s}">`).join('');
-const K=[['','Nachtblauw','#07111f','#ea5f01'],['antraciet','Antraciet','#121314','#f26b1d'],['groen','Diepgroen','#0c1f1b','#d6a74a'],['petrol','Petrol','#052328','#ff6a3d'],['rood','Marine en rood','#0d1522','#c8232f'],['geel','Zwart en geel','#0e0e0e','#f3c300']];
+const K=[['','Nachtblauw','#07111f','#0a63b8'],['groen','Diepgroen en messing','#0c1f1b','#c9a04a'],['antraciet','Antraciet en wit','#141516','#ffffff'],['licht','Licht en blauw','#f4f6f9','#0a63b8'],['steen','Steen en groen','#eeede8','#1d5a4c'],['wit','Wit en zwart','#ffffff','#111111']];
 const kb=document.querySelector('.kleuren');
 const zet=k=>{if(k)document.documentElement.dataset.kleur=k;else delete document.documentElement.dataset.kleur;kb.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.k===k)))};
 kb.insertAdjacentHTML('beforeend',K.map(k=>`<button type="button" data-k="${k[0]}" aria-label="${k[1]}" title="${k[1]}" aria-pressed="false"><i style="background:${k[2]}"></i><i style="background:${k[3]}"></i></button>`).join(''));
