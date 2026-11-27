@@ -380,3 +380,4 @@ img { height: auto; }
   .kaart4 li { padding: 26px 16px; }
   .spoed2 { padding: 96px 0; }
 }
+@media (max-width: 999px) { body:not(.donker) .troef li { justify-items: center; text-align: center; } }
