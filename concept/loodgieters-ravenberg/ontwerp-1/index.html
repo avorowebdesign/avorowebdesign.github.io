@@ -2,107 +2,342 @@
 <html lang="nl"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Loodgieter nodig? Dag en nacht bereikbaar | Ravenberg Loodgieters</title><meta name="description" content="Ravenberg Loodgieters helpt bij lekkage, verstopping, riolering en cv-storingen. Dag en nacht bereikbaar, prijs vooraf.">
-<meta name="theme-color" content="#031b3a">
-<link rel="preload" href="media/schibsted.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="stijl.css">
+<title>Ravenberg Loodgieters | Dag en nacht bereikbaar</title>
+<meta name="description" content="Ravenberg Loodgieters lost lekkage, verstopping, rioolproblemen en cv-storingen op. Dag en nacht bereikbaar, prijs vooraf.">
+<meta name="theme-color" content="#07111f">
+<link rel="preload" href="media/barlow-semi-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="media/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" type="image/png" href="media/favicon.png"><link rel="apple-touch-icon" href="media/apple-touch-icon.png">
+<style>
+/* Ravenberg, ontwerp 1: de stoere hoofdletters van Rogers-O'Brien op de donkere foto van Spence.
+   Kleur: nachtblauw, staalblauw uit het logo, gebroken wit; oranje alleen voor bellen.
+   Alles vierkant. Mobiel eerst. */
+@font-face{font-family:"Cond";src:url(media/barlow-semi-condensed-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Cond";src:url(media/barlow-semi-condensed-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Barlow";src:url(media/barlow-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Barlow";src:url(media/barlow-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Barlow";src:url(media/barlow-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Serif";src:url(media/newsreader-latin-opsz-normal.woff2) format("woff2");font-weight:200 800;font-display:swap}
+:root{
+ --nacht:#07111f;--nacht-2:#0d1b2e;--staal:#0a63b8;--staal-l:#4f9be6;--wit:#fff;--gebroken:#f2f2ef;--steen:#e4e4df;
+ --inkt:#0b1422;--tekst:#3f4855;--grijs:#717a86;--lijn:#d9d9d3;--lijn-d:rgba(255,255,255,.14);
+ --oranje:#ea5f01;--oranje-h:#ff7314;
+ --cond:"Cond","Arial Narrow",sans-serif;--body:"Barlow",ui-sans-serif,system-ui,sans-serif;--serif:"Serif",Georgia,serif;
+ --pad:20px;--max:1280px
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{overflow-x:clip}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:80px}
+body{margin:0;background:var(--gebroken);color:var(--tekst);font:400 17px/1.6 var(--body)}
+h1,h2,h3,p,ul,ol,figure,dl,dd{margin:0}ul,ol{padding:0;list-style:none}
+img,svg{display:block;max-width:100%}img{height:auto}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--oranje);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.nr{white-space:nowrap;font-variant-numeric:tabular-nums}
+.leeg{border-bottom:1px dashed currentColor}
+.kap{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.01em;line-height:.98}
+
+/* knoppen: vierkant */
+.knop{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:54px;padding:0 24px;border:0;border-radius:0;font:700 18px/1 var(--cond);text-transform:uppercase;letter-spacing:.03em;text-decoration:none;cursor:pointer;transition:background-color .15s,color .15s,box-shadow .15s}
+.knop svg{width:20px;height:20px;flex:none}
+.knop-oranje{background:var(--oranje);color:var(--wit)}
+.knop-oranje:hover{background:var(--oranje-h)}
+.knop-lijn{color:var(--wit);box-shadow:inset 0 0 0 2px rgba(255,255,255,.85)}
+.knop-lijn:hover{background:var(--wit);color:var(--nacht)}
+.knop-donker{background:var(--nacht);color:var(--wit)}
+.knop-donker:hover{background:var(--staal)}
+
+/* balk bovenaan, zoals Rogers-O'Brien */
+.balk{background:var(--staal);color:var(--wit);text-align:center;font:600 15px/1 var(--cond);text-transform:uppercase;letter-spacing:.04em}
+.balk a{display:block;padding:11px var(--pad);text-decoration:none}
+.balk a:hover{background:#0857a3}
+
+/* kop */
+.kop{position:absolute;left:0;right:0;z-index:20}
+.kop .wrap{display:flex;align-items:center;gap:20px;min-height:76px}
+.merk{margin-right:auto}.merk img{height:44px;width:auto}
+.kop nav{display:none}
+.kop-bel{width:50px;height:50px;display:grid;place-items:center;background:var(--oranje);color:var(--wit)}
+.kop-bel svg{width:22px;height:22px}
+
+/* hero: donkere foto, grote hoofdletters, rechts de lijst (zoals Spence) */
+.hero{position:relative;isolation:isolate;background:var(--nacht);color:var(--wit);min-height:calc(100svh - 38px);display:flex;align-items:flex-end}
+.hero-foto{position:absolute;inset:0;z-index:-1}
+.hero-foto img{width:100%;height:100%;object-fit:cover;object-position:62% 30%}
+.hero-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,17,31,.55) 0%,rgba(7,17,31,.35) 30%,rgba(7,17,31,.92) 72%,var(--nacht) 100%)}
+.hero-in{width:100%;padding-top:150px;padding-bottom:34px;display:grid;gap:30px}
+.hero h1{font-size:clamp(50px,14vw,128px);color:var(--wit)}
+.hero h1 span{display:block}
+.hero-zin{font-size:19px;color:#d3dae4;max-width:34ch;margin-top:18px}
+.hero .knoppen{display:grid;gap:10px;margin-top:26px}
+.hero-lijst{border-top:1px solid var(--lijn-d)}
+.hero-lijst a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:13px 0;border-bottom:1px solid var(--lijn-d);text-decoration:none;font:600 19px/1.2 var(--cond);text-transform:uppercase;letter-spacing:.03em}
+.hero-lijst a::after{content:"";width:9px;height:9px;border-top:2px solid var(--staal-l);border-right:2px solid var(--staal-l);transform:rotate(45deg);flex:none}
+.hero-lijst a:hover{color:var(--staal-l)}
+
+/* feiten op nacht, groot in hoofdletters */
+.feiten{background:var(--nacht);color:#b9c3d0;padding:8px 0 56px}
+.feiten ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--lijn-d)}
+.feiten li{padding:22px 0 0;display:grid;gap:6px;font-size:15px;line-height:1.35}
+.feiten li:nth-child(odd){padding-right:14px}
+.feiten b{font:700 clamp(34px,9vw,58px)/.95 var(--cond);color:var(--wit);text-transform:uppercase}
+
+/* secties */
+.sectie{padding:72px 0}
+.sectie-wit{background:var(--wit)}
+.kopblok{display:grid;gap:14px;margin-bottom:34px}
+.kopblok h2{font-size:clamp(40px,10vw,76px);color:var(--inkt)}
+.kopblok p{max-width:52ch}
+
+/* diensten: grote rijen met foto */
+.diensten{border-top:2px solid var(--inkt)}
+.dienst{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;padding:22px 0 26px;border-bottom:1px solid var(--lijn);text-decoration:none;color:var(--inkt)}
+.dienst img{width:100%;aspect-ratio:16/9;object-fit:cover;filter:saturate(.85)}
+.dienst h3{font:700 clamp(30px,8vw,44px)/1 var(--cond);text-transform:uppercase}
+.dienst p{color:var(--tekst);margin-top:8px;max-width:46ch}
+.dienst .meer{margin-top:14px;display:inline-flex;align-items:center;gap:10px;font:700 16px/1 var(--cond);text-transform:uppercase;letter-spacing:.04em;color:var(--staal)}
+.dienst .meer svg{width:18px;height:18px;transition:transform .2s}
+.dienst:hover .meer svg{transform:translateX(4px)}
+
+/* uitspraak in schreef, zoals Spence */
+.uitspraak{position:relative;isolation:isolate;color:var(--wit);background:var(--nacht);padding:0}
+.uitspraak img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 35%}
+.uitspraak-tekst{padding:36px var(--pad) 56px;max-width:var(--max);margin:0 auto}
+.uitspraak blockquote{margin:0;font:400 clamp(34px,8.5vw,72px)/1.05 var(--serif);letter-spacing:-.015em;max-width:18ch}
+.uitspraak p{margin-top:20px;color:#b9c3d0;max-width:48ch}
+
+/* werkwijze */
+.stappen{display:grid;gap:0;counter-reset:s;border-top:2px solid var(--inkt)}
+.stappen li{counter-increment:s;display:grid;grid-template-columns:64px minmax(0,1fr);gap:4px 16px;padding:22px 0;border-bottom:1px solid var(--lijn)}
+.stappen li::before{content:counter(s);grid-row:span 2;font:700 56px/.85 var(--cond);color:var(--staal)}
+.stappen h3{font:700 24px/1.1 var(--cond);text-transform:uppercase;color:var(--inkt)}
+
+/* tarieven */
+.tarief{border-top:2px solid var(--inkt)}
+.tarief div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:18px 0;border-bottom:1px solid var(--lijn)}
+.tarief dt{color:var(--inkt);font-weight:500}
+.tarief dd{font:700 28px/1 var(--cond);color:var(--inkt)}
+.klein{font-size:14px;color:var(--grijs);margin-top:14px}
+
+/* werkgebied */
+.zoeker{display:flex;border:2px solid var(--inkt);background:var(--wit);margin-bottom:34px}
+.zoeker input{flex:1;min-width:0;border:0;padding:16px;font:500 17px var(--body);color:var(--inkt);background:transparent}
+.zoeker input:focus{outline:none}
+.zoeker:focus-within{outline:3px solid var(--oranje);outline-offset:2px}
+.zoeker button{border:0;background:var(--inkt);color:var(--wit);padding:0 20px;font:700 17px var(--cond);text-transform:uppercase;cursor:pointer}
+.prov{border-top:2px solid var(--inkt);padding-top:14px}
+.prov+.prov{margin-top:30px}
+.prov h3{font:700 22px/1 var(--cond);text-transform:uppercase;color:var(--inkt);margin-bottom:10px}
+.steden{columns:2;column-gap:18px}
+.steden a{display:block;padding:7px 0;text-decoration:none;break-inside:avoid}
+.steden a:hover{color:var(--staal);text-decoration:underline}
+
+/* vragen */
+.vragen{border-top:2px solid var(--inkt)}
+.vragen details{border-bottom:1px solid var(--lijn)}
+.vragen summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font:600 21px/1.2 var(--cond);text-transform:uppercase;letter-spacing:.01em;color:var(--inkt)}
+.vragen summary::-webkit-details-marker{display:none}
+.vragen summary::after{content:"+";font:400 30px/1 var(--body);color:var(--staal);transition:transform .2s}
+.vragen details[open] summary::after{transform:rotate(45deg)}
+.vragen details p{padding:0 0 22px;max-width:66ch}
+
+/* slot */
+.slot{background:var(--staal);color:#dfeaf7;padding:64px 0}
+.slot h2{font-size:clamp(44px,11vw,96px);color:var(--wit)}
+.slot p{margin:16px 0 28px;max-width:40ch;font-size:19px}
+.slot .knoppen{display:grid;gap:10px}
+.slot .knop-oranje{background:var(--nacht)}
+.slot .knop-oranje:hover{background:var(--inkt)}
+
+/* voet */
+.voet{background:var(--nacht);color:#9aa6b5;padding:56px 0 120px;font-size:15px}
+.voet .merk img{height:48px}
+.voet-kol{display:grid;gap:32px}
+.voet h3{font:700 18px/1 var(--cond);text-transform:uppercase;letter-spacing:.03em;color:var(--wit);margin-bottom:12px}
+.voet a{color:#d2d9e3;text-decoration:none;display:inline-block;padding:5px 0}
+.voet a:hover{color:var(--wit);text-decoration:underline}
+.voet-onder{border-top:1px solid var(--lijn-d);margin-top:40px;padding-top:20px;font-size:14px}
+
+/* belbalk mobiel */
+.belbalk{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:1.4fr 1fr;padding-bottom:env(safe-area-inset-bottom);background:var(--nacht)}
+.belbalk .knop{min-height:58px;font-size:18px}
+.belbalk .knop-lijn{box-shadow:none;border-left:1px solid var(--lijn-d)}
+
+.avoro-pill{position:fixed;left:0;top:0;z-index:70;display:flex;align-items:center;gap:8px;padding:8px 14px 8px 10px;border-radius:999px;background:rgba(36,8,14,.84);color:#f2e6cf;font:500 12px/1 system-ui,sans-serif;text-decoration:none;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(242,230,207,.14);box-shadow:0 10px 30px rgba(0,0,0,.28);transform:translate3d(var(--ax,14px),var(--ay,96px),0);will-change:transform}
+.avoro-pill:hover{color:#fff}.avoro-pill b{font-weight:600;letter-spacing:.06em}
+.avoro-pill__dot{width:8px;height:8px;border-radius:50%;background:#7ac68f;box-shadow:0 0 0 3px rgba(122,198,143,.22)}
+@media (max-width:820px){.avoro-pill{font-size:11px;padding:7px 11px 7px 9px;gap:7px}.avoro-pill__long{display:none}}
+
+@media (min-width:700px){
+ :root{--pad:36px}
+ .hero .knoppen,.slot .knoppen{display:flex;flex-wrap:wrap}
+ .feiten ul{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .feiten li{padding-right:18px}
+ .dienst{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:32px;align-items:center}
+ .dienst img{aspect-ratio:4/3}
+ .steden{columns:3}
+ .voet-kol{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .belbalk{display:none}
+ .voet{padding-bottom:56px}
+}
+@media (min-width:1040px){
+ :root{--pad:56px}
+ .kop .wrap{min-height:92px;gap:40px}
+ .merk{margin-right:0}.merk img{height:52px}
+ .kop nav{display:flex;gap:30px;margin-right:auto}
+ .kop nav a{color:var(--wit);text-decoration:none;font:600 17px/1 var(--cond);text-transform:uppercase;letter-spacing:.04em;padding:8px 0;border-bottom:2px solid transparent}
+ .kop nav a:hover{border-bottom-color:var(--staal-l)}
+ .kop-bel{width:auto;padding:0 22px;gap:10px;display:inline-flex;align-items:center;font:700 18px/1 var(--cond);text-transform:uppercase;letter-spacing:.03em;text-decoration:none;min-height:52px}
+ .kop-bel span{display:inline}
+ .hero{min-height:min(100svh,940px)}
+ .hero-foto::after{background:linear-gradient(90deg,rgba(7,17,31,.9) 0%,rgba(7,17,31,.6) 45%,rgba(7,17,31,.25) 75%),linear-gradient(180deg,transparent 60%,var(--nacht) 100%)}
+ .hero-in{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);align-items:end;gap:80px;padding-bottom:64px}
+ .feiten{padding-bottom:80px}
+ .sectie{padding:120px 0}
+ .kopblok{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:end;gap:48px;margin-bottom:48px}
+ .diensten{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:56px}
+ .dienst{grid-template-columns:minmax(0,1fr);align-items:start}
+ .dienst img{aspect-ratio:16/10}
+ .uitspraak{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}
+ .uitspraak img{height:100%;aspect-ratio:auto;min-height:640px}
+ .uitspraak-tekst{padding:80px 56px;margin:0}
+ .twee{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:80px;align-items:start}
+ .twee .kopblok{grid-template-columns:1fr;position:sticky;top:120px}
+ .stappen{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:40px}
+ .stappen li{grid-template-columns:1fr;border-bottom:0}
+ .stappen li::before{grid-row:auto;font-size:88px;margin-bottom:10px}
+ .gebied{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 56px}
+ .prov+.prov{margin-top:0}
+ .steden{columns:2}
+ .slot .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:end;gap:56px}
+ .slot .knoppen{justify-content:flex-end}
+ .voet-kol{grid-template-columns:1.4fr repeat(3,minmax(0,1fr));gap:48px}
+}
+.kop-bel span{display:none}
+@media (min-width:1040px){.kop-bel span{display:inline}}
+@media (max-width:1039px){
+ .hero{display:block;min-height:0}
+ .hero-foto{position:relative;inset:auto;z-index:0;aspect-ratio:4/3.4}
+ .hero-foto img{object-position:55% 35%}
+ .hero-foto::after{background:linear-gradient(180deg,rgba(7,17,31,.6) 0%,rgba(7,17,31,0) 30%,rgba(7,17,31,0) 60%,var(--nacht) 100%)}
+ .hero-in{padding-top:0;margin-top:-56px;position:relative}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
 </head><body>
+<div class="balk"><a href="#bellen">24/7 spoed? Bel <span class="nr leeg">0XX XXX XX XX</span></a></div>
 <header class="kop"><div class="wrap">
 <a class="merk" href="./" aria-label="Ravenberg Loodgieters, home"><img src="media/logo-wit.png" width="312" height="96" alt="Ravenberg Loodgieters"></a>
-<nav aria-label="Hoofdmenu"><a href="./#diensten">Diensten</a><a href="./#tarieven">Tarieven</a><a href="./#werkgebied">Werkgebied</a><a href="./#vragen">Vragen</a></nav>
-<a class="kop-nr" href="#bellen">Dag en nacht bereikbaar<b class="nr leeg">0XX XXX XX XX</b></a>
-<a class="knop knop-oranje kop-knop" href="#bellen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Bellen</a>
-<a class="kop-bel" href="#bellen" aria-label="Bel Ravenberg Loodgieters"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></a>
+<nav aria-label="Hoofdmenu"><a href="#diensten">Diensten</a><a href="#werkwijze">Werkwijze</a><a href="#tarieven">Tarieven</a><a href="#werkgebied">Werkgebied</a></nav>
+<a class="kop-bel" href="#bellen" aria-label="Bel Ravenberg Loodgieters"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span>Bel direct</span></a>
 </div></header>
 <main>
 <section class="hero">
-<div class="hero-bg"><img src="media/werk-900.webp" srcset="media/werk-600.webp 600w, media/werk-900.webp 900w" sizes="100vw" alt="" fetchpriority="high"></div>
-<div class="wrap"><div class="hero-tekst">
-<h1>Lekkage, verstopping of storing? Wij lossen het op.</h1>
-<p>Ervaren loodgieters bij u in de buurt. Dag en nacht bereikbaar, en u weet vooraf wat het kost.</p>
-<div class="knoppen"><a class="knop knop-oranje" href="#bellen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Bel direct bij spoed<svg class="pijl-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="knop knop-glas" href="offerte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Offerte aanvragen<svg class="pijl-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-<ul class="troef"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>24/7</b>bereikbaar</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 6.5A7 7 0 1 0 17 17.5M4 10h9M4 14h9"/></svg><span><b>Prijs</b>vooraf bekend</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.5c3 0 6 1.8 6 5.5"/></svg><span><b>Ervaren</b>loodgieters</span></li></ul>
-</div></div></section>
-
-<section class="sectie sectie-tint" id="diensten"><div class="wrap">
-<div class="intro"><h2>Onze diensten</h2><p>Van spoedreparatie tot nieuwe installatie. Kies uw probleem voor uitleg en tarieven.</p></div>
-<ul class="diensten2"><li><a href="lekkage"><span class="d-beeld"><img src="media/dienst-lekkage.webp" width="288" height="288" alt="" loading="lazy"></span><span><b>Lekkage</b><small>Lek vinden en repareren</small></span><span class="d-pijl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li><li><a href="lekkage"><span class="d-beeld"><img src="media/dienst-verstopping.webp" width="288" height="288" alt="" loading="lazy"></span><span><b>Verstopping</b><small>Toilet, gootsteen, douche en afvoer</small></span><span class="d-pijl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li><li><a href="lekkage"><span class="d-beeld"><img src="media/dienst-riolering.webp" width="288" height="288" alt="" loading="lazy"></span><span><b>Riolering</b><small>Ontstoppen, camera-inspectie, herstel</small></span><span class="d-pijl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li><li><a href="lekkage"><span class="d-beeld"><img src="media/dienst-cv-ketel.webp" width="288" height="288" alt="" loading="lazy"></span><span><b>Cv-ketel</b><small>Storing, onderhoud en vervanging</small></span><span class="d-pijl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li><li><a href="lekkage"><span class="d-beeld"><img src="media/dienst-kranen-sanitair.webp" width="288" height="288" alt="" loading="lazy"></span><span><b>Kranen en sanitair</b><small>Repareren, vervangen en plaatsen</small></span><span class="d-pijl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li><li><a href="lekkage"><span class="d-beeld"><img src="media/dienst-lekdetectie.webp" width="288" height="288" alt="" loading="lazy"></span><span><b>Lekdetectie</b><small>Lek opsporen zonder onnodig breekwerk</small></span><span class="d-pijl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li></ul>
-<div class="uitlicht" style="margin-top:28px">
-<img src="media/werk-900.webp" srcset="media/werk-600.webp 600w, media/werk-900.webp 900w" sizes="(min-width: 640px) 45vw, 100vw" width="900" height="600" alt="Loodgieter aan het werk aan de leidingen" loading="lazy">
-<div><h2>Cv-ketel onderhoud?</h2><ul class="vink"><li>Voorkom storingen in de winter</li><li>Langere levensduur van uw ketel</li><li>Zuiniger stoken</li></ul><a class="knop knop-oranje" href="lekkage">Meer over cv-ketels</a></div>
+<div class="hero-foto"><img src="media/team-1400.webp" srcset="media/team-800.webp 800w, media/team-1400.webp 1400w" sizes="100vw" alt="Het team van Ravenberg Loodgieters" fetchpriority="high"></div>
+<div class="wrap hero-in">
+<div>
+<h1 class="kap"><span>Vakwerk</span><span>achter elke</span><span>kraan.</span></h1>
+<p class="hero-zin">Lekkage, verstopping of storing? Onze eigen loodgieters komen dag en nacht. U hoort vooraf wat het kost.</p>
+<div class="knoppen"><a class="knop knop-oranje" href="#bellen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Bel direct</a><a class="knop knop-lijn" href="#offerte">Offerte aanvragen</a></div>
 </div>
-<div style="margin-top:12px"><div class="bewijs">
-<div><svg class="g" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.6 13.3l7.9 6.1C12.4 13.7 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.4 5.7c4.3-4 6.9-9.9 6.9-17.1z"/><path fill="#FBBC05" d="M10.5 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C1 16.6 0 20.2 0 24s1 7.4 2.6 10.7l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.4-5.7c-2.1 1.4-4.8 2.3-8.5 2.3-6.3 0-11.6-4.2-13.5-9.9l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg><span><b class="leeg">x,x</b> <span class="sterren" aria-hidden="true">★★★★★</span><small>Uit <span class="leeg">..</span> Google-reviews</small></span></div>
-<div><svg class="ic-blauw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.5c3 0 6 1.8 6 5.5"/></svg><span><b class="leeg">....</b><small>klussen uitgevoerd</small></span></div>
-</div></div>
+<nav class="hero-lijst" aria-label="Direct naar een dienst"><a href="#diensten">Lekkage</a><a href="#diensten">Verstopping</a><a href="#diensten">Riolering</a><a href="#diensten">Cv-ketel</a><a href="#diensten">Kranen en sanitair</a><a href="#diensten">Lekdetectie</a></nav>
+</div>
+</section>
+
+<section class="feiten" aria-label="Waarom Ravenberg"><div class="wrap"><ul>
+<li><b>24/7</b>Dag en nacht bereikbaar, ook in het weekend</li>
+<li><b>Vooraf</b>U hoort de prijs voordat we beginnen</li>
+<li><b>Eigen</b>Loodgieters in vaste dienst, geen tussenpersonen</li>
+<li><b>Garantie</b>Op het werk dat we uitvoeren</li>
+</ul></div></section>
+
+<section class="sectie sectie-wit" id="diensten"><div class="wrap">
+<div class="kopblok"><h2 class="kap">Wat we oplossen</h2><p>Van een druppende kraan tot een verstopt riool. Kies uw probleem voor uitleg, tarieven en wat u zelf alvast kunt doen.</p></div>
+<div class="diensten" id="dienstlijst"></div>
 </div></section>
 
-<section class="sectie"><div class="wrap duo">
-<img src="media/team-1400.webp" srcset="media/team-800.webp 800w, media/team-1400.webp 1400w" sizes="(min-width: 1000px) 50vw, 100vw" width="1400" height="931" alt="Het team van Ravenberg Loodgieters" loading="lazy">
-<div class="tekst"><h2>Vakmensen, geen tussenpersonen</h2>
-<p>Bij Ravenberg komt er een eigen loodgieter bij u langs. Iemand die het werk kent, eerlijk zegt wat er aan de hand is en het in één keer goed doet.</p>
-<ul class="vink"><li>Eigen loodgieters in vaste dienst</li><li>Goed gevulde bus, vaak in één bezoek klaar</li><li>Werkbon en foto's voor uw verzekering</li></ul>
-</div>
-</div></section>
+<section class="uitspraak">
+<img src="media/werk-900.webp" srcset="media/werk-600.webp 600w, media/werk-900.webp 900w" sizes="(min-width:1040px) 50vw, 100vw" width="900" height="600" alt="Loodgieter van Ravenberg aan het werk aan de leidingen" loading="lazy">
+<div class="uitspraak-tekst"><blockquote>Eerst zoeken waar het zit. Dan pas openmaken.</blockquote>
+<p>Water loopt langs leidingen en balken en komt vaak ergens anders naar buiten. Daarom meten we eerst, en breken we alleen waar het nodig is.</p></div>
+</section>
 
-<section class="sectie sectie-tint"><div class="wrap">
-<div class="intro"><h2>Zo werken we</h2></div>
+<section class="sectie" id="werkwijze"><div class="wrap">
+<div class="kopblok"><h2 class="kap">Zo werken we</h2><p>Bij elke klus hetzelfde, of het nu drie uur 's nachts is of dinsdagmiddag.</p></div>
 <ol class="stappen">
-<li><h3>U belt of vraagt een offerte aan</h3><p>U krijgt meteen iemand aan de lijn die weet waar hij het over heeft.</p></li>
-<li><h3>U hoort vooraf wat het kost</h3><p>De loodgieter bekijkt het probleem en noemt de prijs voordat hij begint.</p></li>
-<li><h3>Opgelost en opgeruimd</h3><p>We testen of alles werkt en laten de ruimte netjes achter.</p></li>
+<li><h3>U belt</h3><p>U krijgt direct een loodgieter aan de lijn, geen callcenter.</p></li>
+<li><h3>U hoort de prijs</h3><p>We bekijken het probleem en noemen de prijs voordat we beginnen.</p></li>
+<li><h3>Opgelost</h3><p>We testen of alles werkt en laten de ruimte netjes achter.</p></li>
 </ol>
 </div></section>
 
-<section class="sectie" id="tarieven"><div class="wrap zij">
-<div class="intro"><h2>Tarieven</h2><p>Duidelijke prijzen. Bij grotere klussen krijgt u vooraf een vaste prijs.</p></div>
-<div><dl class="tarieven">
+<section class="sectie sectie-wit" id="tarieven"><div class="wrap twee">
+<div class="kopblok"><h2 class="kap">Tarieven</h2><p>Duidelijke prijzen. Bij grotere klussen krijgt u vooraf een vaste prijs.</p></div>
+<div><dl class="tarief">
 <div><dt>Voorrijkosten</dt><dd class="leeg">€ ..</dd></div>
 <div><dt>Uurtarief</dt><dd class="leeg">€ ..</dd></div>
 <div><dt>Toeslag avond, nacht en weekend</dt><dd class="leeg">€ ..</dd></div>
-</dl><p class="noot">Alle bedragen incl. btw. De echte tarieven vullen we in met Ravenberg.</p></div>
-</div></section>
-
-<section class="sectie sectie-tint"><div class="wrap">
-<div class="intro"><h2>Wat klanten zeggen</h2><p>Echte reviews, rechtstreeks van Google.</p></div>
-<ul class="reviews"><li class="review"><span class="sterren" aria-hidden="true">★★★★★</span><p>Hier komt een echte Google-review, letterlijk zoals de klant hem schreef.</p><footer><b>Naam klant</b>Plaats</footer></li><li class="review"><span class="sterren" aria-hidden="true">★★★★★</span><p>Hier komt een echte Google-review, letterlijk zoals de klant hem schreef.</p><footer><b>Naam klant</b>Plaats</footer></li><li class="review"><span class="sterren" aria-hidden="true">★★★★★</span><p>Hier komt een echte Google-review, letterlijk zoals de klant hem schreef.</p><footer><b>Naam klant</b>Plaats</footer></li></ul>
+</dl><p class="klein">Voorbeeld. De echte tarieven vullen we in met Ravenberg.</p></div>
 </div></section>
 
 <section class="sectie" id="werkgebied"><div class="wrap">
-<div class="intro"><h2>Werkgebied</h2><p>We werken in heel Nederland. Kies uw plaats voor het lokale nummer en informatie over uw regio.</p></div>
-<div class="gebied"><div class="prov"><h3>Zuid-Holland</h3><div class="steden"><a href="loodgieter-rotterdam">Rotterdam</a><a href="loodgieter-rotterdam">Den Haag</a><a href="loodgieter-rotterdam">Leiden</a><a href="loodgieter-rotterdam">Dordrecht</a><a href="loodgieter-rotterdam">Zoetermeer</a><a href="loodgieter-rotterdam">Delft</a><a href="loodgieter-rotterdam">Schiedam</a><a href="loodgieter-rotterdam">Gouda</a><a href="loodgieter-rotterdam">Vlaardingen</a><a href="loodgieter-rotterdam">Capelle aan den IJssel</a></div></div><div class="prov"><h3>Noord-Holland</h3><div class="steden"><a href="loodgieter-rotterdam">Amsterdam</a><a href="loodgieter-rotterdam">Haarlem</a><a href="loodgieter-rotterdam">Alkmaar</a><a href="loodgieter-rotterdam">Hilversum</a><a href="loodgieter-rotterdam">Zaandam</a><a href="loodgieter-rotterdam">Hoofddorp</a><a href="loodgieter-rotterdam">Amstelveen</a><a href="loodgieter-rotterdam">Purmerend</a></div></div><div class="prov"><h3>Utrecht</h3><div class="steden"><a href="loodgieter-rotterdam">Utrecht</a><a href="loodgieter-rotterdam">Amersfoort</a><a href="loodgieter-rotterdam">Nieuwegein</a><a href="loodgieter-rotterdam">Zeist</a><a href="loodgieter-rotterdam">Veenendaal</a><a href="loodgieter-rotterdam">Houten</a></div></div><div class="prov"><h3>Noord-Brabant</h3><div class="steden"><a href="loodgieter-rotterdam">Eindhoven</a><a href="loodgieter-rotterdam">Tilburg</a><a href="loodgieter-rotterdam">Breda</a><a href="loodgieter-rotterdam">Den Bosch</a><a href="loodgieter-rotterdam">Helmond</a><a href="loodgieter-rotterdam">Oss</a></div></div></div>
+<div class="kopblok"><h2 class="kap">Werkgebied</h2><p>Kies uw plaats voor het lokale nummer en informatie over uw regio.</p></div>
+<form class="zoeker" onsubmit="event.preventDefault()" role="search"><label class="vh" for="plaats" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)">Uw plaats</label><input id="plaats" list="plaatsen" placeholder="Typ uw plaats, bijv. Rotterdam" autocomplete="address-level2"><button type="submit">Zoek</button><datalist id="plaatsen"></datalist></form>
+<div class="gebied" id="gebied"></div>
 </div></section>
 
-<section class="sectie sectie-tint" id="vragen"><div class="wrap zij">
-<div class="intro"><h2>Veelgestelde vragen</h2></div>
-<div class="vragen"><details><summary>Hoe snel kan er een loodgieter komen?</summary><p>Bij spoed proberen we zo snel mogelijk langs te komen. Hoe snel precies hangt af van waar u woont en hoe druk het is. Dat hoort u meteen aan de telefoon.</p></details><details><summary>Wat moet ik doen bij een lekkage?</summary><p>Draai de hoofdkraan dicht. Die zit meestal bij de watermeter. Komt er water bij stopcontacten of lampen, zet dan ook die groep in de meterkast uit. Bel ons daarna.</p></details><details><summary>Weet ik vooraf wat het kost?</summary><p>Ja. De loodgieter noemt de prijs voordat hij begint. Bij grotere klussen krijgt u een vaste prijs.</p></details><details><summary>Vergoedt mijn verzekering de schade?</summary><p>Dat hangt af van uw polis. Wij leveren een werkbon met foto’s, zodat u de schade makkelijk kunt melden.</p></details></div>
+<section class="sectie sectie-wit" id="vragen"><div class="wrap twee">
+<div class="kopblok"><h2 class="kap">Vragen</h2></div>
+<div class="vragen">
+<details><summary>Hoe snel kan er iemand komen?</summary><p>Bij spoed proberen we zo snel mogelijk langs te komen. Hoe snel precies hangt af van waar u woont en hoe druk het is. Dat hoort u meteen aan de telefoon.</p></details>
+<details><summary>Wat doe ik bij een lekkage?</summary><p>Draai de hoofdkraan dicht, meestal bij de watermeter. Komt er water bij stopcontacten of lampen, zet dan die groep in de meterkast uit. Bel ons daarna.</p></details>
+<details><summary>Weet ik vooraf wat het kost?</summary><p>Ja. De loodgieter noemt de prijs voordat hij begint. Bij grotere klussen krijgt u een vaste prijs.</p></details>
+<details><summary>Betaalt mijn verzekering?</summary><p>Dat hangt af van uw polis. U krijgt een werkbon met foto's, zodat u de schade makkelijk kunt melden.</p></details>
+</div>
 </div></section>
-<section class="spoed" id="offerte"><div class="wrap">
-<a href="#bellen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20a3 3 0 0 1-3 2h-3"/></svg><span><b>Direct een loodgieter spreken?</b><span>Wij staan 24/7 voor u klaar. Bel <span class="nr">0XX XXX XX XX</span></span></span><svg class="pijl-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+
+<section class="slot" id="offerte"><div class="wrap">
+<div><h2 class="kap">Water waar het niet hoort?</h2><p>Bel ons, dag en nacht. Of vraag een offerte aan voor gepland werk.</p></div>
+<div class="knoppen"><a class="knop knop-oranje" href="#bellen" id="bellen">Bel <span class="nr leeg">0XX XXX XX XX</span></a><a class="knop knop-lijn" href="#offerte">Offerte aanvragen</a></div>
 </div></section>
 </main>
+
 <footer class="voet"><div class="wrap">
 <div class="voet-kol">
-<div><a class="merk" href="./"><img src="media/logo-wit.png" width="312" height="96" alt="Ravenberg Loodgieters"></a><p style="margin-top:14px;max-width:34ch">Loodgieter voor lekkage, verstopping, riolering en cv-ketel. Dag en nacht bereikbaar.</p></div>
-<div><h3>Diensten</h3><ul><li><a href="lekkage">Lekkage</a></li><li><a href="lekkage">Verstopping</a></li><li><a href="lekkage">Riolering</a></li><li><a href="lekkage">Cv-ketel</a></li><li><a href="lekkage">Kranen en sanitair</a></li><li><a href="lekkage">Lekdetectie</a></li></ul></div>
-<div><h3>Provincies</h3><ul><li><a href="./#werkgebied">Loodgieter Zuid-Holland</a></li><li><a href="./#werkgebied">Loodgieter Noord-Holland</a></li><li><a href="./#werkgebied">Loodgieter Utrecht</a></li><li><a href="./#werkgebied">Loodgieter Noord-Brabant</a></li></ul></div>
-<div><h3>Veel gezocht</h3><ul><li><a href="loodgieter-rotterdam">Loodgieter Rotterdam</a></li><li><a href="loodgieter-rotterdam">Loodgieter Amsterdam</a></li><li><a href="loodgieter-rotterdam">Loodgieter Den Haag</a></li><li><a href="loodgieter-rotterdam">Loodgieter Utrecht</a></li><li><a href="loodgieter-rotterdam">Loodgieter Eindhoven</a></li><li><a href="loodgieter-rotterdam">Loodgieter Tilburg</a></li></ul></div>
+<div><a class="merk" href="./"><img src="media/logo-wit.png" width="312" height="96" alt="Ravenberg Loodgieters"></a><p style="margin-top:16px;max-width:34ch">Loodgieter voor lekkage, verstopping, riolering en cv-ketel. Dag en nacht bereikbaar.</p></div>
+<div><h3>Diensten</h3><ul><li><a href="#diensten">Lekkage</a></li><li><a href="#diensten">Verstopping</a></li><li><a href="#diensten">Riolering</a></li><li><a href="#diensten">Cv-ketel</a></li><li><a href="#diensten">Kranen en sanitair</a></li><li><a href="#diensten">Lekdetectie</a></li></ul></div>
+<div><h3>Werkgebied</h3><ul><li><a href="#werkgebied">Zuid-Holland</a></li><li><a href="#werkgebied">Noord-Holland</a></li><li><a href="#werkgebied">Utrecht</a></li><li><a href="#werkgebied">Noord-Brabant</a></li></ul></div>
+<div><h3>Contact</h3><ul><li><a href="#bellen"><span class="nr leeg">0XX XXX XX XX</span></a></li><li><a href="#offerte">Offerte aanvragen</a></li></ul></div>
 </div>
-<p class="voet-onder">© Ravenberg Loodgieters · <span class="leeg">adres</span> · <span class="leeg">KvK-nummer</span> · <span class="leeg">Privacy</span> · <span class="leeg">Voorwaarden</span><br>Concept door AVORO. Telefoonnummer, tarieven, reviews en foto's zijn voorbeelden.</p>
+<p class="voet-onder">© Ravenberg Loodgieters. <span class="leeg">Adres</span>, <span class="leeg">KvK-nummer</span>.<br>Concept door AVORO. Telefoonnummer, tarieven en foto's zijn voorbeelden.</p>
 </div></footer>
-<div class="belbalk"><a class="knop knop-blauw" href="#bellen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Bel direct</a><a class="knop knop-rand" href="offerte">Offerte</a></div>
+<div class="belbalk"><a class="knop knop-oranje" href="#bellen">Bel direct</a><a class="knop knop-lijn" href="#offerte">Offerte</a></div>
 <a class="avoro-pill" href="https://avoroweb.nl" target="_blank" rel="noopener" aria-label="Concept door AVORO webdesign"><span class="avoro-pill__dot" aria-hidden="true"></span><span>Concept <span class="avoro-pill__long">door </span><b>AVORO</b><span class="avoro-pill__long"> webdesign</span></span></a>
 <script>
-(function(){var av=document.querySelector('.avoro-pill');if(!av)return;var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-function B(){var m=innerWidth<821,w=av.offsetWidth,h=av.offsetHeight;return{x0:8,x1:Math.max(8,innerWidth-w-8),y0:m?74:96,y1:Math.max(m?74:96,innerHeight-h-(m?130:96))}}
-var b=B(),x=b.x0+12,y=b.y0+(b.y1-b.y0)*.35,vx=Math.cos(.62),vy=Math.sin(.62),hold=false,last=0;
-function put(){av.style.setProperty('--ax',x.toFixed(1)+'px');av.style.setProperty('--ay',y.toFixed(1)+'px')}
-if(reduce){b=B();x=b.x1;y=b.y0;put();return}
-['pointerenter','focus'].forEach(function(e){av.addEventListener(e,function(){hold=true})});['pointerleave','blur'].forEach(function(e){av.addEventListener(e,function(){hold=false})});
-addEventListener('resize',function(){b=B();x=Math.min(Math.max(x,b.x0),b.x1);y=Math.min(Math.max(y,b.y0),b.y1)});
-function step(t){var dt=last?Math.min(.05,(t-last)/1000):0;last=t;if(!hold){var sp=innerWidth<821?36:48;b=B();x+=vx*sp*dt;y+=vy*sp*dt;
-if(x<=b.x0){x=b.x0;vx=Math.abs(vx)}else if(x>=b.x1){x=b.x1;vx=-Math.abs(vx)}if(y<=b.y0){y=b.y0;vy=Math.abs(vy)}else if(y>=b.y1){y=b.y1;vy=-Math.abs(vy)}put()}requestAnimationFrame(step)}
-put();requestAnimationFrame(step)})();
+{
+const D=[['lekkage','Lekkage','Een natte plek, druppels of water op de vloer. We vinden het lek en maken het dicht.'],
+['verstopping','Verstopping','Toilet, gootsteen, douche of afvoer. We maken het vrij en zoeken waarom het verstopt raakte.'],
+['riolering','Riolering','Camera-inspectie, ontstoppen en herstel, zonder op de gok te graven.'],
+['cv-ketel','Cv-ketel','Storing, onderhoud of vervanging. Vaak in één bezoek opgelost.'],
+['kranen-sanitair','Kranen en sanitair','Repareren, vervangen en plaatsen, netjes en waterdicht aangesloten.'],
+['lekdetectie','Lekdetectie','Met warmtecamera en meetapparatuur vinden we verborgen lekken.']];
+const pijl='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+document.getElementById('dienstlijst').innerHTML=D.map(d=>`<a class="dienst" href="#diensten"><img src="media/foto-${d[0]}.webp" width="800" height="500" alt="" loading="lazy"><div><h3>${d[1]}</h3><p>${d[2]}</p><span class="meer">Meer over ${d[1].toLowerCase()}${pijl}</span></div></a>`).join('');
+const P=[['Zuid-Holland',['Rotterdam','Den Haag','Leiden','Dordrecht','Zoetermeer','Delft','Schiedam','Gouda']],['Noord-Holland',['Amsterdam','Haarlem','Alkmaar','Hilversum','Zaandam','Hoofddorp']],['Utrecht',['Utrecht','Amersfoort','Nieuwegein','Zeist','Veenendaal','Houten']],['Noord-Brabant',['Eindhoven','Tilburg','Breda','Den Bosch','Helmond','Oss']]];
+document.getElementById('gebied').innerHTML=P.map(p=>`<div class="prov"><h3>${p[0]}</h3><div class="steden">${p[1].map(s=>`<a href="#werkgebied">${s}</a>`).join('')}</div></div>`).join('');
+document.getElementById('plaatsen').innerHTML=P.flatMap(p=>p[1]).map(s=>`<option value="${s}">`).join('');
+const av=document.querySelector('.avoro-pill');
+if(av){const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function B(){const m=innerWidth<821,w=av.offsetWidth,h=av.offsetHeight;return{x0:8,x1:Math.max(8,innerWidth-w-8),y0:m?74:96,y1:Math.max(m?74:96,innerHeight-h-(m?130:96))}}
+let b=B(),x=b.x0+12,y=b.y0+(b.y1-b.y0)*.35,vx=Math.cos(.62),vy=Math.sin(.62),hold=false,last=0;
+const put=()=>{av.style.setProperty('--ax',x.toFixed(1)+'px');av.style.setProperty('--ay',y.toFixed(1)+'px')};
+if(reduce){b=B();x=b.x1;y=b.y0;put()}else{
+['pointerenter','focus'].forEach(e=>av.addEventListener(e,()=>{hold=true}));['pointerleave','blur'].forEach(e=>av.addEventListener(e,()=>{hold=false}));
+addEventListener('resize',()=>{b=B();x=Math.min(Math.max(x,b.x0),b.x1);y=Math.min(Math.max(y,b.y0),b.y1)});
+const step=t=>{const dt=last?Math.min(.05,(t-last)/1000):0;last=t;if(!hold){const sp=innerWidth<821?36:48;b=B();x+=vx*sp*dt;y+=vy*sp*dt;
+if(x<=b.x0){x=b.x0;vx=Math.abs(vx)}else if(x>=b.x1){x=b.x1;vx=-Math.abs(vx)}if(y<=b.y0){y=b.y0;vy=Math.abs(vy)}else if(y>=b.y1){y=b.y1;vy=-Math.abs(vy)}put()}requestAnimationFrame(step)};
+put();requestAnimationFrame(step)}}
+}
 </script>
 </body></html>
