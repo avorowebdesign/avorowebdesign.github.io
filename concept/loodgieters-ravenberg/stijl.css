@@ -1,0 +1,216 @@
+/* Ravenberg loodgieters, concept-template.
+   Idee: de koperen leiding. Eén koperen lijn loopt door de pagina en verbindt de onderdelen, zoals leidingwerk achter de muur.
+   Kleur: petrol (diep water) + koper (de leiding) + wit. Type: Bricolage Grotesque voor koppen, Figtree voor tekst. Mobiel eerst. */
+@font-face { font-family: "Bricolage"; src: url("media/bricolage.woff2") format("woff2"); font-weight: 200 800; font-display: swap; }
+@font-face { font-family: "Figtree"; src: url("media/figtree.woff2") format("woff2"); font-weight: 300 900; font-display: swap; }
+:root {
+  --petrol: #0c3036; --petrol-2: #124048; --petrol-3: #1d5560;
+  --koper: #d27a45; --koper-licht: #f0a271; --koper-tekst: #9a4d1f;
+  --water: #e6f1f1; --water-2: #cfe4e4;
+  --wit: #ffffff; --papier: #f8faf9; --inkt: #0f1e21; --inkt-2: #3d5055; --lijn: #d8e2e2;
+  --groen: #2fb36a;
+  --r: 14px; --r-s: 8px;
+  --kop: "Bricolage", ui-sans-serif, system-ui, sans-serif;
+  --tekst: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --pad: 20px; --max: 1180px;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 80px; }
+body { margin: 0; background: var(--papier); color: var(--inkt-2); font: 400 17px/1.6 var(--tekst); overflow-x: clip; }
+h1, h2, h3, p, ul, ol, figure, blockquote { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+h1, h2, h3 { font-family: var(--kop); color: var(--inkt); font-weight: 750; letter-spacing: -0.02em; line-height: 1.05; text-wrap: balance; }
+h2 { font-size: clamp(30px, 7.5vw, 50px); }
+h3 { font-size: 21px; line-height: 1.2; }
+p { text-wrap: pretty; }
+a { color: inherit; }
+img, svg { display: block; max-width: 100%; }
+:focus-visible { outline: 3px solid var(--koper); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+.nr { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.plek { background: repeating-linear-gradient(-45deg, transparent 0 6px, rgba(210,122,69,.12) 6px 12px); border-radius: 4px; padding: 0 4px; }
+
+/* knoppen */
+.knop { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; padding: 0 22px; border-radius: 999px; border: 0; font: 700 17px/1 var(--tekst); text-decoration: none; white-space: nowrap; cursor: pointer; transition: transform .12s, background-color .12s; }
+.knop svg { width: 20px; height: 20px; flex: none; }
+.knop:active { transform: translateY(1px); }
+.knop-koper { background: var(--koper); color: var(--petrol); }
+.knop-koper:hover { background: var(--koper-licht); }
+.knop-licht { background: rgba(255,255,255,.1); color: var(--wit); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.45); }
+.knop-licht:hover { background: rgba(255,255,255,.18); }
+.knop-donker { background: var(--petrol); color: var(--wit); }
+.knop-donker:hover { background: var(--petrol-3); }
+
+/* concept-balk */
+.concept { background: var(--koper); color: var(--petrol); font-size: 13px; font-weight: 700; text-align: center; padding: 6px var(--pad); }
+
+/* kop */
+.kop { position: sticky; top: 0; z-index: 50; background: var(--petrol); color: var(--wit); border-bottom: 1px solid rgba(255,255,255,.08); }
+.kop .wrap { display: flex; align-items: center; gap: 12px; min-height: 64px; }
+.merk { display: flex; align-items: center; gap: 10px; margin-right: auto; text-decoration: none; min-height: 44px; }
+.merk svg { width: 34px; height: 34px; }
+.merk b { font: 750 19px/1 var(--kop); letter-spacing: -0.02em; }
+.merk small { display: block; font: 600 11px/1 var(--tekst); color: var(--koper-licht); letter-spacing: .02em; margin-top: 3px; }
+.dag-nacht { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; color: var(--water); }
+.live { width: 9px; height: 9px; border-radius: 50%; background: var(--groen); box-shadow: 0 0 0 4px rgba(47,179,106,.25); flex: none; }
+.kop-bel { width: 48px; height: 48px; border-radius: 50%; background: var(--koper); color: var(--petrol); display: grid; place-items: center; }
+.kop-bel svg { width: 22px; height: 22px; }
+.kop nav, .kop-nr { display: none; }
+
+/* hero met de koperen leiding */
+.hero { position: relative; background: var(--petrol); color: var(--wit); overflow: hidden; padding: 30px 0 34px; }
+.hero::before { content: ""; position: absolute; inset: auto -20% -40% auto; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(closest-side, rgba(29,85,96,.9), transparent); }
+.hero .wrap { position: relative; display: grid; gap: 22px; }
+.hero h1 { color: var(--wit); font-size: clamp(40px, 11.5vw, 76px); line-height: .98; letter-spacing: -0.035em; }
+.hero h1 em { font-style: normal; color: var(--koper-licht); }
+.hero-zin { font-size: 18px; color: #d5e6e6; max-width: 34ch; }
+.hero .knoppen { display: grid; gap: 10px; }
+
+/* probleemkiezer: de leiding verbindt de tegels */
+.kiezer { position: relative; }
+.kiezer-titel { font: 700 15px/1.3 var(--tekst); color: var(--water); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.kiezer-titel::after { content: ""; flex: 1; height: 4px; border-radius: 4px; background: linear-gradient(90deg, var(--koper), var(--koper-licht)); }
+.tegels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tegel { position: relative; display: grid; gap: 10px; align-content: space-between; min-height: 112px; padding: 14px; border-radius: var(--r); background: var(--petrol-2); color: var(--wit); text-decoration: none; border: 1px solid rgba(255,255,255,.08); transition: background-color .15s, border-color .15s; }
+.tegel:hover { background: var(--petrol-3); border-color: rgba(240,162,113,.5); }
+.tegel-icoon { width: 40px; height: 40px; border-radius: 12px; background: rgba(210,122,69,.16); color: var(--koper-licht); display: grid; place-items: center; }
+.tegel-icoon svg { width: 22px; height: 22px; }
+.tegel b { font: 700 17px/1.15 var(--kop); letter-spacing: -0.01em; }
+.tegel small { display: block; font-size: 13px; color: #a9c6c7; margin-top: 2px; }
+.tegel::after { content: ""; position: absolute; right: 14px; top: 16px; width: 9px; height: 9px; border-top: 2.5px solid var(--koper-licht); border-right: 2.5px solid var(--koper-licht); transform: rotate(45deg); }
+
+/* vertrouwen */
+.vertrouw { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; border-top: 1px solid rgba(255,255,255,.12); padding-top: 18px; }
+.vertrouw li { display: grid; gap: 2px; font-size: 13px; color: #a9c6c7; line-height: 1.3; }
+.vertrouw b { font: 750 22px/1 var(--kop); color: var(--wit); }
+
+/* secties en de leiding langs de koppen */
+.sectie { padding: 56px 0; }
+.sectie-water { background: var(--water); }
+.kopje { position: relative; display: grid; gap: 12px; margin-bottom: 26px; padding-left: 22px; }
+.kopje::before { content: ""; position: absolute; left: 0; top: 4px; bottom: 4px; width: 6px; border-radius: 6px; background: linear-gradient(180deg, var(--koper-licht), var(--koper)); }
+.kopje p { max-width: 58ch; }
+
+/* stappen: echte volgorde, dus genummerd; de leiding loopt erlangs */
+.stappen { position: relative; display: grid; gap: 0; counter-reset: s; }
+.stappen::before { content: ""; position: absolute; left: 21px; top: 22px; bottom: 22px; width: 6px; border-radius: 6px; background: linear-gradient(180deg, var(--koper), var(--koper-licht)); }
+.stap { position: relative; display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 16px; padding: 10px 0 22px; counter-increment: s; }
+.stap::before { content: counter(s); position: relative; z-index: 1; width: 48px; height: 48px; border-radius: 50%; background: var(--petrol); color: var(--koper-licht); border: 5px solid var(--koper); display: grid; place-items: center; font: 800 18px/1 var(--kop); }
+.stap h3 { margin: 10px 0 6px; }
+
+/* diensten als rijen */
+.diensten { display: grid; gap: 10px; }
+.dienst { display: grid; grid-template-columns: 52px minmax(0, 1fr) 20px; gap: 14px; align-items: center; padding: 16px; border-radius: var(--r); background: var(--wit); border: 1px solid var(--lijn); text-decoration: none; color: var(--inkt); transition: border-color .15s, transform .15s; }
+.dienst:hover { border-color: var(--koper); }
+.dienst-icoon { width: 52px; height: 52px; border-radius: 14px; background: var(--water); color: var(--petrol); display: grid; place-items: center; }
+.dienst-icoon svg { width: 26px; height: 26px; }
+.dienst b { font: 700 19px/1.2 var(--kop); display: block; }
+.dienst small { display: block; font-size: 15px; color: var(--inkt-2); margin-top: 3px; line-height: 1.4; }
+.dienst > svg { width: 20px; height: 20px; color: var(--koper-tekst); }
+
+/* prijzen */
+.prijzen { display: grid; gap: 10px; }
+.prijs { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 18px; border-radius: var(--r); background: var(--wit); border: 1px solid var(--lijn); }
+.prijs span { font-weight: 600; color: var(--inkt); }
+.prijs b { font: 750 24px/1 var(--kop); color: var(--petrol); white-space: nowrap; }
+.prijs-noot { font-size: 15px; margin-top: 12px; }
+
+/* reviews (plaatshouders) */
+.reviews { display: grid; grid-auto-flow: column; grid-auto-columns: 84%; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 calc(-1 * var(--pad)); padding: 2px var(--pad) 8px; scrollbar-width: none; }
+.reviews::-webkit-scrollbar { display: none; }
+.review { scroll-snap-align: start; background: var(--wit); border-radius: var(--r); padding: 20px; border: 1px dashed var(--koper); display: grid; gap: 10px; align-content: start; }
+.sterren { color: #e8a317; letter-spacing: 2px; }
+.review p { color: var(--inkt-2); }
+
+/* werkgebied en interne links */
+.gebied { display: grid; gap: 14px; }
+.provincie { background: var(--wit); border-radius: var(--r); border: 1px solid var(--lijn); }
+.provincie summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 18px; min-height: 56px; font: 700 18px/1.2 var(--kop); color: var(--inkt); }
+.provincie summary::-webkit-details-marker { display: none; }
+.provincie summary span { font: 600 14px/1 var(--tekst); color: var(--koper-tekst); }
+.plaatsen { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 18px 18px; }
+.plaatsen a { padding: 9px 14px; border-radius: 999px; background: var(--water); color: var(--petrol); font-weight: 600; font-size: 15px; text-decoration: none; }
+.plaatsen a:hover { background: var(--water-2); }
+
+/* vragen */
+.vragen details { border-bottom: 1px solid var(--lijn); }
+.vragen details:first-child { border-top: 1px solid var(--lijn); }
+.vragen summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0; min-height: 56px; font: 700 18px/1.3 var(--kop); color: var(--inkt); }
+.vragen summary::-webkit-details-marker { display: none; }
+.vragen summary::after { content: ""; flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--koper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M11 6v10M6 11h10' stroke='%230c3036' stroke-width='2.4'/%3E%3C/svg%3E") center/22px no-repeat; transition: transform .2s; }
+.vragen details[open] summary::after { transform: rotate(45deg); }
+.vragen details p { padding: 0 0 20px; max-width: 70ch; }
+
+/* slot */
+.slot { background: var(--petrol); color: var(--wit); padding: 56px 0; position: relative; overflow: hidden; }
+.slot h2 { color: var(--wit); }
+.slot p { color: #d5e6e6; max-width: 44ch; margin: 14px 0 24px; }
+.slot .knoppen { display: grid; gap: 10px; }
+
+/* kruimelpad en pagina-intro voor dienst- en plaatspagina's */
+.kruimel { margin-bottom: 4px; font-size: 14px; color: #a9c6c7; display: flex; flex-wrap: wrap; gap: 6px; }
+.kruimel a { color: var(--water); }
+.kruimel li + li::before { content: "/"; margin-right: 6px; color: var(--koper-licht); }
+.symptomen { display: grid; gap: 10px; }
+.symptomen li { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; background: var(--wit); border-radius: var(--r); border: 1px solid var(--lijn); color: var(--inkt); font-weight: 600; }
+.symptomen li::before { content: ""; flex: none; width: 10px; height: 10px; margin-top: 8px; border-radius: 50%; background: var(--koper); box-shadow: 0 0 0 4px rgba(210,122,69,.2); }
+.tekst { display: grid; gap: 16px; max-width: 68ch; }
+.tekst h3 { margin-top: 10px; }
+
+/* voet met alle interne links */
+footer { background: #081f23; color: #a9c6c7; padding: 44px 0 110px; font-size: 15px; }
+.voet { display: grid; gap: 28px; }
+.voet h3 { color: var(--wit); font-size: 17px; margin-bottom: 10px; }
+.voet ul { display: grid; gap: 2px; }
+.voet a { color: #cfe0e0; text-decoration: none; display: inline-block; padding: 6px 0; }
+.voet a:hover { color: var(--koper-licht); text-decoration: underline; }
+.voet-onder { border-top: 1px solid rgba(255,255,255,.1); margin-top: 32px; padding-top: 20px; font-size: 14px; }
+
+/* vaste belbalk onderin */
+.belbalk { position: fixed; left: 10px; right: 10px; bottom: calc(10px + env(safe-area-inset-bottom)); z-index: 60; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px; border-radius: 999px; background: rgba(12,48,54,.94); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: 0 12px 30px rgba(0,0,0,.3); }
+.belbalk .knop { min-height: 48px; font-size: 16px; padding: 0 12px; }
+
+.avoro-pill{position:fixed;left:0;top:0;z-index:70;display:flex;align-items:center;gap:8px;padding:8px 14px 8px 10px;border-radius:999px;background:rgba(36,8,14,.84);color:#f2e6cf;font:500 12px/1 system-ui,sans-serif;text-decoration:none;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(242,230,207,.14);box-shadow:0 10px 30px rgba(0,0,0,.28);transform:translate3d(var(--ax,14px),var(--ay,96px),0);will-change:transform}
+.avoro-pill:hover{color:#fff}.avoro-pill b{font-weight:600;letter-spacing:.06em}
+.avoro-pill__dot{width:8px;height:8px;border-radius:50%;background:#7ac68f;box-shadow:0 0 0 3px rgba(122,198,143,.22)}
+@media (max-width:820px){.avoro-pill{font-size:11px;padding:7px 11px 7px 9px;gap:7px}.avoro-pill__long{display:none}}
+
+@media (min-width: 640px) {
+  :root { --pad: 32px; }
+  .hero .knoppen, .slot .knoppen { display: flex; flex-wrap: wrap; }
+  .tegels { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .reviews { grid-auto-columns: 46%; }
+  .prijzen { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .prijs { flex-direction: column; align-items: flex-start; }
+  .voet { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .belbalk { left: auto; right: 24px; bottom: 24px; width: 380px; }
+}
+@media (min-width: 980px) {
+  :root { --pad: 48px; }
+  .kop .wrap { min-height: 76px; gap: 28px; }
+  .kop nav { display: flex; gap: 26px; margin-right: auto; font-weight: 600; font-size: 15px; }
+  .kop nav a { color: #d5e6e6; text-decoration: none; padding: 8px 0; }
+  .kop nav a:hover { color: var(--wit); }
+  .merk { margin-right: 0; }
+  .kop-nr { display: inline-flex; align-items: center; gap: 10px; font: 750 19px/1 var(--kop); color: var(--wit); text-decoration: none; }
+  .kop-bel { display: none; }
+  .hero { padding: 70px 0 64px; }
+  .hero .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 56px; align-items: center; }
+  .hero-links { display: grid; gap: 22px; align-content: center; }
+  .vertrouw { grid-column: 1 / -1; }
+  .sectie { padding: 90px 0; }
+  .twee { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 64px; align-items: start; }
+  .twee .kopje { position: sticky; top: 110px; }
+  .stappen { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+  .stappen::before { left: 24px; right: 24px; top: 21px; bottom: auto; width: auto; height: 6px; background: linear-gradient(90deg, var(--koper), var(--koper-licht)); }
+  .stap { grid-template-columns: 1fr; gap: 6px; padding: 0; }
+  .diensten { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .reviews { grid-auto-flow: row; grid-template-columns: repeat(3, minmax(0, 1fr)); overflow: visible; margin: 0; padding: 0; }
+  .gebied { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+  .voet { grid-template-columns: 1.3fr repeat(3, minmax(0, 1fr)); gap: 40px; }
+  footer { padding-bottom: 44px; }
+  .belbalk { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+.vertrouw b.plek, .prijs b.plek { justify-self: start; align-self: start; width: max-content; }
