@@ -21,7 +21,7 @@
 :root{
  --nacht:#07111f;--nacht-2:#0d1b2e;--staal:#0a63b8;--staal-l:#4f9be6;--wit:#fff;--gebroken:#f2f2ef;--steen:#e4e4df;
  --inkt:#0b1422;--tekst:#3f4855;--grijs:#717a86;--lijn:#d9d9d3;--lijn-d:rgba(255,255,255,.14);
- --oranje:#ea5f01;--oranje-h:#ff7314;
+ --oranje:#ea5f01;--oranje-h:#ff7314;--cta-ink:#fff;--staal-ink:#fff;
  --cond:"Cond","Arial Narrow",sans-serif;--body:"Barlow",ui-sans-serif,system-ui,sans-serif;--serif:"Serif",Georgia,serif;
  --pad:20px;--max:1280px
 }
@@ -41,7 +41,7 @@ a{color:inherit}
 /* knoppen: vierkant */
 .knop{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:54px;padding:0 24px;border:0;border-radius:0;font:700 18px/1 var(--cond);text-transform:uppercase;letter-spacing:.03em;text-decoration:none;cursor:pointer;transition:background-color .15s,color .15s,box-shadow .15s}
 .knop svg{width:20px;height:20px;flex:none}
-.knop-oranje{background:var(--oranje);color:var(--wit)}
+.knop-oranje{background:var(--oranje);color:var(--cta-ink)}
 .knop-oranje:hover{background:var(--oranje-h)}
 .knop-lijn{color:var(--wit);box-shadow:inset 0 0 0 2px rgba(255,255,255,.85)}
 .knop-lijn:hover{background:var(--wit);color:var(--nacht)}
@@ -49,16 +49,16 @@ a{color:inherit}
 .knop-donker:hover{background:var(--staal)}
 
 /* balk bovenaan, zoals Rogers-O'Brien */
-.balk{background:var(--staal);color:var(--wit);text-align:center;font:600 15px/1 var(--cond);text-transform:uppercase;letter-spacing:.04em}
+.balk{background:var(--staal);color:var(--staal-ink);text-align:center;font:600 15px/1 var(--cond);text-transform:uppercase;letter-spacing:.04em}
 .balk a{display:block;padding:11px var(--pad);text-decoration:none}
-.balk a:hover{background:#0857a3}
+.balk a:hover{filter:brightness(.92)}
 
 /* kop */
 .kop{position:absolute;left:0;right:0;z-index:20}
 .kop .wrap{display:flex;align-items:center;gap:20px;min-height:76px}
 .merk{margin-right:auto}.merk img{height:44px;width:auto}
 .kop nav{display:none}
-.kop-bel{width:50px;height:50px;display:grid;place-items:center;background:var(--oranje);color:var(--wit)}
+.kop-bel{width:50px;height:50px;display:grid;place-items:center;background:var(--oranje);color:var(--cta-ink)}
 .kop-bel svg{width:22px;height:22px}
 
 /* hero: donkere foto, grote hoofdletters, rechts de lijst (zoals Spence) */
@@ -143,11 +143,13 @@ a{color:inherit}
 .vragen details p{padding:0 0 22px;max-width:66ch}
 
 /* slot */
-.slot{background:var(--staal);color:#dfeaf7;padding:64px 0}
-.slot h2{font-size:clamp(44px,11vw,96px);color:var(--wit)}
+.slot{background:var(--staal);color:var(--staal-ink);padding:64px 0}
+.slot h2{font-size:clamp(44px,11vw,96px);color:var(--staal-ink)}
+.slot .knop-lijn{color:var(--staal-ink);box-shadow:inset 0 0 0 2px currentColor}
+.slot .knop-lijn:hover{background:var(--nacht);color:var(--wit);box-shadow:none}
 .slot p{margin:16px 0 28px;max-width:40ch;font-size:19px}
 .slot .knoppen{display:grid;gap:10px}
-.slot .knop-oranje{background:var(--nacht)}
+.slot .knop-oranje{background:var(--nacht);color:var(--wit)}
 .slot .knop-oranje:hover{background:var(--inkt)}
 
 /* voet */
@@ -216,6 +218,19 @@ a{color:inherit}
 }
 .kop-bel span{display:none}
 @media (min-width:1040px){.kop-bel span{display:inline}}
+
+/* kleurensets */
+[data-kleur="antraciet"]{--nacht:#121314;--staal:#3a3d42;--staal-l:#ff8a3d;--oranje:#f26b1d;--oranje-h:#ff8236}
+[data-kleur="groen"]{--nacht:#0c1f1b;--staal:#1d5a4c;--staal-l:#d6a74a;--oranje:#d6a74a;--oranje-h:#e6b85c;--cta-ink:#0c1f1b}
+[data-kleur="petrol"]{--nacht:#052328;--staal:#0b7480;--staal-l:#5fc6cf;--oranje:#ff6a3d;--oranje-h:#ff8058}
+[data-kleur="rood"]{--nacht:#0d1522;--staal:#a91f2b;--staal-l:#ff6b6b;--oranje:#c8232f;--oranje-h:#de3340}
+[data-kleur="geel"]{--nacht:#0e0e0e;--staal:#f3c300;--staal-ink:#0e0e0e;--staal-l:#f3c300;--oranje:#f3c300;--oranje-h:#ffd633;--cta-ink:#0e0e0e}
+.kleuren{position:fixed;left:12px;bottom:calc(70px + env(safe-area-inset-bottom));z-index:65;display:flex;align-items:center;gap:6px;background:#fff;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.kleuren span{font:700 13px/1 var(--cond);text-transform:uppercase;letter-spacing:.04em;color:#0b1422;padding:0 6px 0 4px}
+.kleuren button{width:34px;height:34px;border:0;padding:0;cursor:pointer;display:grid;grid-template-columns:1fr 1fr;outline-offset:2px}
+.kleuren button i{display:block}
+.kleuren button[aria-pressed="true"]{outline:3px solid #0b1422}
+@media (min-width:700px){.kleuren{bottom:20px;left:20px}}
 @media (max-width:1039px){
  .hero{display:block;min-height:0}
  .hero-foto{position:relative;inset:auto;z-index:0;aspect-ratio:4/3.4}
@@ -313,6 +328,7 @@ a{color:inherit}
 <p class="voet-onder">© Ravenberg Loodgieters. <span class="leeg">Adres</span>, <span class="leeg">KvK-nummer</span>.<br>Concept door AVORO. Telefoonnummer, tarieven en foto's zijn voorbeelden.</p>
 </div></footer>
 <div class="belbalk"><a class="knop knop-oranje" href="#bellen">Bel direct</a><a class="knop knop-lijn" href="#offerte">Offerte</a></div>
+<div class="kleuren" role="group" aria-label="Kies een kleurenset"><span>Kleur</span></div>
 <a class="avoro-pill" href="https://avoroweb.nl" target="_blank" rel="noopener" aria-label="Concept door AVORO webdesign"><span class="avoro-pill__dot" aria-hidden="true"></span><span>Concept <span class="avoro-pill__long">door </span><b>AVORO</b><span class="avoro-pill__long"> webdesign</span></span></a>
 <script>
 {
@@ -327,6 +343,12 @@ document.getElementById('dienstlijst').innerHTML=D.map(d=>`<a class="dienst" hre
 const P=[['Zuid-Holland',['Rotterdam','Den Haag','Leiden','Dordrecht','Zoetermeer','Delft','Schiedam','Gouda']],['Noord-Holland',['Amsterdam','Haarlem','Alkmaar','Hilversum','Zaandam','Hoofddorp']],['Utrecht',['Utrecht','Amersfoort','Nieuwegein','Zeist','Veenendaal','Houten']],['Noord-Brabant',['Eindhoven','Tilburg','Breda','Den Bosch','Helmond','Oss']]];
 document.getElementById('gebied').innerHTML=P.map(p=>`<div class="prov"><h3>${p[0]}</h3><div class="steden">${p[1].map(s=>`<a href="#werkgebied">${s}</a>`).join('')}</div></div>`).join('');
 document.getElementById('plaatsen').innerHTML=P.flatMap(p=>p[1]).map(s=>`<option value="${s}">`).join('');
+const K=[['','Nachtblauw','#07111f','#ea5f01'],['antraciet','Antraciet','#121314','#f26b1d'],['groen','Diepgroen','#0c1f1b','#d6a74a'],['petrol','Petrol','#052328','#ff6a3d'],['rood','Marine en rood','#0d1522','#c8232f'],['geel','Zwart en geel','#0e0e0e','#f3c300']];
+const kb=document.querySelector('.kleuren');
+const zet=k=>{if(k)document.documentElement.dataset.kleur=k;else delete document.documentElement.dataset.kleur;kb.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.k===k)))};
+kb.insertAdjacentHTML('beforeend',K.map(k=>`<button type="button" data-k="${k[0]}" aria-label="${k[1]}" title="${k[1]}" aria-pressed="false"><i style="background:${k[2]}"></i><i style="background:${k[3]}"></i></button>`).join(''));
+kb.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;zet(b.dataset.k);history.replaceState(null,'',b.dataset.k?'#'+b.dataset.k:location.pathname)});
+const h=location.hash.slice(1);zet(K.some(k=>k[0]===h)?h:'');
 const av=document.querySelector('.avoro-pill');
 if(av){const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function B(){const m=innerWidth<821,w=av.offsetWidth,h=av.offsetHeight;return{x0:8,x1:Math.max(8,innerWidth-w-8),y0:m?74:96,y1:Math.max(m?74:96,innerHeight-h-(m?130:96))}}
