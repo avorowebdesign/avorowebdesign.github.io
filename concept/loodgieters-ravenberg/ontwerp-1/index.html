@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl"><head>
+<html lang="nl" class="zonder"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Ravenberg Loodgieters | Dag en nacht bereikbaar</title>
@@ -231,12 +231,25 @@ a{color:inherit}
 [data-kleur="wit"]{--hero-bg:#ffffff;--gebroken:#f5f5f5;--staal:#111111;--staal-l:#111111;--oranje:#111111;--oranje-h:#333333;--nacht:#111111}
 @media (min-width:1040px){:is([data-kleur="licht"],[data-kleur="steen"],[data-kleur="wit"]) .hero-lijst{background:color-mix(in srgb,var(--hero-bg) 94%,transparent);padding:6px 22px;border-top:0}:is([data-kleur="licht"],[data-kleur="steen"],[data-kleur="wit"]) .hero-foto::after{background:linear-gradient(90deg,color-mix(in srgb,var(--hero-bg) 96%,transparent) 0%,color-mix(in srgb,var(--hero-bg) 80%,transparent) 42%,color-mix(in srgb,var(--hero-bg) 10%,transparent) 75%),linear-gradient(180deg,transparent 60%,var(--hero-bg) 100%)}
 [data-kleur="licht"] .logo-w,[data-kleur="steen"] .logo-w,[data-kleur="wit"] .logo-w{display:none}[data-kleur="licht"] .logo-k,[data-kleur="steen"] .logo-k,[data-kleur="wit"] .logo-k{display:block}}
-.kleuren{position:fixed;left:12px;bottom:calc(70px + env(safe-area-inset-bottom));z-index:65;display:flex;align-items:center;gap:6px;background:#fff;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.kleuren{flex-wrap:wrap;max-width:calc(100vw - 24px);position:fixed;left:12px;bottom:calc(70px + env(safe-area-inset-bottom));z-index:65;display:flex;align-items:center;gap:6px;background:#fff;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 .kleuren span{font:700 13px/1 var(--cond);text-transform:uppercase;letter-spacing:.04em;color:#0b1422;padding:0 6px 0 4px}
-.kleuren button{width:34px;height:34px;border:1px solid #d0d4da;padding:0;cursor:pointer;display:grid;grid-template-columns:1fr 1fr;outline-offset:2px}
+.kleuren button{width:30px;height:30px;border:1px solid #d0d4da;padding:0;cursor:pointer;display:grid;grid-template-columns:1fr 1fr;outline-offset:2px}
 .kleuren button i{display:block}
 .kleuren button[aria-pressed="true"]{outline:3px solid #0b1422}
 @media (min-width:700px){.kleuren{bottom:20px;left:20px}}
+
+.fotovak{display:block}.dienst .fotovak,.uitspraak .fotovak{position:relative}
+.dienst .fotovak img,.uitspraak .fotovak img{width:100%}
+.zonder .fotovak{background:color-mix(in srgb,var(--staal) 16%,var(--steen))}
+.zonder .fotovak img{visibility:hidden}
+.zonder .fotovak::before{content:attr(data-label);position:absolute;left:14px;bottom:12px;z-index:1;font:600 13px/1.2 var(--body);color:var(--tekst);background:rgba(255,255,255,.85);padding:6px 9px}
+.zonder .hero-foto{background:color-mix(in srgb,var(--staal) 30%,var(--hero-bg))}
+.zonder .hero-foto::after{background:linear-gradient(180deg,transparent 60%,var(--hero-bg) 100%)}
+.zonder .hero-foto::before{bottom:auto;top:110px;left:auto;right:var(--pad)}
+.zonder .uitspraak .fotovak{background:color-mix(in srgb,var(--staal) 30%,var(--nacht))}
+@media (min-width:1040px){.zonder .uitspraak .fotovak{height:100%;min-height:640px}.zonder .hero-foto::after{background:none}.zonder .hero-foto{background:color-mix(in srgb,var(--staal) 12%,var(--hero-bg))}}
+.kleuren .fotoknop{width:auto;padding:0 10px;display:block;font:700 13px/1 var(--cond);text-transform:uppercase;letter-spacing:.03em;background:#fff;color:#0b1422}
+.kleuren .fotoknop[aria-pressed="true"]{background:#0b1422;color:#fff;outline:0}
 @media (max-width:1039px){
  .hero{display:block;min-height:0}
  .hero-foto{position:relative;inset:auto;z-index:0;aspect-ratio:4/3.4}
@@ -255,7 +268,7 @@ a{color:inherit}
 </div></header>
 <main>
 <section class="hero">
-<div class="hero-foto"><img src="media/team-1400.webp" srcset="media/team-800.webp 800w, media/team-1400.webp 1400w" sizes="100vw" alt="Het team van Ravenberg Loodgieters" fetchpriority="high"></div>
+<div class="hero-foto fotovak" data-label="Hier komt uw eigen teamfoto"><img src="media/team-1400.webp" srcset="media/team-800.webp 800w, media/team-1400.webp 1400w" sizes="100vw" alt="Het team van Ravenberg Loodgieters" fetchpriority="high"></div>
 <div class="wrap hero-in">
 <div>
 <h1 class="kap"><span>Vakwerk</span><span>achter elke</span><span>kraan.</span></h1>
@@ -279,7 +292,7 @@ a{color:inherit}
 </div></section>
 
 <section class="uitspraak">
-<img src="media/werk-900.webp" srcset="media/werk-600.webp 600w, media/werk-900.webp 900w" sizes="(min-width:1040px) 50vw, 100vw" width="900" height="600" alt="Loodgieter van Ravenberg aan het werk aan de leidingen" loading="lazy">
+<span class="fotovak" data-label="Foto: loodgieter aan het werk"><img src="media/werk-900.webp" srcset="media/werk-600.webp 600w, media/werk-900.webp 900w" sizes="(min-width:1040px) 50vw, 100vw" width="900" height="600" alt="Loodgieter van Ravenberg aan het werk aan de leidingen" loading="lazy"></span>
 <div class="uitspraak-tekst"><blockquote>Eerst zoeken waar het zit. Dan pas openmaken.</blockquote>
 <p>Water loopt langs leidingen en balken en komt vaak ergens anders naar buiten. Daarom meten we eerst, en breken we alleen waar het nodig is.</p></div>
 </section>
@@ -345,15 +358,17 @@ const D=[['lekkage','Lekkage','Een natte plek, druppels of water op de vloer. We
 ['kranen-sanitair','Kranen en sanitair','Repareren, vervangen en plaatsen, netjes en waterdicht aangesloten.'],
 ['lekdetectie','Lekdetectie','Met warmtecamera en meetapparatuur vinden we verborgen lekken.']];
 const pijl='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
-document.getElementById('dienstlijst').innerHTML=D.map(d=>`<a class="dienst" href="#diensten"><img src="media/foto-${d[0]}.webp" width="800" height="500" alt="" loading="lazy"><div><h3>${d[1]}</h3><p>${d[2]}</p><span class="meer">Meer over ${d[1].toLowerCase()}${pijl}</span></div></a>`).join('');
+document.getElementById('dienstlijst').innerHTML=D.map(d=>`<a class="dienst" href="#diensten"><span class="fotovak" data-label="Foto: ${d[1].toLowerCase()}"><img src="media/foto-${d[0]}.webp" width="800" height="500" alt="" loading="lazy"></span><div><h3>${d[1]}</h3><p>${d[2]}</p><span class="meer">Meer over ${d[1].toLowerCase()}${pijl}</span></div></a>`).join('');
 const P=[['Zuid-Holland',['Rotterdam','Den Haag','Leiden','Dordrecht','Zoetermeer','Delft','Schiedam','Gouda']],['Noord-Holland',['Amsterdam','Haarlem','Alkmaar','Hilversum','Zaandam','Hoofddorp']],['Utrecht',['Utrecht','Amersfoort','Nieuwegein','Zeist','Veenendaal','Houten']],['Noord-Brabant',['Eindhoven','Tilburg','Breda','Den Bosch','Helmond','Oss']]];
 document.getElementById('gebied').innerHTML=P.map(p=>`<div class="prov"><h3>${p[0]}</h3><div class="steden">${p[1].map(s=>`<a href="#werkgebied">${s}</a>`).join('')}</div></div>`).join('');
 document.getElementById('plaatsen').innerHTML=P.flatMap(p=>p[1]).map(s=>`<option value="${s}">`).join('');
 const K=[['','Nachtblauw','#07111f','#0a63b8'],['origineel','Nachtblauw en oranje (origineel)','#07111f','#ea5f01'],['groen','Diepgroen en messing','#0c1f1b','#c9a04a'],['antraciet','Antraciet en wit','#141516','#ffffff'],['licht','Licht en blauw','#f4f6f9','#0a63b8'],['steen','Steen en groen','#eeede8','#1d5a4c'],['wit','Wit en zwart','#ffffff','#111111']];
 const kb=document.querySelector('.kleuren');
-const zet=k=>{if(k)document.documentElement.dataset.kleur=k;else delete document.documentElement.dataset.kleur;kb.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.k===k)))};
+const zet=k=>{if(k)document.documentElement.dataset.kleur=k;else delete document.documentElement.dataset.kleur;kb.querySelectorAll('button[data-k]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.k===k)))};
 kb.insertAdjacentHTML('beforeend',K.map(k=>`<button type="button" data-k="${k[0]}" aria-label="${k[1]}" title="${k[1]}" aria-pressed="false"><i style="background:${k[2]}"></i><i style="background:${k[3]}"></i></button>`).join(''));
-kb.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;zet(b.dataset.k);history.replaceState(null,'',b.dataset.k?'#'+b.dataset.k:location.pathname)});
+kb.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.classList.contains('fotoknop'))return;zet(b.dataset.k);history.replaceState(null,'',b.dataset.k?'#'+b.dataset.k:location.pathname)});
+kb.insertAdjacentHTML('beforeend','<button type="button" class="fotoknop" aria-pressed="false">Foto\'s</button>');
+kb.querySelector('.fotoknop').addEventListener('click',e=>{const aan=document.documentElement.classList.toggle('zonder');e.currentTarget.setAttribute('aria-pressed',String(!aan))});
 const h=location.hash.slice(1);zet(K.some(k=>k[0]===h)?h:'');
 const av=document.querySelector('.avoro-pill');
 if(av){const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
