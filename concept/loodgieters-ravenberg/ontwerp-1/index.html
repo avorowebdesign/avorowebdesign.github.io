@@ -222,6 +222,7 @@ a{color:inherit}
 
 /* kleurensets */
 .logo-k{display:none}
+[data-kleur="origineel"]{--oranje:#ea5f01;--oranje-h:#ff7314}
 [data-kleur="groen"]{--nacht:#0c1f1b;--hero-bg:#0c1f1b;--staal:#1d5a4c;--staal-l:#d6a74a;--oranje:#c9a04a;--oranje-h:#d9b25e;--cta-ink:#0c1f1b}
 [data-kleur="antraciet"]{--nacht:#141516;--hero-bg:#141516;--staal:#2b2e33;--staal-l:#c9ced6;--oranje:#ffffff;--oranje-h:#e9ebee;--cta-ink:#141516}
 [data-kleur="licht"],[data-kleur="steen"],[data-kleur="wit"]{--hero-ink:#0b1422;--hero-zacht:#45505e;--hero-lijn:rgba(11,20,34,.16);--kop-ink:#0b1422}
@@ -348,7 +349,7 @@ document.getElementById('dienstlijst').innerHTML=D.map(d=>`<a class="dienst" hre
 const P=[['Zuid-Holland',['Rotterdam','Den Haag','Leiden','Dordrecht','Zoetermeer','Delft','Schiedam','Gouda']],['Noord-Holland',['Amsterdam','Haarlem','Alkmaar','Hilversum','Zaandam','Hoofddorp']],['Utrecht',['Utrecht','Amersfoort','Nieuwegein','Zeist','Veenendaal','Houten']],['Noord-Brabant',['Eindhoven','Tilburg','Breda','Den Bosch','Helmond','Oss']]];
 document.getElementById('gebied').innerHTML=P.map(p=>`<div class="prov"><h3>${p[0]}</h3><div class="steden">${p[1].map(s=>`<a href="#werkgebied">${s}</a>`).join('')}</div></div>`).join('');
 document.getElementById('plaatsen').innerHTML=P.flatMap(p=>p[1]).map(s=>`<option value="${s}">`).join('');
-const K=[['','Nachtblauw','#07111f','#0a63b8'],['groen','Diepgroen en messing','#0c1f1b','#c9a04a'],['antraciet','Antraciet en wit','#141516','#ffffff'],['licht','Licht en blauw','#f4f6f9','#0a63b8'],['steen','Steen en groen','#eeede8','#1d5a4c'],['wit','Wit en zwart','#ffffff','#111111']];
+const K=[['','Nachtblauw','#07111f','#0a63b8'],['origineel','Nachtblauw en oranje (origineel)','#07111f','#ea5f01'],['groen','Diepgroen en messing','#0c1f1b','#c9a04a'],['antraciet','Antraciet en wit','#141516','#ffffff'],['licht','Licht en blauw','#f4f6f9','#0a63b8'],['steen','Steen en groen','#eeede8','#1d5a4c'],['wit','Wit en zwart','#ffffff','#111111']];
 const kb=document.querySelector('.kleuren');
 const zet=k=>{if(k)document.documentElement.dataset.kleur=k;else delete document.documentElement.dataset.kleur;kb.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.k===k)))};
 kb.insertAdjacentHTML('beforeend',K.map(k=>`<button type="button" data-k="${k[0]}" aria-label="${k[1]}" title="${k[1]}" aria-pressed="false"><i style="background:${k[2]}"></i><i style="background:${k[3]}"></i></button>`).join(''));
