@@ -1,13 +1,13 @@
 /* Ravenberg Loodgieters, concept v2. Rustig, zakelijk, foto's dragen het. Mobiel eerst. */
 @font-face { font-family: "Schibsted"; src: url("media/schibsted.woff2") format("woff2"); font-weight: 400 900; font-display: swap; }
 :root {
-  --navy: #0e2a47; --navy-2: #133556;
-  --blauw: #1665d8; --blauw-hover: #0f55bd;
-  --tint: #eef3f9; --lijn: #dde4ec;
-  --inkt: #14202e; --tekst: #3b4756; --grijs: #6a7685;
-  --wit: #fff; --groen: #1f9d55; --ster: #f2a516;
+  --navy: #031b3a; --navy-2: #08284f; --blauw: #0b4f9e; --helder: #0a72c8;
+  --oranje: #ea5f01; --oranje-hover: #ff7314;
+  --tint: #f2f5f9; --lijn: #dfe5ee;
+  --inkt: #0d1b2e; --tekst: #3a4757; --grijs: #687587;
+  --wit: #fff; --groen: #22a45d; --ster: #f5a623;
   --f: "Schibsted", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --pad: 20px; --max: 1200px; --r: 6px;
+  --pad: 20px; --max: 1200px; --r: 10px;
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-padding-top: 76px; }
@@ -216,3 +216,117 @@ img { height: auto; }
 .formulier .knop { justify-self: start; }
 .klaar { padding: 20px; background: var(--tint); border-radius: var(--r); color: var(--inkt); }
 .voet .merk { display: flex; }
+
+/* ===== v3: stijl van het voorbeeld, met het logo van Ravenberg ===== */
+.knop-oranje { background: var(--oranje); color: var(--wit); box-shadow: 0 6px 18px rgba(234,95,1,.28); }
+.knop-oranje:hover { background: var(--oranje-hover); }
+.knop-glas { background: var(--wit); color: var(--navy); }
+.knop-glas:hover { background: var(--tint); }
+.knop .pijl-r { width: 18px; height: 18px; margin-left: auto; }
+
+.kop { background: var(--navy); border-bottom: 0; }
+.kop .wrap { min-height: 68px; }
+.merk img { height: 46px; width: auto; }
+.kop nav a { color: #c8d5e6 !important; }
+.kop nav a:hover { color: var(--wit) !important; }
+.kop-nr { color: #9fb3cc !important; }
+.kop-nr b { color: var(--wit) !important; }
+.kop-bel { width: 48px; height: 48px; border-radius: var(--r); background: var(--oranje); color: var(--wit); display: grid; place-items: center; }
+.kop-bel svg { width: 22px; height: 22px; }
+
+.hero { position: relative; padding: 0; background: var(--navy); color: var(--wit); overflow: hidden; isolation: isolate; }
+.hero-bg { position: absolute; inset: 0; z-index: -1; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 40%; }
+.hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(3,27,58,.55) 0%, rgba(8,40,79,.78) 45%, rgba(3,27,58,.96) 100%); }
+.hero .wrap { display: block; padding-top: 34px; padding-bottom: 30px; }
+.hero-tekst { padding: 0; }
+.hero h1 { color: var(--wit); font-size: clamp(36px, 10vw, 62px); }
+.hero-tekst p { color: #dbe5f2; font-size: 18px; margin: 14px 0 24px; max-width: 34ch; }
+.hero .knoppen { display: grid; gap: 12px; max-width: 420px; }
+.hero .knop { justify-content: flex-start; min-height: 58px; font-size: 18px; padding: 0 20px; }
+.hero .kruimel, .hero .kruimel a { color: #b9c8db; }
+.hero .status { color: var(--wit); }
+.troef { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.16); }
+.troef li { display: grid; gap: 8px; font-size: 14px; line-height: 1.3; color: #dbe5f2; }
+.troef svg { width: 30px; height: 30px; color: var(--oranje); }
+.troef b { display: block; color: var(--wit); font-size: 15px; }
+
+.sectie-tint { background: var(--tint); }
+.diensten2 { display: grid; gap: 12px; }
+.diensten2 a { display: grid; grid-template-columns: 72px minmax(0, 1fr) 36px; gap: 14px; align-items: center; background: var(--wit); border-radius: var(--r); padding: 10px 14px 10px 10px; text-decoration: none; color: var(--inkt); box-shadow: 0 1px 2px rgba(13,27,46,.06), 0 6px 20px rgba(13,27,46,.06); transition: box-shadow .15s; }
+.diensten2 a:hover { box-shadow: 0 1px 2px rgba(13,27,46,.08), 0 10px 28px rgba(13,27,46,.12); }
+.d-beeld { width: 72px; height: 72px; border-radius: 8px; overflow: hidden; display: grid; place-items: center; background: linear-gradient(145deg, var(--helder), var(--navy)); color: var(--wit); }
+.d-beeld img { width: 100%; height: 100%; object-fit: cover; }
+.d-beeld svg { width: 32px; height: 32px; }
+.diensten2 b { display: block; font-size: 18px; font-weight: 700; }
+.diensten2 small { display: block; font-size: 15px; color: var(--grijs); margin-top: 3px; line-height: 1.4; }
+.d-pijl { width: 36px; height: 36px; border-radius: 50%; background: var(--tint); display: grid; place-items: center; color: var(--navy); }
+.d-pijl svg { width: 18px; height: 18px; }
+
+.uitlicht { display: grid; border-radius: 14px; overflow: hidden; background: linear-gradient(120deg, var(--navy), var(--blauw)); color: #dbe5f2; }
+.uitlicht img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.uitlicht div { padding: 24px; display: grid; gap: 14px; }
+.uitlicht h2 { color: var(--wit); font-size: clamp(26px, 6vw, 36px); }
+.uitlicht .vink li { color: var(--wit); }
+.uitlicht .vink li::before { background-color: var(--oranje); }
+.uitlicht .knop { justify-self: start; margin-top: 4px; }
+
+.bewijs { display: grid; gap: 12px; }
+.bewijs > div { display: flex; align-items: center; gap: 16px; background: var(--wit); border-radius: var(--r); padding: 18px 20px; box-shadow: 0 1px 2px rgba(13,27,46,.06), 0 6px 20px rgba(13,27,46,.06); }
+.bewijs svg.g { width: 40px; height: 40px; flex: none; }
+.bewijs b { font-size: 24px; color: var(--inkt); line-height: 1.1; }
+.bewijs small { display: block; color: var(--grijs); font-size: 14px; }
+.bewijs .ic-blauw { width: 40px; height: 40px; color: var(--blauw); flex: none; }
+
+.vink li::before { background-color: var(--blauw); }
+.stappen li { border-top-color: var(--oranje); border-top-width: 3px; }
+.stappen li::before { color: var(--oranje); }
+.steden a:hover, .tags a:hover { color: var(--blauw); border-color: var(--blauw); }
+
+.spoed { padding: 0 0 60px; }
+.spoed a { display: grid; grid-template-columns: 48px minmax(0, 1fr) 24px; gap: 16px; align-items: center; background: var(--oranje); color: var(--wit); border-radius: 14px; padding: 22px 20px; text-decoration: none; box-shadow: 0 10px 30px rgba(234,95,1,.3); transition: background-color .15s; }
+.spoed a:hover { background: var(--oranje-hover); }
+.spoed svg { width: 40px; height: 40px; }
+.spoed svg.pijl-r { width: 24px; height: 24px; }
+.spoed b { display: block; font-size: 21px; line-height: 1.2; }
+.spoed span span { font-size: 15px; opacity: .92; }
+
+.slot { background: linear-gradient(120deg, var(--navy), var(--blauw)); }
+.slot .knop-wit { background: var(--oranje); color: var(--wit); }
+.slot .knop-wit:hover { background: var(--oranje-hover); }
+
+.voet { background: var(--navy); }
+.voet .merk img { height: 46px; }
+.belbalk .knop-blauw { background: var(--oranje); }
+
+@media (min-width: 640px) {
+  .diensten2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bewijs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .uitlicht { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
+  .uitlicht img { height: 100%; aspect-ratio: auto; }
+  .uitlicht div { padding: 36px; }
+}
+@media (min-width: 1000px) {
+  .kop .wrap { min-height: 84px; }
+  .merk img { height: 52px; }
+  .kop-bel { display: none; }
+  .hero .wrap { display: block; padding-top: 96px; padding-bottom: 56px; }
+  .hero-bg::after { background: linear-gradient(90deg, rgba(3,27,58,.97) 0%, rgba(8,40,79,.88) 40%, rgba(11,79,158,.25) 100%); }
+  .hero-bg img { object-position: 50% 40%; }
+  .hero-tekst { max-width: 620px; }
+  .hero .knoppen { display: flex; max-width: none; }
+  .hero .knop { min-width: 260px; }
+  .troef { max-width: 640px; margin-top: 44px; }
+  .diensten2 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .diensten2 a { grid-template-columns: 72px minmax(0, 1fr) 32px; padding: 14px 16px 14px 14px; }
+  .d-beeld { width: 72px; height: 72px; }
+  .d-beeld svg { width: 32px; height: 32px; }
+  .bewijs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  .spoed { padding-bottom: 96px; }
+  .spoed a { padding: 30px 40px; grid-template-columns: 56px minmax(0, 1fr) 28px; }
+  .spoed b { font-size: 26px; }
+}
+.kop-knop { display: none !important; }
+.spoed { padding-top: 56px; }
+.sectie-tint + .spoed, .spoed { background: var(--wit); }
+@media (min-width: 1000px) { .kop-knop { display: inline-flex !important; } .spoed { padding-top: 96px; } }
