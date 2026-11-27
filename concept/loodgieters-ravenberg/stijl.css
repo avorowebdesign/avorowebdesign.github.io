@@ -209,3 +209,10 @@ img { height: auto; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 @media (max-width: 419px) { .merk small { display: none; } }
+.formulier { display: grid; gap: 16px; }
+.formulier label { display: grid; gap: 6px; font-weight: 600; color: var(--inkt); font-size: 15px; }
+.formulier input, .formulier select, .formulier textarea { font: 400 17px/1.4 var(--f); color: var(--inkt); padding: 13px 14px; border: 1.5px solid var(--lijn); border-radius: var(--r); background: var(--wit); width: 100%; }
+.formulier input:focus, .formulier select:focus, .formulier textarea:focus { outline: none; border-color: var(--blauw); }
+.formulier .knop { justify-self: start; }
+.klaar { padding: 20px; background: var(--tint); border-radius: var(--r); color: var(--inkt); }
+.voet .merk { display: flex; }
